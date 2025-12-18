@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thrive Community Church | Estero, FL",
     description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
-    images: ["/images/og-image.jpg"],
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
     creator: "@Thrive_FL",
   },
   robots: {
@@ -73,7 +73,13 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         {/* Preconnect for external resources - improves connection setup time */}
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+        <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" />
+        <link rel="dns-prefetch" href="https://d2v6hk6f64og35.cloudfront.net" />
+
+        {/* Preload critical hero image for LCP optimization */}
+        <link rel="preload" href="https://d2v6hk6f64og35.cloudfront.net/Still.jpg" as="image" fetchPriority="high" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />

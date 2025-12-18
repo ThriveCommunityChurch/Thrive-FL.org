@@ -28,7 +28,7 @@ export default function Header() {
       <div className="header-container">
         <Link href="/" className="logo">
           <Image
-            src="/ThriveLogo.png"
+            src="https://d2v6hk6f64og35.cloudfront.net/ThriveLogo.png"
             alt="Thrive Community Church"
             width={180}
             height={63}

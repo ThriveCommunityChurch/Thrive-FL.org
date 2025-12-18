@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -26,13 +26,22 @@ export default function HomePage() {
       <section className="hero-section">
         {/* Video Background */}
         <div className="hero-video-container">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://d2v6hk6f64og35.cloudfront.net/Still.jpg"
+            alt=""
+            className="hero-poster-preload"
+            fetchPriority="high"
+            style={{ display: 'none' }}
+            aria-hidden="true"
+          />
           <video
             className="hero-video"
             autoPlay
             muted
             loop
             playsInline
-            poster="/Still.jpg"
+            poster="https://d2v6hk6f64og35.cloudfront.net/Still.jpg"
           >
             <source src="https://d2v6hk6f64og35.cloudfront.net/home.mp4" type="video/mp4" />
           </video>

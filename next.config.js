@@ -23,8 +23,38 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Cache all images in public folder for 1 year
-        source: '/:path*.(jpg|jpeg|png|gif|webp|avif|svg|ico)',
+        // Cache JPG images
+        source: '/:path*.jpg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache JPEG images
+        source: '/:path*.jpeg',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache PNG images
+        source: '/:path*.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache WebP images
+        source: '/:path*.webp',
         headers: [
           {
             key: 'Cache-Control',
