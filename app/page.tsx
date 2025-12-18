@@ -8,6 +8,14 @@ export const metadata: Metadata = {
     title: "Thrive Community Church | Estero, FL",
     description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL.",
     url: "https://thrive-fl.org",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
   },
 };
 
