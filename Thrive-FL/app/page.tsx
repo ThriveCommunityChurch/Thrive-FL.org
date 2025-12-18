@@ -1,0 +1,243 @@
+import { Metadata } from "next";
+import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Thrive Community Church | Estero, FL - You Belong",
+  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. A congregation of the Lutheran Church—Missouri Synod.",
+  openGraph: {
+    title: "Thrive Community Church | Estero, FL",
+    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL.",
+    url: "https://thrive-fl.org",
+  },
+};
+
+export default function HomePage() {
+  return (
+    <div className="page-wrapper">
+      {/* Hero Section with Background Video */}
+      <section className="hero-section">
+        {/* Video Background */}
+        <div className="hero-video-container">
+          <video
+            className="hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/Still.jpg"
+          >
+            <source src="https://d2v6hk6f64og35.cloudfront.net/home.mp4" type="video/mp4" />
+          </video>
+          {/* Fallback image for mobile or when video fails */}
+          <div className="hero-image-fallback"></div>
+          {/* Dark overlay for text readability */}
+          <div className="hero-overlay"></div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="hero-welcome">Welcome to</span>
+            Thrive Community Church
+          </h1>
+          <p className="hero-tagline">You Belong</p>
+          <div className="hero-info">
+            <p className="hero-service-time">
+              <i className="fa-solid fa-clock"></i>
+              Sundays at 10 AM
+            </p>
+          </div>
+          <div className="hero-cta">
+            <a href="/im-new" className="btn btn-primary">
+              <i className="fa-solid fa-calendar-check"></i>
+              Join Us This Sunday
+            </a>
+            <a href="/sermons" className="btn btn-secondary">
+              <i className="fa-solid fa-circle-play"></i>
+              Watch a Message
+            </a>
+          </div>
+          {/* Scroll indicator */}
+          <div className="scroll-indicator">
+            <i className="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+      </section>
+
+      {/* Service Times Section */}
+      <section className="section service-times-section">
+        <div className="container">
+          <h2 className="section-title">
+            Service Times
+          </h2>
+          <div className="service-times-grid">
+            <div className="service-card">
+              <div className="service-icon">
+                <i className="fa-solid fa-sun"></i>
+              </div>
+              <h3>Sunday Worship</h3>
+              <p className="service-time">10:00 AM</p>
+              <p className="service-description">
+                Contemporary worship, biblical teaching, and genuine community
+              </p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <i className="fa-solid fa-child"></i>
+              </div>
+              <h3>Thrive Kids</h3>
+              <p className="service-time">During Service</p>
+              <p className="service-description">
+                Age-appropriate Bible teaching for children 6 months through 5th grade
+              </p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <i className="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3>College Ministry</h3>
+              <p className="service-time">Wednesdays 6:30 PM</p>
+              <p className="service-description">
+                ThriveFGCU - Food, fellowship, and faith for college students
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Welcome Section */}
+      <section className="section welcome-section">
+        <div className="container">
+          <div className="welcome-content">
+            <div className="welcome-text">
+              <h2 className="section-title">A Church For Our City</h2>
+              <p className="welcome-lead">
+                Thrive is more than just a meeting to attend. It&apos;s a diverse,
+                spiritually growing family to be a part of, centered on the person
+                and mission of Jesus Christ.
+              </p>
+              <p>
+                We&apos;re actively working to build a great city, renewed by the truth,
+                grace, and changing power of the gospel. Whether you&apos;re exploring
+                faith for the first time or looking for a church home, you&apos;ll find
+                a warm welcome here.
+              </p>
+              <a href="/im-new" className="btn btn-outline">
+                Learn More About Us
+                <i className="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div className="welcome-image">
+              <div className="image-placeholder">
+                <Image
+                  src="/Estero.jpg"
+                  alt="Welcome to Thrive"
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Links Section */}
+      <section className="section quicklinks-section">
+        <div className="container">
+          <h2 className="section-title">Get Connected</h2>
+          <div className="quicklinks-grid">
+            <a href="/sermons" className="quicklink-card">
+              <div className="quicklink-icon">
+                <i className="fa-solid fa-play"></i>
+              </div>
+              <h3>Listen to Sermons</h3>
+              <p>Watch sermons in HD or re-watch a message if you missed something</p>
+              <span className="quicklink-action">Browse Messages</span>
+            </a>
+            <a href="/small-groups" className="quicklink-card">
+              <div className="quicklink-icon">
+                <i className="fa-solid fa-house"></i>
+              </div>
+              <h3>Join a Small Group</h3>
+              <p>Home Huddles for everyone with any schedule - join one today</p>
+              <span className="quicklink-action">Find a Group</span>
+            </a>
+            <a href="/ministries/kids" className="quicklink-card">
+              <div className="quicklink-icon">
+                <i className="fa-solid fa-heart"></i>
+              </div>
+              <h3>Thrive Kids</h3>
+              <p>Available every Sunday for all your little ones</p>
+              <span className="quicklink-action">Learn More</span>
+            </a>
+            <a href="/get-involved" className="quicklink-card">
+              <div className="quicklink-icon">
+                <i className="fa-solid fa-handshake-angle"></i>
+              </div>
+              <h3>Get Involved</h3>
+              <p>Donate to our ministry or learn how you can serve at Thrive</p>
+              <span className="quicklink-action">Serve With Us</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="section location-section">
+        <div className="container">
+          <div className="location-content">
+            <div className="location-info">
+              <h2 className="section-title">
+                <i className="fa-solid fa-location-dot"></i>
+                Find Us
+              </h2>
+              <div className="location-details">
+                <div className="location-item">
+                  <i className="fa-solid fa-building"></i>
+                  <div>
+                    <strong>20041 S. Tamiami Trail #1</strong>
+                    <p>Estero, FL 33928</p>
+                  </div>
+                </div>
+                <div className="location-item">
+                  <i className="fa-solid fa-phone"></i>
+                  <div>
+                    <a href="tel:+12396873430">(239) 687-3430</a>
+                  </div>
+                </div>
+                <div className="location-item">
+                  <i className="fa-solid fa-envelope"></i>
+                  <div>
+                    <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://maps.google.com/?q=20041+S+Tamiami+Trail+Estero+FL+33928"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                <i className="fa-solid fa-diamond-turn-right"></i>
+                Get Directions
+              </a>
+            </div>
+            <div className="location-map">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ9x5eZYwW24gROq2FHAmt8II&key=AIzaSyCaqg5Tk7iqO7xDnNOEukY0Y8AP_M91Fl4"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Thrive Community Church Location"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

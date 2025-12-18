@@ -1,0 +1,154 @@
+// app/services/sermonService.ts
+
+import {
+  AllSermonsSummaryResponse,
+  SermonSeries,
+} from '../types/sermons';
+
+// ============================================
+// CONFIGURATION
+// ============================================
+
+// API Base URL - uses environment variable with fallback to production
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://2gtmya7qxt.us-east-2.awsapprunner.com';
+
+// ============================================
+// ERROR HANDLING
+// ============================================
+
+export class SermonApiError extends Error {
+  constructor(
+    message: string,
+    public statusCode: number,
+    public endpoint: string
+  ) {
+    super(message);
+    this.name = 'SermonApiError';
+  }
+}
+
+async function handleResponse<T>(response: Response, endpoint: string): Promise<T> {
+  if (!response.ok) {
+    throw new SermonApiError(
+      `API request failed: ${response.statusText}`,
+      response.status,
+      endpoint
+    );
+  }
+  return response.json();
+}
+
+// ============================================
+// API FUNCTIONS
+// ============================================
+
+/**
+ * Get all sermon series summaries
+ * @param highResImg - Request high-resolution artwork (default: true)
+ */
+export async function getAllSermons(highResImg = true): Promise<AllSermonsSummaryResponse> {
+  const endpoint = `/api/Sermons?highResImg=${highResImg}`;
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    cache: 'no-store', // Always fetch fresh data
+  });
+  return handleResponse<AllSermonsSummaryResponse>(response, endpoint);
+}
+
+/**
+ * Get a single sermon series with all messages
+ * @param seriesId - The series ID
+ */
+export async function getSeriesById(seriesId: string): Promise<SermonSeries> {
+  const endpoint = `/api/Sermons/series/${seriesId}`;
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    cache: 'no-store',
+  });
+  return handleResponse<SermonSeries>(response, endpoint);
+}
+
+// ============================================
+// UTILITY FUNCTIONS
+// ============================================
+
+/**
+ * Format audio duration from seconds to "MM:SS" or "HH:MM:SS"
+ */
+export function formatDuration(seconds: number | null): string {
+  if (!seconds) return '--:--';
+
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = Math.floor(seconds % 60);
+
+  if (hours > 0) {
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
+  return `${minutes}:${secs.toString().padStart(2, '0')}`;
+}
+
+/**
+ * Format file size from MB to human-readable string
+ */
+export function formatFileSize(mb: number | null): string {
+  if (!mb) return '';
+  return `${mb.toFixed(1)} MB`;
+}
+
+/**
+ * Format date string to readable format
+ */
+export function formatSermonDate(dateString: string | null): string {
+  if (!dateString) return '';
+
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+/**
+ * Format date range for series display
+ */
+export function formatSeriesDateRange(startDate: string | null, endDate: string | null): string {
+  if (!startDate) return '';
+  
+  const start = new Date(startDate);
+  const startStr = start.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  
+  if (!endDate) {
+    return `${startStr} - Present`;
+  }
+  
+  const end = new Date(endDate);
+  const endStr = end.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  
+  // If same month and year, just show one date
+  if (startStr === endStr) {
+    return startStr;
+  }
+  
+  return `${startStr} - ${endStr}`;
+}
+
+/**
+ * Get YouTube video ID from URL
+ */
+export function getYouTubeVideoId(url: string | null): string | null {
+  if (!url) return null;
+  
+  const patterns = [
+    /youtu\.be\/([^?&]+)/,
+    /youtube\.com\/watch\?v=([^&]+)/,
+    /youtube\.com\/embed\/([^?&]+)/,
+  ];
+  
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  
+  return null;
+}
+
