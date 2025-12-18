@@ -1,0 +1,15 @@
+# Modern browsers only - reduces polyfills and bundle size
+# Target browsers that support ES2022+ features natively
+# This eliminates polyfills for: Array.at, Array.flat, Object.fromEntries, Object.hasOwn, etc.
+
+defaults and fully supports es6-module
+not dead
+not ie 11
+not op_mini all
+
+# Minimum versions that support ES2022+
+Chrome >= 94
+Firefox >= 93
+Safari >= 15.4
+Edge >= 94
+
