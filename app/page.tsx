@@ -225,7 +225,7 @@ export default function HomePage() {
             </div>
             <div className="location-map">
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ9x5eZYwW24gROq2FHAmt8II&key=AIzaSyCaqg5Tk7iqO7xDnNOEukY0Y8AP_M91Fl4"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4609.462053318237!2d-81.81851682376421!3d26.44873607987428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db168c655e1ef7%3A0x82f0ad091c85ad3a!2sThrive%20Community%20Church!5e0!3m2!1sen!2sus!4v1766075584314!5m2!1sen!2sus"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
