@@ -31,7 +31,7 @@ export default function Header() {
             src="/ThriveLogo.png"
             alt="Thrive Community Church"
             width={180}
-            height={50}
+            height={63}
             priority
           />
         </Link>

@@ -142,6 +142,8 @@ export default function HomePage() {
                   alt="Welcome to Thrive"
                   width={600}
                   height={400}
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  quality={75}
                   style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
                 />
               </div>
