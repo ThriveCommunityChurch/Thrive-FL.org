@@ -72,14 +72,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        {/* Preconnect for external resources - improves connection setup time */}
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
-        <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://d2v6hk6f64og35.cloudfront.net" />
+        {/* Preconnect for external resources - crossOrigin required for CORS */}
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" crossOrigin="anonymous" />
 
         {/* Preload critical hero image for LCP optimization */}
         <link rel="preload" href="https://d2v6hk6f64og35.cloudfront.net/Still.jpg" as="image" fetchPriority="high" />
+
+        {/* Font Awesome font-display fix - ensures text visible while fonts load */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
+          @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
+        `}} />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
