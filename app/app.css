@@ -253,26 +253,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   Font Awesome Icons
-   ============================================ */
-.fa-solid, .fa-brands, .fa-regular, .fa-light, .fa-duotone,
-.fas, .fab, .far, .fal, .fad {
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-}
-
 /* Ensure icons in buttons/links are properly aligned */
 .btn i,
 .nav-link i,
 .quicklink-action i,
 .service-icon i,
+.service-icon svg,
 .quicklink-icon i,
+.quicklink-icon svg,
 .location-item i,
+.location-item svg,
 .social-links i,
+.social-links svg,
 .scroll-indicator i,
-.section-title i {
+.scroll-indicator svg,
+.section-title i,
+.section-title svg {
   display: inline-block;
   vertical-align: middle;
 }
@@ -319,7 +315,8 @@ a:hover {
   line-height: var(--line-height-tight);
 }
 
-.section-title i {
+.section-title i,
+.section-title svg {
   margin-right: var(--spacing-sm);
   color: var(--color-primary);
   opacity: 0.9;
@@ -349,12 +346,14 @@ a:hover {
   overflow: hidden;
 }
 
-.btn i {
+.btn i,
+.btn svg {
   font-size: 0.95em;
   transition: transform var(--transition-fast);
 }
 
-.btn:hover i {
+.btn:hover i,
+.btn:hover svg {
   transform: translateX(2px);
 }
 
@@ -506,7 +505,8 @@ a:hover {
   color: var(--color-primary);
 }
 
-.nav-link i {
+.nav-link i,
+.nav-link svg {
   margin-left: var(--spacing-xs);
   font-size: 0.75em;
 }
@@ -833,7 +833,9 @@ a:hover {
 }
 
 .hero-service-time i,
-.hero-location i {
+.hero-service-time svg,
+.hero-location i,
+.hero-location svg {
   color: var(--color-primary-light);
   font-size: 1.1em;
 }
@@ -855,13 +857,17 @@ a:hover {
   animation: gentleBounce 2.5s ease-in-out infinite;
 }
 
-.scroll-indicator i {
+.scroll-indicator i,
+.scroll-indicator svg {
   font-size: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
   opacity: 0.6;
   transition: opacity var(--transition-fast);
 }
 
-.scroll-indicator:hover i {
+.scroll-indicator:hover i,
+.scroll-indicator:hover svg {
   opacity: 1;
 }
 
@@ -984,8 +990,11 @@ a:hover {
   box-shadow: var(--shadow-primary-lg);
 }
 
-.service-icon i {
+.service-icon i,
+.service-icon svg {
   font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
   color: var(--color-white);
 }
 
@@ -1069,8 +1078,11 @@ a:hover {
   display: block;
 }
 
-.image-placeholder i {
+.image-placeholder i,
+.image-placeholder svg {
   font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
   margin-bottom: var(--spacing-lg);
 }
 
@@ -1118,7 +1130,8 @@ a:hover {
   position: relative;
 }
 
-.quicklinks-section .section-title i {
+.quicklinks-section .section-title i,
+.quicklinks-section .section-title svg {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -1197,8 +1210,11 @@ a:hover {
   transform: scale(1.1);
 }
 
-.quicklink-icon i {
+.quicklink-icon i,
+.quicklink-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .quicklink-card h3 {
@@ -1225,11 +1241,13 @@ a:hover {
   letter-spacing: var(--letter-spacing-wide);
 }
 
-.quicklink-action i {
+.quicklink-action i,
+.quicklink-action svg {
   transition: transform var(--transition-fast);
 }
 
-.quicklink-card:hover .quicklink-action i {
+.quicklink-card:hover .quicklink-action i,
+.quicklink-card:hover .quicklink-action svg {
   transform: translateX(6px);
 }
 
@@ -1285,6 +1303,25 @@ a:hover {
   flex-shrink: 0;
   box-shadow: var(--shadow-primary);
   font-size: 1.1rem;
+}
+
+.location-item-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-primary);
+}
+
+.location-item-icon svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--color-white);
 }
 
 .location-item strong {
@@ -1744,11 +1781,13 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
-.faq-link i {
+.faq-link i,
+.faq-link svg {
   transition: transform var(--transition-fast);
 }
 
-.faq-link:hover i {
+.faq-link:hover i,
+.faq-link:hover svg {
   transform: translateX(4px);
 }
 
@@ -1792,8 +1831,11 @@ a:hover {
   font-size: var(--font-size-lg);
 }
 
-.location-cta-details i {
+.location-cta-details i,
+.location-cta-details svg {
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
   opacity: 0.8;
 }
 
@@ -1847,8 +1889,11 @@ a:hover {
   justify-content: center;
 }
 
-.visit-card-icon i {
+.visit-card-icon i,
+.visit-card-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-white);
 }
 
@@ -1987,9 +2032,12 @@ a:hover {
   border-bottom: 2px solid var(--color-gray-100);
 }
 
-.directions-card h3 i {
+.directions-card h3 i,
+.directions-card h3 svg {
   color: var(--color-primary);
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .directions-content h4 {
@@ -2082,8 +2130,11 @@ a:hover {
   object-fit: cover;
 }
 
-.team-card-image i {
+.team-card-image i,
+.team-card-image svg {
   font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
   color: rgba(255, 255, 255, 0.4);
 }
 
@@ -2193,8 +2244,11 @@ a:hover {
   margin: 0 auto var(--spacing-lg);
 }
 
-.beliefs-pillar-icon i {
+.beliefs-pillar-icon i,
+.beliefs-pillar-icon svg {
   font-size: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
   color: var(--color-white);
 }
 
@@ -2434,9 +2488,12 @@ a:hover {
   font-weight: 500;
 }
 
-.heritage-feature i {
+.heritage-feature i,
+.heritage-feature svg {
   color: var(--color-primary);
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .beliefs-heritage-image {
@@ -2573,10 +2630,12 @@ a:hover {
   box-shadow: var(--shadow-md);
 }
 
-.contemporary-feature i {
+.contemporary-feature i,
+.contemporary-feature svg {
   color: var(--color-primary);
   font-size: 1.5rem;
   width: 40px;
+  height: 1.5rem;
   flex-shrink: 0;
   place-self: center;
   text-align-last: center;
@@ -2958,11 +3017,13 @@ a:hover {
   color: var(--color-primary-dark);
 }
 
-.about-explore-link i {
+.about-explore-link i,
+.about-explore-link svg {
   transition: transform var(--transition-fast);
 }
 
-.about-explore-card:hover .about-explore-link i {
+.about-explore-card:hover .about-explore-link i,
+.about-explore-card:hover .about-explore-link svg {
   transform: translateX(4px);
 }
 
@@ -3223,8 +3284,11 @@ a:hover {
   justify-content: center;
 }
 
-.value-card-icon i {
+.value-card-icon i,
+.value-card-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-white);
 }
 
@@ -3732,7 +3796,8 @@ a:hover {
   margin: 0;
 }
 
-.event-list-content p i {
+.event-list-content p i,
+.event-list-content p svg {
   color: var(--color-primary);
 }
 
@@ -3865,6 +3930,18 @@ a:hover {
   vertical-align: middle;
 }
 
+.event-modal-header h2 svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 10px;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  margin-right: var(--spacing-sm);
+  vertical-align: middle;
+  box-sizing: content-box;
+}
+
 .event-modal-body {
   padding: var(--spacing-2xl);
 }
@@ -3885,6 +3962,17 @@ a:hover {
   justify-content: center;
   color: var(--color-primary);
   flex-shrink: 0;
+}
+
+.event-modal-detail > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  padding: 10px;
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+  box-sizing: content-box;
 }
 
 .event-modal-detail strong {
@@ -4107,8 +4195,11 @@ a:hover {
   margin-bottom: var(--spacing-lg);
 }
 
-.contact-option-icon i {
+.contact-option-icon i,
+.contact-option-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-white);
 }
 
@@ -4141,8 +4232,11 @@ a:hover {
   gap: var(--spacing-sm);
 }
 
-.contact-option-action i {
+.contact-option-action i,
+.contact-option-action svg {
   font-size: 0.875rem;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 /* Contact Details Section - Redesigned */
@@ -4166,9 +4260,12 @@ a:hover {
 
 .contact-details-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-3xl);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 992px) {
@@ -4217,8 +4314,11 @@ a:hover {
   margin: 0 auto var(--spacing-lg);
 }
 
-.contact-detail-icon i {
+.contact-detail-icon i,
+.contact-detail-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-white);
 }
 
@@ -4319,8 +4419,11 @@ a:hover {
   border-color: var(--color-primary);
 }
 
-.contact-social-links-large a i {
+.contact-social-links-large a i,
+.contact-social-links-large a svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .contact-social-links-large a span {
@@ -4546,13 +4649,18 @@ a:hover {
 }
 
 .sermon-empty-state i,
-.sermon-error-state i {
+.sermon-empty-state svg,
+.sermon-error-state i,
+.sermon-error-state svg {
   font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
   color: var(--color-gray-300);
   margin-bottom: var(--spacing-lg);
 }
 
-.sermon-error-state i {
+.sermon-error-state i,
+.sermon-error-state svg {
   color: #ef4444;
 }
 
@@ -4765,7 +4873,9 @@ a:hover {
 }
 
 .series-detail-date i,
-.series-detail-count i {
+.series-detail-date svg,
+.series-detail-count i,
+.series-detail-count svg {
   color: var(--color-primary);
 }
 
@@ -4844,12 +4954,16 @@ a:hover {
   cursor: not-allowed;
 }
 
-.sermon-message-card__play-button i {
+.sermon-message-card__play-button i,
+.sermon-message-card__play-button svg {
   font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
   margin-left: 2px;
 }
 
-.sermon-message-card--playing .sermon-message-card__play-button i {
+.sermon-message-card--playing .sermon-message-card__play-button i,
+.sermon-message-card--playing .sermon-message-card__play-button svg {
   margin-left: 0;
 }
 
@@ -4885,8 +4999,11 @@ a:hover {
 }
 
 .sermon-message-card__speaker i,
+.sermon-message-card__speaker svg,
 .sermon-message-card__date i,
-.sermon-message-card__passage i {
+.sermon-message-card__date svg,
+.sermon-message-card__passage i,
+.sermon-message-card__passage svg {
   color: var(--color-gray-400);
 }
 
@@ -5032,8 +5149,11 @@ a:hover {
   transform: scale(1.05);
 }
 
-.sermon-player__play-btn i {
+.sermon-player__play-btn i,
+.sermon-player__play-btn svg {
   font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .sermon-player__progress-container {
@@ -5494,8 +5614,11 @@ a:hover {
   margin-bottom: var(--spacing-md);
 }
 
-.kids-feature-icon i {
+.kids-feature-icon i,
+.kids-feature-icon svg {
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--color-primary-dark);
 }
 
@@ -5547,8 +5670,11 @@ a:hover {
   margin: 0 auto var(--spacing-lg);
 }
 
-.kids-age-icon i {
+.kids-age-icon i,
+.kids-age-icon svg {
   font-size: 1.75rem;
+  width: 1.75rem;
+  height: 1.75rem;
   color: white;
 }
 
@@ -5609,9 +5735,12 @@ a:hover {
   color: var(--color-gray-700);
 }
 
-.kids-safety-list i {
+.kids-safety-list i,
+.kids-safety-list svg {
   color: var(--color-secondary);
   font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Kids CTA Section */
@@ -5705,8 +5834,11 @@ a:hover {
   margin-bottom: var(--spacing-md);
 }
 
-.groups-feature-icon i {
+.groups-feature-icon i,
+.groups-feature-icon svg {
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--color-secondary-dark);
 }
 
@@ -5825,8 +5957,11 @@ a:hover {
   margin: 0 auto var(--spacing-md);
 }
 
-.groups-contact-icon i {
+.groups-contact-icon i,
+.groups-contact-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-secondary);
 }
 
@@ -5890,10 +6025,12 @@ a:hover {
   font-weight: 500;
 }
 
-.groups-hangout-list i {
+.groups-hangout-list i,
+.groups-hangout-list svg {
   color: var(--color-secondary);
   font-size: 1.125rem;
   width: 24px;
+  height: 1.125rem;
 }
 
 @media (max-width: 900px) {
@@ -5977,8 +6114,11 @@ a:hover {
   box-shadow: var(--shadow-md);
 }
 
-.involved-area-icon i {
+.involved-area-icon i,
+.involved-area-icon svg {
   font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: white;
 }
 
@@ -6039,9 +6179,12 @@ a:hover {
   color: var(--color-gray-700);
 }
 
-.involved-why-list i {
+.involved-why-list i,
+.involved-why-list svg {
   color: var(--color-primary);
   font-size: 0.875rem;
+  width: 0.875rem;
+  height: 0.875rem;
   margin-top: 4px;
 }
 
@@ -6081,8 +6224,11 @@ a:hover {
   margin: 0 auto var(--spacing-md);
 }
 
-.involved-contact-icon i {
+.involved-contact-icon i,
+.involved-contact-icon svg {
   font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: var(--color-primary);
 }
 

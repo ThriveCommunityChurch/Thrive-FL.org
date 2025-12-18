@@ -1,5 +1,16 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faComments,
+  faHandHoldingHeart,
+  faDice,
+  faPeopleGroup,
+  faEnvelope,
+  faPhone,
+  faChurch,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Small Groups | Thrive Community Church",
@@ -80,7 +91,7 @@ Email: [Your Email]`
               </div>
               <div className="groups-feature-content">
                 <div className="groups-feature-icon">
-                  <i className="fa-solid fa-utensils"></i>
+                  <FontAwesomeIcon icon={faUtensils} />
                 </div>
                 <h3>Share a Meal</h3>
                 <p>
@@ -102,7 +113,7 @@ Email: [Your Email]`
               </div>
               <div className="groups-feature-content">
                 <div className="groups-feature-icon">
-                  <i className="fa-solid fa-comments"></i>
+                  <FontAwesomeIcon icon={faComments} />
                 </div>
                 <h3>Real Conversations</h3>
                 <p>
@@ -124,7 +135,7 @@ Email: [Your Email]`
               </div>
               <div className="groups-feature-content">
                 <div className="groups-feature-icon">
-                  <i className="fa-solid fa-hand-holding-heart"></i>
+                  <FontAwesomeIcon icon={faHandHoldingHeart} />
                 </div>
                 <h3>Support Each Other</h3>
                 <p>
@@ -205,15 +216,15 @@ Email: [Your Email]`
               </p>
               <ul className="groups-hangout-list">
                 <li>
-                  <i className="fa-solid fa-utensils"></i>
+                  <FontAwesomeIcon icon={faUtensils} />
                   <span>Share a meal together</span>
                 </li>
                 <li>
-                  <i className="fa-solid fa-dice"></i>
+                  <FontAwesomeIcon icon={faDice} />
                   <span>Play games and have fun</span>
                 </li>
                 <li>
-                  <i className="fa-solid fa-people-group"></i>
+                  <FontAwesomeIcon icon={faPeopleGroup} />
                   <span>Spend time together as a community</span>
                 </li>
               </ul>
@@ -251,7 +262,7 @@ Email: [Your Email]`
             </p>
             <div className="cta-buttons">
               <a href={mailtoLink} className="btn btn-primary btn-lg">
-                <i className="fa-solid fa-envelope"></i> I&apos;m Interested
+                <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested
               </a>
             </div>
             <p className="cta-note">
@@ -267,7 +278,7 @@ Email: [Your Email]`
           <div className="groups-contact-grid">
             <div className="groups-contact-card">
               <div className="groups-contact-icon">
-                <i className="fa-solid fa-phone"></i>
+                <FontAwesomeIcon icon={faPhone} />
               </div>
               <h3>Call Us</h3>
               <p><a href="tel:+12396873430">(239) 687-3430</a></p>
@@ -275,7 +286,7 @@ Email: [Your Email]`
 
             <div className="groups-contact-card">
               <div className="groups-contact-icon">
-                <i className="fa-solid fa-envelope"></i>
+                <FontAwesomeIcon icon={faEnvelope} />
               </div>
               <h3>Email Us</h3>
               <p><a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a></p>
@@ -283,7 +294,7 @@ Email: [Your Email]`
 
             <div className="groups-contact-card">
               <div className="groups-contact-icon">
-                <i className="fa-solid fa-church"></i>
+                <FontAwesomeIcon icon={faChurch} />
               </div>
               <h3>Ask on Sunday</h3>
               <p>Find us at the welcome table!</p>

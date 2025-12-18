@@ -1,5 +1,16 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faPeopleGroup,
+  faCity,
+  faSeedling,
+  faMagnifyingGlassLocation,
+  faGlobe,
+  faMapLocationDot,
+  faBookBible,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Our Values | Thrive Community Church",
@@ -61,7 +72,7 @@ export default function ValuesPage() {
           <div className="values-grid-modern">
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-heart"></i>
+                <FontAwesomeIcon icon={faHeart} />
               </div>
               <h3>Compassion for All People</h3>
               <p>
@@ -73,7 +84,7 @@ export default function ValuesPage() {
 
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-people-group"></i>
+                <FontAwesomeIcon icon={faPeopleGroup} />
               </div>
               <h3>Thriving Relationships</h3>
               <p>
@@ -85,7 +96,7 @@ export default function ValuesPage() {
 
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-city"></i>
+                <FontAwesomeIcon icon={faCity} />
               </div>
               <h3>Thriving Community</h3>
               <p>
@@ -124,7 +135,7 @@ export default function ValuesPage() {
           <div className="values-grid-modern">
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-seedling"></i>
+                <FontAwesomeIcon icon={faSeedling} />
               </div>
               <h3>Life-long Growth</h3>
               <p>
@@ -136,7 +147,7 @@ export default function ValuesPage() {
 
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-magnifying-glass-location"></i>
+                <FontAwesomeIcon icon={faMagnifyingGlassLocation} />
               </div>
               <h3>Love for Lost People</h3>
               <p>
@@ -148,7 +159,7 @@ export default function ValuesPage() {
 
             <div className="value-card-modern">
               <div className="value-card-icon">
-                <i className="fa-solid fa-globe"></i>
+                <FontAwesomeIcon icon={faGlobe} />
               </div>
               <h3>Global &amp; Local Kingdom</h3>
               <p>
@@ -184,10 +195,10 @@ export default function ValuesPage() {
             </p>
             <div className="cta-buttons">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-map-location-dot"></i> Join Us Sunday
+                <FontAwesomeIcon icon={faMapLocationDot} /> Join Us Sunday
               </a>
               <a href="/about/beliefs" className="btn btn-secondary">
-                <i className="fa-solid fa-book-bible"></i> Explore Our Beliefs
+                <FontAwesomeIcon icon={faBookBible} /> Explore Our Beliefs
               </a>
             </div>
           </div>

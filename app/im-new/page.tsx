@@ -1,4 +1,14 @@
 import { Metadata } from "next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationDot,
+  faPlay,
+  faMugHot,
+  faArrowRight,
+  faShirt,
+  faChildReaching,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "First Time? | Thrive Community Church",
@@ -41,11 +51,11 @@ export default function ImNewPage() {
             </p>
             <div className="intro-cta">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
                 See You Sunday
               </a>
               <a href="/sermons" className="btn btn-outline">
-                <i className="fa-solid fa-play"></i>
+                <FontAwesomeIcon icon={faPlay} />
                 Watch a Message
               </a>
             </div>
@@ -62,7 +72,7 @@ export default function ImNewPage() {
           <div className="faq-grid">
             <div className="faq-card">
               <div className="faq-icon">
-                <i className="fa-solid fa-mug-hot"></i>
+                <FontAwesomeIcon icon={faMugHot} />
               </div>
               <h3>What&apos;s the vibe?</h3>
               <p>
@@ -72,13 +82,13 @@ export default function ImNewPage() {
                 whole thing wraps up in about an hour.
               </p>
               <a href="/sermons" className="faq-link">
-                Preview a recent message <i className="fa-solid fa-arrow-right"></i>
+                Preview a recent message <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
 
             <div className="faq-card">
               <div className="faq-icon">
-                <i className="fa-solid fa-shirt"></i>
+                <FontAwesomeIcon icon={faShirt} />
               </div>
               <h3>What do people wear?</h3>
               <p>
@@ -90,7 +100,7 @@ export default function ImNewPage() {
 
             <div className="faq-card">
               <div className="faq-icon">
-                <i className="fa-solid fa-child-reaching"></i>
+                <FontAwesomeIcon icon={faChildReaching} />
               </div>
               <h3>What about my kids?</h3>
               <p>
@@ -100,13 +110,13 @@ export default function ImNewPage() {
                 5th grade every Sunday.
               </p>
               <a href="/ministries/kids" className="faq-link">
-                More about Thrive Kids <i className="fa-solid fa-arrow-right"></i>
+                More about Thrive Kids <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
 
             <div className="faq-card">
               <div className="faq-icon">
-                <i className="fa-solid fa-users"></i>
+                <FontAwesomeIcon icon={faUsers} />
               </div>
               <h3>How do I actually connect?</h3>
               <p>
@@ -117,7 +127,7 @@ export default function ImNewPage() {
                 support each other.
               </p>
               <a href="/small-groups" className="faq-link">
-                Learn more <i className="fa-solid fa-arrow-right"></i>
+                Learn more <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
           </div>
@@ -134,7 +144,7 @@ export default function ImNewPage() {
                 Sundays at 10. Coffee&apos;s on us.
               </p>
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
                 Get Directions &amp; Details
               </a>
             </div>

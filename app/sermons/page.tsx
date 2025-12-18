@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import SermonSeriesGrid from "../components/sermons/SermonSeriesGrid";
 import { getAllSermons } from "../services/sermonService";
 import { SermonSeriesSummary } from "../types/sermons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function SermonsPage() {
   const [series, setSeries] = useState<SermonSeriesSummary[]>([]);
@@ -45,10 +48,10 @@ export default function SermonsPage() {
         <div className="container">
           {error ? (
             <div className="sermon-error-state">
-              <i className="fa-solid fa-exclamation-triangle"></i>
+              <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Sermons</h3>
               <p>{error}</p>
-              <button 
+              <button
                 className="btn btn-primary"
                 onClick={() => window.location.reload()}
               >
@@ -69,13 +72,13 @@ export default function SermonsPage() {
               <h2>Can&apos;t Join Us In Person?</h2>
               <p>Watch our services live every Sunday at 10 AM or catch up on past messages.</p>
             </div>
-            <a 
-              href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig" 
-              target="_blank" 
+            <a
+              href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig"
+              target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              <i className="fa-brands fa-youtube"></i>
+              <FontAwesomeIcon icon={faYoutube} />
               Watch on YouTube
             </a>
           </div>

@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,7 +45,7 @@ export default function Header() {
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
         >
-          <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+          <FontAwesomeIcon icon={mobileMenuOpen ? faXmark : faBars} />
         </button>
 
         {/* Main Navigation */}
@@ -52,7 +54,7 @@ export default function Header() {
             <li><Link href="/im-new" className="nav-link" onClick={handleLinkClick}>I&apos;m New</Link></li>
             <li><Link href="/visit" className="nav-link" onClick={handleLinkClick}>Visit</Link></li>
             <li className="nav-dropdown">
-              <Link href="/about" className="nav-link" onClick={handleLinkClick}>About <i className="fa-solid fa-chevron-down"></i></Link>
+              <Link href="/about" className="nav-link" onClick={handleLinkClick}>About <FontAwesomeIcon icon={faChevronDown} /></Link>
               <ul className="dropdown-menu">
                 <li><Link href="/about/beliefs" onClick={handleLinkClick}>Our Beliefs</Link></li>
                 <li><Link href="/about/leadership" onClick={handleLinkClick}>Our Leadership</Link></li>

@@ -1,5 +1,25 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faCalendarCheck,
+  faCirclePlay,
+  faChevronDown,
+  faSun,
+  faChild,
+  faGraduationCap,
+  faArrowRight,
+  faPlay,
+  faHouse,
+  faHeart,
+  faHandshakeAngle,
+  faLocationDot,
+  faBuilding,
+  faPhone,
+  faEnvelope,
+  faDiamondTurnRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
@@ -60,23 +80,23 @@ export default function HomePage() {
           <p className="hero-tagline">You Belong</p>
           <div className="hero-info">
             <p className="hero-service-time">
-              <i className="fa-solid fa-clock"></i>
+              <FontAwesomeIcon icon={faClock} />
               Sundays at 10 AM
             </p>
           </div>
           <div className="hero-cta">
             <a href="/im-new" className="btn btn-primary">
-              <i className="fa-solid fa-calendar-check"></i>
+              <FontAwesomeIcon icon={faCalendarCheck} />
               Join Us This Sunday
             </a>
             <a href="/sermons" className="btn btn-secondary">
-              <i className="fa-solid fa-circle-play"></i>
+              <FontAwesomeIcon icon={faCirclePlay} />
               Watch a Message
             </a>
           </div>
           {/* Scroll indicator */}
           <div className="scroll-indicator">
-            <i className="fa-solid fa-chevron-down"></i>
+            <FontAwesomeIcon icon={faChevronDown} />
           </div>
         </div>
       </section>
@@ -90,7 +110,7 @@ export default function HomePage() {
           <div className="service-times-grid">
             <div className="service-card">
               <div className="service-icon">
-                <i className="fa-solid fa-sun"></i>
+                <FontAwesomeIcon icon={faSun} />
               </div>
               <h3>Sunday Worship</h3>
               <p className="service-time">10:00 AM</p>
@@ -100,7 +120,7 @@ export default function HomePage() {
             </div>
             <div className="service-card">
               <div className="service-icon">
-                <i className="fa-solid fa-child"></i>
+                <FontAwesomeIcon icon={faChild} />
               </div>
               <h3>Thrive Kids</h3>
               <p className="service-time">During Service</p>
@@ -110,7 +130,7 @@ export default function HomePage() {
             </div>
             <div className="service-card">
               <div className="service-icon">
-                <i className="fa-solid fa-graduation-cap"></i>
+                <FontAwesomeIcon icon={faGraduationCap} />
               </div>
               <h3>College Ministry</h3>
               <p className="service-time">Wednesdays 6:30 PM</p>
@@ -141,7 +161,7 @@ export default function HomePage() {
               </p>
               <a href="/im-new" className="btn btn-outline">
                 Learn More About Us
-                <i className="fa-solid fa-arrow-right"></i>
+                <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
             <div className="welcome-image">
@@ -168,7 +188,7 @@ export default function HomePage() {
           <div className="quicklinks-grid">
             <a href="/sermons" className="quicklink-card">
               <div className="quicklink-icon">
-                <i className="fa-solid fa-play"></i>
+                <FontAwesomeIcon icon={faPlay} />
               </div>
               <h3>Listen to Sermons</h3>
               <p>Watch sermons in HD or re-watch a message if you missed something</p>
@@ -176,7 +196,7 @@ export default function HomePage() {
             </a>
             <a href="/small-groups" className="quicklink-card">
               <div className="quicklink-icon">
-                <i className="fa-solid fa-house"></i>
+                <FontAwesomeIcon icon={faHouse} />
               </div>
               <h3>Join a Small Group</h3>
               <p>Home Huddles for everyone with any schedule - join one today</p>
@@ -184,7 +204,7 @@ export default function HomePage() {
             </a>
             <a href="/ministries/kids" className="quicklink-card">
               <div className="quicklink-icon">
-                <i className="fa-solid fa-heart"></i>
+                <FontAwesomeIcon icon={faHeart} />
               </div>
               <h3>Thrive Kids</h3>
               <p>Available every Sunday for all your little ones</p>
@@ -192,7 +212,7 @@ export default function HomePage() {
             </a>
             <a href="/get-involved" className="quicklink-card">
               <div className="quicklink-icon">
-                <i className="fa-solid fa-handshake-angle"></i>
+                <FontAwesomeIcon icon={faHandshakeAngle} />
               </div>
               <h3>Get Involved</h3>
               <p>Donate to our ministry or learn how you can serve at Thrive</p>
@@ -208,37 +228,43 @@ export default function HomePage() {
           <div className="location-content">
             <div className="location-info">
               <h2 className="section-title">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
                 Find Us
               </h2>
               <div className="location-details">
                 <div className="location-item">
-                  <i className="fa-solid fa-building"></i>
+                  <div className="location-item-icon">
+                    <FontAwesomeIcon icon={faBuilding} />
+                  </div>
                   <div>
                     <strong>20041 S. Tamiami Trail #1</strong>
                     <p>Estero, FL 33928</p>
                   </div>
                 </div>
                 <div className="location-item">
-                  <i className="fa-solid fa-phone"></i>
+                  <div className="location-item-icon">
+                    <FontAwesomeIcon icon={faPhone} />
+                  </div>
                   <div>
                     <a href="tel:+12396873430">(239) 687-3430</a>
                   </div>
                 </div>
                 <div className="location-item">
-                  <i className="fa-solid fa-envelope"></i>
+                  <div className="location-item-icon">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </div>
                   <div>
                     <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
                   </div>
                 </div>
               </div>
               <a
-                href="https://maps.google.com/?q=20041+S+Tamiami+Trail+Estero+FL+33928"
+                href="https://maps.google.com/maps/dir//Thrive+Community+Church+20041+S+Tamiami+Trl+%23+1+Estero,+FL+33928/@26.4487313,-81.8159419,15z/data=!4m5!4m4!1m0!1m2!1m1!1s0x88db168c655e1ef7:0x82f0ad091c85ad3a"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
               >
-                <i className="fa-solid fa-diamond-turn-right"></i>
+                <FontAwesomeIcon icon={faDiamondTurnRight} />
                 Get Directions
               </a>
             </div>

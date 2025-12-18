@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
-  const lastUpdated = "December 17, 2024";
+  const lastUpdated = "December 18, 2025";
 
   return (
     <div className="page-wrapper">
@@ -126,7 +126,6 @@ export default function PrivacyPage() {
               <li><strong>Google Maps</strong> - to display our location and provide directions</li>
               <li><strong>YouTube</strong> - for embedded video content and live streams</li>
               <li><strong>Amazon Web Services (AWS)</strong> - for hosting and content delivery</li>
-              <li><strong>Font Awesome</strong> - for website icons</li>
               <li><strong>Google Fonts</strong> - for typography</li>
             </ul>
             <p>

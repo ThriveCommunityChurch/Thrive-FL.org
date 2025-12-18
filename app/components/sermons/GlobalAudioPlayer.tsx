@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useAudioPlayer } from '../../contexts/AudioPlayerContext';
 import { formatDuration } from '../../services/sermonService';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function GlobalAudioPlayer() {
   const {
@@ -52,7 +54,7 @@ export default function GlobalAudioPlayer() {
           onClick={togglePlayPause}
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
-          <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+          <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
         </button>
 
         <div className="sermon-player__progress-container">
@@ -75,7 +77,7 @@ export default function GlobalAudioPlayer() {
         onClick={closePlayer}
         aria-label="Close player"
       >
-        <i className="fa-solid fa-xmark"></i>
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );

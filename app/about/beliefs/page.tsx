@@ -1,5 +1,19 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faHandsPraying,
+  faBookBible,
+  faDroplet,
+  faWheatAwn,
+  faBookOpen,
+  faArrowUpRightFromSquare,
+  faMusic,
+  faComments,
+  faUsers,
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Our Beliefs | Thrive Community Church",
@@ -31,7 +45,7 @@ export default function BeliefsPage() {
           <div className="beliefs-pillars-grid">
             <div className="beliefs-pillar-card">
               <div className="beliefs-pillar-icon">
-                <i className="fa-solid fa-heart"></i>
+                <FontAwesomeIcon icon={faHeart} />
               </div>
               <h3>Grace Alone</h3>
               <p>
@@ -41,7 +55,7 @@ export default function BeliefsPage() {
             </div>
             <div className="beliefs-pillar-card">
               <div className="beliefs-pillar-icon">
-                <i className="fa-solid fa-hands-praying"></i>
+                <FontAwesomeIcon icon={faHandsPraying} />
               </div>
               <h3>Faith Alone</h3>
               <p>
@@ -51,7 +65,7 @@ export default function BeliefsPage() {
             </div>
             <div className="beliefs-pillar-card">
               <div className="beliefs-pillar-icon">
-                <i className="fa-solid fa-book-bible"></i>
+                <FontAwesomeIcon icon={faBookBible} />
               </div>
               <h3>Scripture Alone</h3>
               <p>
@@ -145,20 +159,20 @@ export default function BeliefsPage() {
               </p>
               <div className="heritage-features">
                 <div className="heritage-feature">
-                  <i className="fa-solid fa-droplet"></i>
+                  <FontAwesomeIcon icon={faDroplet} />
                   <span>Baptism</span>
                 </div>
                 <div className="heritage-feature">
-                  <i className="fa-solid fa-wheat-awn"></i>
+                  <FontAwesomeIcon icon={faWheatAwn} />
                   <span>Lord&apos;s Supper</span>
                 </div>
                 <div className="heritage-feature">
-                  <i className="fa-solid fa-book-open"></i>
+                  <FontAwesomeIcon icon={faBookOpen} />
                   <span>God&apos;s Word</span>
                 </div>
               </div>
               <a href="https://www.lcms.org/about/beliefs" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-                Learn More About the LCMS <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                Learn More About the LCMS <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </a>
             </div>
             <div className="beliefs-heritage-image">
@@ -204,28 +218,28 @@ export default function BeliefsPage() {
             </div>
             <div className="beliefs-contemporary-features">
               <div className="contemporary-feature">
-                <i className="fa-solid fa-music"></i>
+                <FontAwesomeIcon icon={faMusic} />
                 <div>
                   <strong>Contemporary Worship</strong>
                   <p>Modern music that helps you engage with timeless truths</p>
                 </div>
               </div>
               <div className="contemporary-feature">
-                <i className="fa-solid fa-comments"></i>
+                <FontAwesomeIcon icon={faComments} />
                 <div>
                   <strong>Practical Teaching</strong>
                   <p>Biblical preaching applied to everyday life</p>
                 </div>
               </div>
               <div className="contemporary-feature">
-                <i className="fa-solid fa-users"></i>
+                <FontAwesomeIcon icon={faUsers} />
                 <div>
                   <strong>Welcoming Environment</strong>
                   <p>Casual atmosphere where everyone can belong</p>
                 </div>
               </div>
               <div className="contemporary-feature">
-                <i className="fa-solid fa-book-bible"></i>
+                <FontAwesomeIcon icon={faBookBible} />
                 <div>
                   <strong>Confessional Foundation</strong>
                   <p>Grounded in Scripture and Lutheran theology</p>
@@ -247,10 +261,10 @@ export default function BeliefsPage() {
             </p>
             <div className="cta-buttons">
               <a href="/contact" className="btn btn-primary">
-                <i className="fa-solid fa-comments"></i> Start a Conversation
+                <FontAwesomeIcon icon={faComments} /> Start a Conversation
               </a>
               <a href="/visit" className="btn btn-outline-white">
-                <i className="fa-solid fa-calendar"></i> Visit Us
+                <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </a>
             </div>
           </div>

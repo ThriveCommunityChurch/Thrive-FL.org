@@ -1,5 +1,20 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChurch,
+  faComments,
+  faDoorOpen,
+  faEnvelope,
+  faHand,
+  faHandHoldingHeart,
+  faLaptop,
+  faMugHot,
+  faMusic,
+  faPhone,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export const metadata: Metadata = {
   title: "Get Involved | Thrive Community Church",
@@ -40,39 +55,39 @@ Best time to contact: [Your preference]`
 
   const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(emailTemplate.subject)}&body=${encodeURIComponent(emailTemplate.body)}`;
 
-  const ministryAreas = [
+  const ministryAreas: { icon: IconDefinition; title: string; description: string; image: string }[] = [
     {
-      icon: "fa-solid fa-music",
+      icon: faMusic,
       title: "Worship Team",
       description: "Share your musical gifts—vocals, instruments, or running sound. Help create an atmosphere where people can connect with God.",
       image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80"
     },
     {
-      icon: "fa-solid fa-door-open",
+      icon: faDoorOpen,
       title: "Greeter / Usher",
       description: "Be a friendly face at the door, hand out bulletins, help visitors find a seat, and make everyone feel welcome.",
       image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
     },
     {
-      icon: "fa-solid fa-mug-hot",
+      icon: faMugHot,
       title: "Hospitality",
       description: "Serve coffee, set up snacks, and create a warm atmosphere where people can connect before and after service.",
       image: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=600&q=80"
     },
     {
-      icon: "fa-solid fa-laptop",
+      icon: faLaptop,
       title: "Tech & Media",
       description: "Run slides, manage live stream, or help with video production. Keep our services running smoothly.",
       image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80"
     },
     {
-      icon: "fa-solid fa-hand-holding-heart",
+      icon: faHandHoldingHeart,
       title: "Outreach & Service",
       description: "Help coordinate community service projects, outreach events, and ways we can love our neighbors well.",
       image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80"
     },
     {
-      icon: "fa-solid fa-comments",
+      icon: faComments,
       title: "Small Group Leader",
       description: "Lead a Home Huddle and help others grow in community and faith. Training provided!",
       image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
@@ -134,7 +149,7 @@ Best time to contact: [Your preference]`
                     style={{ objectFit: "cover", width: "100%", height: "100%" }}
                   />
                   <div className="involved-area-icon">
-                    <i className={area.icon}></i>
+                    <FontAwesomeIcon icon={area.icon} />
                   </div>
                 </div>
                 <div className="involved-area-content">
@@ -169,19 +184,19 @@ Best time to contact: [Your preference]`
               </p>
               <ul className="involved-why-list">
                 <li>
-                  <i className="fa-solid fa-star"></i>
+                  <FontAwesomeIcon icon={faStar} />
                   <span><strong>Use your gifts</strong> in ways that actually matter</span>
                 </li>
                 <li>
-                  <i className="fa-solid fa-star"></i>
+                  <FontAwesomeIcon icon={faStar} />
                   <span><strong>Build friendships</strong> with people who share your values</span>
                 </li>
                 <li>
-                  <i className="fa-solid fa-star"></i>
+                  <FontAwesomeIcon icon={faStar} />
                   <span><strong>Grow spiritually</strong> as you step out in faith</span>
                 </li>
                 <li>
-                  <i className="fa-solid fa-star"></i>
+                  <FontAwesomeIcon icon={faStar} />
                   <span><strong>Make an impact</strong> on people&apos;s lives every week</span>
                 </li>
               </ul>
@@ -202,7 +217,7 @@ Best time to contact: [Your preference]`
             </p>
             <div className="cta-buttons">
               <a href={mailtoLink} className="btn btn-primary btn-lg">
-                <i className="fa-solid fa-hand"></i> I Want to Serve
+                <FontAwesomeIcon icon={faHand} /> I Want to Serve
               </a>
             </div>
             <p className="cta-note">
@@ -218,7 +233,7 @@ Best time to contact: [Your preference]`
           <div className="involved-contact-grid">
             <div className="involved-contact-card">
               <div className="involved-contact-icon">
-                <i className="fa-solid fa-phone"></i>
+                <FontAwesomeIcon icon={faPhone} />
               </div>
               <h3>Call Us</h3>
               <p><a href="tel:+12396873430">(239) 687-3430</a></p>
@@ -226,7 +241,7 @@ Best time to contact: [Your preference]`
 
             <div className="involved-contact-card">
               <div className="involved-contact-icon">
-                <i className="fa-solid fa-envelope"></i>
+                <FontAwesomeIcon icon={faEnvelope} />
               </div>
               <h3>Email Us</h3>
               <p><a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a></p>
@@ -234,7 +249,7 @@ Best time to contact: [Your preference]`
 
             <div className="involved-contact-card">
               <div className="involved-contact-icon">
-                <i className="fa-solid fa-church"></i>
+                <FontAwesomeIcon icon={faChurch} />
               </div>
               <h3>Visit Sunday</h3>
               <p>10 AM at our Estero location</p>

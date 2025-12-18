@@ -3,6 +3,8 @@
 import { SermonSeriesGridProps } from '../../types/sermons';
 import SermonSeriesCard from './SermonSeriesCard';
 import SermonSkeleton from './SermonSkeleton';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVideoSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function SermonSeriesGrid({ series, isLoading = false }: SermonSeriesGridProps) {
   if (isLoading) {
@@ -12,7 +14,7 @@ export default function SermonSeriesGrid({ series, isLoading = false }: SermonSe
   if (!series || series.length === 0) {
     return (
       <div className="sermon-empty-state">
-        <i className="fa-solid fa-video-slash"></i>
+        <FontAwesomeIcon icon={faVideoSlash} />
         <h3>No Sermon Series Found</h3>
         <p>Check back soon for new content.</p>
       </div>

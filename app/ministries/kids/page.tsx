@@ -1,5 +1,13 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPuzzlePiece,
+  faPeopleGroup,
+  faHeart,
+  faEnvelope,
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Thrive Kids | Thrive Community Church",
@@ -84,7 +92,7 @@ Phone: [Your Phone Number]`
               </div>
               <div className="kids-feature-content">
                 <div className="kids-feature-icon">
-                  <i className="fa-solid fa-puzzle-piece"></i>
+                  <FontAwesomeIcon icon={faPuzzlePiece} />
                 </div>
                 <h3>A Room to Play</h3>
                 <p>
@@ -107,7 +115,7 @@ Phone: [Your Phone Number]`
               </div>
               <div className="kids-feature-content">
                 <div className="kids-feature-icon">
-                  <i className="fa-solid fa-people-group"></i>
+                  <FontAwesomeIcon icon={faPeopleGroup} />
                 </div>
                 <h3>Flexible & Family-Friendly</h3>
                 <p>
@@ -130,7 +138,7 @@ Phone: [Your Phone Number]`
               </div>
               <div className="kids-feature-content">
                 <div className="kids-feature-icon">
-                  <i className="fa-solid fa-heart"></i>
+                  <FontAwesomeIcon icon={faHeart} />
                 </div>
                 <h3>No Pressure</h3>
                 <p>
@@ -199,10 +207,10 @@ Phone: [Your Phone Number]`
             </p>
             <div className="cta-buttons">
               <a href={mailtoLink} className="btn btn-primary">
-                <i className="fa-solid fa-envelope"></i> Ask a Question
+                <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
               </a>
               <a href="/visit" className="btn btn-outline-white">
-                <i className="fa-solid fa-calendar"></i> Plan Your Visit
+                <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
               </a>
             </div>
           </div>

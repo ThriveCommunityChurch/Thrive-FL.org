@@ -2,6 +2,16 @@
 
 import { SermonMessageCardProps } from '../../types/sermons';
 import { formatDuration, formatSermonDate } from '../../services/sermonService';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faUser,
+  faBookBible,
+  faDownload,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function SermonMessageCard({ 
   message, 
@@ -24,31 +34,31 @@ export default function SermonMessageCard({
       className={`sermon-message-card ${isPlaying ? 'sermon-message-card--playing' : ''}`}
       style={{ animationDelay: `${index * 50}ms` }}
     >
-      <button 
+      <button
         className="sermon-message-card__play-button"
         onClick={handlePlayClick}
         disabled={!message.AudioUrl}
         aria-label={isPlaying ? `Pause ${message.Title}` : `Play ${message.Title}`}
       >
-        <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+        <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
       </button>
 
       <div className="sermon-message-card__info">
         <h4 className="sermon-message-card__title">{message.Title}</h4>
         <div className="sermon-message-card__details">
           <span className="sermon-message-card__speaker">
-            <i className="fa-solid fa-user"></i>
+            <FontAwesomeIcon icon={faUser} />
             {message.Speaker}
           </span>
           {date && (
             <span className="sermon-message-card__date">
-              <i className="fa-regular fa-calendar"></i>
+              <FontAwesomeIcon icon={faCalendar} />
               {date}
             </span>
           )}
           {message.PassageRef && (
             <span className="sermon-message-card__passage">
-              <i className="fa-solid fa-book-bible"></i>
+              <FontAwesomeIcon icon={faBookBible} />
               {message.PassageRef}
             </span>
           )}
@@ -57,30 +67,30 @@ export default function SermonMessageCard({
 
       <div className="sermon-message-card__actions">
         <span className="sermon-message-card__duration">
-          <i className="fa-regular fa-clock"></i>
+          <FontAwesomeIcon icon={faClock} />
           {duration}
         </span>
-        
+
         <div className="sermon-message-card__buttons">
           {message.VideoUrl && (
-            <a 
-              href={message.VideoUrl} 
-              target="_blank" 
+            <a
+              href={message.VideoUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="sermon-message-card__action-btn"
               title="Watch on YouTube"
             >
-              <i className="fa-brands fa-youtube"></i>
+              <FontAwesomeIcon icon={faYoutube} />
             </a>
           )}
           {message.AudioUrl && (
-            <a 
-              href={message.AudioUrl} 
+            <a
+              href={message.AudioUrl}
               download
               className="sermon-message-card__action-btn"
               title="Download Audio"
             >
-              <i className="fa-solid fa-download"></i>
+              <FontAwesomeIcon icon={faDownload} />
             </a>
           )}
         </div>

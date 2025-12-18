@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faHand } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Our Leadership | Thrive Community Church",
@@ -56,7 +58,7 @@ export default function TeamPage() {
                   When he&apos;s not preaching, you&apos;ll find him cooking, reading, or keeping up with his family.
                 </p>
                 <a href="mailto:John@thrive-fl.org" className="team-email">
-                  <i className="fa-solid fa-envelope"></i> John@thrive-fl.org
+                  <FontAwesomeIcon icon={faEnvelope} /> John@thrive-fl.org
                 </a>
               </div>
             </div>
@@ -78,7 +80,7 @@ export default function TeamPage() {
                   His passion? Audio engineering—and making sure every Sunday sounds great.
                 </p>
                 <a href="mailto:Wyatt@thrive-fl.org" className="team-email">
-                  <i className="fa-solid fa-envelope"></i> Wyatt@thrive-fl.org
+                  <FontAwesomeIcon icon={faEnvelope} /> Wyatt@thrive-fl.org
                 </a>
               </div>
             </div>
@@ -98,7 +100,7 @@ export default function TeamPage() {
                   When he&apos;s not leading worship, you&apos;ll find him playing with his two children or making music of his own. He&apos;s always willing to give advice on how to make a good brisket.
                 </p>
                 <a href="mailto:James@thrive-fl.org" className="team-email">
-                  <i className="fa-solid fa-envelope"></i> James@thrive-fl.org
+                  <FontAwesomeIcon icon={faEnvelope} /> James@thrive-fl.org
                 </a>
               </div>
             </div>
@@ -115,7 +117,7 @@ export default function TeamPage() {
             kids ministry, tech, or something else—there&apos;s a place for you.
           </p>
           <a href="/contact" className="btn btn-primary">
-            <i className="fa-solid fa-hand-wave"></i> Let&apos;s Connect
+            <FontAwesomeIcon icon={faHand} /> Let&apos;s Connect
           </a>
         </div>
       </section>

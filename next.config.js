@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'd2v6hk6f64og35.cloudfront.net',
+        pathname: '/**',
+      },
     ],
     // Enable modern image formats for better compression
     formats: ['image/avif', 'image/webp'],

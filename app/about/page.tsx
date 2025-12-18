@@ -1,6 +1,15 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBookBible,
+  faArrowRight,
+  faUsers,
+  faHeart,
+  faCalendar,
+  faComments,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Our Story | Thrive Community Church",
@@ -172,34 +181,34 @@ export default function AboutPage() {
           <div className="about-explore-grid">
             <Link href="/about/beliefs" className="about-explore-card">
               <div className="about-explore-icon">
-                <i className="fa-solid fa-book-bible"></i>
+                <FontAwesomeIcon icon={faBookBible} />
               </div>
               <h3>Our Beliefs</h3>
               <p>Grace. Faith. Scripture. Discover the foundational truths we hold.</p>
               <span className="about-explore-link">
-                Learn More <i className="fa-solid fa-arrow-right"></i>
+                Learn More <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </Link>
 
             <Link href="/about/leadership" className="about-explore-card">
               <div className="about-explore-icon">
-                <i className="fa-solid fa-users"></i>
+                <FontAwesomeIcon icon={faUsers} />
               </div>
               <h3>Our Leadership</h3>
               <p>Meet the team guiding our community in faith and service.</p>
               <span className="about-explore-link">
-                Meet the Team <i className="fa-solid fa-arrow-right"></i>
+                Meet the Team <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </Link>
 
             <Link href="/about/values" className="about-explore-card">
               <div className="about-explore-icon">
-                <i className="fa-solid fa-heart"></i>
+                <FontAwesomeIcon icon={faHeart} />
               </div>
               <h3>Our Values</h3>
               <p>The core principles that shape everything we do at Thrive.</p>
               <span className="about-explore-link">
-                Explore Values <i className="fa-solid fa-arrow-right"></i>
+                Explore Values <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </Link>
           </div>
@@ -217,10 +226,10 @@ export default function AboutPage() {
             </p>
             <div className="cta-buttons">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-calendar"></i> Plan Your Visit
+                <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
               </a>
               <a href="/contact" className="btn btn-outline-white">
-                <i className="fa-solid fa-comments"></i> Get in Touch
+                <FontAwesomeIcon icon={faComments} /> Get in Touch
               </a>
             </div>
           </div>

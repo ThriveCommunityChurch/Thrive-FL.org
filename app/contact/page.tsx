@@ -1,4 +1,24 @@
 import { Metadata } from "next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faCalendar,
+  faCircleQuestion,
+  faDiamondTurnRight,
+  faDoorOpen,
+  faEnvelope,
+  faHandHoldingHeart,
+  faHandsPraying,
+  faHeartCircleCheck,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faInstagram,
+  faXTwitter,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 export const metadata: Metadata = {
   title: "Contact Us | Thrive Community Church",
@@ -139,67 +159,67 @@ Best time to reach you: [Your preference]`
           <div className="contact-options-grid">
             <a href={createMailtoLink("general")} className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-circle-question"></i>
+                <FontAwesomeIcon icon={faCircleQuestion} />
               </div>
               <h3>General Inquiry</h3>
               <p>Have a question about Thrive? We&apos;re happy to help with anything.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
 
             <a href={createMailtoLink("visit")} className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-door-open"></i>
+                <FontAwesomeIcon icon={faDoorOpen} />
               </div>
               <h3>Visit Information</h3>
               <p>Planning your first visit? Let us know so we can welcome you properly.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
 
             <a href={createMailtoLink("prayer")} className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-hands-praying"></i>
+                <FontAwesomeIcon icon={faHandsPraying} />
               </div>
               <h3>Prayer Request</h3>
               <p>We believe in the power of prayer. Share your request with our prayer team.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
 
             <a href={createMailtoLink("volunteer")} className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-hand-holding-heart"></i>
+                <FontAwesomeIcon icon={faHandHoldingHeart} />
               </div>
               <h3>Get Involved</h3>
               <p>Want to serve and make a difference? We have a place for you.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
 
             <a href={createMailtoLink("pastoral")} className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-heart-circle-check"></i>
+                <FontAwesomeIcon icon={faHeartCircleCheck} />
               </div>
               <h3>Pastoral Care</h3>
               <p>Need spiritual guidance or support? Our pastoral team is here for you.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
 
             <a href="mailto:info@thrive-fl.org" className="contact-option-card">
               <div className="contact-option-icon">
-                <i className="fa-solid fa-envelope"></i>
+                <FontAwesomeIcon icon={faEnvelope} />
               </div>
               <h3>Quick Message</h3>
               <p>Just want to send a quick note? Email us directly—no template needed.</p>
               <span className="contact-option-action">
-                Send Email <i className="fa-solid fa-arrow-right"></i>
+                Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
           </div>
@@ -220,7 +240,7 @@ Best time to reach you: [Your preference]`
           <div className="contact-details-grid">
             <div className="contact-detail-card">
               <div className="contact-detail-icon">
-                <i className="fa-solid fa-phone"></i>
+                <FontAwesomeIcon icon={faPhone} />
               </div>
               <h3>Call Us</h3>
               <p className="contact-detail-highlight">
@@ -231,7 +251,7 @@ Best time to reach you: [Your preference]`
 
             <div className="contact-detail-card">
               <div className="contact-detail-icon">
-                <i className="fa-solid fa-envelope"></i>
+                <FontAwesomeIcon icon={faEnvelope} />
               </div>
               <h3>Email Us</h3>
               <p className="contact-detail-highlight">
@@ -242,19 +262,19 @@ Best time to reach you: [Your preference]`
 
             <div className="contact-detail-card">
               <div className="contact-detail-icon">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
               </div>
               <h3>Visit Us</h3>
               <p className="contact-detail-address">
                 20041 S. Tamiami Trail #1<br />Estero, FL 33928
               </p>
               <a
-                href="https://www.google.com/maps/place/Thrive+Community+Church/@26.4336,-81.8252,17z"
+                href="https://maps.google.com/maps/dir//Thrive+Community+Church+20041+S+Tamiami+Trl+%23+1+Estero,+FL+33928/@26.4487313,-81.8159419,15z/data=!4m5!4m4!1m0!1m2!1m1!1s0x88db168c655e1ef7:0x82f0ad091c85ad3a"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-detail-link"
               >
-                Get Directions <i className="fa-solid fa-arrow-right"></i>
+                Get Directions <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
           </div>
@@ -263,19 +283,19 @@ Best time to reach you: [Your preference]`
             <h4>Connect With Us Online</h4>
             <div className="contact-social-links-large">
               <a href="https://www.facebook.com/thriveFL" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <i className="fa-brands fa-facebook-f"></i>
+                <FontAwesomeIcon icon={faFacebookF} />
                 <span>Facebook</span>
               </a>
               <a href="https://www.instagram.com/thrive_fl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <i className="fa-brands fa-instagram"></i>
+                <FontAwesomeIcon icon={faInstagram} />
                 <span>Instagram</span>
               </a>
               <a href="https://x.com/Thrive_FL" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">
-                <i className="fa-brands fa-x-twitter"></i>
+                <FontAwesomeIcon icon={faXTwitter} />
                 <span>X / Twitter</span>
               </a>
               <a href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                <i className="fa-brands fa-youtube"></i>
+                <FontAwesomeIcon icon={faYoutube} />
                 <span>YouTube</span>
               </a>
             </div>
@@ -294,13 +314,13 @@ Best time to reach you: [Your preference]`
             </p>
             <div className="cta-buttons">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-calendar"></i> Visit Us
+                <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </a>
               <a href="https://www.google.com/maps/place/Thrive+Community+Church/@26.4336,-81.8252,17z"
                  target="_blank"
                  rel="noopener noreferrer"
                  className="btn btn-outline-white">
-                <i className="fa-solid fa-diamond-turn-right"></i> Get Directions
+                <FontAwesomeIcon icon={faDiamondTurnRight} /> Get Directions
               </a>
             </div>
           </div>

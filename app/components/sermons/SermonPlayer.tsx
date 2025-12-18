@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import { SermonPlayerProps } from '../../types/sermons';
 import { formatDuration } from '../../services/sermonService';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function SermonPlayer({ 
   message, 
@@ -100,12 +102,12 @@ export default function SermonPlayer({
       </div>
 
       <div className="sermon-player__controls">
-        <button 
+        <button
           className="sermon-player__play-btn"
           onClick={togglePlayPause}
           aria-label={isPlaying ? 'Pause' : 'Play'}
         >
-          <i className={`fa-solid ${isPlaying ? 'fa-pause' : 'fa-play'}`}></i>
+          <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
         </button>
 
         <div className="sermon-player__progress-container">
@@ -123,12 +125,12 @@ export default function SermonPlayer({
         </div>
       </div>
 
-      <button 
+      <button
         className="sermon-player__close"
         onClick={handleClose}
         aria-label="Close player"
       >
-        <i className="fa-solid fa-xmark"></i>
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );

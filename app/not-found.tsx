@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 export default function NotFound() {
   return (
@@ -28,7 +30,7 @@ export default function NotFound() {
         </p>
         <div className="not-found-actions">
           <Link href="/" className="btn btn-primary btn-lg">
-            <i className="fa-solid fa-home"></i>
+            <FontAwesomeIcon icon={faHome} />
             Return Home
           </Link>
         </div>

@@ -8,6 +8,13 @@ import SermonSkeleton from "../../components/sermons/SermonSkeleton";
 import { getSeriesById, formatSeriesDateRange } from "../../services/sermonService";
 import { SermonSeries, SermonMessage } from "../../types/sermons";
 import { useAudioPlayer } from "../../contexts/AudioPlayerContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft,
+  faExclamationTriangle,
+  faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 interface PageProps {
   params: { seriesId: string };
@@ -51,7 +58,7 @@ export default function SeriesDetailPage({ params }: PageProps) {
       <nav className="breadcrumb-nav">
         <div className="container">
           <a href="/sermons" className="breadcrumb-link">
-            <i className="fa-solid fa-arrow-left"></i>
+            <FontAwesomeIcon icon={faArrowLeft} />
             All Series
           </a>
         </div>
@@ -62,7 +69,7 @@ export default function SeriesDetailPage({ params }: PageProps) {
         <div className="container">
           {error ? (
             <div className="sermon-error-state">
-              <i className="fa-solid fa-exclamation-triangle"></i>
+              <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Series</h3>
               <p>{error}</p>
               <a href="/sermons" className="btn btn-primary">Back to Sermons</a>
@@ -100,11 +107,11 @@ export default function SeriesDetailPage({ params }: PageProps) {
                   <h1 className="series-detail-title">{series.Name}</h1>
                   <p className="series-detail-meta">
                     <span className="series-detail-date">
-                      <i className="fa-regular fa-calendar"></i>
+                      <FontAwesomeIcon icon={faCalendar} />
                       {dateRange}
                     </span>
                     <span className="series-detail-count">
-                      <i className="fa-solid fa-microphone"></i>
+                      <FontAwesomeIcon icon={faMicrophone} />
                       {series.Messages.length} {series.Messages.length === 1 ? 'Message' : 'Messages'}
                     </span>
                   </p>

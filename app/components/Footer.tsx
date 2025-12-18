@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
@@ -32,16 +34,16 @@ export default function Footer() {
             <h4>Connect With Us</h4>
             <div className="social-links">
               <a href="https://www.facebook.com/thriveFL" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <i className="fa-brands fa-facebook-f"></i>
+                <FontAwesomeIcon icon={faFacebookF} />
               </a>
               <a href="https://www.instagram.com/thrive_fl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <i className="fa-brands fa-instagram"></i>
+                <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a href="https://x.com/Thrive_FL" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">
-                <i className="fa-brands fa-x-twitter"></i>
+                <FontAwesomeIcon icon={faXTwitter} />
               </a>
               <a href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                <i className="fa-brands fa-youtube"></i>
+                <FontAwesomeIcon icon={faYoutube} />
               </a>
             </div>
           </div>

@@ -1,6 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCalendar,
+  faChevronLeft,
+  faChevronRight,
+  faChurch,
+  faCircleQuestion,
+  faClock,
+  faList,
+  faLocationDot,
+  faMapLocationDot,
+  faRepeat,
+  faTree,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 // ============================================
 // EVENT DATA TYPES & STRUCTURE
@@ -17,7 +33,7 @@ interface Event {
   recurrenceDay?: number; // 0 = Sunday, 1 = Monday, etc.
   date?: Date; // For one-time events
   color?: string;
-  icon?: string;
+  icon?: IconDefinition;
 }
 
 // Hardcoded events - easily replaceable with API response
@@ -32,7 +48,7 @@ const EVENTS_DATA: Event[] = [
     recurrencePattern: "weekly",
     recurrenceDay: 0, // Sunday
     color: "primary",
-    icon: "fa-solid fa-church",
+    icon: faChurch,
   },
   {
     id: "christmas-eve-2025",
@@ -43,7 +59,7 @@ const EVENTS_DATA: Event[] = [
     recurring: false,
     date: new Date(2025, 11, 24), // December 24, 2025
     color: "primary",
-    icon: "fa-solid fa-tree",
+    icon: faTree,
   },
 ];
 
@@ -173,13 +189,13 @@ export default function EventsPage() {
           <div className="calendar-controls">
             <div className="calendar-nav">
               <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)} aria-label="Previous month">
-                <i className="fa-solid fa-chevron-left"></i>
+                <FontAwesomeIcon icon={faChevronLeft} />
               </button>
               <h2 className="calendar-title">
                 {MONTH_NAMES[currentMonth]} {currentYear}
               </h2>
               <button className="calendar-nav-btn" onClick={() => navigateMonth(1)} aria-label="Next month">
-                <i className="fa-solid fa-chevron-right"></i>
+                <FontAwesomeIcon icon={faChevronRight} />
               </button>
             </div>
             <div className="calendar-actions">
@@ -191,13 +207,13 @@ export default function EventsPage() {
                   className={`view-toggle-btn ${viewMode === 'month' ? 'active' : ''}`}
                   onClick={() => setViewMode('month')}
                 >
-                  <i className="fa-solid fa-calendar"></i> Month
+                  <FontAwesomeIcon icon={faCalendar} /> Month
                 </button>
                 <button
                   className={`view-toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
                   onClick={() => setViewMode('list')}
                 >
-                  <i className="fa-solid fa-list"></i> List
+                  <FontAwesomeIcon icon={faList} /> List
                 </button>
               </div>
             </div>
@@ -254,15 +270,15 @@ export default function EventsPage() {
                     <span className="event-list-month">{MONTH_NAMES[date.getMonth()].slice(0, 3)}</span>
                   </div>
                   <div className="event-list-content">
-                    {event.icon && <i className={event.icon}></i>}
+                    {event.icon && <FontAwesomeIcon icon={event.icon} />}
                     <h4>{event.title}</h4>
                     <p>
-                      <i className="fa-solid fa-clock"></i> {event.time}
-                      {event.recurring && <span className="recurring-badge"><i className="fa-solid fa-repeat"></i> Weekly</span>}
+                      <FontAwesomeIcon icon={faClock} /> {event.time}
+                      {event.recurring && <span className="recurring-badge"><FontAwesomeIcon icon={faRepeat} /> Weekly</span>}
                     </p>
                   </div>
                   <div className="event-list-arrow">
-                    <i className="fa-solid fa-chevron-right"></i>
+                    <FontAwesomeIcon icon={faChevronRight} />
                   </div>
                 </div>
               ))}
@@ -276,26 +292,26 @@ export default function EventsPage() {
         <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
           <div className="event-modal" onClick={(e) => e.stopPropagation()}>
             <button className="event-modal-close" onClick={() => setSelectedEvent(null)}>
-              <i className="fa-solid fa-xmark"></i>
+              <FontAwesomeIcon icon={faXmark} />
             </button>
             <div className="event-modal-header">
               {selectedEvent.recurring && (
                 <span className="event-modal-badge">
-                  <i className="fa-solid fa-repeat"></i> Recurring Event
+                  <FontAwesomeIcon icon={faRepeat} /> Recurring Event
                 </span>
-              )}              
-              <h2>{selectedEvent.icon && <i className={selectedEvent.icon}></i>} {selectedEvent.title}</h2>
+              )}
+              <h2>{selectedEvent.icon && <FontAwesomeIcon icon={selectedEvent.icon} />} {selectedEvent.title}</h2>
             </div>
             <div className="event-modal-body">
               <div className="event-modal-detail">
-                <i className="fa-solid fa-clock"></i>
+                <FontAwesomeIcon icon={faClock} />
                 <div>
                   <strong>Time</strong>
                   <p>{selectedEvent.time}</p>
                 </div>
               </div>
               <div className="event-modal-detail">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
                 <div>
                   <strong>Location</strong>
                   <p>{selectedEvent.location}</p>
@@ -307,7 +323,7 @@ export default function EventsPage() {
             </div>
             <div className="event-modal-actions">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-map-location-dot"></i> Get Directions
+                <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
             </div>
           </div>
@@ -324,10 +340,10 @@ export default function EventsPage() {
             </p>
             <div className="cta-buttons">
               <a href="/visit" className="btn btn-primary">
-                <i className="fa-solid fa-map-location-dot"></i> Get Directions
+                <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
               <a href="/im-new" className="btn btn-outline-white">
-                <i className="fa-solid fa-circle-question"></i> First Time?
+                <FontAwesomeIcon icon={faCircleQuestion} /> First Time?
               </a>
             </div>
           </div>

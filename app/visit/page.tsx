@@ -1,4 +1,14 @@
 import { Metadata } from "next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faLocationDot,
+  faPhone,
+  faArrowRight,
+  faDiamondTurnRight,
+  faRoad,
+  faRoute,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Visit Us | Thrive Community Church",
@@ -30,7 +40,7 @@ export default function VisitPage() {
           <div className="visit-info-cards">
             <div className="visit-card">
               <div className="visit-card-icon">
-                <i className="fa-solid fa-clock"></i>
+                <FontAwesomeIcon icon={faClock} />
               </div>
               <h3>When We Meet</h3>
               <p className="visit-card-highlight">Sundays at 10:00 AM</p>
@@ -42,7 +52,7 @@ export default function VisitPage() {
 
             <div className="visit-card">
               <div className="visit-card-icon">
-                <i className="fa-solid fa-location-dot"></i>
+                <FontAwesomeIcon icon={faLocationDot} />
               </div>
               <h3>Where to Find Us</h3>
               <p className="visit-card-highlight">Estero Ridge Plaza</p>
@@ -57,7 +67,7 @@ export default function VisitPage() {
 
             <div className="visit-card">
               <div className="visit-card-icon">
-                <i className="fa-solid fa-phone"></i>
+                <FontAwesomeIcon icon={faPhone} />
               </div>
               <h3>Get in Touch</h3>
               <p className="visit-card-highlight">
@@ -67,19 +77,19 @@ export default function VisitPage() {
                 <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
               </p>
               <a href="/contact" className="visit-card-link">
-                Send us a message <i className="fa-solid fa-arrow-right"></i>
+                Send us a message <FontAwesomeIcon icon={faArrowRight} />
               </a>
             </div>
           </div>
 
           <div className="visit-cta-centered">
             <a
-              href="https://www.google.com/maps/place/Thrive+Community+Church/@26.4336,-81.8252,17z"
+              href="https://maps.google.com/maps/dir//Thrive+Community+Church+20041+S+Tamiami+Trl+%23+1+Estero,+FL+33928/@26.4487313,-81.8159419,15z/data=!4m5!4m4!1m0!1m2!1m1!1s0x88db168c655e1ef7:0x82f0ad091c85ad3a"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              <i className="fa-solid fa-diamond-turn-right"></i>
+              <FontAwesomeIcon icon={faDiamondTurnRight} />
               Get Directions
             </a>
           </div>
@@ -115,7 +125,7 @@ export default function VisitPage() {
           <div className="directions-grid">
             <div className="directions-card">
               <h3>
-                <i className="fa-solid fa-road"></i>
+                <FontAwesomeIcon icon={faRoad} />
                 Taking US-41
               </h3>
               <div className="directions-content">
@@ -134,7 +144,7 @@ export default function VisitPage() {
 
             <div className="directions-card">
               <h3>
-                <i className="fa-solid fa-route"></i>
+                <FontAwesomeIcon icon={faRoute} />
                 Taking I-75
               </h3>
               <div className="directions-content">

@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./app.css";
+// Font Awesome SVG core CSS (required for proper rendering)
+import '@fortawesome/fontawesome-svg-core/styles.css';
+// Initialize Font Awesome library with all icons we use
+import './lib/fontawesome';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Providers";
@@ -73,17 +77,10 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <head>
         {/* Preconnect for external resources - crossOrigin required for CORS */}
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" crossOrigin="anonymous" />
 
         {/* Preload critical hero image for LCP optimization */}
         <link rel="preload" href="https://d2v6hk6f64og35.cloudfront.net/Still.jpg" as="image" fetchPriority="high" />
-
-        {/* Font Awesome font-display fix - ensures text visible while fonts load */}
-        <style dangerouslySetInnerHTML={{ __html: `
-          @font-face { font-family: 'Font Awesome 6 Free'; font-display: swap; }
-          @font-face { font-family: 'Font Awesome 6 Brands'; font-display: swap; }
-        `}} />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -103,19 +100,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Font Awesome - Deferred loading to prevent render blocking */}
-        <Script id="font-awesome-loader" strategy="afterInteractive">
-          {`
-            (function() {
-              var link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
-              link.crossOrigin = 'anonymous';
-              link.referrerPolicy = 'no-referrer';
-              document.head.appendChild(link);
-            })();
-          `}
-        </Script>
+
 
         <Providers>
           {/* Persistent Shell */}

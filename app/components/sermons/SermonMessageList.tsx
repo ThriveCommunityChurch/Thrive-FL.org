@@ -4,6 +4,8 @@ import { SermonMessage } from '../../types/sermons';
 import SermonMessageCard from './SermonMessageCard';
 import SermonSkeleton from './SermonSkeleton';
 import { useAudioPlayer } from '../../contexts/AudioPlayerContext';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface SermonMessageListProps {
   messages: SermonMessage[];
@@ -26,7 +28,7 @@ export default function SermonMessageList({
   if (!messages || messages.length === 0) {
     return (
       <div className="sermon-empty-state sermon-empty-state--compact">
-        <i className="fa-solid fa-microphone-slash"></i>
+        <FontAwesomeIcon icon={faMicrophoneSlash} />
         <h4>No Messages Available</h4>
         <p>Messages for this series will be added soon.</p>
       </div>
