@@ -395,8 +395,8 @@ a:hover {
 /* Outline Button - Subtle elegance */
 .btn-outline {
   background: transparent;
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  border: 2px solid var(--color-primary-dark);
 }
 
 .btn-outline:hover {
@@ -444,7 +444,8 @@ a:hover {
   padding: 0 var(--spacing-lg);
 
   img {
-    height: 65px;
+    height: auto;
+    max-height: 63px;
   }
 }
 
@@ -1009,13 +1010,13 @@ a:hover {
 .service-card .service-time {
   font-size: var(--font-size-2xl);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-primary-dark);
   margin-bottom: var(--spacing-md);
   letter-spacing: var(--letter-spacing-tight);
 }
 
 .service-card .service-description {
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   font-size: var(--font-size-base);
   line-height: var(--line-height-relaxed);
   margin: 0;
