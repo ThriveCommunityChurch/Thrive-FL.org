@@ -147,7 +147,7 @@ export default function HomePage() {
             <div className="welcome-image">
               <div className="image-placeholder">
                 <Image
-                  src="/Estero.jpg"
+                  src="https://d2v6hk6f64og35.cloudfront.net/Estero.jpg"
                   alt="Welcome to Thrive"
                   width={600}
                   height={400}
