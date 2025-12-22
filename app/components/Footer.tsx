@@ -25,6 +25,15 @@ export default function Footer() {
               <li><Link href="/privacy">Privacy Policy</Link></li>
             </ul>
           </div>
+          <div className="footer-links">
+            <h4>Get Connected</h4>
+            <ul>
+              <li><Link href="/small-groups">Home Huddles</Link></li>
+              <li><Link href="/get-involved">Get Involved</Link></li>
+              <li><Link href="/ministries/college">ThriveFGCU</Link></li>
+              <li><a href="https://goo.gl/cT3s8e" target="_blank" rel="noopener noreferrer">Give</a></li>
+            </ul>
+          </div>
           <div className="footer-contact">
             <h4>Contact Us</h4>
             <p>20041 S. Tamiami Trail #1<br />Estero, FL 33928</p>

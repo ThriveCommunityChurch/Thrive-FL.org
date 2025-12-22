@@ -129,16 +129,16 @@ export default function HomePage() {
                 Age-appropriate Bible teaching for children 6 months through 5th grade
               </p>
             </div>
-            <div className="service-card">
+            <a href="/ministries/college" className="service-card service-card-link">
               <div className="service-icon">
                 <FontAwesomeIcon icon={faGraduationCap} />
               </div>
-              <h3>College Ministry</h3>
-              <p className="service-time">Wednesdays 6:30 PM</p>
+              <h3>ThriveFGCU</h3>
+              <p className="service-time">Multiple Weekly Gatherings</p>
               <p className="service-description">
-                ThriveFGCU - Food, fellowship, and faith for college students
+                Faith, friends, and fun for FGCU students
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -216,7 +216,7 @@ export default function HomePage() {
                 <FontAwesomeIcon icon={faHandshakeAngle} />
               </div>
               <h3>Get Involved</h3>
-              <p>Donate to our ministry or learn how you can serve at Thrive</p>
+              <p>Use your gifts to serve and make a difference at Thrive</p>
               <span className="quicklink-action">Serve With Us</span>
             </a>
             <a href="/podcast" className="quicklink-card">

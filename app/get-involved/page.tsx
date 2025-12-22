@@ -90,7 +90,7 @@ Best time to contact: [Your preference]`
       icon: faComments,
       title: "Small Group Leader",
       description: "Lead a Home Huddle and help others grow in community and faith. Training provided!",
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+      image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80"
     }
   ];
 
@@ -168,7 +168,7 @@ Best time to contact: [Your preference]`
           <div className="involved-why-content">
             <div className="involved-why-image">
               <Image
-                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80"
+                src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=800&q=80"
                 alt="Volunteers serving together"
                 width={800}
                 height={600}
@@ -223,6 +223,32 @@ Best time to contact: [Your preference]`
             <p className="cta-note">
               You can also talk to anyone on Sunday—just ask how to get involved!
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Give Section */}
+      <section className="section involved-give-section">
+        <div className="container container-narrow">
+          <div className="involved-give-content">
+            <div className="involved-give-text">
+              <span className="section-eyebrow">Another Way to Give</span>
+              <h2>Support the Mission</h2>
+              <p>
+                Not everyone can give their time—and that&apos;s okay. Your generosity
+                helps us reach more people, support families in need, and keep our
+                doors open for anyone seeking hope.
+              </p>
+              <a
+                href="https://goo.gl/cT3s8e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline involved-give-btn"
+              >
+                <FontAwesomeIcon icon={faHandHoldingHeart} />
+                Give Online
+              </a>
+            </div>
           </div>
         </div>
       </section>

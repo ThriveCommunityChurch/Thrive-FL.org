@@ -61,9 +61,28 @@ export default function Header() {
                 <li><Link href="/about/values" onClick={handleLinkClick}>Our Values</Link></li>
               </ul>
             </li>
+            <li className="nav-dropdown">
+              <span className="nav-link">Connect <FontAwesomeIcon icon={faChevronDown} /></span>
+              <ul className="dropdown-menu">
+                <li><Link href="/small-groups" onClick={handleLinkClick}>Small Groups</Link></li>
+                <li><Link href="/get-involved" onClick={handleLinkClick}>Get Involved</Link></li>
+                <li><Link href="/ministries/college" onClick={handleLinkClick}>ThriveFGCU</Link></li>
+              </ul>
+            </li>
             <li><Link href="/sermons" className="nav-link" onClick={handleLinkClick}>Sermons</Link></li>
             <li><Link href="/events" className="nav-link" onClick={handleLinkClick}>Events</Link></li>
             <li><Link href="/contact" className="nav-link" onClick={handleLinkClick}>Contact</Link></li>
+            <li>
+              <a
+                href="https://goo.gl/cT3s8e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link nav-give-btn"
+                onClick={handleLinkClick}
+              >
+                Give
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

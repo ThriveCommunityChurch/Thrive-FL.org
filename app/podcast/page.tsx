@@ -7,9 +7,20 @@ import {
 } from "@icons-pack/react-simple-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeezer } from "@fortawesome/free-brands-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
+interface PodcastPlatform {
+  name: string;
+  url: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Icon?: any;
+  icon?: IconDefinition;
+  type: "simple-icon" | "fontawesome";
+  color: string;
+}
 
 // Podcast platform data
-const PODCAST_PLATFORMS = [
+const PODCAST_PLATFORMS: PodcastPlatform[] = [
   {
     name: "Apple Podcasts",
     url: "https://podcasts.apple.com/us/podcast/thrive-community-church/id1483883780",
@@ -44,13 +55,6 @@ const PODCAST_PLATFORMS = [
     icon: faDeezer,
     type: "fontawesome",
     color: "#FF0092",
-  },
-  {
-    name: "Stitcher",
-    url: "https://www.stitcher.com/show/1112226",
-    Icon: SiPandora,
-    type: "simple-icon",
-    color: "#F57C00",
   },
   {
     name: "Player FM",
@@ -94,11 +98,11 @@ export default function PodcastPage() {
                 style={{ "--platform-color": platform.color } as React.CSSProperties}
               >
                 <div className="podcast-platform-icon">
-                  {platform.type === "simple-icon" ? (
+                  {platform.type === "simple-icon" && platform.Icon ? (
                     <platform.Icon size={48} />
-                  ) : (
-                    <FontAwesomeIcon icon={platform.icon!} />
-                  )}
+                  ) : platform.icon ? (
+                    <FontAwesomeIcon icon={platform.icon} />
+                  ) : null}
                 </div>
                 <span className="podcast-platform-name">{platform.name}</span>
               </a>
