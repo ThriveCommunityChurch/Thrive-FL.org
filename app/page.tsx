@@ -19,6 +19,7 @@ import {
   faPhone,
   faEnvelope,
   faDiamondTurnRight,
+  faPodcast,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -218,6 +219,14 @@ export default function HomePage() {
               <p>Donate to our ministry or learn how you can serve at Thrive</p>
               <span className="quicklink-action">Serve With Us</span>
             </a>
+            <a href="/podcast" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faPodcast} />
+              </div>
+              <h3>Listen to Our Podcast</h3>
+              <p>Subscribe on Apple Podcasts, Spotify, and more</p>
+              <span className="quicklink-action">Subscribe Now</span>
+            </a>
           </div>
         </div>
       </section>
@@ -286,3 +295,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+

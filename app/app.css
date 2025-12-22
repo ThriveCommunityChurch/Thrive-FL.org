@@ -4622,14 +4622,18 @@ a:hover {
   border-radius: var(--radius-2xl);
 }
 
-.sermons-cta-text h2 {
+.sermons-cta-text h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
   color: var(--color-white);
   margin-bottom: var(--spacing-sm);
 }
 
 .sermons-cta-text p {
+  font-size: var(--font-size-base);
   color: var(--color-gray-300);
   margin: 0;
+  max-width: 500px;
 }
 
 @media (max-width: 768px) {
@@ -5006,6 +5010,32 @@ a:hover {
 .sermon-message-card__passage i,
 .sermon-message-card__passage svg {
   color: var(--color-gray-400);
+}
+
+/* Passage Link Styles */
+.sermon-message-card__passage--link {
+  text-decoration: none;
+  color: var(--color-gray-500);
+  transition: color 0.2s ease;
+}
+
+.sermon-message-card__passage--link:hover {
+  color: var(--color-primary);
+}
+
+.sermon-message-card__passage--link:hover svg {
+  color: var(--color-primary);
+}
+
+.sermon-message-card__passage-link-icon {
+  font-size: 0.7em;
+  margin-left: var(--spacing-2xs);
+  opacity: 0.6;
+  margin-bottom: 3px;
+}
+
+.sermon-message-card__passage--link:hover .sermon-message-card__passage-link-icon {
+  opacity: 1;
 }
 
 .sermon-message-card__actions {
@@ -6264,5 +6294,167 @@ a:hover {
 
   .involved-contact-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   PODCAST PAGE STYLES
+   ============================================ */
+
+/* Podcast Hero */
+.page-hero-podcast {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  min-height: 50vh;
+  position: relative;
+}
+
+.podcast-hero-icon {
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+/* Subscribe Section */
+.podcast-subscribe-section {
+  background: white;
+  padding: var(--spacing-4xl) 0;
+}
+
+.podcast-subscribe-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.podcast-subscribe-intro .section-title {
+  margin-bottom: var(--spacing-lg);
+}
+
+.podcast-subscribe-intro .section-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
+  line-height: var(--line-height-relaxed);
+}
+
+.podcast-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.podcast-platform-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: white;
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  color: var(--color-gray-900);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+.podcast-platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--platform-color, var(--color-primary));
+  border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.podcast-platform-card:hover {
+  border-color: var(--platform-color, var(--color-primary));
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.podcast-platform-card:hover::before {
+  opacity: 1;
+}
+
+.podcast-platform-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--platform-color, var(--color-primary));
+  margin-bottom: 1.25rem;
+  transition: transform var(--transition-normal);
+}
+
+.podcast-platform-icon svg {
+  width: 64px;
+  height: 64px;
+}
+
+.podcast-platform-card:hover .podcast-platform-icon {
+  transform: scale(1.1);
+}
+
+.podcast-platform-name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-gray-800);
+}
+
+/* Episodes Section */
+.podcast-episodes-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.podcast-episodes-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .podcast-hero-icon {
+    font-size: 3rem;
+  }
+
+  .podcast-subscribe-intro {
+    margin-bottom: 3rem;
+  }
+
+  .podcast-platforms-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .podcast-platform-card {
+    padding: 2rem 1rem;
+    min-height: 160px;
+  }
+
+  .podcast-platform-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .podcast-platform-icon svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .podcast-platform-name {
+    font-size: var(--font-size-sm);
   }
 }

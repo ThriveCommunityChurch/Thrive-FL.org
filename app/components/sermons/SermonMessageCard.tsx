@@ -9,6 +9,7 @@ import {
   faUser,
   faBookBible,
   faDownload,
+  faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
@@ -57,10 +58,17 @@ export default function SermonMessageCard({
             </span>
           )}
           {message.PassageRef && (
-            <span className="sermon-message-card__passage">
+            <a
+              href={`https://www.biblegateway.com/passage/?search=${encodeURIComponent(message.PassageRef)}&version=ESV`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sermon-message-card__passage sermon-message-card__passage--link"
+              title={`Read ${message.PassageRef} on BibleGateway`}
+            >
               <FontAwesomeIcon icon={faBookBible} />
               {message.PassageRef}
-            </span>
+              <FontAwesomeIcon icon={faExternalLinkAlt} className="sermon-message-card__passage-link-icon" />
+            </a>
           )}
         </div>
       </div>

@@ -7,6 +7,7 @@ import { SermonSeriesSummary } from "../types/sermons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faPodcast } from "@fortawesome/free-solid-svg-icons";
 
 export default function SermonsPage() {
   const [series, setSeries] = useState<SermonSeriesSummary[]>([]);
@@ -69,7 +70,7 @@ export default function SermonsPage() {
         <div className="container">
           <div className="sermons-cta-content">
             <div className="sermons-cta-text">
-              <h2>Can&apos;t Join Us In Person?</h2>
+              <h3>Can&apos;t Join Us In Person?</h3>
               <p>Watch our services live every Sunday at 10 AM or catch up on past messages.</p>
             </div>
             <a
@@ -80,6 +81,25 @@ export default function SermonsPage() {
             >
               <FontAwesomeIcon icon={faYoutube} />
               Watch on YouTube
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Podcast CTA */}
+      <section className="section sermons-cta-section" style={{ background: 'var(--color-gray-50)' }}>
+        <div className="container">
+          <div className="sermons-cta-content">
+            <div className="sermons-cta-text">
+              <h3>Listen On The Go</h3>
+              <p>Subscribe to our podcast and never miss a message. Available on Apple Podcasts, Spotify, and more.</p>
+            </div>
+            <a
+              href="/podcast"
+              className="btn btn-primary"
+            >
+              <FontAwesomeIcon icon={faPodcast} />
+              Subscribe to Podcast
             </a>
           </div>
         </div>
