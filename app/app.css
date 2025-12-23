@@ -6866,6 +6866,15 @@ a:hover {
   height: 64px;
 }
 
+.podcast-platform-icon img {
+  max-width: 64px;
+  max-height: 64px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0);
+}
+
 .podcast-platform-card:hover .podcast-platform-icon {
   transform: scale(1.1);
 }
@@ -6917,6 +6926,11 @@ a:hover {
   .podcast-platform-icon svg {
     width: 56px;
     height: 56px;
+  }
+
+  .podcast-platform-icon img {
+    max-width: 56px;
+    max-height: 56px;
   }
 
   .podcast-platform-name {

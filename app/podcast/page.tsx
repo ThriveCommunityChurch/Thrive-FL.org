@@ -1,21 +1,15 @@
-import {
-  SiApplepodcasts,
-  SiSpotify,
-  SiIheartradio,
-  SiPandora,
-  SiPlayerfm,
-} from "@icons-pack/react-simple-icons";
+"use client";
+
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDeezer } from "@fortawesome/free-brands-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface PodcastPlatform {
   name: string;
   url: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Icon?: any;
-  icon?: IconDefinition;
-  type: "simple-icon" | "fontawesome";
+  iconName?: string;
+  imageUrl?: string;
+  type: "simple-icon" | "fontawesome" | "image";
   color: string;
 }
 
@@ -24,46 +18,71 @@ const PODCAST_PLATFORMS: PodcastPlatform[] = [
   {
     name: "Apple Podcasts",
     url: "https://podcasts.apple.com/us/podcast/thrive-community-church/id1483883780",
-    Icon: SiApplepodcasts,
+    iconName: "SiApplepodcasts",
     type: "simple-icon",
     color: "#A855F7",
   },
   {
     name: "Spotify",
     url: "https://open.spotify.com/show/1V7A8wNhRFqn67yxCXKX9e",
-    Icon: SiSpotify,
+    iconName: "SiSpotify",
     type: "simple-icon",
     color: "#1DB954",
   },
   {
+    name: "Amazon Music",
+    url: "https://music.amazon.com/podcasts/e56e423a-7f79-4596-a8da-7b2ae829fe98/thrive-community-church",
+    imageUrl: "https://m.media-amazon.com/images/G/01/music/logo/1.0/amazon_music_410x82px.svg",
+    type: "image",
+    color: "#FF9900",
+  },
+  {
     name: "iHeartRadio",
     url: "https://iheart.com/podcast/314021185/",
-    Icon: SiIheartradio,
+    iconName: "SiIheartradio",
     type: "simple-icon",
     color: "#C6002B",
   },
   {
     name: "Pandora",
     url: "https://www.pandora.com/podcast/thrive-community-church/PC:1001112226",
-    Icon: SiPandora,
+    iconName: "SiPandora",
     type: "simple-icon",
     color: "#3668FF",
   },
   {
     name: "Deezer",
     url: "https://deezer.com/show/1002469392",
-    icon: faDeezer,
     type: "fontawesome",
     color: "#FF0092",
   },
   {
     name: "Player FM",
     url: "https://player.fm/series/thrive-community-church-3707697",
-    Icon: SiPlayerfm,
+    iconName: "SiPlayerfm",
     type: "simple-icon",
     color: "#E91E63",
   },
 ];
+
+// Component to render simple-icons only on client side
+function SimpleIcon({ iconName, size }: { iconName: string; size: number }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [IconComponent, setIconComponent] = useState<any>(null);
+
+  useEffect(() => {
+    import("@icons-pack/react-simple-icons").then((mod) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setIconComponent(() => (mod as any)[iconName]);
+    });
+  }, [iconName]);
+
+  if (!IconComponent) {
+    return <div style={{ width: size, height: size }} />;
+  }
+
+  return <IconComponent size={size} />;
+}
 
 export default function PodcastPage() {
   return (
@@ -98,10 +117,13 @@ export default function PodcastPage() {
                 style={{ "--platform-color": platform.color } as React.CSSProperties}
               >
                 <div className="podcast-platform-icon">
-                  {platform.type === "simple-icon" && platform.Icon ? (
-                    <platform.Icon size={48} />
-                  ) : platform.icon ? (
-                    <FontAwesomeIcon icon={platform.icon} />
+                  {platform.type === "simple-icon" && platform.iconName ? (
+                    <SimpleIcon iconName={platform.iconName} size={48} />
+                  ) : platform.type === "fontawesome" ? (
+                    <FontAwesomeIcon icon={faDeezer} />
+                  ) : platform.type === "image" && platform.imageUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={platform.imageUrl} alt={platform.name} className="podcast-platform-img" />
                   ) : null}
                 </div>
                 <span className="podcast-platform-name">{platform.name}</span>
