@@ -64,7 +64,16 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION,
+	    // Search engine webmaster / ownership verification codes
+	    // These IDs are meant to be public meta tags and do not need to be secret.
+	    google: "SALXLSorV_uvi8FVA-yBbAnF0HxNYtKBEcb_CibHIXw",
+	    yahoo: "4175D31E5DF9EE5B2A0C6557B409D517",
+	    other: {
+	      // Bing Webmaster Tools
+	      "msvalidate.01": "4175D31E5DF9EE5B2A0C6557B409D517",
+	      // Alexa (legacy service, safe to keep for compatibility)
+	      alexaVerifyID: "Qcy1I-XCw9tdhIfyzCPvRMv4VV0",
+	    },
   },
 };
 
