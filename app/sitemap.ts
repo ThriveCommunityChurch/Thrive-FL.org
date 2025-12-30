@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/ministries/kids", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/small-groups", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/get-involved", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/baptism", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
   ];
 

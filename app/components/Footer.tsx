@@ -28,6 +28,7 @@ export default function Footer() {
           <div className="footer-links">
             <h4>Get Connected</h4>
             <ul>
+              <li><Link href="/baptism">Baptism</Link></li>
               <li><Link href="/small-groups">Home Huddles</Link></li>
               <li><Link href="/get-involved">Get Involved</Link></li>
               <li><Link href="/ministries/college">ThriveFGCU</Link></li>

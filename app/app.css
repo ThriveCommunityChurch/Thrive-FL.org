@@ -7351,3 +7351,12 @@ a:hover {
     font-size: var(--font-size-sm);
   }
 }
+
+/* ============================================
+   BAPTISM PAGE STYLES
+   ============================================ */
+.page-hero-baptism {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(46, 190, 216, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
+}
