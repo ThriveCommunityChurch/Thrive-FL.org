@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -9,75 +9,33 @@ import {
   faChurch,
   faCircleQuestion,
   faClock,
+  faGlobe,
   faList,
   faLocationDot,
   faMapLocationDot,
   faRepeat,
-  faTree,
+  faStar,
+  faVideo,
   faXmark,
+  faSpinner,
+  faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import {
+  EventSummary,
+  Event,
+  RecurrencePattern,
+} from "../types/events";
+import {
+  getAllEvents,
+  getEventById,
+  getRecurrencePatternLabel,
+  formatEventTime,
+  eventOccursOnDate,
+} from "../services/eventService";
 
-// ============================================
-// EVENT DATA TYPES & STRUCTURE
-// This structure is designed to be easily replaced with API calls later
-// ============================================
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  time: string;
-  recurring: boolean;
-  recurrencePattern?: "weekly" | "monthly" | "yearly";
-  recurrenceDay?: number; // 0 = Sunday, 1 = Monday, etc.
-  date?: Date; // For one-time events
-  color?: string;
-  icon?: IconDefinition;
-}
-
-// Hardcoded events - easily replaceable with API response
-const EVENTS_DATA: Event[] = [
-  {
-    id: "sunday-worship",
-    title: "Sunday Worship Service",
-    description: "Join us for worship, teaching, and community. Thrive Kids available for ages 6 months to 12 years.",
-    location: "20041 S Tamiami Trail #1, Estero, FL",
-    time: "10:00 AM",
-    recurring: true,
-    recurrencePattern: "weekly",
-    recurrenceDay: 0, // Sunday
-    color: "primary",
-    icon: faChurch,
-  },
-  {
-    id: "christmas-eve-2025",
-    title: "Christmas Eve Service",
-    description: "Join us as we celebrate the birth of Jesus Christ.",
-    location: "20041 S Tamiami Trail #1, Estero, FL",
-    time: "5:00 PM",
-    recurring: false,
-    date: new Date(2025, 11, 24), // December 24, 2025
-    color: "primary",
-    icon: faTree,
-  },
-];
-
-// Helper function to check if a date has an event
-function getEventsForDate(date: Date, events: Event[]): Event[] {
-  return events.filter((event) => {
-    if (event.recurring && event.recurrencePattern === "weekly") {
-      return date.getDay() === event.recurrenceDay;
-    }
-    if (event.date) {
-      return (
-        date.getFullYear() === event.date.getFullYear() &&
-        date.getMonth() === event.date.getMonth() &&
-        date.getDate() === event.date.getDate()
-      );
-    }
-    return false;
-  });
+// Helper function to check if a date has events
+function getEventsForDate(date: Date, events: EventSummary[]): EventSummary[] {
+  return events.filter((event) => eventOccursOnDate(event, date));
 }
 
 // Get days in month
@@ -100,11 +58,60 @@ const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export default function EventsPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [selectedEventSummary, setSelectedEventSummary] = useState<EventSummary | null>(null);
   const [viewMode, setViewMode] = useState<"month" | "list">("month");
+  const [events, setEvents] = useState<EventSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [loadingEventDetails, setLoadingEventDetails] = useState(false);
 
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
   const today = new Date();
+
+  // Fetch events from API
+  useEffect(() => {
+    async function fetchEvents() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await getAllEvents(false);
+        if (response.hasErrors) {
+          setError(response.errorMessage || 'Failed to load events');
+        } else {
+          setEvents(response.events || []);
+        }
+      } catch (err) {
+        console.error('Failed to fetch events:', err);
+        setError('Unable to load events. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchEvents();
+  }, []);
+
+  // Fetch full event details when an event is clicked
+  const handleEventClick = async (eventSummary: EventSummary) => {
+    setSelectedEventSummary(eventSummary);
+    setLoadingEventDetails(true);
+    try {
+      const response = await getEventById(eventSummary.id);
+      if (!response.hasErrors && response.event) {
+        setSelectedEvent(response.event);
+      }
+    } catch (err) {
+      console.error('Failed to fetch event details:', err);
+      // Still show modal with summary data
+    } finally {
+      setLoadingEventDetails(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSelectedEvent(null);
+    setSelectedEventSummary(null);
+  };
 
   const navigateMonth = (direction: number) => {
     setCurrentDate(new Date(currentYear, currentMonth + direction, 1));
@@ -156,12 +163,12 @@ export default function EventsPage() {
 
   // Get upcoming events for list view
   const getUpcomingEvents = () => {
-    const upcoming: { date: Date; event: Event }[] = [];
+    const upcoming: { date: Date; event: EventSummary }[] = [];
     const endDate = new Date(today);
     endDate.setMonth(endDate.getMonth() + 2);
 
     for (let d = new Date(today); d <= endDate; d.setDate(d.getDate() + 1)) {
-      const dayEvents = getEventsForDate(new Date(d), EVENTS_DATA);
+      const dayEvents = getEventsForDate(new Date(d), events);
       dayEvents.forEach((event) => {
         upcoming.push({ date: new Date(d), event });
       });
@@ -219,8 +226,27 @@ export default function EventsPage() {
             </div>
           </div>
 
+          {/* Loading State */}
+          {loading && (
+            <div className="events-loading">
+              <FontAwesomeIcon icon={faSpinner} spin size="2x" />
+              <p>Loading events...</p>
+            </div>
+          )}
+
+          {/* Error State */}
+          {error && !loading && (
+            <div className="events-error">
+              <FontAwesomeIcon icon={faExclamationTriangle} size="2x" />
+              <p>{error}</p>
+              <button className="btn btn-primary" onClick={() => window.location.reload()}>
+                Try Again
+              </button>
+            </div>
+          )}
+
           {/* Month View */}
-          {viewMode === 'month' && (
+          {!loading && !error && viewMode === 'month' && (
             <div className="calendar-grid-wrapper">
               <div className="calendar-header">
                 {DAY_NAMES.map((day) => (
@@ -229,20 +255,20 @@ export default function EventsPage() {
               </div>
               <div className="calendar-grid">
                 {calendarDays.map(({ date, isCurrentMonth }, index) => {
-                  const dayEvents = getEventsForDate(date, EVENTS_DATA);
+                  const dayEvents = getEventsForDate(date, events);
                   const hasEvents = dayEvents.length > 0;
 
                   return (
                     <div
                       key={index}
                       className={`calendar-day ${!isCurrentMonth ? 'other-month' : ''} ${isToday(date) ? 'today' : ''} ${hasEvents ? 'has-events' : ''}`}
-                      onClick={() => hasEvents && setSelectedEvent(dayEvents[0])}
+                      onClick={() => hasEvents && handleEventClick(dayEvents[0])}
                     >
                       <span className="day-number">{date.getDate()}</span>
                       {hasEvents && (
                         <div className="day-events">
                           {dayEvents.map((event) => (
-                            <div key={event.id} className={`event-dot event-${event.color}`}>
+                            <div key={event.id} className={`event-dot ${event.isFeatured ? 'event-featured' : 'event-primary'}`}>
                               <span className="event-preview">{event.title}</span>
                             </div>
                           ))}
@@ -256,76 +282,155 @@ export default function EventsPage() {
           )}
 
           {/* List View */}
-          {viewMode === 'list' && (
+          {!loading && !error && viewMode === 'list' && (
             <div className="events-list">
               <h3 className="events-list-title">Upcoming Events</h3>
-              {getUpcomingEvents().map(({ date, event }, index) => (
-                <div
-                  key={`${event.id}-${index}`}
-                  className="event-list-item"
-                  onClick={() => setSelectedEvent(event)}
-                >
-                  <div className="event-list-date">
-                    <span className="event-list-day">{date.getDate()}</span>
-                    <span className="event-list-month">{MONTH_NAMES[date.getMonth()].slice(0, 3)}</span>
-                  </div>
-                  <div className="event-list-content">
-                    {event.icon && <FontAwesomeIcon icon={event.icon} />}
-                    <h4>{event.title}</h4>
-                    <p>
-                      <FontAwesomeIcon icon={faClock} /> {event.time}
-                      {event.recurring && <span className="recurring-badge"><FontAwesomeIcon icon={faRepeat} /> Weekly</span>}
-                    </p>
-                  </div>
-                  <div className="event-list-arrow">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </div>
+              {events.length === 0 ? (
+                <div className="events-empty">
+                  <p>No upcoming events at this time. Check back soon!</p>
                 </div>
-              ))}
+              ) : (
+                getUpcomingEvents().map(({ date, event }, index) => (
+                  <div
+                    key={`${event.id}-${index}`}
+                    className="event-list-item"
+                    onClick={() => handleEventClick(event)}
+                  >
+                    <div className="event-list-date">
+                      <span className="event-list-day">{date.getDate()}</span>
+                      <span className="event-list-month">{MONTH_NAMES[date.getMonth()].slice(0, 3)}</span>
+                    </div>
+                    <div className="event-list-content">
+                      {event.isOnline ? (
+                        <FontAwesomeIcon icon={faVideo} />
+                      ) : (
+                        <FontAwesomeIcon icon={faChurch} />
+                      )}
+                      {event.isFeatured && <FontAwesomeIcon icon={faStar} className="featured-star" />}
+                      <h4>{event.title}</h4>
+                      <p>
+                        <FontAwesomeIcon icon={faClock} /> {formatEventTime(event.startTime)}
+                        {event.isRecurring && (
+                          <span className="recurring-badge">
+                            <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.recurrencePattern)}
+                          </span>
+                        )}
+                      </p>
+                    </div>
+                    <div className="event-list-arrow">
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           )}
         </div>
       </section>
 
       {/* Event Details Modal */}
-      {selectedEvent && (
-        <div className="event-modal-overlay" onClick={() => setSelectedEvent(null)}>
+      {(selectedEvent || selectedEventSummary) && (
+        <div className="event-modal-overlay" onClick={closeModal}>
           <div className="event-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="event-modal-close" onClick={() => setSelectedEvent(null)}>
+            <button className="event-modal-close" onClick={closeModal}>
               <FontAwesomeIcon icon={faXmark} />
             </button>
-            <div className="event-modal-header">
-              {selectedEvent.recurring && (
-                <span className="event-modal-badge">
-                  <FontAwesomeIcon icon={faRepeat} /> Recurring Event
-                </span>
-              )}
-              <h2>{selectedEvent.icon && <FontAwesomeIcon icon={selectedEvent.icon} />} {selectedEvent.title}</h2>
-            </div>
-            <div className="event-modal-body">
-              <div className="event-modal-detail">
-                <FontAwesomeIcon icon={faClock} />
-                <div>
-                  <strong>Time</strong>
-                  <p>{selectedEvent.time}</p>
+
+            {loadingEventDetails ? (
+              <div className="event-modal-loading">
+                <FontAwesomeIcon icon={faSpinner} spin size="2x" />
+                <p>Loading event details...</p>
+              </div>
+            ) : (
+              <>
+                <div className="event-modal-header">
+                  {(selectedEvent?.isRecurring || selectedEventSummary?.isRecurring) && (
+                    <span className="event-modal-badge">
+                      <FontAwesomeIcon icon={faRepeat} /> Recurring Event
+                    </span>
+                  )}
+                  {(selectedEvent?.isFeatured || selectedEventSummary?.isFeatured) && (
+                    <span className="event-modal-badge featured">
+                      <FontAwesomeIcon icon={faStar} /> Featured
+                    </span>
+                  )}
+                  <h2>
+                    {(selectedEvent?.isOnline || selectedEventSummary?.isOnline) ? (
+                      <FontAwesomeIcon icon={faVideo} />
+                    ) : (
+                      <FontAwesomeIcon icon={faChurch} />
+                    )}{' '}
+                    {selectedEvent?.title || selectedEventSummary?.title}
+                  </h2>
                 </div>
-              </div>
-              <div className="event-modal-detail">
-                <FontAwesomeIcon icon={faLocationDot} />
-                <div>
-                  <strong>Location</strong>
-                  <p>{selectedEvent.location}</p>
+                <div className="event-modal-body">
+                  <div className="event-modal-detail">
+                    <FontAwesomeIcon icon={faClock} />
+                    <div>
+                      <strong>Time</strong>
+                      <p>{formatEventTime(selectedEvent?.startTime || selectedEventSummary?.startTime || '')}</p>
+                    </div>
+                  </div>
+
+                  {(selectedEvent?.isOnline || selectedEventSummary?.isOnline) ? (
+                    <div className="event-modal-detail">
+                      <FontAwesomeIcon icon={faGlobe} />
+                      <div>
+                        <strong>Online Event</strong>
+                        {selectedEvent?.onlinePlatform && <p>{selectedEvent.onlinePlatform}</p>}
+                        {selectedEvent?.onlineLink && (
+                          <a href={selectedEvent.onlineLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline">
+                            Join Online
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="event-modal-detail">
+                      <FontAwesomeIcon icon={faLocationDot} />
+                      <div>
+                        <strong>Location</strong>
+                        {selectedEvent?.location ? (
+                          <p>
+                            {selectedEvent.location.name && <>{selectedEvent.location.name}<br /></>}
+                            {selectedEvent.location.address && <>{selectedEvent.location.address}<br /></>}
+                            {selectedEvent.location.city && selectedEvent.location.state && (
+                              <>{selectedEvent.location.city}, {selectedEvent.location.state} {selectedEvent.location.zipCode}</>
+                            )}
+                          </p>
+                        ) : (
+                          <p>{selectedEventSummary?.locationName || 'Location TBD'}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedEvent?.description && (
+                    <div className="event-modal-description">
+                      <p>{selectedEvent.description}</p>
+                    </div>
+                  )}
+
+                  {selectedEvent?.registrationUrl && (
+                    <div className="event-modal-registration">
+                      <a href={selectedEvent.registrationUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                        Register for Event
+                      </a>
+                    </div>
+                  )}
                 </div>
-              </div>
-              <div className="event-modal-description">
-                <p>{selectedEvent.description}</p>
-              </div>
-            </div>
-            <div className="event-modal-actions">
-              <a href="/visit" className="btn btn-primary">
-                <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
-              </a>
-            </div>
+                <div className="event-modal-actions">
+                  <a href={`/events/${selectedEvent?.id || selectedEventSummary?.id}`} className="btn btn-primary">
+                    View Full Details
+                  </a>
+                  {!(selectedEvent?.isOnline || selectedEventSummary?.isOnline) && (
+                    <a href="/visit" className="btn btn-outline">
+                      <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
+                    </a>
+                  )}
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
