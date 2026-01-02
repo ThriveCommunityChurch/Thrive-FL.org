@@ -65,6 +65,7 @@ export default function Header() {
               <span className="nav-link">Connect <FontAwesomeIcon icon={faChevronDown} /></span>
               <ul className="dropdown-menu">
                 <li><Link href="/baptism" onClick={handleLinkClick}>Baptism</Link></li>
+                <li><Link href="/care" onClick={handleLinkClick}>Care &amp; Prayer</Link></li>
                 <li><Link href="/small-groups" onClick={handleLinkClick}>Small Groups</Link></li>
                 <li><Link href="/get-involved" onClick={handleLinkClick}>Get Involved</Link></li>
                 <li><Link href="/ministries/college" onClick={handleLinkClick}>ThriveFGCU</Link></li>
