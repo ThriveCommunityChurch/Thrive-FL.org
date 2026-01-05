@@ -65,9 +65,10 @@ export async function getAllEvents(includeInactive = false): Promise<AllEventsRe
   // Handle 204 No Content - return empty events response
   if (result === null) {
     return {
-      hasErrors: false,
-      errorMessage: null,
       events: [],
+      totalCount: 0,
+      hasErrors: false,
+      errorMessage: undefined,
     };
   }
 

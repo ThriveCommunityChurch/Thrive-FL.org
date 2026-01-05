@@ -6,12 +6,14 @@ import {
   faUsers,
   faHandsPraying,
   faEnvelope,
+  faCalendarCheck,
+  faCirclePlay,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Baptism | Thrive Community Church",
   description:
-	    "Learn about baptism at Thrive Community Church: what it is, who it's for, and how to take a next step, whether for you or your child.",
+    "Learn about baptism at Thrive Community Church: what it is, who it's for, and how to take a next step, whether for you or your child.",
   openGraph: {
     title: "Baptism | Thrive Community Church",
     description:
@@ -239,6 +241,40 @@ Any specific questions I have about baptism:
                 or your child.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Still Exploring Section */}
+      <section className="section quicklinks-section">
+        <div className="container">
+          <div className="section-header-centered">
+            <span className="section-eyebrow">Still Exploring?</span>
+            <h2 className="section-title">Not Sure You&apos;re Ready for Baptism?</h2>
+          </div>
+          <div className="quicklinks-grid">
+            <a href="/im-new" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faCalendarCheck} />
+              </div>
+              <h3>I&apos;m New or Just Curious</h3>
+              <p>
+                Get a bigger picture of who we are, what we believe, and what to
+                expect on a Sunday before you take a step like baptism.
+              </p>
+              <span className="quicklink-action">Start Here</span>
+            </a>
+            <a href="/sermons" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faCirclePlay} />
+              </div>
+              <h3>Watch a Message</h3>
+              <p>
+                Listen to recent messages to hear more teaching and get a feel
+                for Sundays at Thrive.
+              </p>
+              <span className="quicklink-action">Browse Messages</span>
+            </a>
           </div>
         </div>
       </section>

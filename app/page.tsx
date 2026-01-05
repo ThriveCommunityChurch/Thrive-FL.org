@@ -20,6 +20,8 @@ import {
   faEnvelope,
   faDiamondTurnRight,
   faPodcast,
+  faDroplet,
+  faHandsPraying,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -218,6 +220,22 @@ export default function HomePage() {
               <h3>Get Involved</h3>
               <p>Use your gifts to serve and make a difference at Thrive</p>
               <span className="quicklink-action">Serve With Us</span>
+            </a>
+            <a href="/baptism" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faDroplet} />
+              </div>
+              <h3>Baptism</h3>
+              <p>Ready for your next step in following Jesus?</p>
+              <span className="quicklink-action">Learn About Baptism</span>
+            </a>
+            <a href="/care" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faHandsPraying} />
+              </div>
+              <h3>Care &amp; Prayer</h3>
+              <p>You&apos;re not a burden. Let us walk with you in prayer and care.</p>
+              <span className="quicklink-action">Get Care &amp; Prayer</span>
             </a>
             <a href="/podcast" className="quicklink-card">
               <div className="quicklink-icon">

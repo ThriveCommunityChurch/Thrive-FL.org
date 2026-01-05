@@ -5,6 +5,8 @@ import {
   faHeartCircleCheck,
   faHandHoldingHeart,
   faEnvelope,
+  faHouse,
+  faHandshakeAngle,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -225,27 +227,61 @@ Email:`,
               </p>
             </div>
 
-	            <div className="faq-card">
-	              <div className="faq-icon">
-	                <FontAwesomeIcon icon={faEnvelope} />
-	              </div>
-	              <h3>What if I have an immediate need?</h3>
-	              <p>
-	                If you're facing an urgent practical need—such as furniture,
-	                transportation, or other support—we partner with 
-	                <a
-	                  href="https://loveincflorida.org/"
-	                  target="_blank"
-	                  rel="noopener noreferrer"
-	                >
-	                  Love INC Heart of Florida
-	                </a>
-	                , a ministry that helps churches help people in our community.
-	                They specialize in connecting people with tangible resources and
-	                long-term support. You can reach out to them directly or contact
-	                us and we'll help you get connected.
-	              </p>
-	            </div>
+            <div className="faq-card">
+              <div className="faq-icon">
+                <FontAwesomeIcon icon={faEnvelope} />
+              </div>
+              <h3>What if I have an immediate need?</h3>
+              <p>
+                If you're facing an urgent practical need—such as furniture,
+                transportation, or other support—we partner with{" "}
+                <a
+                  href="https://loveincflorida.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Love INC Heart of Florida
+                </a>
+                , a ministry that helps churches help people in our community.
+                They specialize in connecting people with tangible resources and
+                long-term support. You can reach out to them directly or contact
+                us and we'll help you get connected.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Steps Section */}
+      <section className="section quicklinks-section">
+        <div className="container">
+          <div className="section-header-centered">
+            <span className="section-eyebrow">Next Steps</span>
+            <h2 className="section-title">Sometimes Your Next Step Is...</h2>
+          </div>
+          <div className="quicklinks-grid">
+            <a href="/small-groups" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faHouse} />
+              </div>
+              <h3>Join a Home Huddle</h3>
+              <p>
+                Walk with others in community. Share life, pray together, and
+                let people know how you&apos;re really doing.
+              </p>
+              <span className="quicklink-action">Find a Group</span>
+            </a>
+            <a href="/get-involved" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faHandshakeAngle} />
+              </div>
+              <h3>Serve on a Team</h3>
+              <p>
+                Sometimes healing starts as you serve alongside others and use
+                your gifts to bless someone else.
+              </p>
+              <span className="quicklink-action">Get Involved</span>
+            </a>
           </div>
         </div>
       </section>

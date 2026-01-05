@@ -134,6 +134,20 @@ export default function ImNewPage() {
         </div>
       </section>
 
+      {/* Additional Links */}
+      <section className="section">
+        <div className="container container-narrow">
+          <p>
+            Already following Jesus and wondering about baptism?{" "}
+            <a href="/baptism">Learn about Baptism &rarr;</a>
+          </p>
+          <p>
+            Walking through something heavy?{" "}
+            <a href="/care">Get Care &amp; Prayer &rarr;</a>
+          </p>
+        </div>
+      </section>
+
       {/* Location Quick Info */}
       <section className="section location-cta-section">
         <div className="container container-narrow">
