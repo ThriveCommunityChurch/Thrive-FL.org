@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
   faCalendar,
+  faCheck,
   faCircleQuestion,
   faDiamondTurnRight,
   faDoorOpen,
@@ -19,6 +20,7 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import ContactForm from "../components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us | Thrive Community Church",
@@ -222,6 +224,37 @@ Best time to reach you: [Your preference]`
                 Send Email <FontAwesomeIcon icon={faArrowRight} />
               </span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="section contact-form-section">
+        <div className="container">
+          <div className="contact-form-wrapper">
+            <div className="contact-form-info">
+              <span className="section-eyebrow">Send a Message</span>
+              <h2>Get in Touch Directly</h2>
+              <p>
+                Fill out the form and we&apos;ll get back to you as soon as possible.
+                We typically respond within 24 hours.
+              </p>
+              <ul className="contact-form-benefits">
+                <li>
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Quick response within 24 hours</span>
+                </li>
+                <li>
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Your information is kept confidential</span>
+                </li>
+                <li>
+                  <FontAwesomeIcon icon={faCheck} />
+                  <span>Connect with the right person for your needs</span>
+                </li>
+              </ul>
+            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
