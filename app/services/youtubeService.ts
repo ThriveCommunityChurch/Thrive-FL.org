@@ -194,7 +194,7 @@ export async function checkLiveStatus(channelId: string = THRIVE_CHANNEL_ID): Pr
  * Get the YouTube channel URL for Thrive
  */
 export function getChannelUrl(): string {
-  return 'https://www.youtube.com/@thaborchurch/videos';
+  return 'https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig/videos';
 }
 
 /**
