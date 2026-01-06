@@ -71,7 +71,13 @@ export default function Header() {
                 <li><Link href="/ministries/college" onClick={handleLinkClick}>ThriveFGCU</Link></li>
               </ul>
             </li>
-            <li><Link href="/sermons" className="nav-link" onClick={handleLinkClick}>Sermons</Link></li>
+            <li className="nav-dropdown">
+              <Link href="/sermons" className="nav-link" onClick={handleLinkClick}>Listen <FontAwesomeIcon icon={faChevronDown} /></Link>
+              <ul className="dropdown-menu">
+                <li><Link href="/sermons" onClick={handleLinkClick}>Sermons</Link></li>
+                <li><Link href="/live" onClick={handleLinkClick}>Watch Live</Link></li>
+              </ul>
+            </li>
             <li><Link href="/events" className="nav-link" onClick={handleLinkClick}>Events</Link></li>
             <li><Link href="/contact" className="nav-link" onClick={handleLinkClick}>Contact</Link></li>
             <li>

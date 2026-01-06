@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
@@ -19,6 +21,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/im-new">I&apos;m New</Link></li>
               <li><Link href="/sermons">Sermons</Link></li>
+              <li><Link href="/live">Watch Live</Link></li>
               <li><Link href="/podcast">Podcast</Link></li>
               <li><Link href="/events">Events</Link></li>
               <li><Link href="/contact">Contact</Link></li>
