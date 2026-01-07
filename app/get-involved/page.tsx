@@ -240,7 +240,7 @@ Best time to contact: [Your preference]`
                 doors open for anyone seeking hope.
               </p>
               <a
-                href="https://goo.gl/cT3s8e"
+                href="/give"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline involved-give-btn"

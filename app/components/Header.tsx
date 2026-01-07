@@ -82,7 +82,7 @@ export default function Header() {
             <li><Link href="/contact" className="nav-link" onClick={handleLinkClick}>Contact</Link></li>
             <li>
               <a
-                href="https://goo.gl/cT3s8e"
+                href="/give"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link nav-give-btn"

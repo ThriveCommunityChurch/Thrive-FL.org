@@ -36,7 +36,7 @@ export default function Footer() {
               <li><Link href="/small-groups">Home Huddles</Link></li>
               <li><Link href="/get-involved">Get Involved</Link></li>
               <li><Link href="/ministries/college">ThriveFGCU</Link></li>
-              <li><a href="https://goo.gl/cT3s8e" target="_blank" rel="noopener noreferrer">Give</a></li>
+              <li><a href="/give" target="_blank" rel="noopener noreferrer">Give</a></li>
             </ul>
           </div>
           <div className="footer-contact">

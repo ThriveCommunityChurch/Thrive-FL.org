@@ -102,6 +102,14 @@ Email:`,
               You don&apos;t have to have the right words. You don&apos;t have to have it
               all together. You just have to reach out.
             </p>
+            <div className="cta-buttons" style={{ marginTop: "var(--spacing-xl)" }}>
+              <a href={prayerMailto} className="btn btn-primary btn-lg">
+                <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
+              </a>
+              <a href={pastoralMailto} className="btn btn-outline btn-lg">
+                <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
+              </a>
+            </div>
           </div>
         </div>
       </section>
