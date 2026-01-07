@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     if (!RECAPTCHA_SECRET_KEY) {
       console.error("RECAPTCHA_SECRET_KEY is not set in environment variables");
       return NextResponse.json(
-        { error: "Server configuration error" },
+        { error: "Server configuration error: RECAPTCHA_SECRET_KEY missing" },
         { status: 500 }
       );
     }

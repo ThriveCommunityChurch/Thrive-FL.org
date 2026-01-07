@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Server-side environment variables (inlined at build time for Amplify)
+  env: {
+    RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY,
+    MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
+    MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+  },
+
   // Image optimization settings
   experimental: {
     cssChunking: 'strict',
