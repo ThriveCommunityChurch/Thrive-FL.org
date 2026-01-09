@@ -22,52 +22,6 @@ export const metadata: Metadata = {
 };
 
 export default function CarePage() {
-  const prayerEmail = "prayers@thrive-fl.org";
-  const careEmail = "info@thrive-fl.org";
-
-  const prayerTemplate = {
-    subject: "Prayer Request - Thrive Community Church",
-    body: `Hi Thrive Prayer Team,
-
-I'd like to ask for prayer.
-
-Here is what I'm walking through:
-[Share as much or as little as you're comfortable with]
-
-How you can pray:
-[Optional details]
-
-You can follow up with me at:
-Name:
-Email:
-Phone (optional):`,
-  };
-
-  const pastoralTemplate = {
-    subject: "Pastoral Care Conversation - Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I'd like to schedule a call or meeting with a pastor.
-
-A little about what I'm walking through:
-[Share as much or as little as you're comfortable with]
-
-Best times to connect:
-[Days/times]
-
-Best way to reach me:
-Name:
-Phone:
-Email:`,
-  };
-
-  const prayerMailto = `mailto:${prayerEmail}?subject=${encodeURIComponent(
-    prayerTemplate.subject,
-  )}&body=${encodeURIComponent(prayerTemplate.body)}`;
-
-  const pastoralMailto = `mailto:${careEmail}?subject=${encodeURIComponent(
-    pastoralTemplate.subject,
-  )}&body=${encodeURIComponent(pastoralTemplate.body)}`;
 
   return (
     <div className="page-wrapper">
@@ -102,11 +56,11 @@ Email:`,
               You don&apos;t have to have the right words. You don&apos;t have to have it
               all together. You just have to reach out.
             </p>
-            <div className="cta-buttons" style={{ marginTop: "var(--spacing-xl)" }}>
-              <a href={prayerMailto} className="btn btn-primary btn-lg">
+	            <div className="cta-buttons" style={{ marginTop: "var(--spacing-xl)" }}>
+	              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
               </a>
-              <a href={pastoralMailto} className="btn btn-outline btn-lg">
+	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
               </a>
             </div>
@@ -303,11 +257,11 @@ Email:`,
               Whether you need prayer, a conversation, or help figuring out what
               to do next, we&apos;d be honored to walk with you.
             </p>
-            <div className="cta-buttons">
-              <a href={prayerMailto} className="btn btn-primary btn-lg">
+	            <div className="cta-buttons">
+	              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
               </a>
-              <a href={pastoralMailto} className="btn btn-outline btn-lg">
+	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
               </a>
             </div>

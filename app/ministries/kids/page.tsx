@@ -20,25 +20,7 @@ export const metadata: Metadata = {
 };
 
 export default function KidsMinistryPage() {
-  const churchEmail = "info@thrive-fl.org";
-
-  const emailTemplate = {
-    subject: "Thrive Kids Question - Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I have a question about Thrive Kids:
-
-[Please describe your question here]
-
-Child's Name: [Name]
-Child's Age: [Age]
-Parent/Guardian Name: [Your Name]
-Phone: [Your Phone Number]`
-  };
-
-  const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(emailTemplate.subject)}&body=${encodeURIComponent(emailTemplate.body)}`;
-
-  return (
+	  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-kids">
@@ -205,8 +187,8 @@ Phone: [Your Phone Number]`
               We&apos;d love to tell you more about what we have for your family.
               Reach out anytime—or just show up Sunday and we&apos;ll take care of the rest!
             </p>
-            <div className="cta-buttons">
-              <a href={mailtoLink} className="btn btn-primary">
+	            <div className="cta-buttons">
+	              <a href="/contact?subject=general#contact-form" className="btn btn-primary">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
               </a>
               <a href="/visit" className="btn btn-outline-white">

@@ -23,24 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function CollegeMinistryPage() {
-  const churchEmail = "info@thrive-fl.org";
-
-  const emailTemplate = {
-    subject: "ThriveFGCU Question - Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I'm interested in ThriveFGCU and have a question:
-
-[Please describe your question here]
-
-Name: [Your Name]
-Year/Major at FGCU: [Your Info]
-Phone: [Your Phone Number (optional)]`
-  };
-
-  const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(emailTemplate.subject)}&body=${encodeURIComponent(emailTemplate.body)}`;
-
-  return (
+	  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-college">
@@ -186,16 +169,16 @@ Phone: [Your Phone Number (optional)]`
               The easiest way to get involved is to just show up! Check out our
               Instagram for the latest updates, or reach out if you have any questions.
             </p>
-            <div className="cta-buttons">
-              <a
-                href="https://www.instagram.com/thrivefgcu/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-              >
-                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
-              </a>
-              <a href={mailtoLink} className="btn btn-outline-white">
+	            <div className="cta-buttons">
+	              <a
+	                href="https://www.instagram.com/thrivefgcu/"
+	                target="_blank"
+	                rel="noopener noreferrer"
+	                className="btn btn-primary"
+	              >
+	                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
+	              </a>
+	              <a href="/contact?subject=general#contact-form" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
               </a>
             </div>

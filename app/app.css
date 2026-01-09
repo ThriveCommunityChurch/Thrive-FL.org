@@ -953,6 +953,77 @@ a:hover {
 
 
 /* ============================================
+   Plan Your Visit Section
+   Subtle quick-info bar for first-time visitors
+   ============================================ */
+.plan-visit-section {
+  background: var(--color-gray-100);
+  padding: var(--spacing-md) 0;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.plan-visit-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  flex-wrap: wrap;
+}
+
+.plan-visit-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-gray-700);
+  font-size: var(--font-size-sm);
+}
+
+.plan-visit-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+
+
+.plan-visit-cta {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+}
+
+.plan-visit-cta:hover {
+  background: var(--color-primary-dark);
+}
+
+.plan-visit-cta svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .plan-visit-banner {
+    gap: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .plan-visit-divider {
+    display: none;
+  }
+
+  .plan-visit-item {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ============================================
    Service Times Section
    ============================================ */
 /* ============================================

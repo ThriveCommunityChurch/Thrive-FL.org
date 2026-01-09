@@ -27,35 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default function GetInvolvedPage() {
-  const churchEmail = "info@thrive-fl.org";
-
-  const emailTemplate = {
-    subject: "Getting Involved - Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I'm interested in getting involved and serving at Thrive Community Church!
-
-Areas I'm interested in (check all that apply):
-[ ] Worship/Music
-[ ] Thrive Kids
-[ ] Greeting/Hospitality
-[ ] Tech/Media
-[ ] Small Group Leader
-[ ] Setup/Teardown
-[ ] Other: [Please specify]
-
-A little about me:
-[Tell us about yourself and any relevant experience or skills]
-
-Name: [Your Name]
-Phone: [Your Phone Number]
-Email: [Your Email]
-Best time to contact: [Your preference]`
-  };
-
-  const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(emailTemplate.subject)}&body=${encodeURIComponent(emailTemplate.body)}`;
-
-  const ministryAreas: { icon: IconDefinition; title: string; description: string; image: string }[] = [
+	  const ministryAreas: { icon: IconDefinition; title: string; description: string; image: string }[] = [
     {
       icon: faMusic,
       title: "Worship Team",
@@ -215,8 +187,8 @@ Best time to contact: [Your preference]`
               figuring it out, we&apos;d love to chat. No pressure—just a conversation
               about how you might fit.
             </p>
-            <div className="cta-buttons">
-              <a href={mailtoLink} className="btn btn-primary btn-lg">
+	            <div className="cta-buttons">
+	              <a href="/contact?subject=volunteer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHand} /> I Want to Serve
               </a>
             </div>

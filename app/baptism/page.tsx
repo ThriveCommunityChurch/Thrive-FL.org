@@ -23,36 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function BaptismPage() {
-  const churchEmail = "info@thrive-fl.org";
-
-  const emailTemplate = {
-    subject: "Baptism at Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I'm interested in baptism at Thrive and would love to talk more.
-
-I'm asking about baptism for:
-[ ] Myself
-[ ] My child
-[ ] Another family member
-
-A little of my story:
-[Share as much or as little as you're comfortable with]
-
-Best way to reach me:
-Name:
-Phone:
-Email:
-
-Any specific questions I have about baptism:
-[Your questions here]`,
-  };
-
-  const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(
-    emailTemplate.subject,
-  )}&body=${encodeURIComponent(emailTemplate.body)}`;
-
-  return (
+	  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-baptism">
@@ -289,8 +260,8 @@ Any specific questions I have about baptism:
               to explore what baptism means, we&apos;d love to hear your story and
               walk with you.
             </p>
-            <div className="cta-buttons">
-              <a href={mailtoLink} className="btn btn-primary btn-lg">
+	            <div className="cta-buttons">
+	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested in Baptism
               </a>
             </div>

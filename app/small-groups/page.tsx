@@ -23,28 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function SmallGroupsPage() {
-  const churchEmail = "info@thrive-fl.org";
-
-  const emailTemplate = {
-    subject: "Small Groups Interest - Thrive Community Church",
-    body: `Hi Thrive Team,
-
-I'm interested in joining a small group (Home Huddle)!
-
-A little about me:
-[Tell us about yourself - Are you new to Thrive? Single, married, have kids?]
-
-What I'm looking for:
-[What days/times work best? Any specific interests or needs?]
-
-Name: [Your Name]
-Phone: [Your Phone Number]
-Email: [Your Email]`
-  };
-
-  const mailtoLink = `mailto:${churchEmail}?subject=${encodeURIComponent(emailTemplate.subject)}&body=${encodeURIComponent(emailTemplate.body)}`;
-
-  return (
+	  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-groups">
@@ -261,7 +240,7 @@ Email: [Your Email]`
               reach out to help you find the right fit for your life.
             </p>
             <div className="cta-buttons">
-              <a href={mailtoLink} className="btn btn-primary btn-lg">
+	              <a href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested
               </a>
             </div>

@@ -86,6 +86,10 @@ export default function HomePage() {
               <FontAwesomeIcon icon={faClock} />
               Sundays at 10 AM
             </p>
+            <p className="hero-location">
+              <FontAwesomeIcon icon={faLocationDot} />
+              Estero, FL
+            </p>
           </div>
           <div className="hero-cta">
             <a href="/im-new" className="btn btn-primary">
@@ -100,6 +104,27 @@ export default function HomePage() {
           {/* Scroll indicator */}
           <div className="scroll-indicator">
             <FontAwesomeIcon icon={faChevronDown} />
+          </div>
+        </div>
+      </section>
+
+      {/* Location Bar */}
+      <section className="plan-visit-section">
+        <div className="container">
+          <div className="plan-visit-banner">
+            <div className="plan-visit-item">
+              <FontAwesomeIcon icon={faLocationDot} className="plan-visit-icon" />
+              <span>20041 S. Tamiami Trail, Estero, FL 33928</span>
+            </div>
+            <a
+              href="https://maps.google.com/maps/dir//Thrive+Community+Church+20041+S+Tamiami+Trl+%23+1+Estero,+FL+33928/@26.4487313,-81.8159419,15z"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="plan-visit-cta"
+            >
+              <FontAwesomeIcon icon={faDiamondTurnRight} />
+              Get Directions
+            </a>
           </div>
         </div>
       </section>

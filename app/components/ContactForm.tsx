@@ -27,12 +27,16 @@ interface FormData {
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
-export default function ContactForm() {
+interface ContactFormProps {
+  initialSubject?: string;
+}
+
+export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
-    subject: "",
+    subject: initialSubject,
     message: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -65,23 +69,45 @@ export default function ContactForm() {
         }
       });
 
-      // Send form data to backend API for verification
+	      // Build a semantic contact type from the selected subject so the API
+	      // can choose the right email template and recipient.
+	      const mapSubjectToType = (subject: string): string => {
+	        switch (subject) {
+	          case "visit":
+	            return "contact.visit";
+	          case "prayer":
+	            return "contact.prayer";
+	          case "volunteer":
+	            return "contact.volunteer";
+	          case "pastoral":
+	            return "contact.pastoral";
+	          case "other":
+	            return "contact.other";
+	          case "general":
+	          default:
+	            return "contact.general";
+	        }
+	      };
+
+      const type = mapSubjectToType(formData.subject || "general");
+
+      // Send form data to backend API for verification and email handling
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, formData }),
+        body: JSON.stringify({ token, type, data: formData }),
       });
 
       const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.error || "Submission failed");
-      }
+	      if (!response.ok) {
+	        throw new Error(result.error || "Submission failed");
+	      }
 
-      setStatus("success");
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+	      setStatus("success");
+	      setFormData({ name: "", email: "", phone: "", subject: initialSubject, message: "" });
     } catch (error) {
       console.error("Form submission error:", error);
       setStatus("error");
@@ -98,6 +124,48 @@ export default function ContactForm() {
     { value: "pastoral", label: "Pastoral Care" },
     { value: "other", label: "Other" },
   ];
+
+  const getMessageConfig = (subject: string) => {
+    switch (subject) {
+      case "visit":
+        return {
+          label: "How can we help you with your visit?",
+          placeholder:
+            "When are you thinking of visiting? Any questions about kids, parking, or what to expect?",
+        };
+      case "prayer":
+        return {
+          label: "How can we pray for you?",
+          placeholder:
+            "Share as much or as little as you're comfortable with. Our team will be praying for you.",
+        };
+      case "volunteer":
+        return {
+          label: "Where would you like to serve?",
+          placeholder:
+            "Tell us which areas you're interested in (worship, kids, tech, hospitality, etc.) and a little about yourself.",
+        };
+      case "pastoral":
+        return {
+          label: "What would you like to talk about?",
+          placeholder:
+            "Share a bit about what you're walking through and how we can best care for you.",
+        };
+      case "other":
+        return {
+          label: "Message",
+          placeholder: "How can we help you?",
+        };
+      case "general":
+      default:
+        return {
+          label: "Message",
+          placeholder: "How can we help you?",
+        };
+    }
+  };
+
+  const { label: messageLabel, placeholder: messagePlaceholder } = getMessageConfig(formData.subject);
 
   return (
     <form onSubmit={handleSubmit} className="contact-form">
@@ -162,19 +230,19 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div className="contact-form-group">
-        <label htmlFor="message">Message <span className="required">*</span></label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          placeholder="How can we help you?"
-          rows={5}
-          disabled={status === "submitting"}
-        />
-      </div>
+	      <div className="contact-form-group">
+	        <label htmlFor="message">{messageLabel} <span className="required">*</span></label>
+	        <textarea
+	          id="message"
+	          name="message"
+	          value={formData.message}
+	          onChange={handleChange}
+	          required
+	          placeholder={messagePlaceholder}
+	          rows={5}
+	          disabled={status === "submitting"}
+	        />
+	      </div>
 
       {status === "success" && (
         <div className="contact-form-message contact-form-success">
