@@ -76,11 +76,7 @@ export default function EventsPage() {
         setLoading(true);
         setError(null);
         const response = await getAllEvents(false);
-        if (response.hasErrors) {
-          setError(response.errorMessage || 'Failed to load events');
-        } else {
-          setEvents(response.events || []);
-        }
+        setEvents(response.Events || []);
       } catch (err) {
         console.error('Failed to fetch events:', err);
         setError('Unable to load events. Please try again later.');
@@ -96,9 +92,9 @@ export default function EventsPage() {
     setSelectedEventSummary(eventSummary);
     setLoadingEventDetails(true);
     try {
-      const response = await getEventById(eventSummary.id);
-      if (!response.hasErrors && response.event) {
-        setSelectedEvent(response.event);
+      const response = await getEventById(eventSummary.Id);
+      if (response.Event) {
+        setSelectedEvent(response.Event);
       }
     } catch (err) {
       console.error('Failed to fetch event details:', err);
@@ -268,8 +264,8 @@ export default function EventsPage() {
                       {hasEvents && (
                         <div className="day-events">
                           {dayEvents.map((event) => (
-                            <div key={event.id} className={`event-dot ${event.isFeatured ? 'event-featured' : 'event-primary'}`}>
-                              <span className="event-preview">{event.title}</span>
+                            <div key={event.Id} className={`event-dot ${event.IsFeatured ? 'event-featured' : 'event-primary'}`}>
+                              <span className="event-preview">{event.Title}</span>
                             </div>
                           ))}
                         </div>
@@ -292,7 +288,7 @@ export default function EventsPage() {
               ) : (
                 getUpcomingEvents().map(({ date, event }, index) => (
                   <div
-                    key={`${event.id}-${index}`}
+                    key={`${event.Id}-${index}`}
                     className="event-list-item"
                     onClick={() => handleEventClick(event)}
                   >
@@ -301,18 +297,18 @@ export default function EventsPage() {
                       <span className="event-list-month">{MONTH_NAMES[date.getMonth()].slice(0, 3)}</span>
                     </div>
                     <div className="event-list-content">
-                      {event.isOnline ? (
+                      {event.IsOnline ? (
                         <FontAwesomeIcon icon={faVideo} />
                       ) : (
                         <FontAwesomeIcon icon={faChurch} />
                       )}
-                      {event.isFeatured && <FontAwesomeIcon icon={faStar} className="featured-star" />}
-                      <h4>{event.title}</h4>
+                      {event.IsFeatured && <FontAwesomeIcon icon={faStar} className="featured-star" />}
+                      <h4>{event.Title}</h4>
                       <p>
-                        <FontAwesomeIcon icon={faClock} /> {formatEventTime(event.startTime)}
-                        {event.isRecurring && (
+                        <FontAwesomeIcon icon={faClock} /> {formatEventTime(event.StartTime)}
+                        {event.IsRecurring && (
                           <span className="recurring-badge">
-                            <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.recurrencePattern)}
+                            <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.RecurrencePattern)}
                           </span>
                         )}
                       </p>
@@ -344,87 +340,101 @@ export default function EventsPage() {
             ) : (
               <>
                 <div className="event-modal-header">
-                  {(selectedEvent?.isRecurring || selectedEventSummary?.isRecurring) && (
-                    <span className="event-modal-badge">
-                      <FontAwesomeIcon icon={faRepeat} /> Recurring Event
-                    </span>
+                  <div className="event-modal-badges">
+                    {(selectedEvent?.IsRecurring || selectedEventSummary?.IsRecurring) && (
+                      <span className="event-modal-badge">
+                        <FontAwesomeIcon icon={faRepeat} /> Recurring Event
+                      </span>
+                    )}
+                    {(selectedEvent?.IsFeatured || selectedEventSummary?.IsFeatured) && (
+                      <span className="event-modal-badge featured">
+                        <FontAwesomeIcon icon={faStar} /> Featured
+                      </span>
+                    )}
+                  </div>
+                  <div className="event-modal-title-row">
+                    <div className="event-modal-icon">
+                      {(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) ? (
+                        <FontAwesomeIcon icon={faVideo} />
+                      ) : (
+                        <FontAwesomeIcon icon={faChurch} />
+                      )}
+                    </div>
+                    <h2>{selectedEvent?.Title || selectedEventSummary?.Title}</h2>
+                  </div>
+                  {selectedEvent?.Summary && (
+                    <p className="event-modal-summary">{selectedEvent.Summary}</p>
                   )}
-                  {(selectedEvent?.isFeatured || selectedEventSummary?.isFeatured) && (
-                    <span className="event-modal-badge featured">
-                      <FontAwesomeIcon icon={faStar} /> Featured
-                    </span>
-                  )}
-                  <h2>
-                    {(selectedEvent?.isOnline || selectedEventSummary?.isOnline) ? (
-                      <FontAwesomeIcon icon={faVideo} />
-                    ) : (
-                      <FontAwesomeIcon icon={faChurch} />
-                    )}{' '}
-                    {selectedEvent?.title || selectedEventSummary?.title}
-                  </h2>
                 </div>
                 <div className="event-modal-body">
-                  <div className="event-modal-detail">
-                    <FontAwesomeIcon icon={faClock} />
-                    <div>
-                      <strong>Time</strong>
-                      <p>{formatEventTime(selectedEvent?.startTime || selectedEventSummary?.startTime || '')}</p>
+                  <div className="event-modal-details-grid">
+                    <div className="event-modal-detail">
+                      <FontAwesomeIcon icon={faClock} />
+                      <div>
+                        <strong>Time</strong>
+                        <p>{formatEventTime(selectedEvent?.StartTime || selectedEventSummary?.StartTime || '')}</p>
+                      </div>
                     </div>
+
+                    {(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) ? (
+                      <div className="event-modal-detail">
+                        <FontAwesomeIcon icon={faGlobe} />
+                        <div>
+                          <strong>Online Event</strong>
+                          {selectedEvent?.OnlinePlatform && <p>{selectedEvent.OnlinePlatform}</p>}
+                          {selectedEvent?.OnlineLink && (
+                            <a href={selectedEvent.OnlineLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline">
+                              Join Online
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="event-modal-detail">
+                        <FontAwesomeIcon icon={faLocationDot} />
+                        <div>
+                          <strong>Location</strong>
+                          {selectedEvent?.Location && (selectedEvent.Location.Name || selectedEvent.Location.Address) ? (
+                            <p>
+                              {selectedEvent.Location.Name && <>{selectedEvent.Location.Name}<br /></>}
+                              {selectedEvent.Location.Address && <>{selectedEvent.Location.Address}<br /></>}
+                              {selectedEvent.Location.City && selectedEvent.Location.State && (
+                                <>{selectedEvent.Location.City}, {selectedEvent.Location.State} {selectedEvent.Location.ZipCode}</>
+                              )}
+                            </p>
+                          ) : (
+                            <p>{selectedEventSummary?.LocationName || 'Thrive Community Church'}</p>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  {(selectedEvent?.isOnline || selectedEventSummary?.isOnline) ? (
-                    <div className="event-modal-detail">
-                      <FontAwesomeIcon icon={faGlobe} />
-                      <div>
-                        <strong>Online Event</strong>
-                        {selectedEvent?.onlinePlatform && <p>{selectedEvent.onlinePlatform}</p>}
-                        {selectedEvent?.onlineLink && (
-                          <a href={selectedEvent.onlineLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline">
-                            Join Online
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="event-modal-detail">
-                      <FontAwesomeIcon icon={faLocationDot} />
-                      <div>
-                        <strong>Location</strong>
-                        {selectedEvent?.location ? (
-                          <p>
-                            {selectedEvent.location.name && <>{selectedEvent.location.name}<br /></>}
-                            {selectedEvent.location.address && <>{selectedEvent.location.address}<br /></>}
-                            {selectedEvent.location.city && selectedEvent.location.state && (
-                              <>{selectedEvent.location.city}, {selectedEvent.location.state} {selectedEvent.location.zipCode}</>
-                            )}
-                          </p>
-                        ) : (
-                          <p>{selectedEventSummary?.locationName || 'Location TBD'}</p>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  {selectedEvent?.description && (
+                  {selectedEvent?.Description && (
                     <div className="event-modal-description">
-                      <p>{selectedEvent.description}</p>
+                      <p>{selectedEvent.Description}</p>
                     </div>
                   )}
 
-                  {selectedEvent?.registrationUrl && (
+                  {selectedEvent?.RegistrationUrl && (
                     <div className="event-modal-registration">
-                      <a href={selectedEvent.registrationUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                      <a href={selectedEvent.RegistrationUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-block">
                         Register for Event
                       </a>
                     </div>
                   )}
                 </div>
                 <div className="event-modal-actions">
-                  <a href={`/events/${selectedEvent?.id || selectedEventSummary?.id}`} className="btn btn-primary">
+                  <a href={`/events/${selectedEvent?.Id || selectedEventSummary?.Id}`} className="btn btn-primary btn-block">
                     View Full Details
                   </a>
-                  {!(selectedEvent?.isOnline || selectedEventSummary?.isOnline) && (
-                    <a href="/visit" className="btn btn-outline">
+                  {!(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) && (
+                    <a
+                      href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-block"
+                    >
                       <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
                     </a>
                   )}
@@ -444,7 +454,7 @@ export default function EventsPage() {
               We&apos;d love to see you. Sundays at 10 AM.
             </p>
             <div className="cta-buttons">
-              <a href="/visit" className="btn btn-primary">
+              <a href="https://maps.app.goo.gl/CiLFFrfovhkcfewq8" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
               <a href="/im-new" className="btn btn-outline-white">

@@ -6,6 +6,7 @@ import {
   EventResponse,
   EventSummary,
   RecurrencePattern,
+  parseRecurrencePattern,
 } from '../types/events';
 
 // ============================================
@@ -65,10 +66,8 @@ export async function getAllEvents(includeInactive = false): Promise<AllEventsRe
   // Handle 204 No Content - return empty events response
   if (result === null) {
     return {
-      events: [],
-      totalCount: 0,
-      hasErrors: false,
-      errorMessage: undefined,
+      Events: [],
+      TotalCount: 0,
     };
   }
 
@@ -92,9 +91,12 @@ export async function getEventById(eventId: string): Promise<EventResponse> {
 // ============================================
 
 /**
- * Get recurrence pattern label
+ * Get recurrence pattern label from string or enum
  */
-export function getRecurrencePatternLabel(pattern: RecurrencePattern): string {
+export function getRecurrencePatternLabel(pattern: string | RecurrencePattern): string {
+  if (typeof pattern === 'string') {
+    return pattern; // API already returns "Weekly", "Daily", etc.
+  }
   switch (pattern) {
     case RecurrencePattern.Daily:
       return 'Daily';
@@ -162,12 +164,14 @@ export function formatEventDateRange(startTime: string, endTime?: string): strin
 
 /**
  * Check if an event occurs on a specific date
+ * Uses RecurrenceDayOfWeek from API for weekly events
  */
 export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
-  const eventStart = new Date(event.startTime);
+  const eventStart = new Date(event.StartTime);
+  const pattern = parseRecurrencePattern(event.RecurrencePattern);
 
-  // For non-recurring events, check if the date matches
-  if (!event.isRecurring || event.recurrencePattern === RecurrencePattern.None) {
+  // For non-recurring events, check if the date matches the start date
+  if (!event.IsRecurring || pattern === RecurrencePattern.None) {
     return (
       date.getFullYear() === eventStart.getFullYear() &&
       date.getMonth() === eventStart.getMonth() &&
@@ -176,11 +180,20 @@ export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
   }
 
   // For recurring events, check the pattern
-  switch (event.recurrencePattern) {
+  switch (pattern) {
     case RecurrencePattern.Weekly:
-      return date.getDay() === eventStart.getDay();
+      // Use RecurrenceDayOfWeek from API (0 = Sunday, 6 = Saturday)
+      const dayOfWeek = event.RecurrenceDayOfWeek ?? eventStart.getDay();
+      return date.getDay() === dayOfWeek;
     case RecurrencePattern.Daily:
       return date >= eventStart;
+    case RecurrencePattern.BiWeekly:
+      // Check if it's the correct day of week and correct week interval
+      if (date.getDay() !== (event.RecurrenceDayOfWeek ?? eventStart.getDay())) {
+        return false;
+      }
+      const weeksDiff = Math.floor((date.getTime() - eventStart.getTime()) / (7 * 24 * 60 * 60 * 1000));
+      return weeksDiff >= 0 && weeksDiff % 2 === 0;
     case RecurrencePattern.Monthly:
       return date.getDate() === eventStart.getDate() && date >= eventStart;
     case RecurrencePattern.Yearly:

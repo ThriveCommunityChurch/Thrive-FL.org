@@ -9,6 +9,7 @@ import {
   faHeart,
   faCalendar,
   faComments,
+  faBullseye,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -108,10 +109,6 @@ export default function AboutPage() {
         <div className="container container-narrow">
           <div className="about-mission-content">
             <h2 className="section-title">From Campus to Community</h2>
-            <p className="about-mission-lead">
-              Thrive exists to <strong>bless and disciple people</strong> so that they thrive
-              in their relationship with Jesus Christ and others, creating Christian community.
-            </p>
             <p>
               Thrive began in <strong>August 2014</strong> as a church mission plant, gathering
               for worship in a small room on the campus of Florida Gulf Coast University. Our
@@ -179,6 +176,17 @@ export default function AboutPage() {
         <div className="container">
           <h2 className="section-title">Explore More</h2>
           <div className="about-explore-grid">
+            <Link href="/about/mission" className="about-explore-card">
+              <div className="about-explore-icon">
+                <FontAwesomeIcon icon={faBullseye} />
+              </div>
+              <h3>Our Mission</h3>
+              <p>A beacon of hope and faith for the FGCU campus and Estero community.</p>
+              <span className="about-explore-link">
+                Learn More <FontAwesomeIcon icon={faArrowRight} />
+              </span>
+            </Link>
+
             <Link href="/about/beliefs" className="about-explore-card">
               <div className="about-explore-icon">
                 <FontAwesomeIcon icon={faBookBible} />

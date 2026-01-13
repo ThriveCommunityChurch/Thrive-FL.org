@@ -172,19 +172,6 @@ export default function ValuesPage() {
         </div>
       </section>
 
-      {/* Mission Statement - UNCHANGED */}
-      <section className="section mission-section">
-        <div className="container container-narrow">
-          <div className="mission-card">
-            <h2>Our Mission</h2>
-            <p className="mission-text">
-              Thrive exists to bless and disciple people so they thrive in their
-              relationship with Jesus and others, creating Christian community.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="section cta-section values-cta">
         <div className="container container-narrow">

@@ -46,10 +46,10 @@ export default function EventDetailPage({ params }: PageProps) {
         setIsLoading(true);
         setError(null);
         const response = await getEventById(params.id);
-        if (response.hasErrors || !response.event) {
-          setError(response.errorMessage || 'Event not found');
+        if (!response.Event) {
+          setError('Event not found');
         } else {
-          setEvent(response.event);
+          setEvent(response.Event);
         }
       } catch (err) {
         console.error('Failed to load event:', err);
@@ -64,7 +64,7 @@ export default function EventDetailPage({ params }: PageProps) {
   // Format full event date/time display
   const getEventDateDisplay = () => {
     if (!event) return '';
-    const startDate = new Date(event.startTime);
+    const startDate = new Date(event.StartTime);
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       year: 'numeric',
@@ -76,18 +76,17 @@ export default function EventDetailPage({ params }: PageProps) {
 
   const getEventTimeDisplay = () => {
     if (!event) return '';
-    if (event.isAllDay) return 'All Day Event';
-    return formatEventDateRange(event.startTime, event.endTime);
+    if (event.IsAllDay) return 'All Day Event';
+    return formatEventDateRange(event.StartTime, event.EndTime);
   };
 
   // Format recurrence description
   const getRecurrenceDescription = () => {
-    if (!event?.isRecurring || !event.recurrence) return null;
-    const pattern = getRecurrencePatternLabel(event.recurrence.pattern);
+    if (!event?.IsRecurring || !event.Recurrence) return null;
+    const pattern = getRecurrencePatternLabel(event.Recurrence.Pattern);
     let description = `Repeats ${pattern.toLowerCase()}`;
-    if (event.recurrence.endDate) {
-      const endDate = new Date(event.recurrence.endDate);
-      description += ` until ${formatEventDate(event.recurrence.endDate)}`;
+    if (event.Recurrence.EndDate) {
+      description += ` until ${formatEventDate(event.Recurrence.EndDate)}`;
     }
     return description;
   };
@@ -131,7 +130,7 @@ export default function EventDetailPage({ params }: PageProps) {
               {/* Event Header */}
               <div className="event-detail-header">
                 <div className="event-detail-icon">
-                  {event.isOnline ? (
+                  {event.IsOnline ? (
                     <FontAwesomeIcon icon={faVideo} />
                   ) : (
                     <FontAwesomeIcon icon={faChurch} />
@@ -139,25 +138,25 @@ export default function EventDetailPage({ params }: PageProps) {
                 </div>
                 <div className="event-detail-info">
                   <div className="event-detail-badges">
-                    {event.isFeatured && (
+                    {event.IsFeatured && (
                       <span className="event-badge featured">
                         <FontAwesomeIcon icon={faStar} /> Featured
                       </span>
                     )}
-                    {event.isRecurring && (
+                    {event.IsRecurring && (
                       <span className="event-badge recurring">
-                        <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.recurrence?.pattern || RecurrencePattern.None)}
+                        <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.Recurrence?.Pattern || RecurrencePattern.None)}
                       </span>
                     )}
-                    {event.isOnline && (
+                    {event.IsOnline && (
                       <span className="event-badge online">
                         <FontAwesomeIcon icon={faGlobe} /> Online Event
                       </span>
                     )}
                   </div>
-                  <h1 className="event-detail-title">{event.title}</h1>
-                  {event.summary && (
-                    <p className="event-detail-summary">{event.summary}</p>
+                  <h1 className="event-detail-title">{event.Title}</h1>
+                  {event.Summary && (
+                    <p className="event-detail-summary">{event.Summary}</p>
                   )}
                 </div>
               </div>
@@ -178,11 +177,11 @@ export default function EventDetailPage({ params }: PageProps) {
                   </div>
 
                   {/* Description */}
-                  {event.description && (
+                  {event.Description && (
                     <div className="event-detail-section">
                       <h2>About This Event</h2>
                       <div className="event-description">
-                        {event.description.split('\n').map((paragraph, idx) => (
+                        {event.Description.split('\n').map((paragraph, idx) => (
                           <p key={idx}>{paragraph}</p>
                         ))}
                       </div>
@@ -190,11 +189,11 @@ export default function EventDetailPage({ params }: PageProps) {
                   )}
 
                   {/* Tags */}
-                  {event.tags && event.tags.length > 0 && (
+                  {event.Tags && event.Tags.length > 0 && (
                     <div className="event-detail-section">
                       <h2><FontAwesomeIcon icon={faTag} /> Tags</h2>
                       <div className="event-tags">
-                        {event.tags.map((tag, idx) => (
+                        {event.Tags.map((tag, idx) => (
                           <span key={idx} className="event-tag">{tag}</span>
                         ))}
                       </div>
@@ -205,16 +204,16 @@ export default function EventDetailPage({ params }: PageProps) {
                 {/* Sidebar */}
                 <div className="event-detail-sidebar">
                   {/* Location / Online */}
-                  <div className="event-sidebar-card">
-                    {event.isOnline ? (
+                  <div className="event-sidebar-card location-card">
+                    {event.IsOnline ? (
                       <>
                         <h3><FontAwesomeIcon icon={faGlobe} /> Online Event</h3>
-                        {event.onlinePlatform && (
-                          <p className="event-platform">{event.onlinePlatform}</p>
+                        {event.OnlinePlatform && (
+                          <p className="event-platform">{event.OnlinePlatform}</p>
                         )}
-                        {event.onlineLink && (
+                        {event.OnlineLink && (
                           <a
-                            href={event.onlineLink}
+                            href={event.OnlineLink}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-primary btn-block"
@@ -223,34 +222,59 @@ export default function EventDetailPage({ params }: PageProps) {
                           </a>
                         )}
                       </>
-                    ) : event.location ? (
-                      <>
-                        <h3><FontAwesomeIcon icon={faLocationDot} /> Location</h3>
-                        <div className="event-location">
-                          {event.location.name && <p className="location-name">{event.location.name}</p>}
-                          {event.location.address && <p>{event.location.address}</p>}
-                          {event.location.city && event.location.state && (
-                            <p>{event.location.city}, {event.location.state} {event.location.zipCode}</p>
-                          )}
-                        </div>
-                        <a href="/visit" className="btn btn-outline btn-block">
-                          <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
-                        </a>
-                      </>
                     ) : (
                       <>
                         <h3><FontAwesomeIcon icon={faLocationDot} /> Location</h3>
-                        <p>Location details coming soon</p>
+                        <div className="event-location">
+                          {event.Location?.Name ? (
+                            <p className="location-name">{event.Location.Name}</p>
+                          ) : (
+                            <p className="location-name">Thrive Community Church</p>
+                          )}
+                          {event.Location?.Address ? (
+                            <p>{event.Location.Address}</p>
+                          ) : (
+                            <p>20041 South Tamiami Trail #1</p>
+                          )}
+                          {event.Location?.City && event.Location?.State ? (
+                            <p>{event.Location.City}, {event.Location.State} {event.Location.ZipCode}</p>
+                          ) : (
+                            <p>Estero, FL 33928</p>
+                          )}
+                        </div>
+
+                        {/* Google Maps Embed */}
+                        <div className="event-location-map">
+                          <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.5254861155793!2d-81.79383368496773!3d26.430716583316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88db1e96b252b90b%3A0x8d9d8a0b0c8a8a8a!2s20041%20S%20Tamiami%20Trail%20%231%2C%20Estero%2C%20FL%2033928!5e0!3m2!1sen!2sus!4v1640000000000!5m2!1sen!2sus"
+                            width="100%"
+                            height="180"
+                            style={{ border: 0 }}
+                            allowFullScreen={false}
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="Event Location Map"
+                          />
+                        </div>
+
+                        <a
+                          href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-block"
+                        >
+                          <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
+                        </a>
                       </>
                     )}
                   </div>
 
                   {/* Registration */}
-                  {event.registrationUrl && (
+                  {event.RegistrationUrl && (
                     <div className="event-sidebar-card">
                       <h3><FontAwesomeIcon icon={faCalendarCheck} /> Registration</h3>
                       <a
-                        href={event.registrationUrl}
+                        href={event.RegistrationUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-secondary btn-block"
@@ -261,17 +285,17 @@ export default function EventDetailPage({ params }: PageProps) {
                   )}
 
                   {/* Contact */}
-                  {(event.contactEmail || event.contactPhone) && (
+                  {(event.ContactEmail || event.ContactPhone) && (
                     <div className="event-sidebar-card">
                       <h3>Contact</h3>
-                      {event.contactEmail && (
-                        <a href={`mailto:${event.contactEmail}`} className="event-contact-link">
-                          <FontAwesomeIcon icon={faEnvelope} /> {event.contactEmail}
+                      {event.ContactEmail && (
+                        <a href={`mailto:${event.ContactEmail}`} className="event-contact-link">
+                          <FontAwesomeIcon icon={faEnvelope} /> {event.ContactEmail}
                         </a>
                       )}
-                      {event.contactPhone && (
-                        <a href={`tel:${event.contactPhone}`} className="event-contact-link">
-                          <FontAwesomeIcon icon={faPhone} /> {event.contactPhone}
+                      {event.ContactPhone && (
+                        <a href={`tel:${event.ContactPhone}`} className="event-contact-link">
+                          <FontAwesomeIcon icon={faPhone} /> {event.ContactPhone}
                         </a>
                       )}
                     </div>

@@ -15,77 +15,93 @@ export enum RecurrencePattern {
 }
 
 /**
+ * Map string recurrence pattern from API to enum
+ */
+export function parseRecurrencePattern(pattern: string | number): RecurrencePattern {
+  if (typeof pattern === 'number') return pattern;
+  switch (pattern) {
+    case 'Daily': return RecurrencePattern.Daily;
+    case 'Weekly': return RecurrencePattern.Weekly;
+    case 'BiWeekly': return RecurrencePattern.BiWeekly;
+    case 'Monthly': return RecurrencePattern.Monthly;
+    case 'Yearly': return RecurrencePattern.Yearly;
+    default: return RecurrencePattern.None;
+  }
+}
+
+/**
  * Event location details
  */
 export interface EventLocation {
-  name?: string;
-  address?: string;
-  city?: string;
-  state?: string;
-  zipCode?: string;
-  latitude?: number;
-  longitude?: number;
+  Name?: string;
+  Address?: string;
+  City?: string;
+  State?: string;
+  ZipCode?: string;
+  Latitude?: number;
+  Longitude?: number;
 }
 
 /**
  * Event recurrence configuration
  */
 export interface EventRecurrence {
-  pattern: RecurrencePattern;
-  interval: number;
-  dayOfWeek?: number;      // 0 = Sunday, 6 = Saturday
-  dayOfMonth?: number;     // 1-31
-  endDate?: string;        // ISO date string
+  Pattern: RecurrencePattern;
+  Interval: number;
+  DayOfWeek?: number;      // 0 = Sunday, 6 = Saturday
+  DayOfMonth?: number;     // 1-31
+  EndDate?: string;        // ISO date string
 }
 
 /**
  * Event summary returned by GET /api/Events (list view)
  */
 export interface EventSummary {
-  id: string;
-  title: string;
-  summary: string;
-  startTime: string;           // ISO date string
-  endTime?: string;
-  isAllDay: boolean;
-  isRecurring: boolean;
-  recurrencePattern: RecurrencePattern;
-  isOnline: boolean;
-  locationName?: string;
-  isFeatured: boolean;
-  isActive: boolean;
-  thumbnailUrl?: string;
-  iconName?: string;
+  Id: string;
+  Title: string;
+  Summary: string;
+  StartTime: string;           // ISO date string
+  EndTime?: string;
+  IsRecurring: boolean;
+  RecurrencePattern: string;   // API returns string like "Weekly"
+  RecurrenceDayOfWeek?: number; // 0 = Sunday, 6 = Saturday
+  IsOnline: boolean;
+  LocationName?: string;
+  IsFeatured: boolean;
+  IsActive: boolean;
+  ThumbnailUrl?: string;
+  IconName?: string;
+  Tags?: string[];
 }
 
 /**
  * Full event details returned by GET /api/Events/{id}
  */
 export interface Event {
-  id: string;
-  title: string;
-  summary: string;
-  description?: string;
-  imageUrl?: string;
-  thumbnailUrl?: string;
-  iconName?: string;
-  startTime: string;
-  endTime?: string;
-  isAllDay: boolean;
-  isRecurring: boolean;
-  recurrence?: EventRecurrence;
-  isOnline: boolean;
-  onlineLink?: string;
-  onlinePlatform?: string;
-  location?: EventLocation;
-  contactEmail?: string;
-  contactPhone?: string;
-  registrationUrl?: string;
-  tags?: string[];
-  isFeatured: boolean;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
+  Id: string;
+  Title: string;
+  Summary: string;
+  Description?: string;
+  ImageUrl?: string;
+  ThumbnailUrl?: string;
+  IconName?: string;
+  StartTime: string;
+  EndTime?: string;
+  IsAllDay: boolean;
+  IsRecurring: boolean;
+  Recurrence?: EventRecurrence;
+  IsOnline: boolean;
+  OnlineLink?: string;
+  OnlinePlatform?: string;
+  Location?: EventLocation;
+  ContactEmail?: string;
+  ContactPhone?: string;
+  RegistrationUrl?: string;
+  Tags?: string[];
+  IsFeatured: boolean;
+  IsActive: boolean;
+  CreateDate: string;
+  LastUpdated: string;
 }
 
 // ============================================
@@ -96,19 +112,15 @@ export interface Event {
  * Response from GET /api/Events (all events list)
  */
 export interface AllEventsResponse {
-  events: EventSummary[];
-  totalCount: number;
-  hasErrors: boolean;
-  errorMessage?: string;
+  Events: EventSummary[];
+  TotalCount: number;
 }
 
 /**
  * Response from GET /api/Events/{id} (single event)
  */
 export interface EventResponse {
-  event: Event;
-  hasErrors: boolean;
-  errorMessage?: string;
+  Event: Event;
 }
 
 // ============================================
@@ -137,6 +149,6 @@ export interface EventModalProps {
 export interface CalendarDay {
   date: Date;
   isCurrentMonth: boolean;
-  events: EventSummary[];
+  Events: EventSummary[];
 }
 

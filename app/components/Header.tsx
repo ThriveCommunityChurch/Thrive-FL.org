@@ -56,6 +56,7 @@ export default function Header() {
             <li className="nav-dropdown">
               <Link href="/about" className="nav-link" onClick={handleLinkClick}>About <FontAwesomeIcon icon={faChevronDown} /></Link>
               <ul className="dropdown-menu">
+                <li><Link href="/about/mission" onClick={handleLinkClick}>Our Mission</Link></li>
                 <li><Link href="/about/beliefs" onClick={handleLinkClick}>Our Beliefs</Link></li>
                 <li><Link href="/about/leadership" onClick={handleLinkClick}>Our Leadership</Link></li>
                 <li><Link href="/about/values" onClick={handleLinkClick}>Our Values</Link></li>
