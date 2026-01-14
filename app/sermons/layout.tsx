@@ -8,6 +8,14 @@ export const metadata: Metadata = {
     description: "Watch and listen to sermon series from Thrive Community Church.",
     url: "https://thrive-fl.org/sermons",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sermons | Thrive Community Church",
+    description: "Watch and listen to sermon series from Thrive Community Church.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/sermons",
+  },
 };
 
 export default function SermonsLayout({
