@@ -42,9 +42,15 @@ export const metadata: Metadata = {
   },
 };
 
+import { OrganizationJsonLd, WebSiteJsonLd } from "./components/JsonLd";
+
 export default function HomePage() {
   return (
     <div className="page-wrapper">
+      {/* JSON-LD Structured Data for SEO */}
+      <OrganizationJsonLd />
+      <WebSiteJsonLd />
+
       {/* Hero Section with Background Video */}
       <section className="hero-section">
         {/* Video Background */}

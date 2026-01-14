@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { getEventById, formatEventDate } from "../../services/eventService";
+import { getEventById } from "../../services/eventService";
+import { EventJsonLd } from "../../components/JsonLd";
 import EventDetailClient from "./EventDetailClient";
 
 interface PageProps {
@@ -63,8 +64,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function EventDetailPage({ params }: PageProps) {
+  // Fetch event data for JSON-LD structured data
+  let eventJsonLd = null;
+  try {
+    const response = await getEventById(params.id);
+    const event = response.Event;
+    if (event) {
+      eventJsonLd = (
+        <EventJsonLd
+          name={event.Title}
+          description={event.Summary || event.Description}
+          startDate={event.StartTime}
+          endDate={event.EndTime}
+          location={event.Location ? {
+            name: event.Location.Name,
+            address: event.Location.Address,
+            city: event.Location.City,
+            state: event.Location.State,
+            zipCode: event.Location.ZipCode,
+          } : undefined}
+          isOnline={event.IsOnline}
+          onlineUrl={event.OnlineLink}
+          url={`https://thrive-fl.org/events/${params.id}`}
+        />
+      );
+    }
+  } catch (error) {
+    console.error('Error fetching event for JSON-LD:', error);
+  }
+
   return (
     <div className="page-wrapper">
+      {/* JSON-LD Structured Data for SEO */}
+      {eventJsonLd}
+
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
         <div className="container">
