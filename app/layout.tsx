@@ -9,6 +9,7 @@ import './lib/fontawesome';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Providers";
+import CriticalCSS from "./components/CriticalCSS";
 
 // Next.js Font Optimization - eliminates render-blocking font requests
 const inter = Inter({
@@ -85,6 +86,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        {/* Critical CSS - inlined for instant first paint */}
+        <CriticalCSS />
+
         {/* Preconnect for external resources - crossOrigin required for CORS */}
         <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" crossOrigin="anonymous" />
 

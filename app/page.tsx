@@ -207,6 +207,7 @@ export default function HomePage() {
                   height={400}
                   sizes="(max-width: 768px) 100vw, 600px"
                   quality={75}
+                  priority
                   style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
                 />
               </div>
