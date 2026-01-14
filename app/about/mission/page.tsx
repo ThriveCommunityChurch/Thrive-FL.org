@@ -127,7 +127,7 @@ export default function MissionPage() {
                 good neighbors, we seek to make a tangible difference in the lives of 
                 those around us.
               </p>
-              <Link href="/connect/get-involved" className="mission-pillar-link">
+              <Link href="/get-involved" className="mission-pillar-link">
                 Get Involved <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
@@ -142,7 +142,7 @@ export default function MissionPage() {
                 worship, small groups, mentorship, and serving, we help people deepen 
                 their relationship with Jesus and discover their unique calling.
               </p>
-              <Link href="/connect/small-groups" className="mission-pillar-link">
+              <Link href="/small-groups" className="mission-pillar-link">
                 Join a Small Group <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
