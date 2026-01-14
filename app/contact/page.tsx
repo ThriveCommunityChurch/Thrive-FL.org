@@ -155,7 +155,7 @@ export default function ContactPage({
                 20041 S. Tamiami Trail #1<br />Estero, FL 33928
               </p>
               <a
-                href="https://maps.app.goo.gl/CiLFFrfovhkcfewq8"
+                href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-detail-link"
@@ -202,7 +202,7 @@ export default function ContactPage({
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </a>
-              <a href="https://maps.app.goo.gl/CiLFFrfovhkcfewq8"
+              <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
                  target="_blank"
                  rel="noopener noreferrer"
                  className="btn btn-outline-white">

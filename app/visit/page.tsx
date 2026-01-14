@@ -101,7 +101,7 @@ export default function VisitPage() {
 
           <div className="visit-cta-centered">
             <a
-              href="https://maps.google.com/maps/dir//Thrive+Community+Church+20041+S+Tamiami+Trl+%23+1+Estero,+FL+33928/@26.4487313,-81.8159419,15z/data=!4m5!4m4!1m0!1m2!1m1!1s0x88db168c655e1ef7:0x82f0ad091c85ad3a"
+              href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"

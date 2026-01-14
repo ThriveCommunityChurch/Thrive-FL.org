@@ -8,6 +8,10 @@ import { getAllEvents } from "../services/eventService";
 import { EventSummary } from "../types/events";
 import EventsClient from "./EventsClient";
 
+// ISR: Revalidate every 5 minutes (300 seconds)
+// This caches the page and refreshes event data periodically
+export const revalidate = 300;
+
 export const metadata: Metadata = {
   title: "Events & Gatherings | Thrive Community Church",
   description: "Find upcoming events and gatherings at Thrive Community Church in Estero, FL. Join us for worship, community events, and special gatherings.",
@@ -74,7 +78,7 @@ export default async function EventsPage() {
               We&apos;d love to see you. Sundays at 10 AM.
             </p>
             <div className="cta-buttons">
-              <a href="https://maps.app.goo.gl/CiLFFrfovhkcfewq8" className="btn btn-primary">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
               <a href="/im-new" className="btn btn-outline-white">

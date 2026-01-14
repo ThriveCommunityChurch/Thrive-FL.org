@@ -3760,21 +3760,21 @@ a:hover {
   font-style: italic;
 }
 
-/* Mission CTA */
-.mission-cta {
+/* Mission CTA - uses higher specificity to override base .cta-section */
+.cta-section.mission-cta {
   background: linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
 }
 
-.mission-cta h2,
-.mission-cta p {
+.cta-section.mission-cta h2,
+.cta-section.mission-cta p {
   color: var(--color-white);
 }
 
-.mission-cta p {
+.cta-section.mission-cta p {
   opacity: 0.9;
 }
 
-.mission-cta .cta-buttons {
+.cta-section.mission-cta .cta-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -3782,7 +3782,7 @@ a:hover {
   margin-top: var(--spacing-xl);
 }
 
-.mission-cta .cta-buttons .btn {
+.cta-section.mission-cta .cta-buttons .btn {
   padding: var(--spacing-md) var(--spacing-xl);
   font-size: var(--font-size-base);
 }
@@ -4147,12 +4147,19 @@ a:hover {
   align-items: center;
   gap: var(--spacing-xs);
   padding: 2px var(--spacing-sm);
-  background: var(--color-secondary);
+  background: var(--color-secondary-dark);
   color: var(--color-white);
   border-radius: var(--radius-full);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.event-list-content .recurring-badge svg,
+.event-list-content .recurring-badge i,
+.recurring-badge svg,
+.recurring-badge i {
+  color: var(--color-white);
 }
 
 .event-list-arrow {
@@ -4685,8 +4692,13 @@ a:hover {
 }
 
 .event-detail-badges .event-badge.recurring {
-  background: var(--color-primary-light);
-  color: var(--color-primary-dark);
+  background: var(--color-secondary-dark);
+  color: var(--color-white);
+}
+
+.event-detail-badges .event-badge.recurring svg,
+.event-detail-badges .event-badge.recurring i {
+  color: var(--color-white);
 }
 
 .event-detail-badges .event-badge.online {

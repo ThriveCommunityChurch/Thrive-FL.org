@@ -9,6 +9,10 @@ interface PageProps {
   params: { id: string };
 }
 
+// ISR: Revalidate every 5 minutes (300 seconds)
+// This caches individual event pages and refreshes data periodically
+export const revalidate = 300;
+
 // Generate dynamic metadata based on event data
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   try {
