@@ -3,6 +3,28 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy | Thrive Community Church",
   description: "Privacy policy for Thrive Community Church website and applications - how we collect, use, and protect your information.",
+  openGraph: {
+    title: "Privacy Policy | Thrive Community Church",
+    description: "Privacy policy for Thrive Community Church website and applications.",
+    url: "https://thrive-fl.org/privacy",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Thrive Community Church",
+    description: "Privacy policy for Thrive Community Church website and applications.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/privacy",
+  },
 };
 
 export default function PrivacyPage() {

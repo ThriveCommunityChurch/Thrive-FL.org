@@ -21,6 +21,23 @@ export const metadata: Metadata = {
     title: "Our Mission | Thrive Community Church",
     description: "A beacon of hope and faith for the FGCU campus and Estero community.",
     url: "https://thrive-fl.org/about/mission",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Mission | Thrive Community Church",
+    description: "A beacon of hope and faith for the FGCU campus and Estero community.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/about/mission",
   },
 };
 

@@ -16,11 +16,20 @@ export const metadata: Metadata = {
     title: "Watch Live | Thrive Community Church",
     description: "Watch our Sunday worship service live every week at 10:00 AM.",
     url: "https://thrive-fl.org/live",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Watch Live | Thrive Community Church",
     description: "Watch our Sunday worship service live every week at 10:00 AM.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
   },
   alternates: {
     canonical: "https://thrive-fl.org/live",

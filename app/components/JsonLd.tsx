@@ -58,6 +58,20 @@ export function OrganizationJsonLd() {
       closes: "12:00",
     },
     sameAs: churchData.sameAs,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Church Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Sunday Worship Service",
+            description: "Weekly worship service with contemporary music and biblical teaching",
+          },
+        },
+      ],
+    },
   };
 
   return (

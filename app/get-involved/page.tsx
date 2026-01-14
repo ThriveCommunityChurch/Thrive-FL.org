@@ -23,6 +23,23 @@ export const metadata: Metadata = {
     title: "Get Involved | Thrive Community Church",
     description: "Use your gifts to make a difference. Find your place to serve at Thrive.",
     url: "https://thrive-fl.org/get-involved",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Get Involved | Thrive Community Church",
+    description: "Use your gifts to make a difference. Find your place to serve at Thrive.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/get-involved",
   },
 };
 

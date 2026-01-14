@@ -19,6 +19,23 @@ export const metadata: Metadata = {
     title: "ThriveFGCU | College Ministry",
     description: "A college ministry for FGCU students. Community, faith, and fun.",
     url: "https://thrive-fl.org/ministries/college",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ThriveFGCU | College Ministry",
+    description: "A college ministry for FGCU students. Community, faith, and fun.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/ministries/college",
   },
 };
 

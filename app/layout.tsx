@@ -124,56 +124,6 @@ export default function RootLayout({
             <Footer />
           </div>
         </Providers>
-
-        {/* Structured Data for Church */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Church",
-              name: "Thrive Community Church",
-              description: "A congregation of the Lutheran Church—Missouri Synod in Estero, FL",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "20041 S. Tamiami Trail #1",
-                addressLocality: "Estero",
-                addressRegion: "FL",
-                postalCode: "33928",
-                addressCountry: "US",
-              },
-              telephone: "(239) 687-3430",
-              email: "info@thrive-fl.org",
-              url: "https://thrive-fl.org",
-              sameAs: [
-                "https://www.facebook.com/thriveFL",
-                "https://www.instagram.com/thrive_fl",
-                "https://x.com/Thrive_FL",
-                "https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig",
-              ],
-              openingHoursSpecification: {
-                "@type": "OpeningHoursSpecification",
-                dayOfWeek: "Sunday",
-                opens: "10:00",
-                closes: "12:00",
-              },
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Church Services",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Sunday Worship Service",
-                      description: "Weekly worship service with contemporary music and biblical teaching",
-                    },
-                  },
-                ],
-              },
-            }),
-          }}
-        />
       </body>
     </html>
   );

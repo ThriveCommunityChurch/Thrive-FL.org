@@ -16,6 +16,23 @@ export const metadata: Metadata = {
     title: "Thrive Kids | Thrive Community Church",
     description: "A dedicated space where kids can play and explore during Sunday worship at Thrive.",
     url: "https://thrive-fl.org/ministries/kids",
+    images: [
+      {
+        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Thrive Community Church",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Thrive Kids | Thrive Community Church",
+    description: "A dedicated space where kids can play and explore during Sunday worship at Thrive.",
+    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/ministries/kids",
   },
 };
 

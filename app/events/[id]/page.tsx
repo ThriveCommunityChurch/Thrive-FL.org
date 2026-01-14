@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       day: 'numeric',
     });
 
+    // Use event image if available, otherwise use default OG image
+    const ogImage = event.ImageUrl || "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg";
+
     return {
       title,
       description,
@@ -44,11 +47,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: `${formattedDate} - ${description}`,
         url,
         type: "website",
+        images: [
+          {
+            url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: event.Title,
+          },
+        ],
       },
       twitter: {
         card: "summary_large_image",
         title,
         description: `${formattedDate} - ${description}`,
+        images: [ogImage],
       },
       alternates: {
         canonical: url,
@@ -59,6 +71,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title: "Event Details | Thrive Community Church",
       description: "View event details at Thrive Community Church in Estero, FL.",
+      openGraph: {
+        images: [
+          {
+            url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+            width: 1200,
+            height: 630,
+            alt: "Thrive Community Church",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+      },
     };
   }
 }
