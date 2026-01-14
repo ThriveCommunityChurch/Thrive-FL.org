@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Script from "next/script";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -70,6 +71,12 @@ export default function ContactPage({
 
   return (
     <div className="page-wrapper">
+      {/* reCAPTCHA Enterprise - only loaded on contact page */}
+      <Script
+        src="https://www.google.com/recaptcha/enterprise.js?render=6LfhCccqAAAAAKlzmPF-A9_yarsAtARSBgE7WqRF"
+        strategy="lazyOnload"
+      />
+
       {/* Page Hero Section */}
       <section className="page-hero page-hero-contact">
         <div className="page-hero-overlay"></div>

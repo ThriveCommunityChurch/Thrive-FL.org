@@ -97,9 +97,6 @@ export default function RootLayout({
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
-
-        {/* reCAPTCHA Enterprise */}
-        <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfhCccqAAAAAKlzmPF-A9_yarsAtARSBgE7WqRF" async defer></script>
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
