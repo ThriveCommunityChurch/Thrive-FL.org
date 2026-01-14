@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import SermonSeriesGrid from "../components/sermons/SermonSeriesGrid";
 import { getAllSermons } from "../services/sermonService";
 import { SermonSeriesSummary } from "../types/sermons";
@@ -8,28 +5,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faPodcast } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
-export default function SermonsPage() {
-  const [series, setSeries] = useState<SermonSeriesSummary[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// ISR: Revalidate every 5 minutes (300 seconds)
+// Metadata is defined in layout.tsx for this route
+export const revalidate = 300;
 
-  useEffect(() => {
-    async function loadSermons() {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const response = await getAllSermons();
-        setSeries(response.Summaries);
-      } catch (err) {
-        console.error('Failed to load sermons:', err);
-        setError('Failed to load sermons. Please try again later.');
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadSermons();
-  }, []);
+export default async function SermonsPage() {
+  let series: SermonSeriesSummary[] = [];
+  let error: string | null = null;
+
+  try {
+    const response = await getAllSermons();
+    series = response.Summaries;
+  } catch (err) {
+    console.error('Failed to load sermons:', err);
+    error = 'Failed to load sermons. Please try again later.';
+  }
 
   return (
     <div className="page-wrapper">
@@ -52,15 +44,12 @@ export default function SermonsPage() {
               <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Sermons</h3>
               <p>{error}</p>
-              <button
-                className="btn btn-primary"
-                onClick={() => window.location.reload()}
-              >
+              <Link href="/sermons" className="btn btn-primary">
                 Try Again
-              </button>
+              </Link>
             </div>
           ) : (
-            <SermonSeriesGrid series={series} isLoading={isLoading} />
+            <SermonSeriesGrid series={series} isLoading={false} />
           )}
         </div>
       </section>
@@ -94,13 +83,10 @@ export default function SermonsPage() {
               <h3>Listen On The Go</h3>
               <p>Subscribe to our podcast and never miss a message. Available on Apple Podcasts, Spotify, and more.</p>
             </div>
-            <a
-              href="/podcast"
-              className="btn btn-primary"
-            >
+            <Link href="/podcast" className="btn btn-primary">
               <FontAwesomeIcon icon={faPodcast} />
               Subscribe to Podcast
-            </a>
+            </Link>
           </div>
         </div>
       </section>

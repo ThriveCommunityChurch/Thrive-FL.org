@@ -1,13 +1,10 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-import SermonMessageList from "../../components/sermons/SermonMessageList";
-import SermonSkeleton from "../../components/sermons/SermonSkeleton";
+import SeriesDetailClient from "./SeriesDetailClient";
 import { getSeriesById, formatSeriesDateRange } from "../../services/sermonService";
-import { SermonSeries, SermonMessage } from "../../types/sermons";
-import { useAudioPlayer } from "../../contexts/AudioPlayerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -17,37 +14,64 @@ import {
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 interface PageProps {
-  params: { seriesId: string };
+  params: Promise<{ seriesId: string }>;
 }
 
-export default function SeriesDetailPage({ params }: PageProps) {
-  const [series, setSeries] = useState<SermonSeries | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const { playMessage } = useAudioPlayer();
+// ISR: Revalidate every 5 minutes (300 seconds)
+export const revalidate = 300;
 
-  useEffect(() => {
-    async function loadSeries() {
-      try {
-        setIsLoading(true);
-        setError(null);
-        const data = await getSeriesById(params.seriesId);
-        setSeries(data);
-      } catch (err) {
-        console.error('Failed to load series:', err);
-        setError('Failed to load series. Please try again later.');
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadSeries();
-  }, [params.seriesId]);
+// Generate dynamic metadata based on series data
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { seriesId } = await params;
 
-  const handlePlayMessage = (message: SermonMessage) => {
-    if (series) {
-      playMessage(message, series.Name, series.ArtUrl || series.Thumbnail || '');
-    }
-  };
+  try {
+    const series = await getSeriesById(seriesId);
+
+    const description = series.Summary
+      ? series.Summary.slice(0, 160)
+      : `Listen to "${series.Name}" sermon series from Thrive Community Church. ${series.Messages.length} messages of biblical teaching.`;
+
+    return {
+      title: `${series.Name} | Sermons | Thrive Community Church`,
+      description,
+      openGraph: {
+        title: `${series.Name} | Thrive Community Church`,
+        description,
+        url: `https://thrive-fl.org/sermons/${seriesId}`,
+        images: series.ArtUrl ? [
+          {
+            url: series.ArtUrl,
+            width: 800,
+            height: 800,
+            alt: series.Name,
+          },
+        ] : undefined,
+      },
+    };
+  } catch {
+    return {
+      title: "Sermon Series | Thrive Community Church",
+      description: "Listen to sermon series from Thrive Community Church in Estero, FL.",
+    };
+  }
+}
+
+export default async function SeriesDetailPage({ params }: PageProps) {
+  const { seriesId } = await params;
+
+  let series = null;
+  let error: string | null = null;
+
+  try {
+    series = await getSeriesById(seriesId);
+  } catch (err) {
+    console.error('Failed to load series:', err);
+    error = 'Failed to load series. Please try again later.';
+  }
+
+  if (!series && !error) {
+    notFound();
+  }
 
   const dateRange = series ? formatSeriesDateRange(series.StartDate, series.EndDate) : '';
   const isOngoing = series && !series.EndDate;
@@ -57,10 +81,10 @@ export default function SeriesDetailPage({ params }: PageProps) {
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
         <div className="container">
-          <a href="/sermons" className="breadcrumb-link">
+          <Link href="/sermons" className="breadcrumb-link">
             <FontAwesomeIcon icon={faArrowLeft} />
             All Series
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -72,19 +96,7 @@ export default function SeriesDetailPage({ params }: PageProps) {
               <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Series</h3>
               <p>{error}</p>
-              <a href="/sermons" className="btn btn-primary">Back to Sermons</a>
-            </div>
-          ) : isLoading ? (
-            <div className="series-detail-loading">
-              <div className="series-header-skeleton">
-                <div className="skeleton-artwork skeleton-pulse"></div>
-                <div className="skeleton-info">
-                  <div className="skeleton-title skeleton-pulse"></div>
-                  <div className="skeleton-meta skeleton-pulse"></div>
-                  <div className="skeleton-description skeleton-pulse"></div>
-                </div>
-              </div>
-              <SermonSkeleton variant="message-list" count={5} />
+              <Link href="/sermons" className="btn btn-primary">Back to Sermons</Link>
             </div>
           ) : series ? (
             <>
@@ -120,15 +132,8 @@ export default function SeriesDetailPage({ params }: PageProps) {
                   )}
                 </div>
               </div>
-              {/* Messages List */}
-              <div className="series-messages-section">
-                <h2 className="series-messages-title">Messages in this Series</h2>
-                <SermonMessageList
-                  messages={series.Messages}
-                  seriesArtUrl={series.ArtUrl}
-                  onPlayMessage={handlePlayMessage}
-                />
-              </div>
+              {/* Messages List - Client Component for interactivity */}
+              <SeriesDetailClient series={series} />
             </>
           ) : null}
         </div>

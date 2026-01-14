@@ -45,11 +45,14 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
 /**
  * Get all sermon series summaries
  * @param highResImg - Request high-resolution artwork (default: true)
+ *
+ * Note: Caching is controlled at the page level via ISR (revalidate).
+ * The 'force-cache' option allows Next.js ISR to manage revalidation.
  */
 export async function getAllSermons(highResImg = true): Promise<AllSermonsSummaryResponse> {
   const endpoint = `/api/Sermons?highResImg=${highResImg}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store', // Always fetch fresh data
+    next: { revalidate: 300 }, // ISR: Revalidate every 5 minutes
   });
   return handleResponse<AllSermonsSummaryResponse>(response, endpoint);
 }
@@ -57,11 +60,13 @@ export async function getAllSermons(highResImg = true): Promise<AllSermonsSummar
 /**
  * Get a single sermon series with all messages
  * @param seriesId - The series ID
+ *
+ * Note: Caching is controlled at the page level via ISR (revalidate).
  */
 export async function getSeriesById(seriesId: string): Promise<SermonSeries> {
   const endpoint = `/api/Sermons/series/${seriesId}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    next: { revalidate: 300 }, // ISR: Revalidate every 5 minutes
   });
   return handleResponse<SermonSeries>(response, endpoint);
 }
