@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     description: "New to Thrive? Here's what to expect. Relaxed atmosphere, great coffee, and practical teaching.",
     url: "https://thrive-fl.org/im-new",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "First Time? | Thrive Community Church",
+    description: "New to Thrive? Here's what to expect. Relaxed atmosphere, great coffee, and practical teaching.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/im-new",
+  },
 };
 
 export default function ImNewPage() {

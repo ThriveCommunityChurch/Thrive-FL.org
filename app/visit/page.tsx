@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM.",
     url: "https://thrive-fl.org/visit",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Visit Us | Thrive Community Church",
+    description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/visit",
+  },
 };
 
 export default function VisitPage() {

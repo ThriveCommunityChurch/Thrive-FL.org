@@ -30,6 +30,14 @@ export const metadata: Metadata = {
     description: "Questions, prayer requests, or just want to say hi? We're here for you.",
     url: "https://thrive-fl.org/contact",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | Thrive Community Church",
+    description: "Questions, prayer requests, or just want to say hi? We're here for you.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/contact",
+  },
 };
 
 export default function ContactPage({

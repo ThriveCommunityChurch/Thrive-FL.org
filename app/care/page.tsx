@@ -19,6 +19,14 @@ export const metadata: Metadata = {
       "Need prayer, care, or a conversation with a pastor? Learn how to reach out at Thrive Community Church.",
     url: "https://thrive-fl.org/care",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Care & Prayer | Thrive Community Church",
+    description: "Need prayer, care, or a conversation with a pastor? Learn how to reach out at Thrive Community Church.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/care",
+  },
 };
 
 export default function CarePage() {

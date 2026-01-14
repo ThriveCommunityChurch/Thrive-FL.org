@@ -17,6 +17,14 @@ export const metadata: Metadata = {
     description: "Watch our Sunday worship service live every week at 10:00 AM.",
     url: "https://thrive-fl.org/live",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Watch Live | Thrive Community Church",
+    description: "Watch our Sunday worship service live every week at 10:00 AM.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/live",
+  },
 };
 
 export default function LivePage() {

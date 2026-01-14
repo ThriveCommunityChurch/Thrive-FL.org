@@ -20,6 +20,14 @@ export const metadata: Metadata = {
     description: "From campus ministry to thriving community. Discover our journey since 2014.",
     url: "https://thrive-fl.org/about",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Story | Thrive Community Church",
+    description: "From campus ministry to thriving community. Discover our journey since 2014.",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/about",
+  },
 };
 
 // Timeline data - church history milestones
