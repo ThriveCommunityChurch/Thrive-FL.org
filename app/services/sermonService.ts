@@ -46,13 +46,13 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
  * Get all sermon series summaries
  * @param highResImg - Request high-resolution artwork (default: true)
  *
- * Note: Caching is controlled at the page level via ISR (revalidate).
- * The 'force-cache' option allows Next.js ISR to manage revalidation.
+ * Note: Using cache: 'no-store' to always fetch fresh data.
+ * This avoids stale data issues with Amplify's persistent build cache.
  */
 export async function getAllSermons(highResImg = true): Promise<AllSermonsSummaryResponse> {
   const endpoint = `/api/Sermons?highResImg=${highResImg}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    next: { revalidate: 300 }, // ISR: Revalidate every 5 minutes
+    cache: 'no-store',
   });
   return handleResponse<AllSermonsSummaryResponse>(response, endpoint);
 }
@@ -61,12 +61,13 @@ export async function getAllSermons(highResImg = true): Promise<AllSermonsSummar
  * Get a single sermon series with all messages
  * @param seriesId - The series ID
  *
- * Note: Caching is controlled at the page level via ISR (revalidate).
+ * Note: Using cache: 'no-store' to always fetch fresh data.
+ * This avoids stale data issues with Amplify's persistent build cache.
  */
 export async function getSeriesById(seriesId: string): Promise<SermonSeries> {
   const endpoint = `/api/Sermons/series/${seriesId}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    next: { revalidate: 300 }, // ISR: Revalidate every 5 minutes
+    cache: 'no-store',
   });
   return handleResponse<SermonSeries>(response, endpoint);
 }
