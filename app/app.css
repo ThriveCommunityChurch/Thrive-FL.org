@@ -7354,6 +7354,18 @@ a:hover {
 .groups-cta-section {
   background: var(--color-gray-900);
   color: white;
+  text-align: center;
+}
+
+.groups-cta-section h2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.groups-cta-section p {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xl);
 }
 
 .cta-note {
