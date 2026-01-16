@@ -102,6 +102,8 @@ export function formatFileSize(mb: number | null): string {
 
 /**
  * Format date string to readable format
+ * Note: timeZone is specified to ensure consistent rendering between server and client
+ * to prevent React hydration mismatches.
  */
 export function formatSermonDate(dateString: string | null): string {
   if (!dateString) return '';
@@ -111,30 +113,41 @@ export function formatSermonDate(dateString: string | null): string {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'America/New_York',
   });
 }
 
 /**
  * Format date range for series display
+ * Note: timeZone is specified to ensure consistent rendering between server and client
+ * to prevent React hydration mismatches.
  */
 export function formatSeriesDateRange(startDate: string | null, endDate: string | null): string {
   if (!startDate) return '';
-  
+
   const start = new Date(startDate);
-  const startStr = start.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  
+  const startStr = start.toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'America/New_York',
+  });
+
   if (!endDate) {
     return `${startStr} - Present`;
   }
-  
+
   const end = new Date(endDate);
-  const endStr = end.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  
+  const endStr = end.toLocaleDateString('en-US', {
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'America/New_York',
+  });
+
   // If same month and year, just show one date
   if (startStr === endStr) {
     return startStr;
   }
-  
+
   return `${startStr} - ${endStr}`;
 }
 

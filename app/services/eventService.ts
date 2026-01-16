@@ -115,6 +115,8 @@ export function getRecurrencePatternLabel(pattern: string | RecurrencePattern): 
 
 /**
  * Format event date for display
+ * Note: timeZone is specified to ensure consistent rendering between server and client
+ * to prevent React hydration mismatches.
  */
 export function formatEventDate(dateString: string): string {
   const date = new Date(dateString);
@@ -122,19 +124,25 @@ export function formatEventDate(dateString: string): string {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
+    timeZone: 'America/New_York',
   });
 }
 
 /**
  * Format event time for display
+ * Note: timeZone is specified to ensure consistent rendering between server and client
+ * to prevent React hydration mismatches. "Eastern" is appended to clarify the timezone
+ * for users in other regions.
  */
 export function formatEventTime(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleTimeString('en-US', {
+  const time = date.toLocaleTimeString('en-US', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'America/New_York',
   });
+  return `${time} Eastern`;
 }
 
 /**
