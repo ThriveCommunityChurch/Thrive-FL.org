@@ -95,7 +95,7 @@ export default function CollegeMinistryPage() {
                 <p><FontAwesomeIcon icon={faMapPin} /> AB9, Room 138</p>
               </div>
               <p className="college-schedule-desc">
-                Fun activities, games, and good vibes with the whole crew
+                Fun activities, games, and great community
               </p>
             </div>
 

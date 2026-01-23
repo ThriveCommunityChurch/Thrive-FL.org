@@ -156,8 +156,9 @@ export default function ValuesPage() {
               </div>
               <h3>Life-long Growth</h3>
               <p>
-                We&apos;re not done yet—and neither are you. Thriving means continually
-                growing in character, knowledge, and skills. Always learning. Always stretching.
+                Following Jesus is a life-long journey. Thriving means continually
+                being formed to live more like Him—growing in character, knowledge,
+                and skills as we walk with Him.
               </p>
               <span className="value-scripture">Ephesians 4:1-16 &bull; Philippians 3:12-14</span>
             </div>

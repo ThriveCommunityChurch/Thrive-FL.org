@@ -92,7 +92,8 @@ export default function SmallGroupsPage() {
                 <h3>Share a Meal</h3>
                 <p>
                   There&apos;s something about gathering around a table that breaks down
-                  walls. Most huddles include food—because everything&apos;s better with snacks.
+                  walls. Most huddles share a meal together—food has a way of turning
+                  strangers into friends.
                 </p>
               </div>
             </div>
@@ -225,9 +226,9 @@ export default function SmallGroupsPage() {
                 </li>
               </ul>
               <p>
-                No agenda, no pressure—just people enjoying each other&apos;s company.
-                It&apos;s a great first step if you&apos;re new and want to meet people
-                in a low-key setting.
+                It&apos;s a wonderful way to build friendships and be part of the community.
+                If you&apos;re new and looking for a comfortable place to meet people,
+                this is a great first step.
               </p>
             </div>
           </div>

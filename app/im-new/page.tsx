@@ -91,12 +91,12 @@ export default function ImNewPage() {
               <div className="faq-icon">
                 <FontAwesomeIcon icon={faMugHot} />
               </div>
-              <h3>What&apos;s the vibe?</h3>
+              <h3>What&apos;s the atmosphere like?</h3>
               <p>
-                Relaxed and real. Grab a coffee when you arrive (it&apos;s free), find a seat
-                anywhere you&apos;re comfortable, and enjoy music that actually sounds good.
-                Our messages are practical—stuff you can actually use in your week. The
-                whole thing wraps up in about an hour.
+                Warm and welcoming. Grab a coffee when you arrive (it&apos;s on us), find a seat
+                anywhere you&apos;re comfortable, and enjoy heartfelt worship. Our messages are
+                practical and rooted in Scripture—teaching you can apply to your daily life.
+                The service is about an hour.
               </p>
               <a href="/sermons" className="faq-link">
                 Preview a recent message <FontAwesomeIcon icon={faArrowRight} />
@@ -109,9 +109,9 @@ export default function ImNewPage() {
               </div>
               <h3>What do people wear?</h3>
               <p>
-                Whatever you want. Seriously. Jeans and a t-shirt? Perfect. Dressed up
-                because you came from brunch? Also perfect. Our pastor usually rocks
-                sneakers. We care way more about you being here than what you&apos;re wearing.
+                Come as you are. Jeans and a t-shirt are fine. Dressed up? That&apos;s great
+                too. You&apos;ll find a mix of both on any given Sunday. What matters most
+                is that you&apos;re here, not what you&apos;re wearing.
               </p>
             </div>
 
@@ -121,10 +121,9 @@ export default function ImNewPage() {
               </div>
               <h3>What about my kids?</h3>
               <p>
-                They&apos;ll probably have more fun than you. Thrive Kids is designed to be
-                the highlight of their week—age-appropriate teaching, awesome leaders,
-                and activities they actually enjoy. Available for ages 6 months through
-                5th grade every Sunday.
+                They&apos;re in great hands. Thrive Kids offers age-appropriate teaching,
+                caring leaders, and engaging activities designed just for them. Available
+                for ages 6 months through 5th grade every Sunday.
               </p>
               <a href="/ministries/kids" className="faq-link">
                 More about Thrive Kids <FontAwesomeIcon icon={faArrowRight} />
@@ -137,10 +136,10 @@ export default function ImNewPage() {
               </div>
               <h3>How do I actually connect?</h3>
               <p>
-                Sunday is just the starting point. Every week we hang out at the
-                pastor&apos;s house for dinner, games, and good conversation—it&apos;s a
-                great low-pressure way to meet people. We also have Home Huddles
-                (small groups) that meet throughout the week to share life and
+                Sunday is just the starting point. Every week we gather at the
+                pastor&apos;s home for a meal, fellowship, and meaningful conversation—it&apos;s a
+                great way to get to know people in a relaxed setting. We also have Home
+                Huddles (small groups) that meet throughout the week to share life and
                 support each other.
               </p>
               <a href="/small-groups" className="faq-link">

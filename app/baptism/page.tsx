@@ -48,7 +48,7 @@ export default function BaptismPage() {
         <div className="page-hero-content">
           <h1 className="page-hero-title">Baptism at Thrive</h1>
           <p className="page-hero-subtitle">
-            A simple splash of water. A massive promise from God.
+            A sacred moment. A life transformed. A promise sealed by the Holy Spirit.
           </p>
         </div>
       </section>

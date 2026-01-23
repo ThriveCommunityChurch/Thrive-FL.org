@@ -46,7 +46,7 @@ export default function VisitPage() {
         <div className="page-hero-content">
           <h1 className="page-hero-title">Come As You Are</h1>
           <p className="page-hero-subtitle">
-            Sunday mornings at 10. Coffee&apos;s hot. Seats are open.
+            Sunday mornings at 10 AM. We&apos;d love to see you.
           </p>
         </div>
       </section>
