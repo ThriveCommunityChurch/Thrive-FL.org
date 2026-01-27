@@ -106,4 +106,3 @@ export interface SermonSkeletonProps {
   variant: 'series-card' | 'series-grid' | 'message-card' | 'message-list';
   count?: number;              // For grid/list variants
 }
-

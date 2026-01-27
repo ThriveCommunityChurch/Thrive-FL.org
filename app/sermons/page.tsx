@@ -1,4 +1,4 @@
-import SermonSeriesGrid from "../components/sermons/SermonSeriesGrid";
+import SermonFilters from "../components/sermons/SermonFilters";
 import { getAllSermons } from "../services/sermonService";
 import { SermonSeriesSummary } from "../types/sermons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,7 +49,7 @@ export default async function SermonsPage() {
               </Link>
             </div>
           ) : (
-            <SermonSeriesGrid series={series} isLoading={false} />
+            <SermonFilters series={series} />
           )}
         </div>
       </section>

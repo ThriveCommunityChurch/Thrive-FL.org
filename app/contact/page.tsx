@@ -197,7 +197,7 @@ export default function ContactPage({
       </section>
 
       {/* In-Person CTA Section */}
-      <section className="section contact-cta-section">
+      <section className="section cta-section events-cta">
         <div className="container container-narrow">
           <div className="cta-content">
             <h2>Nothing Beats Meeting Face to Face</h2>

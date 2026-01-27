@@ -107,12 +107,6 @@ export default function LivestreamPlayer({
   if (status.isLive && status.videoId) {
     return (
       <div className="livestream-player">
-        {/* Live badge */}
-        <div className="livestream-live-badge">
-          <span className="livestream-live-dot"></span>
-          LIVE NOW
-        </div>
-
         {/* Video container */}
         <div className="livestream-video-container">
           <iframe

@@ -205,7 +205,7 @@ export default function GetInvolvedPage() {
               about how you might fit.
             </p>
 	            <div className="cta-buttons">
-	              <a href="/contact?subject=volunteer#contact-form" className="btn btn-primary btn-lg">
+	              <a href="/contact?subject=volunteer#contact-form" className="btn btn-secondary btn-lg">
                 <FontAwesomeIcon icon={faHand} /> I Want to Serve
               </a>
             </div>
