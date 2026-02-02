@@ -14,7 +14,7 @@ import {
 // ============================================
 
 // API Base URL - uses environment variable with fallback to production
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://2gtmya7qxt.us-east-2.awsapprunner.com';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
 
 // ============================================
 // ERROR HANDLING
