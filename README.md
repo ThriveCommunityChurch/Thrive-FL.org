@@ -16,7 +16,7 @@ This repository contains the source code for Thrive Community Church's public we
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| [Next.js](https://nextjs.org/) | 14.x | React framework with App Router |
+| [Next.js](https://nextjs.org/) | 16.x | React framework with App Router |
 | [React](https://react.dev/) | 18.x | UI component library |
 | [TypeScript](https://www.typescriptlang.org/) | 5.6.x | Type-safe JavaScript |
 | [Howler.js](https://howlerjs.com/) | 2.2.x | Audio playback for sermons |
