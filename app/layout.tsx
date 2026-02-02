@@ -76,6 +76,9 @@ export const metadata: Metadata = {
 	      alexaVerifyID: "Qcy1I-XCw9tdhIfyzCPvRMv4VV0",
 	    },
   },
+  alternates: {
+    canonical: "https://thrive-fl.org/",
+  },
 };
 
 export default function RootLayout({
