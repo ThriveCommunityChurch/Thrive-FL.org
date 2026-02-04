@@ -6511,6 +6511,29 @@ a:hover {
   box-shadow: 0 4px 14px rgba(147, 164, 69, 0.4) !important;
 }
 
+/* Video Player (in collapsible section) */
+.message-detail__video-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.message-detail__video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.message-detail__video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Collapsible Sections (Transcript & Notes) */
 .message-detail__collapsible {
   background: var(--color-white);
