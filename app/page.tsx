@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { OrganizationJsonLd, WebSiteJsonLd } from "./components/JsonLd";
+import { OrganizationJsonLd, WebSiteJsonLd, MobileAppJsonLd } from "./components/JsonLd";
 
 export default function HomePage() {
   return (
@@ -50,6 +50,7 @@ export default function HomePage() {
       {/* JSON-LD Structured Data for SEO */}
       <OrganizationJsonLd />
       <WebSiteJsonLd />
+      <MobileAppJsonLd />
 
       {/* Hero Section with Background Video */}
       <section className="hero-section">
