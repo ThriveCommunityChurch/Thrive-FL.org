@@ -8710,12 +8710,6 @@ a:hover {
   line-height: 1.2;
 }
 
-.app-store-btn span small {
-  font-size: var(--font-size-xs);
-  font-weight: 400;
-  opacity: 0.9;
-}
-
 .app-store-btn-ios {
   background: var(--color-gray-900);
   color: var(--color-white);

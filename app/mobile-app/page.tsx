@@ -190,7 +190,7 @@ export default function AppPage() {
                 width={450}
                 height={450}
                 className="app-preview-image"
-                style={{ objectFit: "cover", marginLeft: "-2rem", borderRadius: "24px" }}
+                style={{ objectFit: "cover", marginLeft: "-0.5rem" }}
               />
             </div>
           </div>
