@@ -275,8 +275,8 @@ export function SermonSeriesJsonLd({
     inLanguage: "en-US",
     ...(startDate && { startDate }),
     ...(endDate && { endDate }),
-    numberOfEpisodes: messages.length,
-    episode: episodes,
+    // Use hasPart instead of episode (valid for CreativeWorkSeries)
+    hasPart: episodes,
   };
 
   return (
@@ -371,8 +371,10 @@ export function SermonMessageJsonLd({
       },
     }),
     // Include truncated transcript for SEO (first ~1000 chars)
+    // Using 'text' property which is valid on CreativeWork (parent of PodcastEpisode)
+    // Note: 'transcript' is only valid on AudioObject/VideoObject, not Episode types
     ...(transcript && {
-      transcript: transcript.length > 1000
+      text: transcript.length > 1000
         ? transcript.substring(0, 1000) + "..."
         : transcript,
     }),
