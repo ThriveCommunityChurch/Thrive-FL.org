@@ -6,8 +6,8 @@ export const churchData = {
   name: "Thrive Community Church",
   description: "A Lutheran Church—Missouri Synod congregation in Estero, FL offering contemporary worship, biblical teaching, and genuine community.",
   url: "https://thrive-fl.org",
-  logo: "https://d2v6hk6f64og35.cloudfront.net/thrive-logo.png",
-  image: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+  logo: "https://static.thrive-fl.org/thrive-logo.png",
+  image: "https://static.thrive-fl.org/og-image.jpg",
   telephone: "+1-239-687-3430",
   email: "info@thrive-fl.org",
   address: {

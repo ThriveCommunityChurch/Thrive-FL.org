@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org/mobile-app",
     images: [
       {
-        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church App",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Get the app | Thrive Community Church",
     description: "Stream sermons, take notes, and stay connected. Download the Thrive Church Official App.",
-    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+    images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
     canonical: "https://thrive-fl.org/mobile-app",
@@ -185,7 +185,7 @@ export default function AppPage() {
             </div>
             <div className="app-download-preview">
               <Image
-                src="https://d2v6hk6f64og35.cloudfront.net/app_promo1.png"
+                src="https://static.thrive-fl.org/app_promo1.png"
                 alt="Thrive Church App on mobile device"
                 width={450}
                 height={450}
