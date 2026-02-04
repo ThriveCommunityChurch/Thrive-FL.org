@@ -6168,6 +6168,23 @@ a:hover {
   color: var(--color-white);
 }
 
+/* Messages without audio/video content */
+.sermon-message-card--no-content {
+  opacity: 0.65;
+  background: var(--color-gray-50);
+}
+
+.sermon-message-card--no-content:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.sermon-message-card__no-recording {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-400);
+  font-style: italic;
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
   .sermon-message-card {
     flex-wrap: wrap;

@@ -91,8 +91,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
       });
 
-      // Add individual message pages
+      // Add individual message pages (only if they have actual content)
+      // Skip messages that are just placeholders with only a title/passage reference
       for (const message of series.Messages) {
+        // A message has content if it has audio OR video
+        const hasContent = message.AudioUrl || message.VideoUrl;
+        if (!hasContent) continue;
+
         sermonEntries.push({
           url: `${baseUrl}/sermons/${series.Id}/${message.MessageId}`,
           lastModified: message.Date ? new Date(message.Date) : now,

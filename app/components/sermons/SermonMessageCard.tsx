@@ -26,6 +26,9 @@ export default function SermonMessageCard({
   const duration = formatDuration(message.AudioDuration);
   const date = formatSermonDate(message.Date);
 
+  // A message has content if it has audio OR video
+  const hasContent = Boolean(message.AudioUrl || message.VideoUrl);
+
   const handlePlayClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -35,8 +38,8 @@ export default function SermonMessageCard({
   };
 
   return (
-    <div 
-      className={`sermon-message-card ${isPlaying ? 'sermon-message-card--playing' : ''}`}
+    <div
+      className={`sermon-message-card ${isPlaying ? 'sermon-message-card--playing' : ''} ${!hasContent ? 'sermon-message-card--no-content' : ''}`}
       style={{ animationDelay: `${index * 50}ms` }}
     >
       <button
@@ -78,41 +81,49 @@ export default function SermonMessageCard({
       </div>
 
       <div className="sermon-message-card__actions">
-        <span className="sermon-message-card__duration">
-          <FontAwesomeIcon icon={faClock} />
-          {duration}
-        </span>
+        {hasContent ? (
+          <>
+            <span className="sermon-message-card__duration">
+              <FontAwesomeIcon icon={faClock} />
+              {duration}
+            </span>
 
-        <div className="sermon-message-card__buttons">
-          <Link
-            href={`/sermons/${seriesId}/${message.MessageId}`}
-            className="sermon-message-card__action-btn"
-            title="View Details, Transcript & Notes"
-          >
-            <FontAwesomeIcon icon={faFileAlt} />
-          </Link>
-          {message.VideoUrl && (
-            <a
-              href={message.VideoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="sermon-message-card__action-btn"
-              title="Watch on YouTube"
-            >
-              <FontAwesomeIcon icon={faYoutube} />
-            </a>
-          )}
-          {message.AudioUrl && (
-            <a
-              href={message.AudioUrl}
-              download
-              className="sermon-message-card__action-btn"
-              title="Download Audio"
-            >
-              <FontAwesomeIcon icon={faDownload} />
-            </a>
-          )}
-        </div>
+            <div className="sermon-message-card__buttons">
+              <Link
+                href={`/sermons/${seriesId}/${message.MessageId}`}
+                className="sermon-message-card__action-btn"
+                title="View Details, Transcript & Notes"
+              >
+                <FontAwesomeIcon icon={faFileAlt} />
+              </Link>
+              {message.VideoUrl && (
+                <a
+                  href={message.VideoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="sermon-message-card__action-btn"
+                  title="Watch on YouTube"
+                >
+                  <FontAwesomeIcon icon={faYoutube} />
+                </a>
+              )}
+              {message.AudioUrl && (
+                <a
+                  href={message.AudioUrl}
+                  download
+                  className="sermon-message-card__action-btn"
+                  title="Download Audio"
+                >
+                  <FontAwesomeIcon icon={faDownload} />
+                </a>
+              )}
+            </div>
+          </>
+        ) : (
+          <span className="sermon-message-card__no-recording">
+            No recording available
+          </span>
+        )}
       </div>
     </div>
   );
