@@ -70,6 +70,7 @@ export default function Header() {
                 <li><Link href="/small-groups" onClick={handleLinkClick}>Small Groups</Link></li>
                 <li><Link href="/get-involved" onClick={handleLinkClick}>Get Involved</Link></li>
                 <li><Link href="/ministries/college" onClick={handleLinkClick}>ThriveFGCU</Link></li>
+                <li><Link href="/mobile-app" onClick={handleLinkClick}>Get the app</Link></li>
               </ul>
             </li>
             <li className="nav-dropdown">

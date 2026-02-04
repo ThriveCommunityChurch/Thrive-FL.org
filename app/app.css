@@ -8318,3 +8318,313 @@ a:hover {
   }
 }
 
+/* ============================================
+   APP PAGE STYLES
+   ============================================ */
+
+.page-hero-app {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(46, 190, 216, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
+}
+
+/* App Download Section */
+.app-download-section {
+  background: var(--color-white);
+  padding-top: var(--spacing-4xl);
+  padding-bottom: var(--spacing-4xl);
+}
+
+.app-download-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4xl);
+  align-items: center;
+}
+
+.app-download-info {
+  max-width: 500px;
+}
+
+.app-download-info h2 {
+  font-size: var(--font-size-3xl);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-md);
+}
+
+.app-download-info p {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-xl);
+}
+
+.app-download-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.app-store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+}
+
+.app-store-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  color: var(--color-white);
+}
+
+.app-store-btn svg {
+  font-size: 2rem;
+}
+
+.app-store-btn span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.app-store-btn span small {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.app-store-btn-ios {
+  background: var(--color-gray-900);
+  color: var(--color-white);
+}
+
+.app-store-btn-android {
+  background: linear-gradient(135deg, #34a853 0%, #4285f4 100%);
+  color: var(--color-white);
+}
+
+.app-download-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.app-preview-image {
+  box-shadow: var(--shadow-2xl);
+}
+
+/* App Features Section */
+.app-features-section {
+  background: var(--color-gray-100);
+  padding-top: var(--spacing-4xl);
+  padding-bottom: var(--spacing-4xl);
+}
+
+.app-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.app-feature-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+}
+
+.app-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.app-feature-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.app-feature-icon svg {
+  font-size: 1.5rem;
+  color: var(--color-white);
+}
+
+.app-feature-card h3 {
+  font-size: var(--font-size-xl);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-sm);
+}
+
+.app-feature-card p {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+}
+
+.app-feature-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-feature-highlights li {
+  position: relative;
+  padding-left: var(--spacing-lg);
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.app-feature-highlights li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* App Highlights Section */
+.app-highlights-section {
+  background: var(--color-white);
+  padding-top: var(--spacing-3xl);
+  padding-bottom: var(--spacing-3xl);
+}
+
+.app-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-xl);
+}
+
+.app-highlight-item {
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+.app-highlight-item svg {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.app-highlight-item h4 {
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-xs);
+}
+
+.app-highlight-item p {
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+}
+
+/* App CTA Section */
+.app-cta-section {
+  background:
+    radial-gradient(circle at 20% 50%, rgba(46, 190, 216, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.app-cta-section .cta-content h2,
+.app-cta-section .cta-content p {
+  color: var(--color-white);
+}
+
+.app-cta-section .btn-white {
+  background: var(--color-white);
+  color: var(--color-primary-dark);
+  border-color: var(--color-white);
+}
+
+.app-cta-section .btn-white:hover {
+  background: var(--color-gray-100);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.app-cta-section .btn-outline-white {
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+  background: transparent;
+}
+
+.app-cta-section .btn-outline-white:hover {
+  background: var(--color-white);
+  color: var(--color-primary-dark);
+}
+
+/* Responsive Styles for App Page */
+@media (max-width: 1024px) {
+  .app-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .app-highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-download-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    text-align: center;
+  }
+
+  .app-download-info {
+    max-width: 100%;
+  }
+
+  .app-download-buttons {
+    justify-content: center;
+  }
+
+  .app-download-preview {
+    order: -1;
+  }
+
+  .app-preview-image {
+    max-width: 280px;
+    height: auto;
+  }
+
+  .app-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-highlights-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .app-download-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app-store-btn {
+    width: 100%;
+    max-width: 220px;
+    justify-content: center;
+  }
+
+  .app-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
