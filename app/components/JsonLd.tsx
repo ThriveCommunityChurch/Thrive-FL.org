@@ -288,6 +288,11 @@ export function SermonSeriesJsonLd({
 }
 
 // Individual Sermon Message JSON-LD for message detail pages
+// Includes multiple schema types for rich results:
+// - PodcastEpisode (semantic understanding)
+// - VideoObject (video rich results - thumbnails in search)
+// - Article (article rich results - for transcript content)
+// - BreadcrumbList (navigation breadcrumbs in search)
 interface SermonMessageJsonLdProps {
   seriesId: string;
   seriesName: string;
@@ -299,8 +304,9 @@ interface SermonMessageJsonLdProps {
   passageRef?: string | null;
   audioUrl?: string | null;
   audioDuration?: number | null;
+  videoUrl?: string | null;
   image?: string;
-  transcript?: string | null; // Truncated transcript for JSON-LD
+  transcript?: string | null;
 }
 
 export function SermonMessageJsonLd({
@@ -314,6 +320,7 @@ export function SermonMessageJsonLd({
   passageRef,
   audioUrl,
   audioDuration,
+  videoUrl,
   image,
   transcript,
 }: SermonMessageJsonLdProps) {
@@ -331,15 +338,51 @@ export function SermonMessageJsonLd({
     return duration;
   };
 
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const pageUrl = `https://thrive-fl.org/sermons/${seriesId}/${messageId}`;
+  const seriesUrl = `https://thrive-fl.org/sermons/${seriesId}`;
+  const imageUrl = image || churchData.image;
+  const description = summary || `${title} - A sermon from the "${seriesName}" series at ${churchData.name}`;
+
+  // BreadcrumbList for navigation in search results
+  const breadcrumbList = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://thrive-fl.org",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sermons",
+        item: "https://thrive-fl.org/sermons",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: seriesName,
+        item: seriesUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  // PodcastEpisode for semantic understanding
+  const podcastEpisode = {
     "@type": "PodcastEpisode",
     name: title,
-    url: `https://thrive-fl.org/sermons/${seriesId}/${messageId}`,
+    url: pageUrl,
     datePublished: date || undefined,
-    description: summary || `${title} - A sermon from the "${seriesName}" series at ${churchData.name}`,
+    description,
     duration: formatDuration(audioDuration),
-    image: image || churchData.image,
+    image: imageUrl,
     ...(audioUrl && {
       associatedMedia: {
         "@type": "MediaObject",
@@ -350,7 +393,7 @@ export function SermonMessageJsonLd({
     partOfSeries: {
       "@type": "PodcastSeries",
       name: seriesName,
-      url: `https://thrive-fl.org/sermons/${seriesId}`,
+      url: seriesUrl,
     },
     author: {
       "@type": "Person",
@@ -370,15 +413,83 @@ export function SermonMessageJsonLd({
         name: passageRef,
       },
     }),
-    // Include truncated transcript for SEO (first ~1000 chars)
-    // Using 'text' property which is valid on CreativeWork (parent of PodcastEpisode)
-    // Note: 'transcript' is only valid on AudioObject/VideoObject, not Episode types
     ...(transcript && {
       text: transcript.length > 1000
         ? transcript.substring(0, 1000) + "..."
         : transcript,
     }),
     inLanguage: "en-US",
+  };
+
+  // VideoObject for video rich results (thumbnails in search)
+  // Only included if videoUrl is present
+  const videoObject = videoUrl ? {
+    "@type": "VideoObject",
+    name: title,
+    description,
+    thumbnailUrl: imageUrl,
+    uploadDate: date || undefined,
+    duration: formatDuration(audioDuration),
+    contentUrl: videoUrl,
+    embedUrl: videoUrl.includes("youtube.com/watch?v=")
+      ? videoUrl.replace("watch?v=", "embed/")
+      : videoUrl.includes("youtu.be/")
+        ? `https://www.youtube.com/embed/${videoUrl.split("youtu.be/")[1]}`
+        : videoUrl,
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    ...(transcript && {
+      transcript: transcript.length > 5000
+        ? transcript.substring(0, 5000) + "..."
+        : transcript,
+    }),
+  } : null;
+
+  // Article for article rich results (headline, image, date in search)
+  // Only included if transcript is present
+  const article = transcript ? {
+    "@type": "Article",
+    headline: title,
+    description,
+    image: imageUrl,
+    datePublished: date || undefined,
+    dateModified: date || undefined,
+    author: {
+      "@type": "Person",
+      name: speaker,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": pageUrl,
+    },
+    articleBody: transcript.length > 5000
+      ? transcript.substring(0, 5000) + "..."
+      : transcript,
+  } : null;
+
+  // Combine all schemas using @graph
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList,
+      podcastEpisode,
+      ...(videoObject ? [videoObject] : []),
+      ...(article ? [article] : []),
+    ],
   };
 
   return (

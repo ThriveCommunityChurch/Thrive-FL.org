@@ -111,6 +111,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
           passageRef={message.PassageRef}
           audioUrl={message.AudioUrl}
           audioDuration={message.AudioDuration}
+          videoUrl={message.VideoUrl}
           image={series.ArtUrl || series.Thumbnail}
           transcript={transcript?.FullText}
         />
