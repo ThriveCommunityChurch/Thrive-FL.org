@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- This is a static error page for the static.thrive-fl.org and podcast.thrive-fl.org domains when a 404 or 403 error occurs retrieving content. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Thrive Community Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #2EBED8;
+      --color-primary-dark: #25a0b8;
+      --color-secondary: #93A445;
+      --color-gray-500: #64748b;
+      --color-gray-600: #475569;
+      --color-gray-700: #334155;
+      --color-white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--color-white);
+      color: var(--color-gray-600);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-container {
+      max-width: 500px;
+    }
+
+    .error-code {
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--color-gray-700);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: var(--color-gray-500);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--color-gray-500);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="main">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1>Page Not Found</h1>
+      <p>Sorry, the page you're looking for doesn't exist or has been moved.</p>
+      <a href="https://thrive-fl.org" class="btn">Go to thrive-fl.org</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Thrive Community Church. All rights reserved.</p>
+  </footer>
+</body>
+</html>
