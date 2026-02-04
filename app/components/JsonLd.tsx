@@ -176,3 +176,49 @@ export function WebSiteJsonLd() {
   );
 }
 
+// Mobile App JSON-LD for app install links in search results
+export function MobileAppJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        name: "Thrive Church Official App",
+        operatingSystem: "iOS",
+        applicationCategory: "LifestyleApplication",
+        description: "Stay connected with sermons, notes, events, and your church community—all in one place.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        installUrl: "https://apps.apple.com/us/app/thrive-church-official-app/id1138008288",
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: 5,
+          ratingCount: 2,
+        },
+      },
+      {
+        "@type": "MobileApplication",
+        name: "Thrive Church Official App",
+        operatingSystem: "Android",
+        applicationCategory: "LifestyleApplication",
+        description: "Stay connected with sermons, notes, events, and your church community—all in one place.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        installUrl: "https://play.google.com/store/apps/details?id=com.thrivefl.ThriveCommunityChurch",
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
