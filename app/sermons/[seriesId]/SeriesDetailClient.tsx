@@ -20,6 +20,7 @@ export default function SeriesDetailClient({ series }: SeriesDetailClientProps) 
       <h2 className="series-messages-title">Messages in this Series</h2>
       <SermonMessageList
         messages={series.Messages}
+        seriesId={series.Id}
         seriesArtUrl={series.ArtUrl}
         onPlayMessage={handlePlayMessage}
       />

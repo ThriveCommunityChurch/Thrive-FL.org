@@ -3,6 +3,8 @@
 import {
   AllSermonsSummaryResponse,
   SermonSeries,
+  TranscriptResponse,
+  SermonNotesResponse,
 } from '../types/sermons';
 
 // ============================================
@@ -156,18 +158,58 @@ export function formatSeriesDateRange(startDate: string | null, endDate: string 
  */
 export function getYouTubeVideoId(url: string | null): string | null {
   if (!url) return null;
-  
+
   const patterns = [
     /youtu\.be\/([^?&]+)/,
     /youtube\.com\/watch\?v=([^&]+)/,
     /youtube\.com\/embed\/([^?&]+)/,
   ];
-  
+
   for (const pattern of patterns) {
     const match = url.match(pattern);
     if (match) return match[1];
   }
-  
+
   return null;
+}
+
+/**
+ * Get transcript for a sermon message
+ * @param messageId - The message ID
+ * @returns TranscriptResponse or null if not found
+ */
+export async function getMessageTranscript(messageId: string): Promise<TranscriptResponse | null> {
+  const endpoint = `/api/Sermons/series/message/${messageId}/transcript`;
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      cache: 'no-store',
+    });
+    if (response.status === 404) {
+      return null;
+    }
+    return handleResponse<TranscriptResponse>(response, endpoint);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Get sermon notes for a message
+ * @param messageId - The message ID
+ * @returns SermonNotesResponse or null if not found
+ */
+export async function getSermonNotes(messageId: string): Promise<SermonNotesResponse | null> {
+  const endpoint = `/api/Sermons/series/message/${messageId}/notes`;
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      cache: 'no-store',
+    });
+    if (response.status === 404) {
+      return null;
+    }
+    return handleResponse<SermonNotesResponse>(response, endpoint);
+  } catch {
+    return null;
+  }
 }
 

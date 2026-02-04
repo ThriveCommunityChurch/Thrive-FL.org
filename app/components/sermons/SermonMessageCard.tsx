@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { SermonMessageCardProps } from '../../types/sermons';
 import { formatDuration, formatSermonDate } from '../../services/sermonService';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,21 +11,24 @@ import {
   faBookBible,
   faDownload,
   faExternalLinkAlt,
+  faFileAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 
-export default function SermonMessageCard({ 
-  message, 
-  onPlay, 
+export default function SermonMessageCard({
+  message,
+  seriesId,
+  onPlay,
   isPlaying = false,
-  index = 0 
+  index = 0
 }: SermonMessageCardProps) {
   const duration = formatDuration(message.AudioDuration);
   const date = formatSermonDate(message.Date);
 
   const handlePlayClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (onPlay && message.AudioUrl) {
       onPlay(message);
     }
@@ -80,6 +84,13 @@ export default function SermonMessageCard({
         </span>
 
         <div className="sermon-message-card__buttons">
+          <Link
+            href={`/sermons/${seriesId}/${message.MessageId}`}
+            className="sermon-message-card__action-btn"
+            title="View Details, Transcript & Notes"
+          >
+            <FontAwesomeIcon icon={faFileAlt} />
+          </Link>
           {message.VideoUrl && (
             <a
               href={message.VideoUrl}

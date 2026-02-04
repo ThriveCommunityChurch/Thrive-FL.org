@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import SeriesDetailClient from "./SeriesDetailClient";
 import { getSeriesById, formatSeriesDateRange } from "../../services/sermonService";
+import { SermonSeriesJsonLd } from "../../components/JsonLd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
@@ -78,6 +79,19 @@ export default async function SeriesDetailPage({ params }: PageProps) {
 
   return (
     <div className="page-wrapper">
+      {/* JSON-LD Structured Data for SEO */}
+      {series && (
+        <SermonSeriesJsonLd
+          seriesId={seriesId}
+          name={series.Name}
+          description={series.Summary}
+          image={series.ArtUrl || series.Thumbnail}
+          startDate={series.StartDate}
+          endDate={series.EndDate}
+          messages={series.Messages}
+        />
+      )}
+
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
         <div className="container">

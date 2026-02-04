@@ -9,6 +9,7 @@ import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 
 interface SermonMessageListProps {
   messages: SermonMessage[];
+  seriesId: string;
   seriesArtUrl?: string;
   onPlayMessage: (message: SermonMessage) => void;
   isLoading?: boolean;
@@ -16,6 +17,7 @@ interface SermonMessageListProps {
 
 export default function SermonMessageList({
   messages,
+  seriesId,
   seriesArtUrl,
   onPlayMessage,
   isLoading = false
@@ -47,6 +49,7 @@ export default function SermonMessageList({
         <SermonMessageCard
           key={message.MessageId}
           message={message}
+          seriesId={seriesId}
           seriesArtUrl={seriesArtUrl}
           onPlay={onPlayMessage}
           isPlaying={currentMessage?.MessageId === message.MessageId}
