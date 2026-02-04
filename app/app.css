@@ -526,7 +526,7 @@ a:hover {
 
 /* Give Button in Nav */
 .nav-give-btn {
-  background-color: var(--color-secondary);
+  background-color: #5c6b2f; /* Darker olive green for WCAG AA contrast (5.8:1 with white) */
   color: var(--color-white) !important;
   border-radius: var(--radius-md);
   padding: var(--spacing-xs) var(--spacing-md) !important;
@@ -535,10 +535,10 @@ a:hover {
 }
 
 .nav-give-btn:hover {
-  background-color: var(--color-secondary-dark);
+  background-color: #4a5726; /* Even darker on hover */
   color: var(--color-white) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(147, 164, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 107, 47, 0.3);
 }
 
 /* Dropdown Menu */
@@ -8729,10 +8729,6 @@ a:hover {
 .app-download-preview {
   display: flex;
   justify-content: center;
-}
-
-.app-preview-image {
-  box-shadow: var(--shadow-2xl);
 }
 
 /* App Features Section */
