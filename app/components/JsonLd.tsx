@@ -176,6 +176,217 @@ export function WebSiteJsonLd() {
   );
 }
 
+// Sermon Series JSON-LD for series pages with episodes
+interface SermonSeriesJsonLdProps {
+  seriesId: string;
+  name: string;
+  description?: string | null;
+  image?: string;
+  startDate?: string | null;
+  endDate?: string | null;
+  messages: Array<{
+    MessageId: string;
+    Title: string;
+    Speaker: string;
+    Date: string | null;
+    AudioUrl: string | null;
+    AudioDuration: number | null; // in seconds
+    Summary: string | null;
+    PassageRef: string | null;
+  }>;
+}
+
+export function SermonSeriesJsonLd({
+  seriesId,
+  name,
+  description,
+  image,
+  startDate,
+  endDate,
+  messages,
+}: SermonSeriesJsonLdProps) {
+  // Format duration from seconds to ISO 8601 duration (e.g., PT30M for 30 minutes)
+  const formatDuration = (seconds: number | null): string | undefined => {
+    if (!seconds) return undefined;
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    let duration = "PT";
+    if (hours > 0) duration += `${hours}H`;
+    if (minutes > 0) duration += `${minutes}M`;
+    if (secs > 0 || duration === "PT") duration += `${secs}S`;
+    return duration;
+  };
+
+  // Create episode list from messages
+  const episodes = messages
+    .filter(msg => msg.AudioUrl) // Only include messages with audio
+    .map((msg, index) => ({
+      "@type": "PodcastEpisode",
+      name: msg.Title,
+      url: `https://thrive-fl.org/sermons/${seriesId}`,
+      datePublished: msg.Date || undefined,
+      description: msg.Summary || `${msg.Title} - A sermon from the "${name}" series`,
+      duration: formatDuration(msg.AudioDuration),
+      associatedMedia: {
+        "@type": "MediaObject",
+        contentUrl: msg.AudioUrl,
+        encodingFormat: "audio/mpeg",
+      },
+      partOfSeries: {
+        "@type": "PodcastSeries",
+        name: name,
+        url: `https://thrive-fl.org/sermons/${seriesId}`,
+      },
+      author: {
+        "@type": "Person",
+        name: msg.Speaker,
+      },
+      ...(msg.PassageRef && {
+        about: {
+          "@type": "Thing",
+          name: msg.PassageRef,
+        },
+      }),
+      position: index + 1,
+    }));
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "PodcastSeries",
+    name: name,
+    description: description || `Listen to the "${name}" sermon series from ${churchData.name}`,
+    url: `https://thrive-fl.org/sermons/${seriesId}`,
+    image: image || churchData.image,
+    author: {
+      "@type": "Organization",
+      name: churchData.name,
+      url: churchData.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    inLanguage: "en-US",
+    ...(startDate && { startDate }),
+    ...(endDate && { endDate }),
+    numberOfEpisodes: messages.length,
+    episode: episodes,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// Individual Sermon Message JSON-LD for message detail pages
+interface SermonMessageJsonLdProps {
+  seriesId: string;
+  seriesName: string;
+  messageId: string;
+  title: string;
+  speaker: string;
+  date?: string | null;
+  summary?: string | null;
+  passageRef?: string | null;
+  audioUrl?: string | null;
+  audioDuration?: number | null;
+  image?: string;
+  transcript?: string | null; // Truncated transcript for JSON-LD
+}
+
+export function SermonMessageJsonLd({
+  seriesId,
+  seriesName,
+  messageId,
+  title,
+  speaker,
+  date,
+  summary,
+  passageRef,
+  audioUrl,
+  audioDuration,
+  image,
+  transcript,
+}: SermonMessageJsonLdProps) {
+  // Format duration from seconds to ISO 8601 duration
+  const formatDuration = (seconds: number | null | undefined): string | undefined => {
+    if (!seconds) return undefined;
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    let duration = "PT";
+    if (hours > 0) duration += `${hours}H`;
+    if (minutes > 0) duration += `${minutes}M`;
+    if (secs > 0 || duration === "PT") duration += `${secs}S`;
+    return duration;
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    name: title,
+    url: `https://thrive-fl.org/sermons/${seriesId}/${messageId}`,
+    datePublished: date || undefined,
+    description: summary || `${title} - A sermon from the "${seriesName}" series at ${churchData.name}`,
+    duration: formatDuration(audioDuration),
+    image: image || churchData.image,
+    ...(audioUrl && {
+      associatedMedia: {
+        "@type": "MediaObject",
+        contentUrl: audioUrl,
+        encodingFormat: "audio/mpeg",
+      },
+    }),
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: seriesName,
+      url: `https://thrive-fl.org/sermons/${seriesId}`,
+    },
+    author: {
+      "@type": "Person",
+      name: speaker,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    ...(passageRef && {
+      about: {
+        "@type": "Thing",
+        name: passageRef,
+      },
+    }),
+    // Include truncated transcript for SEO (first ~1000 chars)
+    ...(transcript && {
+      transcript: transcript.length > 1000
+        ? transcript.substring(0, 1000) + "..."
+        : transcript,
+    }),
+    inLanguage: "en-US",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 // Mobile App JSON-LD for app install links in search results
 export function MobileAppJsonLd() {
   const jsonLd = {

@@ -82,6 +82,7 @@ export interface SermonSeriesGridProps {
 
 export interface SermonMessageCardProps {
   message: SermonMessage;
+  seriesId: string;            // Series ID for linking to message detail page
   seriesArtUrl?: string;       // Fallback image
   onPlay?: (message: SermonMessage) => void;
   isPlaying?: boolean;
@@ -105,4 +106,56 @@ export interface SermonPlayerProps {
 export interface SermonSkeletonProps {
   variant: 'series-card' | 'series-grid' | 'message-card' | 'message-list';
   count?: number;              // For grid/list variants
+}
+
+// ============================================
+// TRANSCRIPT & NOTES TYPES
+// ============================================
+
+/**
+ * Response from GET /api/Sermons/series/message/{MessageId}/transcript
+ */
+export interface TranscriptResponse {
+  MessageId: string;
+  Title: string;
+  Speaker: string;
+  FullText: string;
+  WordCount: number;
+  Notes?: SermonNotesResponse;
+}
+
+/**
+ * Response from GET /api/Sermons/series/message/{MessageId}/notes
+ */
+export interface SermonNotesResponse {
+  Title: string;
+  Speaker: string;
+  Date: string;
+  MainScripture: string;
+  Summary: string;
+  KeyPoints: KeyPointResponse[];
+  Quotes: QuoteResponse[];
+  ApplicationPoints: string[];
+  GeneratedAt: string;
+  ModelUsed: string;
+  WordCount: number;
+}
+
+/**
+ * A key point from the sermon notes
+ */
+export interface KeyPointResponse {
+  Point: string;
+  Scripture?: string;
+  Detail?: string;
+  TheologicalContext?: string;
+  DirectlyQuoted?: boolean;
+}
+
+/**
+ * A notable quote from the sermon
+ */
+export interface QuoteResponse {
+  Text: string;
+  Context?: string;
 }
