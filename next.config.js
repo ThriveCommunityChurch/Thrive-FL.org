@@ -25,7 +25,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'd2v6hk6f64og35.cloudfront.net',
+        hostname: 'static.thrive-fl.org',
         pathname: '/**',
       },
     ],

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org",
     images: [
       {
-        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -58,7 +58,7 @@ export default function HomePage() {
         <div className="hero-video-container">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://d2v6hk6f64og35.cloudfront.net/Still.jpg"
+            src="https://static.thrive-fl.org/Still.jpg"
             alt=""
             className="hero-poster-preload"
             fetchPriority="high"
@@ -71,9 +71,9 @@ export default function HomePage() {
             muted
             loop
             playsInline
-            poster="https://d2v6hk6f64og35.cloudfront.net/Still.jpg"
+            poster="https://static.thrive-fl.org/Still.jpg"
           >
-            <source src="https://d2v6hk6f64og35.cloudfront.net/home.mp4" type="video/mp4" />
+            <source src="https://static.thrive-fl.org/home.mp4" type="video/mp4" />
           </video>
           {/* Fallback image for mobile or when video fails */}
           <div className="hero-image-fallback"></div>
@@ -202,7 +202,7 @@ export default function HomePage() {
             <div className="welcome-image">
               <div className="image-placeholder">
                 <Image
-                  src="https://d2v6hk6f64og35.cloudfront.net/Estero.jpg"
+                  src="https://static.thrive-fl.org/Estero.jpg"
                   alt="Welcome to Thrive"
                   width={600}
                   height={400}

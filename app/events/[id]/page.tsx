@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
 
     // Use event image if available, otherwise use default OG image
-    const ogImage = event.ImageUrl || "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg";
+    const ogImage = event.ImageUrl || "https://static.thrive-fl.org/og-image.jpg";
 
     return {
       title,
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: {
         images: [
           {
-            url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+            url: "https://static.thrive-fl.org/og-image.jpg",
             width: 1200,
             height: 630,
             alt: "Thrive Community Church",
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
       twitter: {
         card: "summary_large_image",
-        images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+        images: ["https://static.thrive-fl.org/og-image.jpg"],
       },
     };
   }

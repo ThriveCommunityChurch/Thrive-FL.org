@@ -30,7 +30,7 @@ export default function Header() {
       <div className="header-container">
         <Link href="/" className="logo">
           <Image
-            src="https://d2v6hk6f64og35.cloudfront.net/ThriveLogo.png"
+            src="https://static.thrive-fl.org/ThriveLogo.png"
             alt="Thrive Community Church"
             width={180}
             height={63}

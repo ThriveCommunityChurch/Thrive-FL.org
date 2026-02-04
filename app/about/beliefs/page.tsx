@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org/about/beliefs",
     images: [
       {
-        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Our Beliefs | Thrive Community Church",
     description: "Grace alone. Faith alone. Scripture alone. Discover our Lutheran heritage and what we believe.",
-    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+    images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
     canonical: "https://thrive-fl.org/about/beliefs",

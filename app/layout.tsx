@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
     images: [
       {
-        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Thrive Community Church | Estero, FL",
     description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
-    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+    images: ["https://static.thrive-fl.org/og-image.jpg"],
     creator: "@Thrive_FL",
   },
   robots: {
@@ -93,10 +93,10 @@ export default function RootLayout({
         <CriticalCSS />
 
         {/* Preconnect for external resources - crossOrigin required for CORS */}
-        <link rel="preconnect" href="https://d2v6hk6f64og35.cloudfront.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://static.thrive-fl.org" crossOrigin="anonymous" />
 
         {/* Preload critical hero image for LCP optimization */}
-        <link rel="preload" href="https://d2v6hk6f64og35.cloudfront.net/Still.jpg" as="image" fetchPriority="high" />
+        <link rel="preload" href="https://static.thrive-fl.org/Still.jpg" as="image" fetchPriority="high" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />

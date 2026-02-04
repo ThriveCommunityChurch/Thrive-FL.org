@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org/get-involved",
     images: [
       {
-        url: "https://d2v6hk6f64og35.cloudfront.net/og-image.jpg",
+        url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Thrive Community Church",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Get Involved | Thrive Community Church",
     description: "Use your gifts to make a difference. Find your place to serve at Thrive.",
-    images: ["https://d2v6hk6f64og35.cloudfront.net/og-image.jpg"],
+    images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
     canonical: "https://thrive-fl.org/get-involved",
