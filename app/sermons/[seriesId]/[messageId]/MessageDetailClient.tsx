@@ -8,6 +8,7 @@ import {
   faPlay,
   faPause,
   faFileAlt,
+  faVideo,
   faChevronDown,
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
@@ -18,12 +19,24 @@ interface MessageDetailClientProps {
   transcript: TranscriptResponse | null;
 }
 
+// Convert YouTube URL to embed format
+function getYouTubeEmbedUrl(url: string): string {
+  if (url.includes("youtube.com/watch?v=")) {
+    return url.replace("watch?v=", "embed/");
+  } else if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
+  return url;
+}
+
 export default function MessageDetailClient({
   message,
   series,
   transcript,
 }: MessageDetailClientProps) {
   const { playMessage, currentMessage, isPlaying } = useAudioPlayer();
+  const [showVideo, setShowVideo] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
 
@@ -43,7 +56,7 @@ export default function MessageDetailClient({
 
   return (
     <div className="message-detail-client">
-      {/* Play Button */}
+      {/* Play Audio Button */}
       {message.AudioUrl && (
         <div className="message-detail__actions">
           <button
@@ -51,12 +64,41 @@ export default function MessageDetailClient({
             onClick={handlePlayClick}
           >
             <FontAwesomeIcon icon={isCurrentlyPlaying ? faPause : faPlay} />
-            {isCurrentlyPlaying ? 'Now Playing' : 'Play Message'}
+            {isCurrentlyPlaying ? 'Now Playing' : 'Play Audio'}
           </button>
         </div>
       )}
 
       {/* Collapsible Sections */}
+
+      {/* Video Section */}
+      {message.VideoUrl && (
+        <div className="message-detail__collapsible">
+          <button
+            className="message-detail__collapsible-header"
+            onClick={() => setShowVideo(!showVideo)}
+            aria-expanded={showVideo}
+          >
+            <span className="message-detail__collapsible-title">
+              <FontAwesomeIcon icon={faVideo} />
+              Watch Video
+            </span>
+            <FontAwesomeIcon icon={showVideo ? faChevronUp : faChevronDown} />
+          </button>
+          {showVideo && (
+            <div className="message-detail__collapsible-content message-detail__video-content">
+              <div className="message-detail__video-container">
+                <iframe
+                  src={getYouTubeEmbedUrl(message.VideoUrl)}
+                  title={message.Title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Sermon Notes Section */}
       {transcript?.Notes && (
