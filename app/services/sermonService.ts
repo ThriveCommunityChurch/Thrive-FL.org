@@ -5,6 +5,7 @@ import {
   SermonSeries,
   TranscriptResponse,
   SermonNotesResponse,
+  SitemapDataResponse,
 } from '../types/sermons';
 
 // ============================================
@@ -213,3 +214,14 @@ export async function getSermonNotes(messageId: string): Promise<SermonNotesResp
   }
 }
 
+/**
+ * Get sitemap data (all series and message IDs) for sitemap generation
+ * This returns minimal data needed for sitemap URLs in a single API call
+ */
+export async function getSitemapData(): Promise<SitemapDataResponse> {
+  const endpoint = '/api/Sermons/sitemap';
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    next: { revalidate: 7200 }, // Match sitemap ISR (2 hours)
+  });
+  return handleResponse<SitemapDataResponse>(response, endpoint);
+}
