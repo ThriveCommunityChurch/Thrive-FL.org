@@ -21,7 +21,18 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/"],
+      disallow: [
+        "/api/",
+        // Legacy WordPress paths
+        "/wp-", // All WordPress core files (/wp-content/, /wp-admin/, /wp-*.php, etc.)
+        "/feed/", // Old RSS feeds
+        "/teaching-series/", // Old sermon series structure
+        "/series/", // Old series page structure (/series/how-grace-changes-everything/, etc.)
+        "/podcast/", // Old podcast URLs - subpaths only (/podcast page is still valid)
+        // Query parameter patterns - block WordPress-style URLs
+        "/*?post_type=", // /?post_type=podcast&p=1
+        "/*?p=", // /?p=123 (WordPress post IDs)
+      ],
     },
     sitemap: "https://thrive-fl.org/sitemap.xml",
   };
