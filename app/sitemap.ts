@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
-import { getAllSermons } from "./services/sermonService";
+import { getSitemapData } from "./services/sermonService";
 
 const baseUrl = "https://thrive-fl.org";
 
-// ISR: Revalidate sitemap index every 2 hours
+// ISR: Revalidate sitemap every 2 hours
 export const revalidate = 7200;
 
 // Folders to exclude from sitemap
@@ -49,8 +49,8 @@ function getStaticPages(dir: string, basePath: string = ""): string[] {
 }
 
 /**
- * Main sitemap - returns a sitemap index pointing to child sitemaps
- * This is fast because it only lists the child sitemap URLs, not all pages
+ * Dynamic sitemap with all pages including individual sermon messages
+ * Uses single API call to get all series and message IDs
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const appDir = path.join(process.cwd(), "app");
@@ -68,22 +68,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  // Add sermon series pages (just the series, not individual messages)
-  // This only requires ONE API call, not N calls
-  let seriesEntries: MetadataRoute.Sitemap = [];
+  // Get all series and messages in a single API call
+  let sermonEntries: MetadataRoute.Sitemap = [];
 
   try {
-    const sermonsResponse = await getAllSermons(false);
-    seriesEntries = sermonsResponse.Summaries.map((series) => ({
-      url: `${baseUrl}/sermons/${series.Id}`,
-      lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    }));
+    const sitemapData = await getSitemapData();
+
+    // Flatten series and messages into sitemap entries
+    sermonEntries = sitemapData.Series.flatMap((series) => {
+      // Series page entry
+      const seriesEntry = {
+        url: `${baseUrl}/sermons/${series.Id}`,
+        lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      };
+
+      // Individual message page entries
+      const messageEntries = series.Messages.map((message) => ({
+        url: `${baseUrl}/sermons/${series.Id}/${message.Id}`,
+        lastModified: message.Date ? new Date(message.Date) : now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }));
+
+      return [seriesEntry, ...messageEntries];
+    });
   } catch (error) {
-    console.error("Failed to fetch sermon series for sitemap:", error);
+    console.error("Failed to fetch sitemap data:", error);
   }
 
-  return [...staticEntries, ...seriesEntries];
+  return [...staticEntries, ...sermonEntries];
 }
-

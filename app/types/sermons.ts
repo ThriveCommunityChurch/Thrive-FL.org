@@ -159,3 +159,31 @@ export interface QuoteResponse {
   Text: string;
   Context?: string;
 }
+
+// ============================================
+// SITEMAP TYPES
+// ============================================
+
+/**
+ * Minimal message data for sitemap generation
+ */
+export interface SitemapMessageData {
+  Id: string;
+  Date: string | null;
+}
+
+/**
+ * Minimal series data for sitemap generation
+ */
+export interface SitemapSeriesData {
+  Id: string;
+  LastUpdated: string;
+  Messages: SitemapMessageData[];
+}
+
+/**
+ * Response from GET /api/Sermons/sitemap
+ */
+export interface SitemapDataResponse {
+  Series: SitemapSeriesData[];
+}
