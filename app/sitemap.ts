@@ -1,13 +1,12 @@
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
-import { getAllSermons, getSeriesById } from "./services/sermonService";
+import { getAllSermons } from "./services/sermonService";
 
 const baseUrl = "https://thrive-fl.org";
 
-// ISR: Revalidate sitemap every hour (3600 seconds)
-// New sermons will appear in the sitemap within an hour without requiring a rebuild
-export const revalidate = 3600;
+// ISR: Revalidate sitemap index every 2 hours
+export const revalidate = 7200;
 
 // Folders to exclude from sitemap
 const excludedFolders = ["api", "components", "contexts", "lib", "services", "types"];
@@ -49,12 +48,16 @@ function getStaticPages(dir: string, basePath: string = ""): string[] {
   return pages;
 }
 
+/**
+ * Main sitemap - returns a sitemap index pointing to child sitemaps
+ * This is fast because it only lists the child sitemap URLs, not all pages
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const appDir = path.join(process.cwd(), "app");
   const staticPages = getStaticPages(appDir);
   const now = new Date();
 
-  // Build static page entries
+  // Build static page entries (these are fast - no API calls needed)
   const staticEntries: MetadataRoute.Sitemap = staticPages.map((route) => {
     const config = routeConfig[route] || defaultConfig;
     return {
@@ -65,52 +68,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  // Fetch dynamic sermon content
-  let sermonEntries: MetadataRoute.Sitemap = [];
+  // Add sermon series pages (just the series, not individual messages)
+  // This only requires ONE API call, not N calls
+  let seriesEntries: MetadataRoute.Sitemap = [];
 
   try {
-    // Get all sermon series summaries
-    const sermonsResponse = await getAllSermons(false); // false = use thumbnails, faster
-    const seriesSummaries = sermonsResponse.Summaries;
-
-    // Fetch full series data in parallel to get message IDs
-    const seriesPromises = seriesSummaries.map((summary) =>
-      getSeriesById(summary.Id).catch(() => null) // Gracefully handle individual failures
-    );
-    const seriesResults = await Promise.all(seriesPromises);
-
-    // Build sermon entries
-    for (const series of seriesResults) {
-      if (!series) continue;
-
-      // Add series page
-      sermonEntries.push({
-        url: `${baseUrl}/sermons/${series.Id}`,
-        lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
-        changeFrequency: "weekly",
-        priority: 0.7,
-      });
-
-      // Add individual message pages (only if they have actual content)
-      // Skip messages that are just placeholders with only a title/passage reference
-      for (const message of series.Messages) {
-        // A message has content if it has audio OR video
-        const hasContent = message.AudioUrl || message.VideoUrl;
-        if (!hasContent) continue;
-
-        sermonEntries.push({
-          url: `${baseUrl}/sermons/${series.Id}/${message.MessageId}`,
-          lastModified: message.Date ? new Date(message.Date) : now,
-          changeFrequency: "monthly", // Sermon content rarely changes after publishing
-          priority: 0.6,
-        });
-      }
-    }
+    const sermonsResponse = await getAllSermons(false);
+    seriesEntries = sermonsResponse.Summaries.map((series) => ({
+      url: `${baseUrl}/sermons/${series.Id}`,
+      lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
   } catch (error) {
-    // Log error but don't fail the entire sitemap
-    console.error("Failed to fetch sermon data for sitemap:", error);
+    console.error("Failed to fetch sermon series for sitemap:", error);
   }
 
-  return [...staticEntries, ...sermonEntries];
+  return [...staticEntries, ...seriesEntries];
 }
 

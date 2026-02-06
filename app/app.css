@@ -1235,28 +1235,13 @@ a:hover {
 
 .quicklinks-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-xl);
   position: relative;
 }
 
-/* Super wide screens (1800px+): 4 columns with fixed width, centered */
-@media (min-width: 1800px) {
-  .quicklinks-grid {
-    grid-template-columns: repeat(4, 400px);
-    justify-content: center;
-  }
-}
-
-/* Wide screens: 2x2 grid */
-@media (max-width: 1799px) and (min-width: 769px) {
-  .quicklinks-grid {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-  }
-}
-
 /* Small screens: single column */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .quicklinks-grid {
     grid-template-columns: 1fr;
   }
@@ -1798,27 +1783,12 @@ a:hover {
 
 .faq-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-xl);
 }
 
-/* Super wide screens (1800px+): 4 columns with fixed max width, centered */
-@media (min-width: 1800px) {
-  .faq-grid {
-    grid-template-columns: repeat(4, 400px);
-    justify-content: center;
-  }
-}
-
-/* Wide screens: 2x2 grid (default) */
-@media (max-width: 1799px) and (min-width: 769px) {
-  .faq-grid {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-  }
-}
-
 /* Small screens: single column */
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .faq-grid {
     grid-template-columns: 1fr;
   }
