@@ -5,8 +5,9 @@ import { getSitemapData } from "./services/sermonService";
 
 const baseUrl = "https://thrive-fl.org";
 
-// ISR: Revalidate sitemap every 2 hours
-export const revalidate = 7200;
+// Force dynamic rendering - sitemap regenerates on every request
+// API endpoint has 2-hour cache, so this is still performant
+export const dynamic = 'force-dynamic';
 
 // Folders to exclude from sitemap
 const excludedFolders = ["api", "components", "contexts", "lib", "services", "types"];
