@@ -290,9 +290,9 @@ export function SermonSeriesJsonLd({
 // Individual Sermon Message JSON-LD for message detail pages
 // Includes multiple schema types for rich results:
 // - PodcastEpisode (semantic understanding)
-// - VideoObject (video rich results - thumbnails in search)
 // - Article (article rich results - for transcript content)
 // - BreadcrumbList (navigation breadcrumbs in search)
+// Note: VideoObject is NOT included here - it's on the dedicated video watch page
 interface SermonMessageJsonLdProps {
   seriesId: string;
   seriesName: string;
@@ -304,7 +304,6 @@ interface SermonMessageJsonLdProps {
   passageRef?: string | null;
   audioUrl?: string | null;
   audioDuration?: number | null;
-  videoUrl?: string | null;
   image?: string;
   transcript?: string | null;
 }
@@ -320,7 +319,6 @@ export function SermonMessageJsonLd({
   passageRef,
   audioUrl,
   audioDuration,
-  videoUrl,
   image,
   transcript,
 }: SermonMessageJsonLdProps) {
@@ -421,36 +419,6 @@ export function SermonMessageJsonLd({
     inLanguage: "en-US",
   };
 
-  // VideoObject for video rich results (thumbnails in search)
-  // Only included if videoUrl is present
-  const videoObject = videoUrl ? {
-    "@type": "VideoObject",
-    name: title,
-    description,
-    thumbnailUrl: imageUrl,
-    uploadDate: date || undefined,
-    duration: formatDuration(audioDuration),
-    contentUrl: videoUrl,
-    embedUrl: videoUrl.includes("youtube.com/watch?v=")
-      ? videoUrl.replace("watch?v=", "embed/")
-      : videoUrl.includes("youtu.be/")
-        ? `https://www.youtube.com/embed/${videoUrl.split("youtu.be/")[1]}`
-        : videoUrl,
-    publisher: {
-      "@type": "Organization",
-      name: churchData.name,
-      logo: {
-        "@type": "ImageObject",
-        url: churchData.logo,
-      },
-    },
-    ...(transcript && {
-      transcript: transcript.length > 5000
-        ? transcript.substring(0, 5000) + "..."
-        : transcript,
-    }),
-  } : null;
-
   // Article for article rich results (headline, image, date in search)
   // Only included if transcript is present
   const article = transcript ? {
@@ -482,13 +450,177 @@ export function SermonMessageJsonLd({
   } : null;
 
   // Combine all schemas using @graph
+  // Note: VideoObject is on the dedicated video watch page, not here
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       breadcrumbList,
       podcastEpisode,
-      ...(videoObject ? [videoObject] : []),
       ...(article ? [article] : []),
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+// Video Watch Page JSON-LD - VideoObject as PRIMARY schema
+// This is specifically for dedicated video watch pages that follow Google's guidelines:
+// - Video is the PRIMARY purpose of the page
+// - Video is CENTRAL and immediately visible
+// - Minimal supporting content
+interface VideoWatchPageJsonLdProps {
+  seriesId: string;
+  seriesName: string;
+  messageId: string;
+  title: string;
+  speaker: string;
+  date?: string | null;
+  summary?: string | null;
+  videoUrl: string;
+  audioDuration?: number | null;
+  image?: string;
+}
+
+export function VideoWatchPageJsonLd({
+  seriesId,
+  seriesName,
+  messageId,
+  title,
+  speaker,
+  date,
+  summary,
+  videoUrl,
+  audioDuration,
+  image,
+}: VideoWatchPageJsonLdProps) {
+  // Format duration from seconds to ISO 8601 duration
+  const formatDuration = (seconds: number | null | undefined): string | undefined => {
+    if (!seconds) return undefined;
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    let duration = "PT";
+    if (hours > 0) duration += `${hours}H`;
+    if (minutes > 0) duration += `${minutes}M`;
+    if (secs > 0 || duration === "PT") duration += `${secs}S`;
+    return duration;
+  };
+
+  const videoPageUrl = `https://thrive-fl.org/sermons/${seriesId}/${messageId}/video`;
+  const messagePageUrl = `https://thrive-fl.org/sermons/${seriesId}/${messageId}`;
+  const seriesUrl = `https://thrive-fl.org/sermons/${seriesId}`;
+  const imageUrl = image || churchData.image;
+  const description = summary || `Watch "${title}" - A sermon from the "${seriesName}" series by ${speaker} at ${churchData.name}`;
+
+  // Convert YouTube URL to embed format
+  const getEmbedUrl = (url: string): string => {
+    if (url.includes("youtube.com/watch?v=")) {
+      return url.replace("watch?v=", "embed/");
+    } else if (url.includes("youtu.be/")) {
+      const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    return url;
+  };
+
+  // BreadcrumbList for navigation
+  const breadcrumbList = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://thrive-fl.org",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sermons",
+        item: "https://thrive-fl.org/sermons",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: seriesName,
+        item: seriesUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: title,
+        item: messagePageUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: "Video",
+        item: videoPageUrl,
+      },
+    ],
+  };
+
+  // VideoObject as PRIMARY schema - this is a VIDEO WATCH PAGE
+  const videoObject = {
+    "@type": "VideoObject",
+    "@id": videoPageUrl,
+    name: title,
+    description,
+    thumbnailUrl: imageUrl,
+    uploadDate: date || undefined,
+    duration: formatDuration(audioDuration),
+    contentUrl: videoUrl,
+    embedUrl: getEmbedUrl(videoUrl),
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    author: {
+      "@type": "Person",
+      name: speaker,
+    },
+    inLanguage: "en-US",
+  };
+
+  // WebPage indicating this is a video watch page
+  const webPage = {
+    "@type": "WebPage",
+    "@id": videoPageUrl,
+    url: videoPageUrl,
+    name: `${title} - Video`,
+    description,
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: imageUrl,
+    },
+    mainEntity: {
+      "@id": videoPageUrl,
+    },
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": "https://thrive-fl.org/#website",
+      url: "https://thrive-fl.org",
+      name: churchData.name,
+    },
+  };
+
+  // Combine schemas with VideoObject as main entity
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList,
+      videoObject,
+      webPage,
     ],
   };
 

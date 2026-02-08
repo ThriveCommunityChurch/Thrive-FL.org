@@ -97,15 +97,13 @@ export default function SermonMessageCard({
                 <FontAwesomeIcon icon={faFileAlt} />
               </Link>
               {message.VideoUrl && (
-                <a
-                  href={message.VideoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/sermons/${seriesId}/${message.MessageId}/video`}
                   className="sermon-message-card__action-btn"
-                  title="Watch on YouTube"
+                  title="Watch Video"
                 >
                   <FontAwesomeIcon icon={faYoutube} />
-                </a>
+                </Link>
               )}
               {message.AudioUrl && (
                 <a

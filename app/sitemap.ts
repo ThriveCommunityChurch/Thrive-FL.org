@@ -86,12 +86,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       };
 
       // Individual message page entries
-      const messageEntries = series.Messages.map((message) => ({
-        url: `${baseUrl}/sermons/${series.Id}/${message.Id}`,
-        lastModified: message.Date ? new Date(message.Date) : now,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      }));
+      const messageEntries = series.Messages.flatMap((message) => {
+        const entries = [
+          {
+            url: `${baseUrl}/sermons/${series.Id}/${message.Id}`,
+            lastModified: message.Date ? new Date(message.Date) : now,
+            changeFrequency: "monthly" as const,
+            priority: 0.6,
+          },
+        ];
+
+        // Add video watch page entry if message has a video
+        if (message.HasVideo) {
+          entries.push({
+            url: `${baseUrl}/sermons/${series.Id}/${message.Id}/video`,
+            lastModified: message.Date ? new Date(message.Date) : now,
+            changeFrequency: "monthly" as const,
+            priority: 0.6,
+          });
+        }
+
+        return entries;
+      });
 
       return [seriesEntry, ...messageEntries];
     });
