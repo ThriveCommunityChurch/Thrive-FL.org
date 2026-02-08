@@ -170,6 +170,7 @@ export interface QuoteResponse {
 export interface SitemapMessageData {
   Id: string;
   Date: string | null;
+  HasVideo: boolean;
 }
 
 /**
