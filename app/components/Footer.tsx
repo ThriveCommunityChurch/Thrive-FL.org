@@ -12,6 +12,7 @@ export default function Footer() {
           <div className="footer-brand">
             <h3 className="footer-logo">Thrive Community Church</h3>
             <p className="footer-tagline">You Belong</p>
+            <p className="footer-location">Serving Southwest Florida from Estero</p>
             <p className="footer-affiliation">
               A congregation of the <a href="https://www.lcms.org/" target="_blank" rel="noopener noreferrer">Lutheran Church—Missouri Synod</a>
             </p>
