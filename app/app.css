@@ -6555,6 +6555,22 @@ a:hover {
   margin-left: var(--spacing-sm);
 }
 
+.message-detail__header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.message-detail__download-icon {
+  color: var(--color-gray-500);
+  transition: color var(--transition-fast);
+  margin-right: 10px;
+}
+
+.message-detail__download-icon:hover {
+  color: var(--color-primary);
+}
+
 .message-detail__collapsible-content {
   padding: 0 var(--spacing-xl) var(--spacing-xl);
   border-top: 1px solid var(--color-gray-100);
@@ -8972,6 +8988,15 @@ a:hover {
   color: var(--color-gray-600);
 }
 
+/* Responsive breadcrumb text - full on large, short on small */
+.video-watch-breadcrumb-text-short {
+  display: none;
+}
+
+.video-watch-breadcrumb-text-full {
+  display: inline;
+}
+
 .video-watch-section {
   background: var(--color-gray-900);
   min-height: 100vh;
@@ -9040,6 +9065,38 @@ a:hover {
   color: var(--color-primary-light);
   flex-shrink: 0;
   margin-top: -.125rem;
+}
+
+/* Download transcript button - below video */
+.video-watch-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-gray-300);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.video-watch-download-btn:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.video-watch-download-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.video-watch-download-btn svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .video-watch-actions {
@@ -9116,6 +9173,15 @@ a:hover {
     justify-content: center;
   }
 
+  /* Swap breadcrumb text on mobile */
+  .video-watch-breadcrumb-text-full {
+    display: none;
+  }
+
+  .video-watch-breadcrumb-text-short {
+    display: inline;
+  }
+
   .video-watch-section {
     padding: var(--spacing-md) 0 var(--spacing-2xl);
     padding-top: calc(var(--header-height) + var(--spacing-md));
@@ -9132,6 +9198,11 @@ a:hover {
   .video-watch-meta {
     flex-direction: column;
     gap: var(--spacing-sm);
+  }
+
+  .video-watch-download-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

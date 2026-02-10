@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
-import { getSeriesById, getMessageTranscript, formatSermonDate } from "../../../../services/sermonService";
+import { getSeriesById, formatSermonDate } from "../../../../services/sermonService";
 import { VideoWatchPageJsonLd } from "../../../../components/JsonLd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faBook, faLayerGroup, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import VideoWatchClient from "./VideoWatchClient";
 
 interface PageProps {
   params: Promise<{ seriesId: string; messageId: string }>;
@@ -59,7 +60,6 @@ export default async function VideoWatchPage({ params }: PageProps) {
 
   let series = null;
   let message = null;
-  let transcript = null;
 
   try {
     series = await getSeriesById(seriesId);
@@ -73,9 +73,6 @@ export default async function VideoWatchPage({ params }: PageProps) {
     if (!message.VideoUrl) {
       redirect(`/sermons/${seriesId}/${messageId}`);
     }
-
-    // Fetch transcript
-    transcript = await getMessageTranscript(messageId);
   } catch {
     notFound();
   }
@@ -100,21 +97,24 @@ export default async function VideoWatchPage({ params }: PageProps) {
         image={series.ArtUrl || series.Thumbnail}
       />
 
-      {/* Video Watch Page Content */}
+      {/* Video Watch Page Content - Minimal content to signal VIDEO as PRIMARY purpose */}
       <section className="video-watch-section">
         <div className="container">
           {/* Breadcrumb Links */}
           <div className="video-watch-breadcrumb">
             <Link href={`/sermons/${seriesId}`} className="video-watch-breadcrumb-link">
               <FontAwesomeIcon icon={faLayerGroup} />
-              {series.Name} Series
+              <span className="video-watch-breadcrumb-text-full">{series.Name} Series</span>
+              <span className="video-watch-breadcrumb-text-short">Series</span>
             </Link>
             <span className="video-watch-breadcrumb-divider">|</span>
             <Link href={`/sermons/${seriesId}/${messageId}`} className="video-watch-breadcrumb-link">
               <FontAwesomeIcon icon={faMicrophone} />
-              View Message
+              <span className="video-watch-breadcrumb-text-full">View Message</span>
+              <span className="video-watch-breadcrumb-text-short">Message</span>
             </Link>
           </div>
+
           {/* Video Player - PRIMARY CONTENT */}
           <div className="video-watch-player">
             <div className="video-watch-container">
@@ -127,7 +127,7 @@ export default async function VideoWatchPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Video Info */}
+          {/* Video Info - Minimal metadata */}
           <div className="video-watch-info">
             <h1 className="video-watch-title">{message.Title}</h1>
 
@@ -149,19 +149,13 @@ export default async function VideoWatchPage({ params }: PageProps) {
                 </span>
               )}
             </div>
-          </div>
 
-          {/* Transcript Section */}
-          {transcript?.FullText && (
-            <div className="video-watch-transcript">
-              <h2 className="video-watch-transcript-title">Transcript</h2>
-              <div className="video-watch-transcript-content">
-                {transcript.FullText.split('\n\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-          )}
+            {/* Download transcript button - fetches client-side, no text in HTML */}
+            <VideoWatchClient
+              messageId={messageId}
+              messageTitle={message.Title}
+            />
+          </div>
         </div>
       </section>
     </div>
