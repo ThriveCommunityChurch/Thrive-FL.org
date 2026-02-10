@@ -26,17 +26,17 @@ import {
 
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
-  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. A congregation of the Lutheran Church—Missouri Synod.",
+  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM near FGCU, Bonita Springs & Fort Myers. A Lutheran Church—Missouri Synod congregation.",
   openGraph: {
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL.",
+    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL near FGCU.",
     url: "https://thrive-fl.org",
     images: [
       {
         url: "https://static.thrive-fl.org/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Thrive Community Church",
+        alt: "Thrive Community Church in Estero, FL",
       },
     ],
   },
@@ -182,17 +182,17 @@ export default function HomePage() {
         <div className="container">
           <div className="welcome-content">
             <div className="welcome-text">
-              <h2 className="section-title">A Church For Our City</h2>
+              <h2 className="section-title">A Church For Southwest Florida</h2>
               <p className="welcome-lead">
                 Thrive is more than just a meeting to attend. It&apos;s a diverse,
                 spiritually growing family to be a part of, centered on the person
                 and mission of Jesus Christ.
               </p>
               <p>
-                We&apos;re actively working to build a great city, renewed by the truth,
-                grace, and changing power of the gospel. Whether you&apos;re exploring
-                faith for the first time or looking for a church home, you&apos;ll find
-                a warm welcome here.
+                Located in Estero, we&apos;re actively working to build a great community
+                across Southwest Florida—renewed by the truth, grace, and changing power
+                of the gospel. Whether you&apos;re exploring faith for the first time or
+                looking for a church home, you&apos;ll find a warm welcome here.
               </p>
               <a href="/im-new" className="btn btn-outline">
                 Learn More About Us

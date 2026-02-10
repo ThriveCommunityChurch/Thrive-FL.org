@@ -4,6 +4,7 @@
 // Church/Organization data used across the site
 export const churchData = {
   name: "Thrive Community Church",
+  alternateName: ["Thrive Church Estero", "Thrive Estero", "Thrive Community Church Estero"],
   description: "A Lutheran Church—Missouri Synod congregation in Estero, FL offering contemporary worship, biblical teaching, and genuine community.",
   url: "https://thrive-fl.org",
   logo: "https://static.thrive-fl.org/thrive-logo.png",
@@ -21,6 +22,14 @@ export const churchData = {
     latitude: 26.430716,
     longitude: -81.793833,
   },
+  areaServed: [
+    "Estero, FL",
+    "Bonita Springs, FL",
+    "Fort Myers, FL",
+    "Naples, FL",
+    "San Carlos Park, FL",
+    "Southwest Florida",
+  ],
   openingHours: "Su 10:00-12:00",
   sameAs: [
     "https://www.facebook.com/thriveFL",
@@ -34,8 +43,9 @@ export const churchData = {
 export function OrganizationJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["Church", "Organization"],
+    "@type": ["Church", "Organization", "LocalBusiness"],
     name: churchData.name,
+    alternateName: churchData.alternateName,
     description: churchData.description,
     url: churchData.url,
     logo: churchData.logo,
@@ -51,6 +61,10 @@ export function OrganizationJsonLd() {
       latitude: churchData.geo.latitude,
       longitude: churchData.geo.longitude,
     },
+    areaServed: churchData.areaServed.map(area => ({
+      "@type": "City",
+      name: area,
+    })),
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: "Sunday",

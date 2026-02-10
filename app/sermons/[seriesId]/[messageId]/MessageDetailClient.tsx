@@ -12,6 +12,7 @@ import {
   faVideo,
   faChevronDown,
   faChevronUp,
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 
 interface MessageDetailClientProps {
@@ -43,6 +44,21 @@ export default function MessageDetailClient({
   const getBibleGatewayUrl = (passage: string) => {
     const encodedPassage = encodeURIComponent(passage);
     return `https://www.biblegateway.com/passage/?search=${encodedPassage}&version=ESV`;
+  };
+
+  // Download transcript as text file
+  const handleDownloadTranscript = () => {
+    if (!transcript?.FullText) return;
+
+    const blob = new Blob([transcript.FullText], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${message.Title} - Transcript.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -181,7 +197,21 @@ export default function MessageDetailClient({
                 ({transcript.WordCount.toLocaleString()} words)
               </span>
             </span>
-            <FontAwesomeIcon icon={showTranscript ? faChevronUp : faChevronDown} />
+            <span className="message-detail__header-actions">
+              <span
+                className="message-detail__download-icon"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDownloadTranscript();
+                }}
+                title="Download Transcript"
+                role="button"
+                tabIndex={0}
+              >
+                <FontAwesomeIcon icon={faDownload} />
+              </span>
+              <FontAwesomeIcon icon={showTranscript ? faChevronUp : faChevronDown} />
+            </span>
           </button>
           {showTranscript && (
             <div className="message-detail__collapsible-content">
