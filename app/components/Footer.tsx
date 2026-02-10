@@ -67,6 +67,9 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Thrive Community Church. All rights reserved.</p>
+          <p className="build-version">
+            {process.env.NEXT_PUBLIC_BUILD_VERSION || "vXXXX.XX.XX-X"}
+          </p>
         </div>
       </div>
     </footer>
