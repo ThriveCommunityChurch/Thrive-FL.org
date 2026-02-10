@@ -1613,6 +1613,13 @@ a:hover {
   opacity: 0.6;
 }
 
+.footer-bottom .build-version {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs, 0.75rem);
+  opacity: 0.4;
+  font-family: monospace;
+}
+
 @media (max-width: 992px) {
   .footer-content {
     grid-template-columns: 1fr 1fr;
