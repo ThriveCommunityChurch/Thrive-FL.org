@@ -13,7 +13,7 @@ import {
 // ============================================
 
 // API Base URL - uses environment variable with fallback to production
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api2.thrive-fl.org';
 
 // ============================================
 // ERROR HANDLING
