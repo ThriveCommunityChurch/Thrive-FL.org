@@ -5868,7 +5868,6 @@ a:hover {
 
 .series-detail-breadcrumb-link:hover {
   color: var(--color-primary);
-  background: rgba(0, 0, 0, 0.05);
 }
 
 .series-detail-breadcrumb-link svg {
