@@ -5841,8 +5841,9 @@ a:hover {
 
 /* Series Detail Page */
 .breadcrumb-nav {
-  background: var(--color-white);
+  background: var(--color-secondary);
   padding: var(--spacing-md) 0;
+  padding-top: calc(var(--header-height) + var(--spacing-md));
   border-bottom: 1px solid var(--color-gray-200);
 }
 
@@ -5850,15 +5851,16 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--color-gray-600);
+  color: var(--color-white);
   text-decoration: none;
   font-size: var(--font-size-sm);
   font-weight: 500;
-  transition: color var(--transition-fast);
+  transition: opacity var(--transition-fast);
 }
 
 .breadcrumb-link:hover {
-  color: var(--color-primary);
+  color: var(--color-white);
+  opacity: 0.8;
 }
 
 .series-detail-section {
