@@ -1651,6 +1651,10 @@ a:hover {
   min-height: 100vh;
 }
 
+/* Message detail page doesn't need min-height to avoid extra whitespace */
+.page-wrapper--message-detail {
+  min-height: auto;
+}
 
 /* ============================================
    Accessibility

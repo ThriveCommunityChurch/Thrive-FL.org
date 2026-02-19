@@ -13,12 +13,18 @@ interface SermonFiltersProps {
 export default function SermonFilters({ series }: SermonFiltersProps) {
   const [selectedYear, setSelectedYear] = useState<string>('all');
 
+  // Helper to get UTC year from date string (avoids timezone conversion issues)
+  const getUTCYear = (dateString: string): number => {
+    const date = new Date(dateString);
+    return date.getUTCFullYear();
+  };
+
   // Extract unique years from series StartDate, sorted descending (newest first)
   const years = useMemo(() => {
     const yearSet = new Set<number>();
     series.forEach((s) => {
       if (s.StartDate) {
-        const year = new Date(s.StartDate).getFullYear();
+        const year = getUTCYear(s.StartDate);
         if (!isNaN(year)) {
           yearSet.add(year);
         }
@@ -35,7 +41,7 @@ export default function SermonFilters({ series }: SermonFiltersProps) {
     const yearNum = parseInt(selectedYear, 10);
     return series.filter((s) => {
       if (!s.StartDate) return false;
-      const seriesYear = new Date(s.StartDate).getFullYear();
+      const seriesYear = getUTCYear(s.StartDate);
       return seriesYear === yearNum;
     });
   }, [series, selectedYear]);

@@ -97,7 +97,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper page-wrapper--message-detail">
       {/* JSON-LD Structured Data for SEO */}
       {series && message && (
         <SermonMessageJsonLd
