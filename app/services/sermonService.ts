@@ -105,8 +105,9 @@ export function formatFileSize(mb: number | null): string {
 
 /**
  * Format date string to readable format
- * Note: timeZone is specified to ensure consistent rendering between server and client
- * to prevent React hydration mismatches.
+ * Note: Using timeZone 'UTC' because dates from the API are already in the correct
+ * local time and should be displayed as-is without timezone conversion.
+ * This also ensures consistent rendering between server and client.
  */
 export function formatSermonDate(dateString: string | null): string {
   if (!dateString) return '';
@@ -116,14 +117,15 @@ export function formatSermonDate(dateString: string | null): string {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-    timeZone: 'America/New_York',
+    timeZone: 'UTC',
   });
 }
 
 /**
  * Format date range for series display
- * Note: timeZone is specified to ensure consistent rendering between server and client
- * to prevent React hydration mismatches.
+ * Note: Using timeZone 'UTC' because dates from the API are already in the correct
+ * local time and should be displayed as-is without timezone conversion.
+ * This also ensures consistent rendering between server and client.
  */
 export function formatSeriesDateRange(startDate: string | null, endDate: string | null): string {
   if (!startDate) return '';
@@ -132,7 +134,7 @@ export function formatSeriesDateRange(startDate: string | null, endDate: string 
   const startStr = start.toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
-    timeZone: 'America/New_York',
+    timeZone: 'UTC',
   });
 
   if (!endDate) {
@@ -143,7 +145,7 @@ export function formatSeriesDateRange(startDate: string | null, endDate: string 
   const endStr = end.toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
-    timeZone: 'America/New_York',
+    timeZone: 'UTC',
   });
 
   // If same month and year, just show one date
