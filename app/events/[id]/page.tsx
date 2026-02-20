@@ -33,12 +33,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const url = `https://thrive-fl.org/events/${id}`;
 
     // Format event date for display
+    // Using timeZone 'UTC' because dates from the API are already in the correct
+    // local time and should be displayed as-is without timezone conversion.
     const eventDate = new Date(event.StartTime);
     const formattedDate = eventDate.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     });
 
     // Use event image if available, otherwise use default OG image
@@ -127,7 +130,7 @@ export default async function EventDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper--event-detail">
       {/* JSON-LD Structured Data for SEO */}
       {eventJsonLd}
 

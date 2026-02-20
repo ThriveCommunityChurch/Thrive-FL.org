@@ -115,8 +115,9 @@ export function getRecurrencePatternLabel(pattern: string | RecurrencePattern): 
 
 /**
  * Format event date for display
- * Note: timeZone is specified to ensure consistent rendering between server and client
- * to prevent React hydration mismatches.
+ * Note: Using timeZone 'UTC' because dates from the API are already in the correct
+ * local time and should be displayed as-is without timezone conversion.
+ * This also ensures consistent rendering between server and client.
  */
 export function formatEventDate(dateString: string): string {
   const date = new Date(dateString);
@@ -124,7 +125,7 @@ export function formatEventDate(dateString: string): string {
     weekday: 'short',
     month: 'short',
     day: 'numeric',
-    timeZone: 'America/New_York',
+    timeZone: 'UTC',
   });
 }
 
@@ -147,6 +148,8 @@ export function formatEventTime(dateString: string): string {
 
 /**
  * Format event date range
+ * Note: Using UTC date methods because dates from the API are already in the correct
+ * local time and should be compared as-is without timezone conversion.
  */
 export function formatEventDateRange(startTime: string, endTime?: string): string {
   const start = new Date(startTime);
@@ -160,8 +163,13 @@ export function formatEventDateRange(startTime: string, endTime?: string): strin
   const end = new Date(endTime);
   const endTimeStr = formatEventTime(endTime);
 
-  // Same day event
-  if (start.toDateString() === end.toDateString()) {
+  // Same day event - compare using UTC to avoid timezone shifts
+  const isSameDay =
+    start.getUTCFullYear() === end.getUTCFullYear() &&
+    start.getUTCMonth() === end.getUTCMonth() &&
+    start.getUTCDate() === end.getUTCDate();
+
+  if (isSameDay) {
     return `${startDate}, ${startTimeStr} - ${endTimeStr}`;
   }
 
@@ -173,17 +181,22 @@ export function formatEventDateRange(startTime: string, endTime?: string): strin
 /**
  * Check if an event occurs on a specific date
  * Uses RecurrenceDayOfWeek from API for weekly events
+ *
+ * Note: Uses UTC methods for eventStart because API dates represent the actual
+ * date stored as UTC midnight. The date parameter from calendar UI uses local methods
+ * since it represents the local calendar day being viewed.
  */
 export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
   const eventStart = new Date(event.StartTime);
   const pattern = parseRecurrencePattern(event.RecurrencePattern);
 
   // For non-recurring events, check if the date matches the start date
+  // Use UTC methods for eventStart since API dates are stored as UTC
   if (!event.IsRecurring || pattern === RecurrencePattern.None) {
     return (
-      date.getFullYear() === eventStart.getFullYear() &&
-      date.getMonth() === eventStart.getMonth() &&
-      date.getDate() === eventStart.getDate()
+      date.getFullYear() === eventStart.getUTCFullYear() &&
+      date.getMonth() === eventStart.getUTCMonth() &&
+      date.getDate() === eventStart.getUTCDate()
     );
   }
 
@@ -191,23 +204,26 @@ export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
   switch (pattern) {
     case RecurrencePattern.Weekly:
       // Use RecurrenceDayOfWeek from API (0 = Sunday, 6 = Saturday)
-      const dayOfWeek = event.RecurrenceDayOfWeek ?? eventStart.getDay();
+      // Use getUTCDay() for eventStart since it's from API
+      const dayOfWeek = event.RecurrenceDayOfWeek ?? eventStart.getUTCDay();
       return date.getDay() === dayOfWeek;
     case RecurrencePattern.Daily:
       return date >= eventStart;
     case RecurrencePattern.BiWeekly:
       // Check if it's the correct day of week and correct week interval
-      if (date.getDay() !== (event.RecurrenceDayOfWeek ?? eventStart.getDay())) {
+      if (date.getDay() !== (event.RecurrenceDayOfWeek ?? eventStart.getUTCDay())) {
         return false;
       }
       const weeksDiff = Math.floor((date.getTime() - eventStart.getTime()) / (7 * 24 * 60 * 60 * 1000));
       return weeksDiff >= 0 && weeksDiff % 2 === 0;
     case RecurrencePattern.Monthly:
-      return date.getDate() === eventStart.getDate() && date >= eventStart;
+      // Use getUTCDate() for eventStart since it's from API
+      return date.getDate() === eventStart.getUTCDate() && date >= eventStart;
     case RecurrencePattern.Yearly:
+      // Use UTC methods for eventStart since it's from API
       return (
-        date.getMonth() === eventStart.getMonth() &&
-        date.getDate() === eventStart.getDate() &&
+        date.getMonth() === eventStart.getUTCMonth() &&
+        date.getDate() === eventStart.getUTCDate() &&
         date >= eventStart
       );
     default:

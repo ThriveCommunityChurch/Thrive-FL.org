@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft,
   faCalendar,
   faCalendarCheck,
   faChurch,
-  faClock,
   faEnvelope,
   faExclamationTriangle,
   faExternalLinkAlt,
@@ -35,6 +33,11 @@ interface EventDetailClientProps {
 }
 
 export default function EventDetailClient({ eventId, initialEvent }: EventDetailClientProps) {
+  const searchParams = useSearchParams();
+  const occurrenceDateParam = searchParams.get('date');
+
+  // Parse the occurrence date from URL if provided (format: YYYY-MM-DD)
+  const occurrenceDate = occurrenceDateParam ? new Date(occurrenceDateParam + 'T00:00:00') : null;
   const [event, setEvent] = useState<Event | null>(initialEvent || null);
   const [isLoading, setIsLoading] = useState(!initialEvent);
   const [error, setError] = useState<string | null>(null);
@@ -64,7 +67,76 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
     loadEvent();
   }, [eventId, initialEvent]);
 
-  // Format full event date/time display
+  // Format event time (without date) for recurring events
+  const getTimeOnlyDisplay = () => {
+    if (!event) return '';
+    if (event.IsAllDay) return 'All Day';
+
+    const startDate = new Date(event.StartTime);
+    const startTime = startDate.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+      timeZone: 'America/New_York',
+    });
+
+    if (event.EndTime) {
+      const endDate = new Date(event.EndTime);
+      const endTime = endDate.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'America/New_York',
+      });
+      return `${startTime} - ${endTime}`;
+    }
+
+    return startTime;
+  };
+
+  // Get the day of week for recurring events (e.g., "Sundays", "Tuesdays")
+  const getRecurringDayDisplay = () => {
+    if (!event?.Recurrence) return '';
+    const dayOfWeek = event.Recurrence.DayOfWeek;
+    if (dayOfWeek === undefined) return '';
+
+    const days = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
+    return days[dayOfWeek] || '';
+  };
+
+  // Format recurrence schedule for display (e.g., "Every Sunday at 10:00 AM")
+  const getRecurrenceScheduleDisplay = () => {
+    if (!event?.IsRecurring || !event.Recurrence) return null;
+
+    const pattern = event.Recurrence.Pattern;
+    const timeStr = getTimeOnlyDisplay();
+    const dayStr = getRecurringDayDisplay();
+
+    // Normalize pattern to string for comparison (API returns string like "Weekly")
+    const patternStr = typeof pattern === 'string' ? pattern : getRecurrencePatternLabel(pattern);
+
+    // Build the schedule string based on recurrence pattern
+    switch (patternStr) {
+      case 'Daily':
+        return `Every day at ${timeStr}`;
+      case 'Weekly':
+        return dayStr ? `Every ${dayStr.slice(0, -1)} at ${timeStr}` : `Every week at ${timeStr}`;
+      case 'Bi-Weekly':
+      case 'BiWeekly':
+        return dayStr ? `Every other ${dayStr.slice(0, -1)} at ${timeStr}` : `Every other week at ${timeStr}`;
+      case 'Monthly':
+        return `Monthly at ${timeStr}`;
+      case 'Yearly':
+        return `Yearly at ${timeStr}`;
+      default:
+        // Fallback: just show the time
+        return `At ${timeStr}`;
+    }
+  };
+
+  // Format full event date/time display (for one-time events)
+  // Using timeZone 'UTC' because dates from the API are already in the correct
+  // local time and should be displayed as-is without timezone conversion.
   const getEventDateDisplay = () => {
     if (!event) return '';
     const startDate = new Date(event.StartTime);
@@ -73,6 +145,7 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     };
     return startDate.toLocaleDateString('en-US', options);
   };
@@ -83,15 +156,22 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
     return formatEventDateRange(event.StartTime, event.EndTime);
   };
 
-  // Format recurrence description
-  const getRecurrenceDescription = () => {
-    if (!event?.IsRecurring || !event.Recurrence) return null;
-    const pattern = getRecurrencePatternLabel(event.Recurrence.Pattern);
-    let description = `Repeats ${pattern.toLowerCase()}`;
-    if (event.Recurrence.EndDate) {
-      description += ` until ${formatEventDate(event.Recurrence.EndDate)}`;
-    }
-    return description;
+  // Format the specific occurrence date (when user clicked a specific date)
+  const getOccurrenceDateDisplay = () => {
+    if (!occurrenceDate) return '';
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    return occurrenceDate.toLocaleDateString('en-US', options);
+  };
+
+  // Format recurrence end date description
+  const getRecurrenceEndDescription = () => {
+    if (!event?.IsRecurring || !event.Recurrence?.EndDate) return null;
+    return `Until ${formatEventDate(event.Recurrence.EndDate)}`;
   };
 
   if (error) {
@@ -163,20 +243,39 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
       <div className="event-detail-body">
         <div className="event-detail-main">
           {/* Date & Time */}
-          <div className="event-detail-section">
-            <h2><FontAwesomeIcon icon={faCalendar} /> Date & Time</h2>
-            <p className="event-date-primary">{getEventDateDisplay()}</p>
-            <p className="event-time-primary">{getEventTimeDisplay()}</p>
-            {getRecurrenceDescription() && (
-              <p className="event-recurrence">
-                <FontAwesomeIcon icon={faRepeat} /> {getRecurrenceDescription()}
-              </p>
+          <div className="event-detail-block">
+            <h2><FontAwesomeIcon icon={faCalendar} /> When</h2>
+            {event.IsRecurring ? (
+              occurrenceDate ? (
+                // User clicked on a specific occurrence - show that date
+                <>
+                  <p className="event-date-primary">{getOccurrenceDateDisplay()}</p>
+                  <p className="event-time-primary">{getTimeOnlyDisplay()}</p>
+                  <p className="event-recurrence-note">
+                    <FontAwesomeIcon icon={faRepeat} /> {getRecurrenceScheduleDisplay()}
+                  </p>
+                </>
+              ) : (
+                // Direct URL access - show recurrence pattern only
+                <>
+                  <p className="event-date-primary">{getRecurrenceScheduleDisplay()}</p>
+                  {getRecurrenceEndDescription() && (
+                    <p className="event-time-primary">{getRecurrenceEndDescription()}</p>
+                  )}
+                </>
+              )
+            ) : (
+              // One-time event - show specific date/time
+              <>
+                <p className="event-date-primary">{getEventDateDisplay()}</p>
+                <p className="event-time-primary">{getEventTimeDisplay()}</p>
+              </>
             )}
           </div>
 
           {/* Description */}
           {event.Description && (
-            <div className="event-detail-section">
+            <div className="event-detail-block">
               <h2>About This Event</h2>
               <div className="event-description">
                 {event.Description.split('\n').map((paragraph, idx) => (
@@ -188,7 +287,7 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
 
           {/* Tags */}
           {event.Tags && event.Tags.length > 0 && (
-            <div className="event-detail-section">
+            <div className="event-detail-block">
               <h2><FontAwesomeIcon icon={faTag} /> Tags</h2>
               <div className="event-tags">
                 {event.Tags.map((tag, idx) => (

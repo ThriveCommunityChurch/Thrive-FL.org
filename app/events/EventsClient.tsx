@@ -59,6 +59,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [selectedEventSummary, setSelectedEventSummary] = useState<EventSummary | null>(null);
+  const [selectedOccurrenceDate, setSelectedOccurrenceDate] = useState<Date | null>(null);
   const [viewMode, setViewMode] = useState<"month" | "list">("month");
   const [events] = useState<EventSummary[]>(initialEvents);
   const [loadingEventDetails, setLoadingEventDetails] = useState(false);
@@ -68,8 +69,9 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
   const today = new Date();
 
   // Fetch full event details when an event is clicked
-  const handleEventClick = async (eventSummary: EventSummary) => {
+  const handleEventClick = async (eventSummary: EventSummary, occurrenceDate?: Date) => {
     setSelectedEventSummary(eventSummary);
+    setSelectedOccurrenceDate(occurrenceDate || null);
     setLoadingEventDetails(true);
     try {
       const response = await getEventById(eventSummary.Id);
@@ -86,6 +88,19 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
   const closeModal = () => {
     setSelectedEvent(null);
     setSelectedEventSummary(null);
+    setSelectedOccurrenceDate(null);
+  };
+
+  // Build the event detail URL with optional occurrence date
+  const getEventDetailUrl = () => {
+    const eventId = selectedEvent?.Id || selectedEventSummary?.Id;
+    if (!eventId) return '/events';
+
+    if (selectedOccurrenceDate) {
+      const dateStr = selectedOccurrenceDate.toISOString().split('T')[0];
+      return `/events/${eventId}?date=${dateStr}`;
+    }
+    return `/events/${eventId}`;
   };
 
   const navigateMonth = (direction: number) => {
@@ -204,7 +219,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                 <div
                   key={index}
                   className={`calendar-day ${!isCurrentMonth ? 'other-month' : ''} ${isToday(date) ? 'today' : ''} ${hasEvents ? 'has-events' : ''}`}
-                  onClick={() => hasEvents && handleEventClick(dayEvents[0])}
+                  onClick={() => hasEvents && handleEventClick(dayEvents[0], date)}
                 >
                   <span className="day-number">{date.getDate()}</span>
                   {hasEvents && (
@@ -236,7 +251,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
               <div
                 key={`${event.Id}-${index}`}
                 className="event-list-item"
-                onClick={() => handleEventClick(event)}
+                onClick={() => handleEventClick(event, date)}
               >
                 <div className="event-list-date">
                   <span className="event-list-day">{date.getDate()}</span>
@@ -369,7 +384,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                   )}
                 </div>
                 <div className="event-modal-actions">
-                  <a href={`/events/${selectedEvent?.Id || selectedEventSummary?.Id}`} className="btn btn-primary btn-block">
+                  <a href={getEventDetailUrl()} className="btn btn-primary btn-block">
                     View Full Details
                   </a>
                   {!(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) && (
