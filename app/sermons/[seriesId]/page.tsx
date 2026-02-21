@@ -92,19 +92,16 @@ export default async function SeriesDetailPage({ params }: PageProps) {
         />
       )}
 
-      {/* Breadcrumb */}
-      <nav className="breadcrumb-nav">
-        <div className="container">
-          <Link href="/sermons" className="breadcrumb-link">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            All Series
-          </Link>
-        </div>
-      </nav>
-
       {/* Series Detail Content */}
       <section className="section series-detail-section">
         <div className="container">
+          {/* Breadcrumb */}
+          <div className="series-detail-breadcrumb">
+            <Link href="/sermons" className="series-detail-breadcrumb-link">
+              <FontAwesomeIcon icon={faArrowLeft} />
+              All Series
+            </Link>
+          </div>
           {error ? (
             <div className="sermon-error-state">
               <FontAwesomeIcon icon={faExclamationTriangle} />

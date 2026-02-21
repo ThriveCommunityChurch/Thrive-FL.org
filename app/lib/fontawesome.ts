@@ -81,6 +81,7 @@ import {
   faFacebookF,
   faInstagram,
   faXTwitter,
+  faYelp,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 
@@ -162,6 +163,7 @@ library.add(
   faFacebookF,
   faInstagram,
   faXTwitter,
+  faYelp,
   faYoutube,
   // Regular
   faCalendarRegular,

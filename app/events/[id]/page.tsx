@@ -6,7 +6,7 @@ import { EventJsonLd } from "../../components/JsonLd";
 import EventDetailClient from "./EventDetailClient";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // ISR: Revalidate every 5 minutes (300 seconds)
@@ -15,8 +15,9 @@ export const revalidate = 300;
 
 // Generate dynamic metadata based on event data
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
   try {
-    const response = await getEventById(params.id);
+    const response = await getEventById(id);
     const event = response.Event;
 
     if (!event) {
@@ -29,15 +30,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const title = `${event.Title} | Thrive Community Church`;
     const description = event.Summary || event.Description?.substring(0, 160) ||
       `Join us for ${event.Title} at Thrive Community Church in Estero, FL.`;
-    const url = `https://thrive-fl.org/events/${params.id}`;
+    const url = `https://thrive-fl.org/events/${id}`;
 
     // Format event date for display
+    // Using timeZone 'UTC' because dates from the API are already in the correct
+    // local time and should be displayed as-is without timezone conversion.
     const eventDate = new Date(event.StartTime);
     const formattedDate = eventDate.toLocaleDateString('en-US', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     });
 
     // Use event image if available, otherwise use default OG image
@@ -94,10 +98,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function EventDetailPage({ params }: PageProps) {
+  const { id } = await params;
+
   // Fetch event data for JSON-LD structured data
   let eventJsonLd = null;
   try {
-    const response = await getEventById(params.id);
+    const response = await getEventById(id);
     const event = response.Event;
     if (event) {
       eventJsonLd = (
@@ -115,7 +121,7 @@ export default async function EventDetailPage({ params }: PageProps) {
           } : undefined}
           isOnline={event.IsOnline}
           onlineUrl={event.OnlineLink}
-          url={`https://thrive-fl.org/events/${params.id}`}
+          url={`https://thrive-fl.org/events/${id}`}
         />
       );
     }
@@ -124,7 +130,7 @@ export default async function EventDetailPage({ params }: PageProps) {
   }
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper--event-detail">
       {/* JSON-LD Structured Data for SEO */}
       {eventJsonLd}
 
@@ -141,7 +147,7 @@ export default async function EventDetailPage({ params }: PageProps) {
       {/* Event Detail Content */}
       <section className="section event-detail-section">
         <div className="container">
-          <EventDetailClient eventId={params.id} />
+          <EventDetailClient eventId={id} />
         </div>
       </section>
     </div>

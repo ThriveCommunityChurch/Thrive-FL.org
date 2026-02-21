@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faInstagram, faXTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram, faXTwitter, faYelp, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
@@ -61,6 +61,9 @@ export default function Footer() {
               </a>
               <a href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                 <FontAwesomeIcon icon={faYoutube} />
+              </a>
+              <a href="https://www.yelp.com/biz/thrive-community-church-estero" target="_blank" rel="noopener noreferrer" aria-label="Yelp">
+                <FontAwesomeIcon icon={faYelp} />
               </a>
             </div>
           </div>

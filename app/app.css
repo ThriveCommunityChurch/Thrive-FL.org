@@ -1651,6 +1651,13 @@ a:hover {
   min-height: 100vh;
 }
 
+/* Message detail page doesn't need min-height to avoid extra whitespace */
+.page-wrapper--message-detail {
+  min-height: auto;
+}
+.page-wrapper--event-detail {
+  min-height: auto;
+}
 
 /* ============================================
    Accessibility
@@ -4541,9 +4548,9 @@ a:hover {
    EVENT DETAIL PAGE STYLES
    ============================================ */
 
+/* Outer wrapper section - override .section padding */
 .event-detail-section {
-  padding-top: var(--spacing-xl);
-  padding-bottom: var(--spacing-4xl);
+  padding: calc(var(--header-height) + var(--spacing-md)) 0 var(--spacing-lg) 0;
 }
 
 /* Event Error State */
@@ -4618,9 +4625,9 @@ a:hover {
 /* Event Detail Header */
 .event-detail-header {
   display: flex;
-  gap: var(--spacing-xl);
-  margin-bottom: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
   border-bottom: 1px solid var(--color-gray-200);
 }
 
@@ -4697,27 +4704,28 @@ a:hover {
 /* Event Detail Body */
 .event-detail-body {
   display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: var(--spacing-2xl);
+  grid-template-columns: 1fr 320px;
+  gap: var(--spacing-lg);
 }
 
 .event-detail-main {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2xl);
+  gap: var(--spacing-xl);
 }
 
-.event-detail-main .event-detail-section h2 {
-  font-size: var(--font-size-xl);
+/* Inner content blocks */
+.event-detail-block h2 {
+  font-size: var(--font-size-lg);
   font-weight: 600;
-  margin-bottom: var(--spacing-md);
+  margin: 0 0 var(--spacing-xs) 0;
   color: var(--color-gray-800);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
 }
 
-.event-detail-main .event-detail-section h2 svg {
+.event-detail-block h2 svg {
   color: var(--color-primary);
 }
 
@@ -4725,21 +4733,76 @@ a:hover {
   font-size: var(--font-size-lg);
   font-weight: 600;
   color: var(--color-gray-800);
-  margin-bottom: var(--spacing-xs);
+  margin: 0;
 }
 
 .event-time-primary {
   font-size: var(--font-size-base);
   color: var(--color-gray-600);
+  margin: 0;
+  margin-top: 2px;
 }
 
 .event-recurrence {
   margin-top: var(--spacing-sm);
   font-size: var(--font-size-sm);
-  color: var(--color-primary);
+  color: var(--color-gray-600);
+}
+
+/* Note showing recurrence pattern when viewing specific occurrence */
+.event-recurrence-note {
+  margin: var(--spacing-sm) 0 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
+}
+
+.event-recurrence-note svg {
+  color: var(--color-primary);
+}
+
+/* Recurring event schedule card styling */
+.event-schedule-card {
+  background: rgba(46, 190, 216, 0.08);
+  border: 1px solid rgba(46, 190, 216, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.event-schedule-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.event-schedule-info {
+  flex: 1;
+}
+
+.event-schedule-primary {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin: 0;
+}
+
+.event-schedule-secondary {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  margin: 0;
+  margin-top: var(--spacing-2xs);
 }
 
 .event-description p {
@@ -5840,30 +5903,39 @@ a:hover {
 }
 
 /* Series Detail Page */
-.breadcrumb-nav {
-  background: var(--color-white);
-  padding: var(--spacing-md) 0;
-  border-bottom: 1px solid var(--color-gray-200);
+.series-detail-section {
+  background: var(--color-gray-50);
+  padding-top: calc(var(--header-height) + var(--spacing-xl));
 }
 
-.breadcrumb-link {
+/* In-section breadcrumb (similar to video page style but for light mode) */
+.series-detail-breadcrumb {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-gray-100);
+  border-radius: var(--radius-md);
+}
+
+.series-detail-breadcrumb-link {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
   color: var(--color-gray-600);
-  text-decoration: none;
   font-size: var(--font-size-sm);
   font-weight: 500;
-  transition: color var(--transition-fast);
+  text-decoration: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
 }
 
-.breadcrumb-link:hover {
+.series-detail-breadcrumb-link:hover {
   color: var(--color-primary);
 }
 
-.series-detail-section {
-  background: var(--color-gray-50);
-  padding-top: var(--spacing-3xl);
+.series-detail-breadcrumb-link svg {
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .series-detail-header {

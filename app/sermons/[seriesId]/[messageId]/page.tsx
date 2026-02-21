@@ -97,7 +97,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper page-wrapper--message-detail">
       {/* JSON-LD Structured Data for SEO */}
       {series && message && (
         <SermonMessageJsonLd
@@ -116,19 +116,16 @@ export default async function MessageDetailPage({ params }: PageProps) {
         />
       )}
 
-      {/* Breadcrumb */}
-      <nav className="breadcrumb-nav">
-        <div className="container">
-          <Link href={`/sermons/${seriesId}`} className="breadcrumb-link">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            Back to {series?.Name || 'Series'}
-          </Link>
-        </div>
-      </nav>
-
       {/* Message Detail Content */}
       <section className="section series-detail-section">
         <div className="container">
+          {/* Breadcrumb */}
+          <div className="series-detail-breadcrumb">
+            <Link href={`/sermons/${seriesId}`} className="series-detail-breadcrumb-link">
+              <FontAwesomeIcon icon={faArrowLeft} />
+              Back to {series?.Name || 'Series'}
+            </Link>
+          </div>
           {error ? (
             <div className="sermon-error-state">
               <FontAwesomeIcon icon={faExclamationTriangle} />
