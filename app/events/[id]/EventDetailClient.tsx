@@ -247,13 +247,10 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
             <h2><FontAwesomeIcon icon={faCalendar} /> When</h2>
             {event.IsRecurring ? (
               occurrenceDate ? (
-                // User clicked on a specific occurrence - show that date
+                // User clicked on a specific occurrence - show that date only
                 <>
                   <p className="event-date-primary">{getOccurrenceDateDisplay()}</p>
                   <p className="event-time-primary">{getTimeOnlyDisplay()}</p>
-                  <p className="event-recurrence-note">
-                    <FontAwesomeIcon icon={faRepeat} /> {getRecurrenceScheduleDisplay()}
-                  </p>
                 </>
               ) : (
                 // Direct URL access - show recurrence pattern only

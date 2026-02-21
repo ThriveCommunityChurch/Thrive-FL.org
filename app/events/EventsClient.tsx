@@ -330,7 +330,10 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                     <div className="event-modal-detail">
                       <FontAwesomeIcon icon={faClock} />
                       <div>
-                        <strong>Time</strong>
+                        <strong>{selectedOccurrenceDate ? 'Date & Time' : 'Time'}</strong>
+                        {selectedOccurrenceDate && (
+                          <p>{selectedOccurrenceDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        )}
                         <p>{formatEventTime(selectedEvent?.StartTime || selectedEventSummary?.StartTime || '')}</p>
                       </div>
                     </div>
