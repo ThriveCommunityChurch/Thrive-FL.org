@@ -2943,20 +2943,24 @@ a:hover {
 
 /* Mobile Timeline */
 @media (max-width: 900px) {
+  .timeline {
+    padding-left: 0;
+  }
+
   .timeline::before {
     left: 30px;
   }
 
   .timeline-item {
     width: 100%;
-    padding: 0 0 var(--spacing-2xl) var(--spacing-4xl);
+    padding: 0 0 var(--spacing-2xl) 80px;
     left: 0 !important;
     text-align: left !important;
   }
 
   .timeline-item.timeline-left,
   .timeline-item.timeline-right {
-    padding-left: var(--spacing-4xl);
+    padding-left: 80px;
     padding-right: 0;
   }
 
