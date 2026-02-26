@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faInstagram, faXTwitter, faYelp, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faGithub, faInstagram, faXTwitter, faYelp, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
@@ -70,6 +70,11 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Thrive Community Church. All rights reserved.</p>
+          <p className="footer-opensource">
+            <Link href="/developers" className="footer-opensource-link">
+              <FontAwesomeIcon icon={faGithub} /> Built by Volunteers
+            </Link>
+          </p>
           <p className="build-version">
             {process.env.NEXT_PUBLIC_BUILD_VERSION || "vXXXX.XX.XX-X"}
           </p>
