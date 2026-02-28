@@ -33,6 +33,7 @@ export default function CriticalCSS() {
   return (
     <style
       id="critical-css"
+      suppressHydrationWarning
       dangerouslySetInnerHTML={{ __html: minifiedCSS }}
     />
   );
