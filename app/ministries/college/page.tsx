@@ -1,14 +1,15 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCalendarDays,
   faChurch,
   faGamepad,
   faUsers,
   faMapPin,
   faEnvelope,
   faClock,
+  faPodcast,
 } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -172,6 +173,43 @@ export default function CollegeMinistryPage() {
                   style={{ objectFit: "cover", width: "100%", height: "auto" }}
                 />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Podcast Section */}
+      <section className="section college-podcast-section">
+        <div className="container">
+          <div className="welcome-content">
+            <div className="welcome-image">
+              <Image
+                  src="https://static.thrive-fl.org/Theocology.png"
+                  alt="Theocology Podcast"
+                  width={400}
+                  height={400}
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  quality={75}
+                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                />
+            </div>
+            <div className="welcome-text">
+              <span className="section-eyebrow">Listen &amp; Learn</span>
+              <h2 className="section-title-left">Theocology Podcast</h2>
+              <p>
+                Why does theology matter during your college years? Actually, always.
+                Join Dr. John Roth and FGCU students as they dive into the questions
+                that matter most—faith, identity, community, and navigating life&apos;s
+                big decisions.
+              </p>
+              <p>
+                New episodes drop weekly during the academic year. Listen on Spotify
+                or Apple Podcasts.
+              </p>
+              <Link href="/ministries/college/podcast" className="btn btn-outline">
+                <FontAwesomeIcon icon={faPodcast} />
+                Listen to Theocology
+              </Link>
             </div>
           </div>
         </div>
