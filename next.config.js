@@ -28,6 +28,11 @@ const nextConfig = {
         hostname: 'static.thrive-fl.org',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'storage.buzzsprout.com',
+        pathname: '/**',
+      },
     ],
     // Enable modern image formats for better compression
     formats: ['image/avif', 'image/webp'],

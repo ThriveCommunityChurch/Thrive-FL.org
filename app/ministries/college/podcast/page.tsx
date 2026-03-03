@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay, faClock, faCalendar } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faPause, faClock, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { useAudioPlayer } from "../../../contexts/AudioPlayerContext";
+import { SermonMessage } from "../../../types/sermons";
 
 interface PodcastPlatform {
   name: string;
@@ -21,7 +22,10 @@ interface Episode {
   pubDate: string;
   duration: string;
   audioUrl: string;
+  imageUrl: string;
 }
+
+const THEOCOLOGY_LOGO = "https://static.thrive-fl.org/Theocology.png";
 
 // Theocology podcast platforms
 const PODCAST_PLATFORMS: PodcastPlatform[] = [
@@ -75,6 +79,30 @@ function formatDate(dateString: string): string {
 export default function TheocologyPodcastPage() {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [loading, setLoading] = useState(true);
+  const { playMessage, currentMessage, isPlaying } = useAudioPlayer();
+
+  // Convert Episode to SermonMessage format for the shared player
+  const playEpisode = (episode: Episode) => {
+    const sermonMessage: SermonMessage = {
+      MessageId: episode.title, // Use title as unique ID
+      SeriesId: "theocology",
+      Title: episode.title,
+      Speaker: "Theocology",
+      Date: episode.pubDate,
+      PassageRef: null,
+      AudioUrl: episode.audioUrl,
+      AudioDuration: null,
+      AudioFileSize: null,
+      VideoUrl: null,
+      Summary: episode.description,
+      PlayCount: 0,
+      Tags: ["theocology", "podcast"],
+      WaveformData: null,
+    };
+
+    // Use episode image if available, otherwise fall back to Theocology logo
+    playMessage(sermonMessage, "Theocology", episode.imageUrl);
+  };
 
   useEffect(() => {
     async function fetchEpisodes() {
@@ -86,7 +114,7 @@ export default function TheocologyPodcastPage() {
         const items = xml.querySelectorAll("item");
 
         const latestEpisodes: Episode[] = [];
-        for (let i = 0; i < Math.min(3, items.length); i++) {
+        for (let i = 0; i < Math.min(5, items.length); i++) {
           const item = items[i];
           const title = item.querySelector("title")?.textContent || "";
           const description = item.querySelector("description")?.textContent || "";
@@ -96,6 +124,10 @@ export default function TheocologyPodcastPage() {
           const enclosure = item.querySelector("enclosure");
           const audioUrl = enclosure?.getAttribute("url") || "";
 
+          // Get episode image (itunes:image) or fall back to channel image
+          const imageEl = item.getElementsByTagName("itunes:image")[0];
+          const imageUrl = imageEl?.getAttribute("href") || THEOCOLOGY_LOGO;
+
           // Clean HTML tags and decode entities
           let cleanDesc = description
             .replace(/<[^>]*>/g, "")
@@ -104,11 +136,11 @@ export default function TheocologyPodcastPage() {
             .replace(/&amp;/g, "&")
             .replace(/&nbsp;/g, " ");
 
-          // Truncate at word boundary around 180 chars
-          if (cleanDesc.length > 180) {
-            cleanDesc = cleanDesc.substring(0, 180);
+          // Truncate at word boundary around 360 chars
+          if (cleanDesc.length > 360) {
+            cleanDesc = cleanDesc.substring(0, 360);
             const lastSpace = cleanDesc.lastIndexOf(" ");
-            if (lastSpace > 100) {
+            if (lastSpace > 200) {
               cleanDesc = cleanDesc.substring(0, lastSpace);
             }
             cleanDesc += "...";
@@ -120,6 +152,7 @@ export default function TheocologyPodcastPage() {
             pubDate,
             duration: formatDuration(parseInt(duration)),
             audioUrl,
+            imageUrl,
           });
         }
 
@@ -181,31 +214,41 @@ export default function TheocologyPodcastPage() {
             <div className="theocology-loading">Loading episodes...</div>
           ) : (
             <div className="theocology-latest-grid">
-              {episodes.map((episode, index) => (
-                <a
-                  key={index}
-                  href={episode.audioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="theocology-latest-card"
-                >
-                  <div className="theocology-latest-play">
-                    <FontAwesomeIcon icon={faPlay} />
-                  </div>
-                  <div className="theocology-latest-content">
-                    <h3>{episode.title}</h3>
-                    <p>{episode.description}</p>
-                    <div className="theocology-latest-meta">
-                      <span>
-                        <FontAwesomeIcon icon={faClock} /> {episode.duration}
-                      </span>
-                      <span>
-                        <FontAwesomeIcon icon={faCalendar} /> {formatDate(episode.pubDate)}
-                      </span>
+              {episodes.map((episode, index) => {
+                const isCurrentEpisode = currentMessage?.Title === episode.title;
+                const isEpisodePlaying = isCurrentEpisode && isPlaying;
+
+                return (
+                  <div
+                    key={index}
+                    className={`theocology-latest-card ${isCurrentEpisode ? "theocology-latest-card-active" : ""}`}
+                    onClick={() => playEpisode(episode)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        playEpisode(episode);
+                      }
+                    }}
+                  >
+                    <div className={`theocology-latest-play ${isEpisodePlaying ? "theocology-latest-play-active" : ""}`}>
+                      <FontAwesomeIcon icon={isEpisodePlaying ? faPause : faPlay} />
+                    </div>
+                    <div className="theocology-latest-content">
+                      <h3>{episode.title}</h3>
+                      <p>{episode.description}</p>
+                      <div className="theocology-latest-meta">
+                        <span>
+                          <FontAwesomeIcon icon={faClock} /> {episode.duration}
+                        </span>
+                        <span>
+                          <FontAwesomeIcon icon={faCalendar} /> {formatDate(episode.pubDate)}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </a>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
