@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: "Serve at Thrive Community Church. Discover volunteer opportunities in worship, kids ministry, hospitality, tech, and more. Use your gifts to make a difference.",
   openGraph: {
     title: "Get Involved | Thrive Community Church",
-    description: "Use your gifts to make a difference. Find your place to serve at Thrive.",
+    description: "Use your gifts to make a difference. Discover volunteer opportunities in worship, kids ministry, hospitality, tech, and more.",
     url: "https://thrive-fl.org/get-involved",
     images: [
       {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Get Involved | Thrive Community Church",
-    description: "Use your gifts to make a difference. Find your place to serve at Thrive.",
+    description: "Use your gifts to make a difference. Discover volunteer opportunities in worship, kids ministry, hospitality, tech, and more.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

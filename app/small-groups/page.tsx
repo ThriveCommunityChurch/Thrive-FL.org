@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Join a Home Huddle at Thrive Community Church. Small groups where real community happens—share life, grow in faith, and build lasting friendships.",
   openGraph: {
     title: "Small Groups | Thrive Community Church",
-    description: "Find your people. Join a Home Huddle where real community happens.",
+    description: "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
     url: "https://thrive-fl.org/small-groups",
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Small Groups | Thrive Community Church",
-    description: "Find your people. Join a Home Huddle where real community happens.",
+    description: "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

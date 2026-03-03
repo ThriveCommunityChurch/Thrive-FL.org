@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description: "Get in touch with Thrive Community Church. Questions, prayer requests, or just want to say hi? Call (239) 687-3430 or email info@thrive-fl.org.",
   openGraph: {
     title: "Contact Us | Thrive Community Church",
-    description: "Questions, prayer requests, or just want to say hi? We're here for you.",
+    description: "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
     url: "https://thrive-fl.org/contact",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact Us | Thrive Community Church",
-    description: "Questions, prayer requests, or just want to say hi? We're here for you.",
+    description: "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

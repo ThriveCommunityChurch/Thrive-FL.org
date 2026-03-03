@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM at 20041 S. Tamiami Trail. Get directions, parking info, and what to expect.",
   openGraph: {
     title: "Visit Us | Thrive Community Church",
-    description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM.",
+    description: "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
     url: "https://thrive-fl.org/visit",
     images: [
       {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Visit Us | Thrive Community Church",
-    description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM.",
+    description: "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

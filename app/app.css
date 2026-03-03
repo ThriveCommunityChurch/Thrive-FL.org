@@ -396,7 +396,7 @@ a:hover {
 .btn-outline {
   background: transparent;
   color: var(--color-primary-dark);
-  border: 2px solid var(--color-primary-dark);
+  border: 2px solid var(--color-primary-dark) !important;
 }
 
 .btn-outline:hover {
@@ -404,19 +404,23 @@ a:hover {
   color: var(--color-white);
   transform: translateY(-3px);
   box-shadow: var(--shadow-primary);
+  border: 2px solid var(--color-primary) !important;
 }
 
 /* White Outline Button - For colored backgrounds */
 .btn-outline-white {
   background: transparent;
   color: var(--color-white);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--color-white) !important;
+  border-radius: var(--radius-xl);
 }
 
 .btn-outline-white:hover {
   background: var(--color-white);
   color: var(--color-gray-800);
   transform: translateY(-3px);
+  border: 2px solid var(--color-white) !important;
+  border-radius: var(--radius-xl);
 }
 
 /* ============================================
@@ -7450,9 +7454,78 @@ a:hover {
   line-height: 1.5;
 }
 
+/* College Podcast Section */
+.college-podcast-section {
+  background: var(--color-gray-50);
+}
+
 /* College Why Section */
 .college-why-section {
   background: var(--color-white);
+}
+
+/* College FAQ Section */
+.college-faq-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.college-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.college-faq-item {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.college-faq-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.college-faq-content h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 0.5rem;
+}
+
+.college-faq-content p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.college-faq-content a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.college-faq-content a:hover {
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+  .college-faq-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* College CTA Section */
@@ -8389,6 +8462,740 @@ a:hover {
 
   .podcast-platform-name {
     font-size: var(--font-size-sm);
+  }
+}
+
+/* ============================================
+   THEOCOLOGY PODCAST PAGE STYLES
+   ============================================ */
+
+/* Theocology Hero */
+.page-hero-theocology {
+  background:
+    radial-gradient(circle at 80% 30%, rgba(39, 118, 216, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 20% 50%, rgba(46, 190, 216, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
+  min-height: 50vh;
+}
+
+.theocology-hero-icon {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+/* Topics Grid */
+.theocology-topics-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.theocology-topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.theocology-topic-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.theocology-topic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.theocology-topic-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.theocology-topic-card h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.75rem;
+}
+
+.theocology-topic-card p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+}
+
+/* Theocology Platforms (smaller grid for 2 items) */
+.theocology-platforms {
+  max-width: 500px;
+  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Latest Episodes Section */
+.theocology-latest-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.theocology-loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-gray-500);
+  font-size: var(--font-size-lg);
+}
+
+.theocology-latest-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.theocology-latest-card {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  background: white !important;
+  padding: 1.5rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid #e5e7eb !important;
+  cursor: pointer !important;
+}
+
+.theocology-latest-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15) !important;
+  border-color: var(--color-primary, #2776D8) !important;
+}
+
+.theocology-latest-card-active {
+  border-color: var(--color-primary, #2776D8) !important;
+  background: linear-gradient(135deg, rgba(39, 118, 216, 0.03) 0%, rgba(108, 184, 209, 0.03) 100%) !important;
+}
+
+.theocology-latest-play {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  background: linear-gradient(135deg, var(--color-primary, #2776D8) 0%, var(--color-secondary, #6CB8D1) 100%) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 1.1rem !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(39, 118, 216, 0.3) !important;
+}
+
+.theocology-latest-play-active {
+  animation: pulse 1.5s ease-in-out infinite !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(39, 118, 216, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(39, 118, 216, 0.6);
+  }
+}
+
+.theocology-latest-card:hover .theocology-latest-play {
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 16px rgba(39, 118, 216, 0.4) !important;
+}
+
+.theocology-latest-content {
+  flex: 1 !important;
+}
+
+.theocology-latest-content h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: var(--color-gray-900, #111827) !important;
+  margin: 0 0 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+.theocology-latest-content p {
+  font-size: 0.9rem !important;
+  color: var(--color-gray-600, #4b5563) !important;
+  line-height: 1.65 !important;
+  margin: 0 0 0.875rem !important;
+}
+
+.theocology-latest-meta {
+  display: flex !important;
+  gap: 1.25rem !important;
+  font-size: 0.8rem !important;
+  color: var(--color-gray-500, #6b7280) !important;
+  font-weight: 500 !important;
+}
+
+.theocology-latest-meta span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.theocology-latest-meta svg {
+  color: var(--color-primary, #2776D8) !important;
+  opacity: 0.8 !important;
+}
+
+@media (max-width: 768px) {
+  .theocology-latest-card {
+    padding: 1.25rem;
+  }
+
+  .theocology-latest-play {
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+
+  .theocology-latest-content h3 {
+    font-size: var(--font-size-base);
+  }
+
+  .theocology-latest-meta {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+/* Legacy Episodes Section (keep for reference) */
+.theocology-episodes-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.theocology-episodes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.theocology-episode-card {
+  background: var(--color-gray-50);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  border-left: 4px solid var(--color-primary);
+  transition: all var(--transition-normal);
+}
+
+.theocology-episode-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.theocology-episode-card h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.theocology-episode-card p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Host Section */
+.theocology-host-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .theocology-episodes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .theocology-hero-icon {
+    font-size: 2.5rem;
+  }
+
+  .theocology-topics-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .theocology-episodes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .theocology-platforms {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   I'M NEW PAGE STYLES
+   ============================================ */
+
+/* What to Expect Section */
+.im-new-expect-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.im-new-expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.im-new-expect-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.im-new-expect-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.im-new-expect-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 1.75rem;
+}
+
+.im-new-expect-card h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 1rem;
+}
+
+.im-new-expect-card p {
+  font-size: var(--font-size-base);
+  color: var(--color-gray-600);
+  line-height: 1.7;
+}
+
+/* Quick Links Section */
+.im-new-links-section {
+  padding: var(--spacing-4xl) 0;
+  background: white;
+}
+
+.im-new-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.im-new-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--color-gray-50);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  transition: all var(--transition-normal);
+  border: 1px solid var(--color-gray-200);
+}
+
+.im-new-link-card:hover {
+  background: white;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.im-new-link-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.im-new-link-content {
+  flex: 1;
+}
+
+.im-new-link-content h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 0.25rem;
+}
+
+.im-new-link-content p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.im-new-link-arrow {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  transition: transform var(--transition-fast);
+}
+
+.im-new-link-card:hover .im-new-link-arrow {
+  transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .im-new-expect-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .im-new-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .im-new-expect-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .im-new-link-card {
+    padding: 1.25rem;
+  }
+
+  .im-new-link-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   FAQ PAGE STYLES
+   ============================================ */
+
+/* FAQ Hero */
+.page-hero-faq {
+  background:
+    radial-gradient(circle at 30% 40%, rgba(39, 118, 216, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(46, 190, 216, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-gray-800) 0%, var(--color-gray-900) 100%);
+  min-height: 40vh;
+}
+
+/* FAQ Page Section */
+.faq-page-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.faq-page-intro {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: var(--font-size-lg);
+  color: var(--color-gray-600);
+}
+
+.faq-page-intro a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* FAQ Categories */
+.faq-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.faq-category {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-category-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.faq-category-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.faq-category-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-accordion-item {
+  background: var(--color-gray-50);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-200);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.faq-accordion-item:hover {
+  border-color: var(--color-gray-300);
+}
+
+.faq-accordion-item--open {
+  background: white;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-accordion-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.faq-accordion-header:hover .faq-accordion-question {
+  color: var(--color-primary);
+}
+
+.faq-accordion-toggle {
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.faq-accordion-item--open .faq-accordion-toggle {
+  background: var(--color-primary-dark);
+}
+
+.faq-accordion-question {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  flex: 1;
+  transition: color var(--transition-fast);
+}
+
+.faq-accordion-item--open .faq-accordion-question {
+  color: var(--color-primary-dark);
+}
+
+.faq-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-normal);
+}
+
+.faq-accordion-content--open {
+  max-height: 500px;
+}
+
+.faq-accordion-answer {
+  padding: 0 1.5rem 1.5rem 4.5rem;
+}
+
+.faq-accordion-answer p {
+  color: var(--color-gray-600);
+  line-height: 1.8;
+  margin: 0 0 1rem;
+  font-size: var(--font-size-base);
+}
+
+.faq-accordion-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background: rgba(39, 118, 216, 0.1);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.faq-accordion-link:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.faq-link-arrow {
+  transition: transform var(--transition-fast);
+}
+
+.faq-accordion-link:hover .faq-link-arrow {
+  transform: translateX(3px);
+}
+
+/* FAQ CTA Section */
+.faq-cta-section {
+  padding: var(--spacing-4xl) 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  text-align: center;
+  color: white;
+}
+
+.faq-cta-section .cta-content h2 {
+  color: white;
+  margin-bottom: var(--spacing-md);
+}
+
+.faq-cta-section .cta-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-xl);
+}
+
+.faq-cta-section .btn-primary {
+  background: white;
+  color: var(--color-primary);
+  border-color: white;
+}
+
+.faq-cta-section .btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary-dark);
+}
+
+.faq-cta-section .btn-outline-white {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.faq-cta-section .btn-outline-white:hover {
+  background: white;
+  color: var(--color-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq-category {
+    padding: 1.25rem;
+  }
+
+  .faq-category-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .faq-category-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .faq-accordion-header {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .faq-accordion-toggle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+
+  .faq-accordion-question {
+    font-size: var(--font-size-sm);
+  }
+
+  .faq-accordion-answer {
+    padding: 0 1rem 1rem 3.5rem;
+  }
+
+  .faq-accordion-answer p {
+    font-size: var(--font-size-sm);
+  }
+
+  .faq-accordion-link {
+    padding: 0.4rem 0.75rem;
+    font-size: var(--font-size-xs);
   }
 }
 

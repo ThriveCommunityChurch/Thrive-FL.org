@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from wherever you are.",
   openGraph: {
     title: "Watch Live | Thrive Community Church",
-    description: "Watch our Sunday worship service live every week at 10:00 AM.",
+    description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
     url: "https://thrive-fl.org/live",
     images: [
       {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Watch Live | Thrive Community Church",
-    description: "Watch our Sunday worship service live every week at 10:00 AM.",
+    description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
