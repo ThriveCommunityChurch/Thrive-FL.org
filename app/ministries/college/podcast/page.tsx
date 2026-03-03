@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faClock, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 interface PodcastPlatform {
@@ -11,6 +13,14 @@ interface PodcastPlatform {
   iconName?: string;
   type: "simple-icon";
   color: string;
+}
+
+interface Episode {
+  title: string;
+  description: string;
+  pubDate: string;
+  duration: string;
+  audioUrl: string;
 }
 
 // Theocology podcast platforms
@@ -24,7 +34,7 @@ const PODCAST_PLATFORMS: PodcastPlatform[] = [
   },
   {
     name: "Apple Podcasts",
-    url: "https://podcasts.apple.com/us/podcast/theocology/id1560878098",
+    url: "https://podcasts.apple.com/us/podcast/theocology/id1572688057",
     iconName: "SiApplepodcasts",
     type: "simple-icon",
     color: "#A855F7",
@@ -50,7 +60,80 @@ function SimpleIcon({ iconName, size }: { iconName: string; size: number }) {
   return <IconComponent size={size} />;
 }
 
+// Helper to format duration from seconds to "XX min"
+function formatDuration(seconds: number): string {
+  const minutes = Math.round(seconds / 60);
+  return `${minutes} min`;
+}
+
+// Helper to format date
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+}
+
 export default function TheocologyPodcastPage() {
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchEpisodes() {
+      try {
+        const response = await fetch("https://feeds.buzzsprout.com/1803195.rss");
+        const text = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, "text/xml");
+        const items = xml.querySelectorAll("item");
+
+        const latestEpisodes: Episode[] = [];
+        for (let i = 0; i < Math.min(3, items.length); i++) {
+          const item = items[i];
+          const title = item.querySelector("title")?.textContent || "";
+          const description = item.querySelector("description")?.textContent || "";
+          const pubDate = item.querySelector("pubDate")?.textContent || "";
+          const durationEl = item.getElementsByTagName("itunes:duration")[0];
+          const duration = durationEl?.textContent || "0";
+          const enclosure = item.querySelector("enclosure");
+          const audioUrl = enclosure?.getAttribute("url") || "";
+
+          // Clean HTML tags and decode entities
+          let cleanDesc = description
+            .replace(/<[^>]*>/g, "")
+            .replace(/&apos;/g, "'")
+            .replace(/&quot;/g, '"')
+            .replace(/&amp;/g, "&")
+            .replace(/&nbsp;/g, " ");
+
+          // Truncate at word boundary around 180 chars
+          if (cleanDesc.length > 180) {
+            cleanDesc = cleanDesc.substring(0, 180);
+            const lastSpace = cleanDesc.lastIndexOf(" ");
+            if (lastSpace > 100) {
+              cleanDesc = cleanDesc.substring(0, lastSpace);
+            }
+            cleanDesc += "...";
+          }
+
+          latestEpisodes.push({
+            title,
+            description: cleanDesc,
+            pubDate,
+            duration: formatDuration(parseInt(duration)),
+            audioUrl,
+          });
+        }
+
+        setEpisodes(latestEpisodes);
+      } catch (error) {
+        console.error("Failed to fetch episodes:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEpisodes();
+  }, []);
+
   return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
@@ -70,89 +153,69 @@ export default function TheocologyPodcastPage() {
           <div className="intro-content">
             <h2 className="section-title">Faith &amp; Life Conversations</h2>
             <p className="intro-lead">
-              Theocology is the podcast from ThriveFGCU that dives into the
+              Theocology is the podcast from ThriveFGCU that explores the
               questions that matter most during your college years and beyond.
             </p>
             <p>
-              Hosted by Pastor John Roth, who also serves as a professor at
-              Florida Gulf Coast University, Theocology brings together students
-              to discuss matters of faith and life each week during the academic
-              year. Whether you&apos;re wrestling with doubt, seeking community,
-              or just want to think deeper about what you believe—this podcast
-              is for you.
+              Whether you&apos;re wrestling with questions, seeking connection,
+              or simply want to think more deeply about what you believe—this
+              podcast is for you. Episodes are around 40 minutes, perfect for
+              a commute or study break.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Episodes Section */}
-      <section className="section theocology-episodes-section">
+      {/* Latest Episodes Section */}
+      <section className="section theocology-latest-section">
         <div className="container">
           <div className="section-header-centered">
-            <span className="section-eyebrow">Recent Conversations</span>
-            <h2 className="section-title">What We&apos;re Talking About</h2>
+            <span className="section-eyebrow">Latest Episodes</span>
+            <h2 className="section-title">Listen Now</h2>
             <p className="section-subtitle">
-              Real conversations about faith and college life—no fluff, just honest discussions
+              Catch up on our most recent conversations
             </p>
           </div>
 
-          <div className="theocology-episodes-grid">
-            <div className="theocology-episode-card">
-              <h3>Owning Your Faith</h3>
-              <p>
-                What does it look like to move from your parents&apos; faith to your own?
-                We talk about walking with God when no one&apos;s watching.
-              </p>
+          {loading ? (
+            <div className="theocology-loading">Loading episodes...</div>
+          ) : (
+            <div className="theocology-latest-grid">
+              {episodes.map((episode, index) => (
+                <a
+                  key={index}
+                  href={episode.audioUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="theocology-latest-card"
+                >
+                  <div className="theocology-latest-play">
+                    <FontAwesomeIcon icon={faPlay} />
+                  </div>
+                  <div className="theocology-latest-content">
+                    <h3>{episode.title}</h3>
+                    <p>{episode.description}</p>
+                    <div className="theocology-latest-meta">
+                      <span>
+                        <FontAwesomeIcon icon={faClock} /> {episode.duration}
+                      </span>
+                      <span>
+                        <FontAwesomeIcon icon={faCalendar} /> {formatDate(episode.pubDate)}
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              ))}
             </div>
-
-            <div className="theocology-episode-card">
-              <h3>Parties, Peer Pressure, &amp; Purpose</h3>
-              <p>
-                College parties are everywhere—but what does it look like to enjoy
-                social life while honoring God? We dive into setting boundaries.
-              </p>
-            </div>
-
-            <div className="theocology-episode-card">
-              <h3>When Plans Crumble</h3>
-              <p>
-                What happens when life doesn&apos;t go as planned? We discuss trusting
-                God through unexpected turns and disappointments.
-              </p>
-            </div>
-
-            <div className="theocology-episode-card">
-              <h3>Competing Identities</h3>
-              <p>
-                In a world full of things to place your identity in, how do you
-                find who you really are in Christ?
-              </p>
-            </div>
-
-            <div className="theocology-episode-card">
-              <h3>First Things First</h3>
-              <p>
-                Between classes, work, and social life—how do you make time for God
-                without feeling overwhelmed?
-              </p>
-            </div>
-
-            <div className="theocology-episode-card">
-              <h3>The Importance of Community</h3>
-              <p>
-                Why does being in Christian community matter? We explore finding
-                your people and doing life together.
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 
-      {/* Listen Section */}
+      {/* Subscribe Section */}
       <section className="section podcast-subscribe-section">
         <div className="container">
           <div className="podcast-subscribe-intro">
-            <h2 className="section-title">Listen Now</h2>
+            <h2 className="section-title">Listen On The Go</h2>
             <p className="section-subtitle">
               Subscribe on your favorite podcast platform and never miss an episode
             </p>
@@ -183,18 +246,23 @@ export default function TheocologyPodcastPage() {
         <div className="container">
           <div className="welcome-content">
             <div className="welcome-text">
-              <span className="section-eyebrow">Your Host</span>
-              <h2 className="section-title-left">Pastor John Roth</h2>
+              <span className="section-eyebrow">Your Hosts</span>
+              <h2 className="section-title-left">The Theocology Team</h2>
               <p>
-                Pastor John Roth serves as the pastor of Thrive Community Church
-                and as a professor at Florida Gulf Coast University. With a passion
-                for helping college students connect their faith to everyday life,
-                John creates a space where real questions are welcome and honest
-                conversations happen.
+                <strong>Kellen Hicks</strong> is the current host of Theocology and
+                a pastoral intern at Thrive Community Church. With a heart for college
+                students and a passion for honest conversations about faith, Kellen
+                brings fresh perspectives to each episode.
               </p>
               <p>
-                Each week during the academic year, John sits down with FGCU students
-                to explore topics that matter—from navigating peer pressure to finding
+                <strong>Pastor John Roth</strong>, who founded Theocology, serves as
+                both pastor of Thrive Community Church and professor at Florida Gulf
+                Coast University. John continues to join conversations and guide the
+                podcast&apos;s vision for helping students connect faith to everyday life.
+              </p>
+              <p>
+                Each week during the academic year, the team gathers with FGCU students
+                to explore topics that matter—from navigating peer pressure to discovering
                 your identity in Christ.
               </p>
             </div>

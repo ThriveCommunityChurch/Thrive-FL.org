@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org",
     siteName: "Thrive Community Church",
     title: "Thrive Community Church | Estero, FL",
-    description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
+    description: "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
     images: [
       {
         url: "https://static.thrive-fl.org/og-image.jpg",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Thrive Community Church | Estero, FL",
-    description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community.",
+    description: "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
     creator: "@Thrive_FL",
   },
@@ -122,9 +122,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-
-
-
+        
         <Providers>
           {/* Persistent Shell */}
           <div className="app-shell">

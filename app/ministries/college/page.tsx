@@ -10,6 +10,7 @@ import {
   faEnvelope,
   faClock,
   faPodcast,
+  faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
@@ -49,7 +50,7 @@ export default function CollegeMinistryPage() {
         <div className="page-hero-content">
           <h1 className="page-hero-title">ThriveFGCU</h1>
           <p className="page-hero-subtitle">
-            Faith, friends, and fun for FGCU students
+            Faith, friends, and community for young adults
           </p>
         </div>
       </section>
@@ -58,16 +59,17 @@ export default function CollegeMinistryPage() {
       <section className="section intro-section">
         <div className="container container-narrow">
           <div className="intro-content">
-            <h2 className="section-title">Your College Community</h2>
+            <h2 className="section-title">Your Young Adult Community</h2>
             <p className="intro-lead">
-              College is about more than classes and exams—it&apos;s about finding
-              your people and discovering who you&apos;re meant to be.
+              This season of life is about more than school or work—it&apos;s about
+              finding your people and discovering who you&apos;re meant to be.
             </p>
             <p>
-              ThriveFGCU is a community of Florida Gulf Coast University students
-              who are navigating faith, friendship, and the college journey together.
-              Whether you grew up in church or you&apos;re just starting to explore
-              faith, there&apos;s a place for you here.
+              ThriveFGCU is a community of young adults navigating faith, friendship,
+              and life together. Based on the FGCU campus, we welcome all young adults
+              in Southwest Florida—whether you&apos;re a college student, working, or
+              somewhere in between. If you grew up in church or you&apos;re just starting
+              to explore faith, there&apos;s a place for you here.
             </p>
           </div>
         </div>
@@ -139,12 +141,12 @@ export default function CollegeMinistryPage() {
           <div className="welcome-content">
             <div className="welcome-text">
               <span className="section-eyebrow">Why ThriveFGCU</span>
-              <h2 className="section-title-left">More Than a Campus Club</h2>
+              <h2 className="section-title-left">More Than a Meetup</h2>
               <p>
-                ThriveFGCU isn&apos;t about checking a box or adding another meeting
-                to your schedule. It&apos;s about finding genuine friendships, asking
+                ThriveFGCU isn&apos;t about checking a box or adding another event
+                to your calendar. It&apos;s about finding genuine friendships, asking
                 real questions about faith, and having a community that supports you
-                through the ups and downs of college life.
+                through the ups and downs of young adult life.
               </p>
               <p>
                 No matter where you are on your faith journey—whether you&apos;ve been
@@ -215,13 +217,82 @@ export default function CollegeMinistryPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="section college-faq-section">
+        <div className="container">
+          <div className="section-header-centered">
+            <span className="section-eyebrow">Questions</span>
+            <h2 className="section-title">Common Questions</h2>
+          </div>
+
+          <div className="college-faq-grid">
+            <div className="college-faq-item">
+              <div className="college-faq-icon">
+                <FontAwesomeIcon icon={faCircleQuestion} />
+              </div>
+              <div className="college-faq-content">
+                <h3>Do I have to be a student at FGCU?</h3>
+                <p>
+                  Not at all! ThriveFGCU is for all young adults in the Southwest
+                  Florida area—whether you&apos;re a college student, working, or
+                  somewhere in between.
+                </p>
+              </div>
+            </div>
+
+            <div className="college-faq-item">
+              <div className="college-faq-icon">
+                <FontAwesomeIcon icon={faCircleQuestion} />
+              </div>
+              <div className="college-faq-content">
+                <h3>What is Theocology?</h3>
+                <p>
+                  Theocology is our podcast where we discuss why theology matters
+                  during college—hosted by students for students. New episodes
+                  release weekly during the academic year.{" "}
+                  <Link href="/ministries/college/podcast">Listen now →</Link>
+                </p>
+              </div>
+            </div>
+
+            <div className="college-faq-item">
+              <div className="college-faq-icon">
+                <FontAwesomeIcon icon={faCircleQuestion} />
+              </div>
+              <div className="college-faq-content">
+                <h3>Are there internship opportunities?</h3>
+                <p>
+                  Yes! We offer pastoral leadership internships and service internships
+                  in worship, tech, and church management for FGCU students.{" "}
+                  <Link href="/contact">Contact us to learn more →</Link>
+                </p>
+              </div>
+            </div>
+
+            <div className="college-faq-item">
+              <div className="college-faq-icon">
+                <FontAwesomeIcon icon={faCircleQuestion} />
+              </div>
+              <div className="college-faq-content">
+                <h3>I&apos;m not sure about my faith. Can I still come?</h3>
+                <p>
+                  Absolutely. ThriveFGCU welcomes students at every point in their
+                  faith journey—seekers, skeptics, and believers alike. Come with
+                  your questions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="section college-cta-section">
         <div className="container container-narrow">
           <div className="cta-content">
             <h2>Ready to Connect?</h2>
             <p>
-              The easiest way to get involved is to just show up! Check out our
+              The easiest way to get involved is to show up! Check out our
               Instagram for the latest updates, or reach out if you have any questions.
             </p>
 	            <div className="cta-buttons">

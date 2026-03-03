@@ -411,13 +411,16 @@ a:hover {
 .btn-outline-white {
   background: transparent;
   color: var(--color-white);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--color-white) !important;
+  border-radius: var(--radius-xl);
 }
 
 .btn-outline-white:hover {
   background: var(--color-white);
   color: var(--color-gray-800);
   transform: translateY(-3px);
+  border: 2px solid var(--color-white) !important;
+  border-radius: var(--radius-xl);
 }
 
 /* ============================================
@@ -7461,6 +7464,70 @@ a:hover {
   background: var(--color-white);
 }
 
+/* College FAQ Section */
+.college-faq-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.college-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.college-faq-item {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.college-faq-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.college-faq-content h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0 0 0.5rem;
+}
+
+.college-faq-content p {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.college-faq-content a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.college-faq-content a:hover {
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 768px) {
+  .college-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* College CTA Section */
 .college-cta-section {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
@@ -8478,7 +8545,129 @@ a:hover {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* Episodes Section */
+/* Latest Episodes Section */
+.theocology-latest-section {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-gray-50);
+}
+
+.theocology-loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-gray-500);
+  font-size: var(--font-size-lg);
+}
+
+.theocology-latest-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.theocology-latest-card {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  background: white !important;
+  padding: 1.5rem !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.theocology-latest-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15) !important;
+  border-color: var(--color-primary, #2776D8) !important;
+}
+
+.theocology-latest-play {
+  width: 52px !important;
+  height: 52px !important;
+  min-width: 52px !important;
+  background: linear-gradient(135deg, var(--color-primary, #2776D8) 0%, var(--color-secondary, #6CB8D1) 100%) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 1.1rem !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(39, 118, 216, 0.3) !important;
+}
+
+.theocology-latest-card:hover .theocology-latest-play {
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 16px rgba(39, 118, 216, 0.4) !important;
+}
+
+.theocology-latest-content {
+  flex: 1 !important;
+}
+
+.theocology-latest-content h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: var(--color-gray-900, #111827) !important;
+  margin: 0 0 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+.theocology-latest-content p {
+  font-size: 0.9rem !important;
+  color: var(--color-gray-600, #4b5563) !important;
+  line-height: 1.65 !important;
+  margin: 0 0 0.875rem !important;
+}
+
+.theocology-latest-meta {
+  display: flex !important;
+  gap: 1.25rem !important;
+  font-size: 0.8rem !important;
+  color: var(--color-gray-500, #6b7280) !important;
+  font-weight: 500 !important;
+}
+
+.theocology-latest-meta span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+}
+
+.theocology-latest-meta svg {
+  color: var(--color-primary, #2776D8) !important;
+  opacity: 0.8 !important;
+}
+
+@media (max-width: 768px) {
+  .theocology-latest-card {
+    padding: 1.25rem;
+  }
+
+  .theocology-latest-play {
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+
+  .theocology-latest-content h3 {
+    font-size: var(--font-size-base);
+  }
+
+  .theocology-latest-meta {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
+/* Legacy Episodes Section (keep for reference) */
 .theocology-episodes-section {
   padding: var(--spacing-4xl) 0;
   background: var(--color-gray-50);
