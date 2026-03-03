@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Subscribe to the Thrive Community Church podcast. Listen to our weekly messages on Apple Podcasts, Spotify, Amazon Music, and more.",
   openGraph: {
     title: "Podcast | Thrive Community Church",
-    description: "Take our messages with you wherever you go. Subscribe on your favorite podcast platform.",
+    description: "Take our messages with you wherever you go. Subscribe on Apple Podcasts, Spotify, Amazon Music, and more.",
     url: "https://thrive-fl.org/podcast",
     images: [
       {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Podcast | Thrive Community Church",
-    description: "Take our messages with you wherever you go. Subscribe on your favorite podcast platform.",
+    description: "Take our messages with you wherever you go. Subscribe on Apple Podcasts, Spotify, Amazon Music, and more.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

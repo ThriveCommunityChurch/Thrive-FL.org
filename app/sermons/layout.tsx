@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Watch and listen to sermon series from Thrive Community Church. Explore biblical teaching that helps you grow in faith and apply God's Word to everyday life.",
   openGraph: {
     title: "Sermons | Thrive Community Church",
-    description: "Watch and listen to sermon series from Thrive Community Church.",
+    description: "Watch and listen to sermon series from Thrive Community Church. Biblical teaching to help you grow in faith and everyday life.",
     url: "https://thrive-fl.org/sermons",
     images: [
       {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sermons | Thrive Community Church",
-    description: "Watch and listen to sermon series from Thrive Community Church.",
+    description: "Watch and listen to sermon series from Thrive Community Church. Biblical teaching to help you grow in faith and everyday life.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {

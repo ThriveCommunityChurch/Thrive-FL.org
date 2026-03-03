@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "Thrive Kids offers a dedicated space where children can play and explore during Sunday worship. A relaxed, family-friendly environment for kids of all ages.",
   openGraph: {
     title: "Thrive Kids | Thrive Community Church",
-    description: "A dedicated space where kids can play and explore during Sunday worship at Thrive.",
+    description: "A fun, safe space where kids can play, learn, and explore faith during Sunday worship. Family-friendly environment for all ages.",
     url: "https://thrive-fl.org/ministries/kids",
     images: [
       {

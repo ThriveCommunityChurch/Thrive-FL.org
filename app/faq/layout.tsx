@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, giving, and more.",
   openGraph: {
     title: "FAQ | Thrive Community Church",
-    description: "Everything you need to know about Thrive Community Church in Estero, FL.",
+    description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
     url: "https://thrive-fl.org/faq",
     images: [
       {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FAQ | Thrive Community Church",
-    description: "Everything you need to know about Thrive Community Church.",
+    description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
