@@ -1,13 +1,15 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
   faPlay,
-  faMugHot,
-  faArrowRight,
-  faShirt,
-  faChildReaching,
-  faUsers,
+  faMusic,
+  faBookOpen,
+  faHandshake,
+  faCircleQuestion,
+  faDroplet,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -55,112 +57,119 @@ export default function ImNewPage() {
       <section className="section intro-section">
         <div className="container container-narrow">
           <div className="intro-content">
-            <h2 className="section-title">No Pressure. Just People.</h2>
+            <h2 className="section-title">You&apos;re Welcome Here</h2>
             <p className="intro-lead">
-              Church shouldn&apos;t feel like a performance you&apos;re not dressed for.
-              At Thrive, we&apos;re just regular people figuring out life, faith, and
-              everything in between—together.
+              We believe church should be a place where you can be yourself.
+              At Thrive, you&apos;ll find people walking through real life together—growing in
+              faith, side by side.
             </p>
             <p>
-              Whether you&apos;re exploring faith for the first time, coming back after
-              years away, or just looking for a community that actually feels like
-              community—you&apos;re welcome here. No strings attached.
+              Whether you&apos;re exploring faith for the first time, returning after
+              time away, or simply looking for a community where you truly belong—we&apos;d
+              be honored to have you join us.
             </p>
             <div className="intro-cta">
-              <a href="/visit" className="btn btn-primary">
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faLocationDot} />
-                See You Sunday
-              </a>
-              <a href="/sermons" className="btn btn-outline">
+                Plan Your Visit
+              </Link>
+              <Link href="/sermons" className="btn btn-outline">
                 <FontAwesomeIcon icon={faPlay} />
                 Watch a Message
-              </a>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="section faq-section">
+      {/* What to Expect Section */}
+      <section className="section im-new-expect-section">
         <div className="container">
-          <h2 className="section-title">
-            FAQ
-          </h2>
-          <div className="faq-grid">
-            <div className="faq-card">
-              <div className="faq-icon">
-                <FontAwesomeIcon icon={faMugHot} />
-              </div>
-              <h3>What&apos;s the atmosphere like?</h3>
-              <p>
-                Warm and welcoming. Grab a coffee when you arrive (it&apos;s on us), find a seat
-                anywhere you&apos;re comfortable, and enjoy heartfelt worship. Our messages are
-                practical and rooted in Scripture—teaching you can apply to your daily life.
-                The service is about an hour.
-              </p>
-              <a href="/sermons" className="faq-link">
-                Preview a recent message <FontAwesomeIcon icon={faArrowRight} />
-              </a>
-            </div>
+          <div className="section-header-centered">
+            <span className="section-eyebrow">Sunday Mornings</span>
+            <h2 className="section-title">What to Expect</h2>
+            <p className="section-subtitle">
+              Here&apos;s what a typical Sunday looks like at Thrive
+            </p>
+          </div>
 
-            <div className="faq-card">
-              <div className="faq-icon">
-                <FontAwesomeIcon icon={faShirt} />
+          <div className="im-new-expect-grid">
+            <div className="im-new-expect-card">
+              <div className="im-new-expect-icon">
+                <FontAwesomeIcon icon={faMusic} />
               </div>
-              <h3>What do people wear?</h3>
+              <h3>Contemporary Worship</h3>
               <p>
-                Come as you are. Jeans and a t-shirt are fine. Dressed up? That&apos;s great
-                too. You&apos;ll find a mix of both on any given Sunday. What matters most
-                is that you&apos;re here, not what you&apos;re wearing.
+                Our worship is heartfelt and accessible—music that invites you to
+                connect with God, whether you prefer to sing along or simply listen
+                and reflect.
               </p>
             </div>
 
-            <div className="faq-card">
-              <div className="faq-icon">
-                <FontAwesomeIcon icon={faChildReaching} />
+            <div className="im-new-expect-card">
+              <div className="im-new-expect-icon">
+                <FontAwesomeIcon icon={faBookOpen} />
               </div>
-              <h3>What about my kids?</h3>
+              <h3>Thoughtful Sermons</h3>
               <p>
-                They&apos;re in great hands. Thrive Kids offers age-appropriate teaching,
-                caring leaders, and engaging activities designed just for them. Available
-                for ages 6 months through 5th grade every Sunday.
+                Our messages are contemplative and grounded in Scripture. Pastor John
+                offers teaching that speaks to everyday life—something to carry with
+                you throughout the week.
               </p>
-              <a href="/ministries/kids" className="faq-link">
-                More about Thrive Kids <FontAwesomeIcon icon={faArrowRight} />
-              </a>
             </div>
 
-            <div className="faq-card">
-              <div className="faq-icon">
-                <FontAwesomeIcon icon={faUsers} />
+            <div className="im-new-expect-card">
+              <div className="im-new-expect-icon">
+                <FontAwesomeIcon icon={faHandshake} />
               </div>
-              <h3>How do I actually connect?</h3>
+              <h3>A Welcoming Community</h3>
               <p>
-                Sunday is just the starting point. Every week we gather at the
-                pastor&apos;s home for a meal, fellowship, and meaningful conversation—it&apos;s a
-                great way to get to know people in a relaxed setting. We also have Home
-                Huddles (small groups) that meet throughout the week to share life and
-                support each other.
+                You&apos;ll be greeted warmly by people who are genuinely glad you&apos;re
+                here. Please stay after the service for coffee and conversation—we&apos;d
+                love to get to know you.
               </p>
-              <a href="/small-groups" className="faq-link">
-                Learn more <FontAwesomeIcon icon={faArrowRight} />
-              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Additional Links */}
-      <section className="section">
-        <div className="container container-narrow">
-          <p>
-            Already following Jesus and wondering about baptism?{" "}
-            <a href="/baptism">Learn about Baptism &rarr;</a>
-          </p>
-          <p>
-            Walking through something heavy?{" "}
-            <a href="/care">Get Care &amp; Prayer &rarr;</a>
-          </p>
+      {/* Quick Links Section */}
+      <section className="section im-new-links-section">
+        <div className="container">
+          <div className="im-new-links-grid">
+            <Link href="/faq" className="im-new-link-card">
+              <div className="im-new-link-icon">
+                <FontAwesomeIcon icon={faCircleQuestion} />
+              </div>
+              <div className="im-new-link-content">
+                <h3>Have Questions?</h3>
+                <p>Check out our FAQ for answers to common questions about visiting, kids, and more.</p>
+              </div>
+              <span className="im-new-link-arrow">&rarr;</span>
+            </Link>
+
+            <Link href="/baptism" className="im-new-link-card">
+              <div className="im-new-link-icon">
+                <FontAwesomeIcon icon={faDroplet} />
+              </div>
+              <div className="im-new-link-content">
+                <h3>Baptism</h3>
+                <p>Already following Jesus? Learn about taking your next step through baptism.</p>
+              </div>
+              <span className="im-new-link-arrow">&rarr;</span>
+            </Link>
+
+            <Link href="/care" className="im-new-link-card">
+              <div className="im-new-link-icon">
+                <FontAwesomeIcon icon={faHeart} />
+              </div>
+              <div className="im-new-link-content">
+                <h3>Care &amp; Prayer</h3>
+                <p>Walking through a difficult season? We&apos;re here to support you.</p>
+              </div>
+              <span className="im-new-link-arrow">&rarr;</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -169,9 +178,9 @@ export default function ImNewPage() {
         <div className="container container-narrow">
           <div className="location-cta-content">
             <div className="location-cta-info">
-              <h2>Ready to check us out?</h2>
+              <h2>We&apos;d Love to See You</h2>
               <p className="location-cta-lead">
-                Sundays at 10. Coffee&apos;s on us.
+                Join us Sunday at 10 AM. Coffee is always ready.
               </p>
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faLocationDot} />
