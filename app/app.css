@@ -1685,6 +1685,10 @@ a:hover {
 .page-wrapper--event-detail {
   min-height: auto;
 }
+/* Series detail page doesn't need min-height to avoid extra whitespace */
+.page-wrapper--series-detail {
+  min-height: auto;
+}
 
 /* ============================================
    Accessibility
