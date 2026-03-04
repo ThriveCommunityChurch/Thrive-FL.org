@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 import { getSitemapData } from "./services/sermonService";
+import { fetchTheocologyEpisodes } from "./services/theocologyService";
 
 const baseUrl = "https://thrive-fl.org";
 
@@ -69,6 +70,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
+  // Get Theocology podcast episodes from RSS feed
+  let theocologyEntries: MetadataRoute.Sitemap = [];
+
+  try {
+    const episodes = await fetchTheocologyEpisodes();
+    theocologyEntries = episodes.map((episode) => ({
+      url: `${baseUrl}/theocology/episodes/${episode.slug}`,
+      lastModified: new Date(episode.pubDate),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch Theocology episodes for sitemap:", error);
+  }
+
   // Get all series and messages in a single API call
   let sermonEntries: MetadataRoute.Sitemap = [];
 
@@ -115,5 +131,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch sitemap data:", error);
   }
 
-  return [...staticEntries, ...sermonEntries];
+  return [...staticEntries, ...theocologyEntries, ...sermonEntries];
 }
