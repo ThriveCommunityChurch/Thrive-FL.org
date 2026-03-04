@@ -78,7 +78,7 @@ export default async function SeriesDetailPage({ params }: PageProps) {
   const isOngoing = series && !series.EndDate;
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper page-wrapper--series-detail">
       {/* JSON-LD Structured Data for SEO */}
       {series && (
         <SermonSeriesJsonLd

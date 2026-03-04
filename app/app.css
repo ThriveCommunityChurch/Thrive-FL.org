@@ -1685,6 +1685,10 @@ a:hover {
 .page-wrapper--event-detail {
   min-height: auto;
 }
+/* Series detail page doesn't need min-height to avoid extra whitespace */
+.page-wrapper--series-detail {
+  min-height: auto;
+}
 
 /* ============================================
    Accessibility
@@ -8576,10 +8580,8 @@ a:hover {
   padding: 1.5rem !important;
   border-radius: 12px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
-  text-decoration: none !important;
   transition: all 0.3s ease !important;
   border: 1px solid #e5e7eb !important;
-  cursor: pointer !important;
 }
 
 .theocology-latest-card:hover {
@@ -8607,6 +8609,9 @@ a:hover {
   flex-shrink: 0 !important;
   transition: all 0.25s ease !important;
   box-shadow: 0 4px 12px rgba(39, 118, 216, 0.3) !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 !important;
 }
 
 .theocology-latest-play-active {
@@ -8629,6 +8634,13 @@ a:hover {
 
 .theocology-latest-content {
   flex: 1 !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block !important;
+}
+
+.theocology-latest-content:hover h3 {
+  color: var(--color-primary, #2776D8) !important;
 }
 
 .theocology-latest-content h3 {
@@ -8637,6 +8649,7 @@ a:hover {
   color: var(--color-gray-900, #111827) !important;
   margin: 0 0 0.5rem !important;
   line-height: 1.4 !important;
+  transition: color 0.2s ease !important;
 }
 
 .theocology-latest-content p {
@@ -8683,6 +8696,298 @@ a:hover {
   .theocology-latest-meta {
     flex-wrap: wrap;
     gap: 1rem;
+  }
+}
+
+/* Episode Detail Page Styles */
+.page-wrapper .episode-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: color var(--transition-fast);
+}
+
+.page-wrapper .episode-back-link:hover {
+  color: var(--color-primary-dark);
+}
+
+.page-wrapper .episode-hero {
+  padding: var(--spacing-3xl) 0;
+}
+
+.page-wrapper .episode-hero-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.page-wrapper .episode-artwork {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.page-wrapper .episode-artwork img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--border-radius-lg);
+}
+
+.page-wrapper .episode-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.page-wrapper .episode-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.page-wrapper .episode-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: var(--color-gray-600);
+  font-size: var(--font-size-base);
+}
+
+.page-wrapper .episode-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page-wrapper .episode-meta svg {
+  color: var(--color-primary);
+}
+
+/* Episode play button uses .btn .btn-primary classes */
+
+.page-wrapper .episode-description-section {
+  background: var(--color-gray-50);
+  padding: var(--spacing-4xl) 0;
+}
+
+.page-wrapper .episode-description-section h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 1.5rem;
+}
+
+.page-wrapper .episode-description {
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  color: var(--color-gray-700);
+}
+
+.page-wrapper .episode-description p {
+  margin-bottom: 1rem;
+}
+
+.page-wrapper .episode-description strong,
+.page-wrapper .episode-description b {
+  color: var(--color-gray-900);
+  font-weight: 600;
+}
+
+.page-wrapper .episode-links-section {
+  padding: var(--spacing-4xl) 0;
+}
+
+.page-wrapper .episode-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.page-wrapper .episode-link-card {
+  display: block;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid #e5e7eb;
+}
+
+.page-wrapper .episode-link-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15);
+  border-color: #2776D8;
+}
+
+.page-wrapper .episode-link-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 0.75rem;
+  transition: color 0.2s ease;
+}
+
+.page-wrapper .episode-link-card:hover h3 {
+  color: #2776D8;
+}
+
+.page-wrapper .episode-link-card p {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .page-wrapper .episode-hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .page-wrapper .episode-artwork {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .page-wrapper .episode-title {
+    font-size: 1.75rem;
+  }
+
+  .page-wrapper .episode-links-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Theocology Episodes List Page */
+.theocology-episodes-list-section {
+  padding: var(--spacing-4xl) 0;
+}
+
+.theocology-episodes-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-600);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.theocology-episodes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.theocology-episode-list-item {
+  display: flex;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-gray-200);
+  animation: fadeInUp var(--animation-duration-slow) ease forwards;
+  opacity: 0;
+}
+
+.theocology-episode-list-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15);
+  border-color: var(--color-primary);
+}
+
+.theocology-episode-list-artwork {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.theocology-episode-list-artwork img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.theocology-episode-list-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.theocology-episode-list-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.theocology-episode-list-item:hover h3 {
+  color: var(--color-primary);
+}
+
+.theocology-episode-list-content p {
+  font-size: 0.9375rem;
+  color: var(--color-gray-600);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.theocology-episode-list-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--color-gray-500);
+  margin-top: auto;
+}
+
+.theocology-episode-list-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.theocology-episode-list-meta svg {
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+.theocology-cta-section {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  text-align: center;
+}
+
+.theocology-cta-section .cta-content h2 {
+  color: white;
+}
+
+.theocology-cta-section .cta-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .theocology-episode-list-item {
+    flex-direction: column;
+  }
+
+  .theocology-episode-list-artwork {
+    width: 100%;
+    height: 200px;
   }
 }
 

@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { faqData } from "./page";
+import { faqData } from "./faqData";
 
 export const metadata: Metadata = {
   title: "FAQ | Thrive Community Church",
