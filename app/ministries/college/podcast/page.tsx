@@ -222,42 +222,49 @@ export default function TheocologyPodcastPage() {
           {loading ? (
             <div className="theocology-loading">Loading episodes...</div>
           ) : (
-            <div className="theocology-latest-grid">
-              {episodes.map((episode, index) => {
-                const isCurrentEpisode = currentMessage?.Title === episode.title;
-                const isEpisodePlaying = isCurrentEpisode && isPlaying;
+            <>
+              <div className="theocology-latest-grid">
+                {episodes.map((episode, index) => {
+                  const isCurrentEpisode = currentMessage?.Title === episode.title;
+                  const isEpisodePlaying = isCurrentEpisode && isPlaying;
 
-                return (
-                  <div
-                    key={index}
-                    className={`theocology-latest-card ${isCurrentEpisode ? "theocology-latest-card-active" : ""}`}
-                  >
-                    <button
-                      className={`theocology-latest-play ${isEpisodePlaying ? "theocology-latest-play-active" : ""}`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        playEpisode(episode);
-                      }}
-                      aria-label={isEpisodePlaying ? "Pause episode" : "Play episode"}
+                  return (
+                    <div
+                      key={index}
+                      className={`theocology-latest-card ${isCurrentEpisode ? "theocology-latest-card-active" : ""}`}
                     >
-                      <FontAwesomeIcon icon={isEpisodePlaying ? faPause : faPlay} />
-                    </button>
-                    <Link href={`/theocology/episodes/${episode.slug}`} className="theocology-latest-content">
-                      <h3>{episode.title}</h3>
-                      <p>{episode.description}</p>
-                      <div className="theocology-latest-meta">
-                        <span>
-                          <FontAwesomeIcon icon={faClock} /> {episode.duration}
-                        </span>
-                        <span>
-                          <FontAwesomeIcon icon={faCalendar} /> {formatDate(episode.pubDate)}
-                        </span>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
+                      <button
+                        className={`theocology-latest-play ${isEpisodePlaying ? "theocology-latest-play-active" : ""}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          playEpisode(episode);
+                        }}
+                        aria-label={isEpisodePlaying ? "Pause episode" : "Play episode"}
+                      >
+                        <FontAwesomeIcon icon={isEpisodePlaying ? faPause : faPlay} />
+                      </button>
+                      <Link href={`/theocology/episodes/${episode.slug}`} className="theocology-latest-content">
+                        <h3>{episode.title}</h3>
+                        <p>{episode.description}</p>
+                        <div className="theocology-latest-meta">
+                          <span>
+                            <FontAwesomeIcon icon={faClock} /> {episode.duration}
+                          </span>
+                          <span>
+                            <FontAwesomeIcon icon={faCalendar} /> {formatDate(episode.pubDate)}
+                          </span>
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+              <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+                <Link href="/theocology/episodes" className="btn btn-outline">
+                  View All Episodes
+                </Link>
+              </div>
+            </>
           )}
         </div>
       </section>

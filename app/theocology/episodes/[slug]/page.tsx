@@ -3,14 +3,7 @@ import { notFound } from "next/navigation";
 import EpisodeDetailClient from "./EpisodeDetailClient";
 import {
   getEpisodeBySlug,
-  getAllEpisodeSlugs,
 } from "../../../services/theocologyService";
-
-// Generate static params for all episodes
-export async function generateStaticParams() {
-  const slugs = await getAllEpisodeSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
 
 // Generate metadata for each episode
 export async function generateMetadata({
@@ -37,7 +30,7 @@ export async function generateMetadata({
     .substring(0, 160);
 
   return {
-    title: `${episode.title} | Theocology Podcast`,
+    title: `${episode.title} | Theocology | ThriveFGCU`,
     description: plainDescription,
     openGraph: {
       title: episode.title,
