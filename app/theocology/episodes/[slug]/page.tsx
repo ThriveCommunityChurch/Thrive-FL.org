@@ -4,6 +4,7 @@ import EpisodeDetailClient from "./EpisodeDetailClient";
 import {
   getEpisodeBySlug,
 } from "../../../services/theocologyService";
+import { TheocologyEpisodeJsonLd } from "../../../components/JsonLd";
 
 // Generate metadata for each episode
 export async function generateMetadata({
@@ -63,6 +64,20 @@ export default async function EpisodePage({
     notFound();
   }
 
-  return <EpisodeDetailClient episode={episode} />;
+  return (
+    <>
+      {/* JSON-LD Structured Data for SEO */}
+      <TheocologyEpisodeJsonLd
+        slug={episode.slug}
+        title={episode.title}
+        description={episode.description}
+        pubDate={episode.pubDate}
+        duration={episode.duration}
+        audioUrl={episode.audioUrl}
+        imageUrl={episode.imageUrl}
+      />
+      <EpisodeDetailClient episode={episode} />
+    </>
+  );
 }
 

@@ -40,6 +40,10 @@ export const faqData: FAQData = {
         link: { text: "Learn more about visiting", href: "/im-new" },
       },
       {
+        question: "What is your worship style?",
+        answer: "Our worship is contemporary and modern, featuring a full band with current worship songs. We do not offer a traditional service. Our focus is on creating an authentic, engaging worship experience that helps people connect with God.",
+      },
+      {
         question: "What should I wear?",
         answer: "Please come as you are. What matters most to us is that you're here.",
       },
