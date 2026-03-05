@@ -482,6 +482,147 @@ export function SermonMessageJsonLd({
   );
 }
 
+// Theocology Episode JSON-LD for episode detail pages
+// Includes:
+// - PodcastEpisode (semantic understanding)
+// - BreadcrumbList (navigation breadcrumbs in search)
+interface TheocologyEpisodeJsonLdProps {
+  slug: string;
+  title: string;
+  description: string; // HTML description
+  pubDate: string; // ISO date string
+  duration: number; // Duration in seconds
+  audioUrl: string;
+  imageUrl: string;
+}
+
+export function TheocologyEpisodeJsonLd({
+  slug,
+  title,
+  description,
+  pubDate,
+  duration,
+  audioUrl,
+  imageUrl,
+}: TheocologyEpisodeJsonLdProps) {
+  // Format duration from seconds to ISO 8601 duration
+  const formatDuration = (seconds: number): string | undefined => {
+    if (!seconds) return undefined;
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    let durationStr = "PT";
+    if (hours > 0) durationStr += `${hours}H`;
+    if (minutes > 0) durationStr += `${minutes}M`;
+    if (secs > 0 || durationStr === "PT") durationStr += `${secs}S`;
+    return durationStr;
+  };
+
+  // Strip HTML from description for plain text
+  const plainDescription = description
+    .replace(/<[^>]*>/g, "")
+    .replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, "&")
+    .replace(/&nbsp;/g, " ");
+
+  const pageUrl = `https://thrive-fl.org/theocology/episodes/${slug}`;
+  const podcastUrl = "https://thrive-fl.org/ministries/college/podcast";
+  const collegeUrl = "https://thrive-fl.org/ministries/college";
+  const ministriesUrl = "https://thrive-fl.org/ministries";
+
+  // BreadcrumbList for navigation in search results
+  const breadcrumbList = {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://thrive-fl.org",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Ministries",
+        item: ministriesUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "College",
+        item: collegeUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Theocology Podcast",
+        item: podcastUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 5,
+        name: title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  // PodcastEpisode for semantic understanding
+  const podcastEpisode = {
+    "@type": "PodcastEpisode",
+    name: title,
+    url: pageUrl,
+    datePublished: pubDate,
+    description: plainDescription.substring(0, 500), // Limit description length
+    duration: formatDuration(duration),
+    image: imageUrl,
+    associatedMedia: {
+      "@type": "MediaObject",
+      contentUrl: audioUrl,
+      encodingFormat: "audio/mpeg",
+    },
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: "Theocology",
+      url: podcastUrl,
+      description: "A podcast from ThriveFGCU exploring faith, doubt, identity, and community.",
+      image: "https://static.thrive-fl.org/Theocology.png",
+    },
+    author: {
+      "@type": "Organization",
+      name: "ThriveFGCU",
+      url: collegeUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: churchData.name,
+      logo: {
+        "@type": "ImageObject",
+        url: churchData.logo,
+      },
+    },
+    inLanguage: "en-US",
+  };
+
+  // Combine all schemas using @graph
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList,
+      podcastEpisode,
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 // Video Watch Page JSON-LD - VideoObject as PRIMARY schema
 // This is specifically for dedicated video watch pages that follow Google's guidelines:
 // - Video is the PRIMARY purpose of the page
