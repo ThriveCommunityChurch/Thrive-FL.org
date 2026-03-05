@@ -100,9 +100,10 @@ export default function ImNewPage() {
               </div>
               <h3>Contemporary Worship</h3>
               <p>
-                Our worship is heartfelt and accessible—music that invites you to
-                connect with God, whether you prefer to sing along or simply listen
-                and reflect.
+                Our worship is contemporary and modern, featuring a full band with
+                current worship songs. While we may not offer a traditional Lutheran
+                worship service, our focus is on creating an authentic, engaging
+                worship experience that helps you connect with God.
               </p>
             </div>
 
