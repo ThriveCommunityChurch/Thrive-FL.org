@@ -16,10 +16,10 @@ import {
 
 export const metadata: Metadata = {
   title: "Our Mission | Thrive Community Church",
-  description: "Thrive exists to bless and disciple people so they thrive in their relationship with Jesus Christ and others. Reaching the FGCU campus and Estero community with hope and faith.",
+  description: "Thrive exists to bless and disciple people so they thrive in their relationship with Jesus Christ and others. Reaching Southwest Florida with hope and faith.",
   openGraph: {
     title: "Our Mission | Thrive Community Church",
-    description: "A beacon of hope and faith for the FGCU campus and Estero community.",
+    description: "A beacon of hope and faith for Southwest Florida.",
     url: "https://thrive-fl.org/about/mission",
     images: [
       {
