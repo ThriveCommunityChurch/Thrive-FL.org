@@ -22,6 +22,7 @@ import {
   faPodcast,
   faDroplet,
   faHandsPraying,
+  faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -277,6 +278,14 @@ export default function HomePage() {
               <h3>Listen to Our Podcast</h3>
               <p>Subscribe on Apple Podcasts, Spotify, and more</p>
               <span className="quicklink-action">Subscribe Now</span>
+            </a>
+            <a href="/blog" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faNewspaper} />
+              </div>
+              <h3>Read Our Blog</h3>
+              <p>Practical insights and reflections from our sermon series</p>
+              <span className="quicklink-action">Read Articles</span>
             </a>
           </div>
         </div>
