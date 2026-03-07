@@ -198,7 +198,7 @@ export default function AboutPage() {
                 <FontAwesomeIcon icon={faBullseye} />
               </div>
               <h3>Our Mission</h3>
-              <p>A beacon of hope and faith for the FGCU campus and Estero community.</p>
+              <p>A beacon of hope and faith for Southwest Florida.</p>
               <span className="about-explore-link">
                 Learn More <FontAwesomeIcon icon={faArrowRight} />
               </span>
