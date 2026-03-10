@@ -10896,6 +10896,13 @@ a:hover {
   margin: 0 auto var(--spacing-2xl);
 }
 
+.developers-cta-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .developers-cta-section .btn {
   display: inline-flex;
   align-items: center;
