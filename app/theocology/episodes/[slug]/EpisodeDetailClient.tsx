@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faClock, faCalendar, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useAudioPlayer } from "../../../contexts/AudioPlayerContext";
 import { SermonMessage } from "../../../types/sermons";
+import { TheocologyEpisodeJsonLd } from "../../../components/JsonLd";
 
 const RSS_FEED_URL = "https://feeds.buzzsprout.com/1803195.rss";
 
@@ -170,6 +171,16 @@ export default function EpisodeDetailClient({ slug }: EpisodeDetailClientProps) 
     );
   }
   return (
+    <>
+      <TheocologyEpisodeJsonLd
+        slug={episode.slug}
+        title={episode.title}
+        description={episode.description}
+        pubDate={episode.pubDate}
+        duration={episode.duration}
+        audioUrl={episode.audioUrl}
+        imageUrl={episode.imageUrl}
+      />
     <div className="page-wrapper">
       {/* Back Link */}
       <section className="section" style={{ paddingBottom: 0 }}>
@@ -244,6 +255,7 @@ export default function EpisodeDetailClient({ slug }: EpisodeDetailClientProps) 
         </div>
       </section>
     </div>
+    </>
   );
 }
 
