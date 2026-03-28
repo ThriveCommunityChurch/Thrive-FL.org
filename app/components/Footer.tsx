@@ -22,6 +22,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/im-new">I&apos;m New</Link></li>
               <li><Link href="/sermons">Sermons</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/live">Watch Live</Link></li>
               <li><Link href="/podcast">Podcast</Link></li>
               <li><Link href="/events">Events</Link></li>

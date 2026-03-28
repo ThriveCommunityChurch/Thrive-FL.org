@@ -10,8 +10,9 @@ import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getPublishedBlogPosts, formatBlogDate, getReadingTime } from "../services/blogService";
 import { BlogPost } from "../types/blog";
 
-// ISR: Revalidate every 5 minutes (300 seconds)
-export const revalidate = 300;
+// No caching - always fetch fresh on pageload
+// API will cache responses server-side
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Blog | Thrive Community Church",

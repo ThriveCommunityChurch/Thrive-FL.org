@@ -17,8 +17,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-// ISR: Revalidate every 5 minutes (300 seconds)
-export const revalidate = 300;
+// No caching - always fetch fresh on pageload
+// API will cache responses server-side
+export const revalidate = 0;
 
 // Generate dynamic metadata based on blog post data
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
