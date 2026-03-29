@@ -42,7 +42,7 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
 /**
  * Get paged published blog posts
  * @param pageNumber - Page number (1-based)
- * @param pageSize - Number of items per page (default 10, max 100)
+ * @param pageSize - Number of items per page (default 10)
  */
 export async function getPagedBlogPosts(
   pageNumber: number = 1,
@@ -57,13 +57,16 @@ export async function getPagedBlogPosts(
 
 /**
  * Get all published blog posts
+ * Note: The /api/Blog/published endpoint returns a BlogPostPagedResponse,
+ * so we request a large page size and unwrap the Items array.
  */
 export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
-  const endpoint = '/api/Blog/published';
+  const endpoint = '/api/Blog/published?pageNumber=1&pageSize=1000000';
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     cache: 'no-store',
   });
-  return handleResponse<BlogPost[]>(response, endpoint);
+  const paged = await handleResponse<BlogPostPagedResponse>(response, endpoint);
+  return paged.Items;
 }
 
 /**
