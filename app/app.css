@@ -7066,6 +7066,26 @@ a:hover {
   height: 16px;
 }
 
+.blog-detail-series-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.blog-detail-series-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.blog-detail-series-link svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* Blog Content Typography */
 .blog-detail-content {
   font-size: var(--font-size-base);

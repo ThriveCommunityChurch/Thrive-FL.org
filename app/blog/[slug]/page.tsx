@@ -6,6 +6,7 @@ import {
   faArrowLeft,
   faExclamationTriangle,
   faClock,
+  faBookOpen,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getBlogPostBySlug, formatBlogDate, getReadingTime } from "../../services/blogService";
@@ -125,6 +126,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <FontAwesomeIcon icon={faClock} />
                     {readingTime} min read
                   </span>
+                  {showSeriesLink && seriesName && (
+                    <Link href={post.SourceUrl!} className="blog-detail-series-link">
+                      <FontAwesomeIcon icon={faBookOpen} />
+                      View Series
+                    </Link>
+                  )}
                 </div>
               </header>
 
