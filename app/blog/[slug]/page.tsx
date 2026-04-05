@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <FontAwesomeIcon icon={faClock} />
                     {readingTime} min read
                   </span>
-                  {showSeriesLink && seriesName && (
+                  {showSeriesLink && (
                     <Link href={post.SourceUrl!} className="blog-detail-series-link">
                       <FontAwesomeIcon icon={faBookOpen} />
                       View Series
