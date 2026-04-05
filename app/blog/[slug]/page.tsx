@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     post = await getBlogPostBySlug(slug);
 
     // If this is a sermon series blog post, fetch the series name
-    if (post?.Type === BlogPostType.SermonSeries && post?.SourceUrl) {
+    if ((post?.Type === BlogPostType.SermonSeries || post?.Type === 'SermonSeries') && post?.SourceUrl) {
       // Extract seriesId from SourceUrl (format: /sermons/{seriesId})
       const seriesIdMatch = post.SourceUrl.match(/\/sermons\/([^/]+)/);
       if (seriesIdMatch?.[1]) {
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const readingTime = post ? getReadingTime(post.Content) : 0;
-  const showSeriesLink = post?.Type === BlogPostType.SermonSeries && post?.SourceUrl;
+  const showSeriesLink = (post?.Type === BlogPostType.SermonSeries || post?.Type === 'SermonSeries') && post?.SourceUrl;
 
   return (
     <div className="page-wrapper">
