@@ -74,7 +74,7 @@ export interface BlogPost {
   Id: string;
   Title: string;
   Content: string;                // Markdown formatted content
-  Type: BlogPostType;
+  Type: BlogPostType | string;     // Can be numeric enum or string from API
   Category: BlogPostCategory | null;  // Topic category for filtering
   SourceUrl: string | null;       // e.g., /sermons/{seriesId}
   SourceId: string | null;        // ObjectId reference
@@ -95,7 +95,7 @@ export interface BlogPostSummary {
   Summary: string | null;
   Slug: string;
   PublishedDate: string | null;
-  Type: BlogPostType;
+  Type: BlogPostType | string;     // Can be numeric enum or string from API
   Category: BlogPostCategory | null;
 }
 
