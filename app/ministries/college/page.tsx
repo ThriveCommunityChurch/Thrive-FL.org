@@ -15,11 +15,11 @@ import {
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 export const metadata: Metadata = {
-  title: "ThriveFGCU | College Ministry | Thrive Community Church",
-  description: "ThriveFGCU is a college ministry for Florida Gulf Coast University students. Join us for community, faith, and fun - multiple gatherings each week on campus and at church.",
+  title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
+  description: "ThriveFGCU is a college ministry for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for community, faith, and fun each week both on campus and at church.",
   openGraph: {
-    title: "ThriveFGCU | College Ministry",
-    description: "A young adult community based on the FGCU campus. Join us for faith, friendship, and Christ-centered community each week.",
+    title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
+    description: "A young adult community for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for faith, friendship, and Christ-centered community each week.",
     url: "https://thrive-fl.org/ministries/college",
     images: [
       {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ThriveFGCU | College Ministry",
+    title: "ThriveFGCU | Campus Ministry at FGCU",
     description: "A college ministry for FGCU students. Community, faith, and fun.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },

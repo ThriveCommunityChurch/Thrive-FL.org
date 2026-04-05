@@ -22,14 +22,15 @@ import {
   faPodcast,
   faDroplet,
   faHandsPraying,
+  faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
-  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM near FGCU, Bonita Springs & Fort Myers. A Lutheran Church—Missouri Synod congregation.",
+  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
   openGraph: {
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL near FGCU.",
+    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
     url: "https://thrive-fl.org",
     images: [
       {
@@ -277,6 +278,14 @@ export default function HomePage() {
               <h3>Listen to Our Podcast</h3>
               <p>Subscribe on Apple Podcasts, Spotify, and more</p>
               <span className="quicklink-action">Subscribe Now</span>
+            </a>
+            <a href="/blog" className="quicklink-card">
+              <div className="quicklink-icon">
+                <FontAwesomeIcon icon={faNewspaper} />
+              </div>
+              <h3>Read Our Blog</h3>
+              <p>Practical insights and reflections from our sermon series</p>
+              <span className="quicklink-action">Read Articles</span>
             </a>
           </div>
         </div>
