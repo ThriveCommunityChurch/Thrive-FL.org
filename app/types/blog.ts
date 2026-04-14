@@ -67,15 +67,37 @@ export const BlogCategoryLabels: Record<BlogPostCategory, string> = {
 };
 
 /**
+ * Resolves a category value (numeric enum or string from API) to its human-readable label.
+ * The API serializes enums as strings (JsonStringEnumConverter), so Category arrives
+ * as e.g. "FaithFoundations" rather than 0.
+ */
+export function getCategoryLabel(category: BlogPostCategory | string | null | undefined): string | null {
+  if (category === null || category === undefined) return null;
+
+  // Numeric enum value — direct lookup
+  if (typeof category === 'number') {
+    return BlogCategoryLabels[category as BlogPostCategory] ?? null;
+  }
+
+  // String enum name — resolve via the enum reverse-map
+  const enumValue = BlogPostCategory[category as keyof typeof BlogPostCategory];
+  if (enumValue !== undefined) {
+    return BlogCategoryLabels[enumValue] ?? null;
+  }
+
+  return null;
+}
+
+/**
  * Blog post entity
  * Returned by GET /api/Blog endpoints
  */
 export interface BlogPost {
   Id: string;
   Title: string;
-  Content: string;                // Markdown formatted content
-  Type: BlogPostType | string;     // Can be numeric enum or string from API
-  Category: BlogPostCategory | null;  // Topic category for filtering
+  Content: string;                        // Markdown formatted content
+  Type: BlogPostType | string;            // Can be numeric enum or string from API
+  Category: BlogPostCategory | string | null;  // Can be numeric enum or string from API
   SourceUrl: string | null;       // e.g., /sermons/{seriesId}
   SourceId: string | null;        // ObjectId reference
   CreateDate: string;             // ISO date string
@@ -95,8 +117,8 @@ export interface BlogPostSummary {
   Summary: string | null;
   Slug: string;
   PublishedDate: string | null;
-  Type: BlogPostType | string;     // Can be numeric enum or string from API
-  Category: BlogPostCategory | null;
+  Type: BlogPostType | string;            // Can be numeric enum or string from API
+  Category: BlogPostCategory | string | null;  // Can be numeric enum or string from API
 }
 
 // ============================================

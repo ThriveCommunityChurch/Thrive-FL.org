@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import { getSitemapData } from "./services/sermonService";
 import { fetchTheocologyEpisodes } from "./services/theocologyService";
+import { getPublishedBlogPosts } from "./services/blogService";
 
 const baseUrl = "https://thrive-fl.org";
 
@@ -19,6 +20,7 @@ const routeConfig: Record<string, { priority: number; changeFrequency: "always" 
   "/im-new": { priority: 0.9, changeFrequency: "monthly" },
   "/visit": { priority: 0.9, changeFrequency: "monthly" },
   "/sermons": { priority: 0.9, changeFrequency: "weekly" },
+  "/blog": { priority: 0.8, changeFrequency: "weekly" },
   "/events": { priority: 0.8, changeFrequency: "weekly" },
   "/about": { priority: 0.8, changeFrequency: "monthly" },
   "/privacy": { priority: 0.3, changeFrequency: "yearly" },
@@ -70,66 +72,68 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  // Get Theocology podcast episodes from RSS feed
-  let theocologyEntries: MetadataRoute.Sitemap = [];
+  // Fire all dynamic data fetches in parallel
+  const [theocologyResult, blogResult, sermonResult] = await Promise.allSettled([
+    fetchTheocologyEpisodes(),
+    getPublishedBlogPosts(),
+    getSitemapData(),
+  ]);
 
-  try {
-    const episodes = await fetchTheocologyEpisodes();
-    theocologyEntries = episodes.map((episode) => ({
-      url: `${baseUrl}/theocology/episodes/${episode.slug}`,
-      lastModified: new Date(episode.pubDate),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    }));
-  } catch (error) {
-    console.error("Failed to fetch Theocology episodes for sitemap:", error);
-  }
+  const theocologyEntries: MetadataRoute.Sitemap =
+    theocologyResult.status === "fulfilled"
+      ? theocologyResult.value.map((episode) => ({
+          url: `${baseUrl}/theocology/episodes/${episode.slug}`,
+          lastModified: new Date(episode.pubDate),
+          changeFrequency: "monthly" as const,
+          priority: 0.6,
+        }))
+      : (console.error("Failed to fetch Theocology episodes for sitemap:", theocologyResult.reason), []);
 
-  // Get all series and messages in a single API call
-  let sermonEntries: MetadataRoute.Sitemap = [];
+  const blogEntries: MetadataRoute.Sitemap =
+    blogResult.status === "fulfilled"
+      ? blogResult.value.map((post) => ({
+          url: `${baseUrl}/blog/${post.Slug}`,
+          lastModified: post.LastUpdated ? new Date(post.LastUpdated) : now,
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+        }))
+      : (console.error("Failed to fetch blog posts for sitemap:", blogResult.reason), []);
 
-  try {
-    const sitemapData = await getSitemapData();
+  const sermonEntries: MetadataRoute.Sitemap =
+    sermonResult.status === "fulfilled"
+      ? sermonResult.value.Series.flatMap((series) => {
+          const seriesEntry = {
+            url: `${baseUrl}/sermons/${series.Id}`,
+            lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+          };
 
-    // Flatten series and messages into sitemap entries
-    sermonEntries = sitemapData.Series.flatMap((series) => {
-      // Series page entry
-      const seriesEntry = {
-        url: `${baseUrl}/sermons/${series.Id}`,
-        lastModified: series.LastUpdated ? new Date(series.LastUpdated) : now,
-        changeFrequency: "weekly" as const,
-        priority: 0.7,
-      };
+          const messageEntries = series.Messages.flatMap((message) => {
+            const entries: MetadataRoute.Sitemap = [
+              {
+                url: `${baseUrl}/sermons/${series.Id}/${message.Id}`,
+                lastModified: message.Date ? new Date(message.Date) : now,
+                changeFrequency: "monthly" as const,
+                priority: 0.6,
+              },
+            ];
 
-      // Individual message page entries
-      const messageEntries = series.Messages.flatMap((message) => {
-        const entries = [
-          {
-            url: `${baseUrl}/sermons/${series.Id}/${message.Id}`,
-            lastModified: message.Date ? new Date(message.Date) : now,
-            changeFrequency: "monthly" as const,
-            priority: 0.6,
-          },
-        ];
+            if (message.HasVideo) {
+              entries.push({
+                url: `${baseUrl}/sermons/${series.Id}/${message.Id}/video`,
+                lastModified: message.Date ? new Date(message.Date) : now,
+                changeFrequency: "monthly" as const,
+                priority: 0.6,
+              });
+            }
 
-        // Add video watch page entry if message has a video
-        if (message.HasVideo) {
-          entries.push({
-            url: `${baseUrl}/sermons/${series.Id}/${message.Id}/video`,
-            lastModified: message.Date ? new Date(message.Date) : now,
-            changeFrequency: "monthly" as const,
-            priority: 0.6,
+            return entries;
           });
-        }
 
-        return entries;
-      });
+          return [seriesEntry, ...messageEntries];
+        })
+      : (console.error("Failed to fetch sitemap data:", sermonResult.reason), []);
 
-      return [seriesEntry, ...messageEntries];
-    });
-  } catch (error) {
-    console.error("Failed to fetch sitemap data:", error);
-  }
-
-  return [...staticEntries, ...theocologyEntries, ...sermonEntries];
+  return [...staticEntries, ...theocologyEntries, ...blogEntries, ...sermonEntries];
 }
