@@ -6974,6 +6974,7 @@ a:hover {
 .blog-card__reading-time svg {
   width: 14px;
   height: 14px;
+  margin-top: -0.125rem;
 }
 
 .blog-card__action {
@@ -7020,6 +7021,33 @@ a:hover {
   padding: var(--spacing-3xl) 0;
 }
 
+/* Blog Post Breadcrumb */
+.breadcrumb-nav {
+  padding: calc(var(--header-height) + var(--spacing-md)) 0 var(--spacing-md);
+}
+
+.breadcrumb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-gray-600);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.breadcrumb-link:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb-link svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
 /* Blog Detail Page */
 .blog-detail-section {
   padding: var(--spacing-3xl) 0 var(--spacing-4xl);
@@ -7064,6 +7092,7 @@ a:hover {
 .blog-detail-reading-time svg {
   width: 16px;
   height: 16px;
+  margin-top: -0.20rem;
 }
 
 .blog-detail-series-link {
@@ -7084,6 +7113,7 @@ a:hover {
 .blog-detail-series-link svg {
   width: 16px;
   height: 16px;
+  margin-top: -0.20rem;
 }
 
 /* Blog Content Typography */

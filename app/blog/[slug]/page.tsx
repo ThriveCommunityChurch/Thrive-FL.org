@@ -33,6 +33,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? post.Summary.slice(0, 160)
       : `Read "${post.Title}" from Thrive Community Church.`;
 
+    let ogImage: string | undefined;
+    if ((post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && post.SourceUrl) {
+      const seriesIdMatch = post.SourceUrl.match(/\/sermons\/([^/]+)/);
+      if (seriesIdMatch?.[1]) {
+        try {
+          const series = await getSeriesById(seriesIdMatch[1]);
+          ogImage = series.ArtUrl || series.Thumbnail;
+        } catch {
+          // Series fetch failed - continue without image
+        }
+      }
+    }
+
     return {
       title: `${post.Title} | Blog | Thrive Community Church`,
       description,
@@ -41,8 +54,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description,
         url: `https://thrive-fl.org/blog/${slug}`,
         type: 'article',
-        publishedTime: post.PublishedDate || undefined,
+        publishedTime: post.PublishedDate || post.CreateDate,
         modifiedTime: post.LastUpdated,
+        ...(ogImage && { images: [{ url: ogImage }] }),
       },
     };
   } catch {

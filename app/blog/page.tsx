@@ -80,12 +80,10 @@ export default async function BlogPage() {
                       {post.Summary || 'Read more about this topic...'}
                     </p>
                     <div className="blog-card__meta">
-                      {post.PublishedDate && (
-                        <span className="blog-card__date">
-                          <FontAwesomeIcon icon={faCalendar} />
-                          {formatBlogDate(post.PublishedDate)}
-                        </span>
-                      )}
+                      <span className="blog-card__date">
+                        <FontAwesomeIcon icon={faCalendar} />
+                        {formatBlogDate(post.PublishedDate || post.CreateDate)}
+                      </span>
                       <span className="blog-card__reading-time">
                         <FontAwesomeIcon icon={faClock} />
                         {getReadingTime(post.Content)} min read
