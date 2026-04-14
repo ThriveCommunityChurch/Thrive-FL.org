@@ -112,14 +112,40 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           ) : post ? (
             <>
+              {/* JSON-LD Structured Data */}
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                  __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": post.Title,
+                    "description": post.Summary ?? `Read "${post.Title}" from Thrive Community Church.`,
+                    "datePublished": post.PublishedDate || post.CreateDate,
+                    "dateModified": post.LastUpdated,
+                    "url": `https://thrive-fl.org/blog/${post.Slug}`,
+                    "author": {
+                      "@type": "Organization",
+                      "name": "Thrive Community Church",
+                      "url": "https://thrive-fl.org"
+                    },
+                    "publisher": {
+                      "@type": "Organization",
+                      "name": "Thrive Community Church",
+                      "url": "https://thrive-fl.org"
+                    }
+                  })
+                }}
+              />
+
               {/* Article Header */}
               <header className="blog-detail-header">
                 <h1 className="blog-detail-title">{post.Title}</h1>
                 <div className="blog-detail-meta">
-                  {post.PublishedDate && (
+                  {(post.PublishedDate || post.CreateDate) && (
                     <span className="blog-detail-date">
                       <FontAwesomeIcon icon={faCalendar} />
-                      {formatBlogDate(post.PublishedDate)}
+                      {formatBlogDate(post.PublishedDate || post.CreateDate)}
                     </span>
                   )}
                   <span className="blog-detail-reading-time">
