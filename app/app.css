@@ -7065,7 +7065,7 @@ a:hover {
 }
 
 .blog-detail-header {
-  margin-bottom: var(--spacing-3xl);
+  padding: var(--spacing-xl) 0 var(--spacing-3xl);
   text-align: center;
 }
 
@@ -7097,7 +7097,6 @@ a:hover {
 .blog-detail-reading-time svg {
   width: 16px;
   height: 16px;
-  margin-top: -0.20rem;
 }
 
 .blog-detail-series-link {
@@ -7156,9 +7155,7 @@ a:hover {
 
 /* Blog Detail CTA */
 .blog-detail-cta {
-  margin-top: var(--spacing-4xl);
   padding: var(--spacing-2xl);
-  background: var(--color-gray-50);
   border-radius: var(--radius-xl);
   text-align: center;
 }
