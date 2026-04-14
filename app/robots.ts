@@ -27,8 +27,10 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         "/wp-", // All WordPress core files (/wp-content/, /wp-admin/, /wp-*.php, etc.)
         "/feed/", // Old RSS feeds
         "/teaching-series/", // Old sermon series structure
+        "/event/", // Old events structure
         "/series/", // Old series page structure (/series/how-grace-changes-everything/, etc.)
         "/podcast/", // Old podcast URLs - subpaths only (/podcast page is still valid)
+        "/podcast-download/", // Old podcast download URLs
         // Query parameter patterns - block WordPress-style URLs
         "/*?post_type=", // /?post_type=podcast&p=1
         "/*?p=", // /?p=123 (WordPress post IDs)

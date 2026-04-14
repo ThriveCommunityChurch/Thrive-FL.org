@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description: "Theocology is the podcast that discusses why theology matters during your college years - actually always. Hosted by Pastor John Roth with FGCU students discussing faith and life.",
   openGraph: {
     title: "Theocology Podcast | ThriveFGCU",
-    description: "Why theology matters during your college years—actually always. A podcast from ThriveFGCU with Pastor John Roth.",
+    description: "Why theology matters during your college years—actually always. A podcast from ThriveFGCU at Florida Gulf Coast University with Pastor John Roth.",
     url: "https://thrive-fl.org/ministries/college/podcast",
     images: [
       {

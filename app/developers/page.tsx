@@ -10,6 +10,7 @@ import {
   faGlobe,
   faArrowUpRightFromSquare,
   faUpload,
+  faSitemap,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
@@ -198,15 +199,26 @@ export default function DevelopersPage() {
               on GitHub. Whether you&apos;re curious about how something works, want to
               contribute, or are looking for ideas for your own church — feel free to explore.
             </p>
-            <a
-              href="https://github.com/ThriveCommunityChurch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary btn-lg"
-            >
-              <FontAwesomeIcon icon={faGithub} /> View on GitHub
-              <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="btn-external-icon" />
-            </a>
+            <div className="developers-cta-buttons">
+              <a
+                href="https://github.com/ThriveCommunityChurch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-lg"
+              >
+                <FontAwesomeIcon icon={faGithub} /> View on GitHub
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="btn-external-icon" />
+              </a>
+              <a
+                href="https://thrivecommunitychurch.github.io/Architecture/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary btn-lg"
+              >
+                <FontAwesomeIcon icon={faSitemap} /> Architecture Docs
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="btn-external-icon" />
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -1,24 +1,126 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faClock, faCalendar, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useAudioPlayer } from "../../../contexts/AudioPlayerContext";
 import { SermonMessage } from "../../../types/sermons";
-import { TheocologyEpisode, formatDuration, formatDate } from "../../../services/theocologyService";
+import { TheocologyEpisodeJsonLd } from "../../../components/JsonLd";
 
-interface EpisodeDetailClientProps {
-  episode: TheocologyEpisode;
+const RSS_FEED_URL = "https://feeds.buzzsprout.com/1803195.rss";
+
+interface Episode {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  pubDate: string;
+  duration: number;
+  audioUrl: string;
+  imageUrl: string;
+  season?: number;
+  episode?: number;
 }
 
-export default function EpisodeDetailClient({ episode }: EpisodeDetailClientProps) {
+function createSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function formatDuration(seconds: number): string {
+  const minutes = Math.round(seconds / 60);
+  return `${minutes} min`;
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+interface EpisodeDetailClientProps {
+  slug: string;
+}
+
+export default function EpisodeDetailClient({ slug }: EpisodeDetailClientProps) {
+  const [episode, setEpisode] = useState<Episode | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
   const { playMessage, currentMessage, isPlaying } = useAudioPlayer();
 
-  const isCurrentEpisode = currentMessage?.Title === episode.title;
+  useEffect(() => {
+    async function fetchEpisode() {
+      try {
+        const response = await fetch(RSS_FEED_URL);
+        const text = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(text, "text/xml");
+        const items = xml.querySelectorAll("item");
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          const title = item.querySelector("title")?.textContent || "";
+          if (createSlug(title) !== slug) continue;
+
+          const guid = item.querySelector("guid")?.textContent || "";
+          const description =
+            item.querySelector("content\\:encoded")?.textContent ||
+            item.querySelector("encoded")?.textContent ||
+            item.querySelector("description")?.textContent ||
+            "";
+          const pubDate = item.querySelector("pubDate")?.textContent || "";
+          const durationEl = item.getElementsByTagName("itunes:duration")[0];
+          const duration = parseInt(durationEl?.textContent || "0");
+          const enclosure = item.querySelector("enclosure");
+          const audioUrl = enclosure?.getAttribute("url") || "";
+          const imageEl = item.getElementsByTagName("itunes:image")[0];
+          const imageUrl =
+            imageEl?.getAttribute("href") ||
+            "https://static.thrive-fl.org/Theocology.png";
+          const seasonEl = item.getElementsByTagName("itunes:season")[0];
+          const season = parseInt(seasonEl?.textContent || "0") || undefined;
+          const episodeEl = item.getElementsByTagName("itunes:episode")[0];
+          const episodeNum = parseInt(episodeEl?.textContent || "0") || undefined;
+
+          setEpisode({
+            id: guid,
+            title,
+            slug: createSlug(title),
+            description,
+            pubDate,
+            duration,
+            audioUrl,
+            imageUrl,
+            season,
+            episode: episodeNum,
+          });
+          setLoading(false);
+          return;
+        }
+
+        setNotFound(true);
+      } catch {
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchEpisode();
+  }, [slug]);
+
+  const isCurrentEpisode = currentMessage?.Title === episode?.title;
   const isEpisodePlaying = isCurrentEpisode && isPlaying;
 
   const handlePlay = () => {
+    if (!episode) return;
     const sermonMessage: SermonMessage = {
       MessageId: episode.id,
       SeriesId: "theocology",
@@ -36,11 +138,49 @@ export default function EpisodeDetailClient({ episode }: EpisodeDetailClientProp
       WaveformData: null,
     };
 
-    // Always use Theocology logo
     playMessage(sermonMessage, "Theocology", "https://static.thrive-fl.org/Theocology.png");
   };
 
+  if (loading) {
+    return (
+      <div className="page-wrapper">
+        <section className="section">
+          <div className="container">
+            <div className="theocology-loading">Loading episode...</div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  if (notFound || !episode) {
+    return (
+      <div className="page-wrapper">
+        <section className="section">
+          <div className="container">
+            <div className="sermon-error-state">
+              <h3>Episode Not Found</h3>
+              <p>The episode you&apos;re looking for could not be found.</p>
+              <Link href="/theocology/episodes" className="btn btn-primary">
+                Browse All Episodes
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
   return (
+    <>
+      <TheocologyEpisodeJsonLd
+        slug={episode.slug}
+        title={episode.title}
+        description={episode.description}
+        pubDate={episode.pubDate}
+        duration={episode.duration}
+        audioUrl={episode.audioUrl}
+        imageUrl={episode.imageUrl}
+      />
     <div className="page-wrapper">
       {/* Back Link */}
       <section className="section" style={{ paddingBottom: 0 }}>
@@ -115,6 +255,7 @@ export default function EpisodeDetailClient({ episode }: EpisodeDetailClientProp
         </div>
       </section>
     </div>
+    </>
   );
 }
 
