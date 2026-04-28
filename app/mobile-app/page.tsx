@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeadphones,
@@ -184,11 +183,13 @@ export default function AppPage() {
               </div>
             </div>
             <div className="app-download-preview">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="https://static.thrive-fl.org/app_promo1.png"
                 alt="Thrive Church App on mobile device"
                 width={450}
                 height={450}
+                loading="lazy"
                 className="app-preview-image"
                 style={{ objectFit: "cover", marginLeft: "-0.5rem" }}
               />
