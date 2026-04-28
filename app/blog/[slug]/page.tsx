@@ -11,7 +11,7 @@ import {
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getBlogPostBySlug, formatBlogDate, getReadingTime } from "../../services/blogService";
 import { getSeriesById } from "../../services/sermonService";
-import { BlogPostType } from "../../types/blog";
+import { BlogPostType, getCategoryLabel } from "../../types/blog";
 import BlogContent from "./BlogContent";
 
 interface PageProps {
@@ -72,12 +72,13 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   let post = null;
   let seriesName: string | null = null;
+  let seriesArtUrl: string | null = null;
   let error: string | null = null;
 
   try {
     post = await getBlogPostBySlug(slug);
 
-    // If this is a sermon series blog post, fetch the series name
+    // If this is a sermon series blog post, fetch the series name and art
     if ((post?.Type === BlogPostType.SermonSeries || post?.Type === 'SermonSeries') && post?.SourceUrl) {
       // Extract seriesId from SourceUrl (format: /sermons/{seriesId})
       const seriesIdMatch = post.SourceUrl.match(/\/sermons\/([^/]+)/);
@@ -85,6 +86,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         try {
           const series = await getSeriesById(seriesIdMatch[1]);
           seriesName = series.Name;
+          seriesArtUrl = series.ArtUrl || series.Thumbnail || null;
         } catch {
           // Series fetch failed - continue without series name
         }
@@ -135,9 +137,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                     "@type": "Article",
                     "headline": post.Title,
                     "description": post.Summary ?? `Read "${post.Title}" from Thrive Community Church.`,
+                    "image": seriesArtUrl ?? "https://static.thrive-fl.org/og-image.jpg",
                     "datePublished": post.PublishedDate || post.CreateDate,
                     "dateModified": post.LastUpdated,
                     "url": `https://thrive-fl.org/blog/${post.Slug}`,
+                    "mainEntityOfPage": {
+                      "@type": "WebPage",
+                      "@id": `https://thrive-fl.org/blog/${post.Slug}`
+                    },
                     "author": {
                       "@type": "Organization",
                       "name": "Thrive Community Church",
@@ -146,7 +153,11 @@ export default async function BlogPostPage({ params }: PageProps) {
                     "publisher": {
                       "@type": "Organization",
                       "name": "Thrive Community Church",
-                      "url": "https://thrive-fl.org"
+                      "url": "https://thrive-fl.org",
+                      "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://static.thrive-fl.org/thrive-logo.png"
+                      }
                     }
                   })
                 }}
@@ -154,6 +165,19 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               {/* Article Header */}
               <header className="blog-detail-header">
+                <div className="blog-detail-badges">
+                  {getCategoryLabel(post.Category) && (
+                    <span className="blog-badge blog-badge--category">
+                      {getCategoryLabel(post.Category)}
+                    </span>
+                  )}
+                  {(post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && (
+                    <span className="blog-badge blog-badge--series">Sermon Series</span>
+                  )}
+                  {(post.Type === BlogPostType.Email || post.Type === 'Email') && (
+                    <span className="blog-badge blog-badge--newsletter">Newsletter</span>
+                  )}
+                </div>
                 <h1 className="blog-detail-title">{post.Title}</h1>
                 <div className="blog-detail-meta">
                   {(post.PublishedDate || post.CreateDate) && (
