@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getPublishedBlogPosts, formatBlogDate, getReadingTime } from "../services/blogService";
-import { BlogPost } from "../types/blog";
+import { BlogPost, BlogPostType, getCategoryLabel } from "../types/blog";
 
 // No caching - always fetch fresh on pageload
 // API will cache responses server-side
@@ -75,6 +75,19 @@ export default async function BlogPage() {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="blog-card__content">
+                    <div className="blog-card__badges">
+                      {getCategoryLabel(post.Category) && (
+                        <span className="blog-badge blog-badge--category">
+                          {getCategoryLabel(post.Category)}
+                        </span>
+                      )}
+                      {(post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && (
+                        <span className="blog-badge blog-badge--series">Sermon Series</span>
+                      )}
+                      {(post.Type === BlogPostType.Email || post.Type === 'Email') && (
+                        <span className="blog-badge blog-badge--newsletter">Newsletter</span>
+                      )}
+                    </div>
                     <h2 className="blog-card__title">{post.Title}</h2>
                     <p className="blog-card__summary">
                       {post.Summary || 'Read more about this topic...'}
@@ -82,7 +95,7 @@ export default async function BlogPage() {
                     <div className="blog-card__meta">
                       <span className="blog-card__date">
                         <FontAwesomeIcon icon={faCalendar} />
-                        {formatBlogDate(post.PublishedDate || post.CreateDate)}
+                        {formatBlogDate(post.CreateDate)}
                       </span>
                       <span className="blog-card__reading-time">
                         <FontAwesomeIcon icon={faClock} />
