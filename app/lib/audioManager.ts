@@ -4,6 +4,16 @@
 import { Howl } from 'howler';
 import { SermonMessage } from '../types/sermons';
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
+
+async function markMessageAsPlayed(messageId: string): Promise<void> {
+  try {
+    await fetch(`${API_BASE_URL}/api/sermons/series/message/${messageId}/played`);
+  } catch {
+    // Fire-and-forget — never interrupt playback
+  }
+}
+
 export interface AudioState {
   currentMessage: SermonMessage | null;
   seriesTitle: string | null;
@@ -124,6 +134,9 @@ class AudioManager {
 
     // Play
     this.howl.play();
+
+    // Mark as played (fire-and-forget)
+    markMessageAsPlayed(message.MessageId).catch(() => {});
   }
 
   togglePlayPause() {
