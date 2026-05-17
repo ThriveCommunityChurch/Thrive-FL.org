@@ -21,6 +21,7 @@ const inter = Inter({
 });
 
 const GA_MEASUREMENT_ID = "G-2X21SMEX9G";
+const CLARITY_PROJECT_ID = "wsre1fzw0k";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thrive-fl.org"),
@@ -107,6 +108,7 @@ export default function RootLayout({
 
         {/* Preload critical hero image for LCP optimization */}
         <link rel="preload" href="https://static.thrive-fl.org/Still.jpg" as="image" fetchPriority="high" />
+
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
@@ -122,7 +124,18 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        
+
+        {/* Microsoft Clarity */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
+          `}
+        </Script>
+
         <Providers>
           {/* Persistent Shell */}
           <div className="app-shell">
