@@ -138,3 +138,7 @@ vite.config.ts.timestamp-*
 .vite/
 .env.local
 next-env.d.ts
+
+wp-media-backup/
+wp-content-backup/
+package-lock.json

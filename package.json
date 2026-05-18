@@ -2,6 +2,7 @@
   "name": "thrive-fl-website",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.1.2",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,7 +26,7 @@
   },
   "devDependencies": {
     "@types/howler": "^2.2.12",
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/xml2js": "^0.4.14",
