@@ -5,10 +5,10 @@ Next.js 16 public marketing + sermon browsing site. Static-first, SEO-optimized,
 ## Commands
 
 ```bash
-npm install
-npm run dev      # → http://localhost:3000
-npm run build    # static export — must be clean before PR
-npm run lint
+pnpm install
+pnpm dev         # → http://localhost:3000
+pnpm build       # static export — must be clean before PR
+pnpm lint
 ```
 
 ## Rules
