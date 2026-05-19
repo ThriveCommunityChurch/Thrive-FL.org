@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faHand } from "@fortawesome/free-solid-svg-icons";
+import { faHand } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: "Our Leadership | Thrive Community Church",
@@ -74,9 +74,6 @@ export default function TeamPage() {
                   He and Lisa have been married since 1996 and have two kids, Justin and Emma.
                   When he&apos;s not preaching, you&apos;ll find him cooking, reading, or keeping up with his family.
                 </p>
-                <a href="mailto:John@thrive-fl.org" className="team-email">
-                  <FontAwesomeIcon icon={faEnvelope} /> John@thrive-fl.org
-                </a>
               </div>
             </div>
 
@@ -96,9 +93,6 @@ export default function TeamPage() {
                   His dedication earned him the Excellence in Civic Engagement Award from FGCU.
                   His passion? Audio engineering—and making sure every Sunday sounds great.
                 </p>
-                <a href="mailto:Wyatt@thrive-fl.org" className="team-email">
-                  <FontAwesomeIcon icon={faEnvelope} /> Wyatt@thrive-fl.org
-                </a>
               </div>
             </div>
 
@@ -116,9 +110,6 @@ export default function TeamPage() {
                 <p>
                   When he&apos;s not leading worship, you&apos;ll find him playing with his two children or making music of his own. He&apos;s always willing to give advice on how to make a good brisket.
                 </p>
-                <a href="mailto:James@thrive-fl.org" className="team-email">
-                  <FontAwesomeIcon icon={faEnvelope} /> James@thrive-fl.org
-                </a>
               </div>
             </div>
           </div>
