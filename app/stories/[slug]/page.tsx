@@ -26,9 +26,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const description = story.summary.slice(0, 160);
-  const ogImage = story.youtubeId
-    ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
-    : "https://static.thrive-fl.org/og-image.jpg";
+  const ogImage =
+    story.imageUrl ??
+    (story.youtubeId
+      ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
+      : "https://static.thrive-fl.org/og-image.jpg");
 
   return {
     title: `${story.name}: ${story.title} | Stories | Thrive Community Church`,
@@ -80,9 +82,11 @@ export default async function StoryDetailPage({ params }: PageProps) {
                 "@type": "Article",
                 "headline": `${story.name}: ${story.title}`,
                 "description": story.summary,
-                "image": story.youtubeId
-                  ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
-                  : "https://static.thrive-fl.org/og-image.jpg",
+                "image":
+                  story.imageUrl ??
+                  (story.youtubeId
+                    ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
+                    : "https://static.thrive-fl.org/og-image.jpg"),
                 "url": `https://thrive-fl.org/stories/${story.slug}`,
                 "datePublished": story.publishedDate,
                 "dateModified": story.publishedDate,
@@ -116,7 +120,12 @@ export default async function StoryDetailPage({ params }: PageProps) {
             </p>
           </header>
 
-          <StoryMedia name={story.name} youtubeId={story.youtubeId} audioUrl={story.audioUrl} />
+          <StoryMedia
+            name={story.name}
+            youtubeId={story.youtubeId}
+            vimeoId={story.vimeoId}
+            audioUrl={story.audioUrl}
+          />
 
           <StoryTranscript transcript={story.transcript} />
 
@@ -129,9 +138,16 @@ export default async function StoryDetailPage({ params }: PageProps) {
 
           <div className="blog-detail-cta">
             <p>Want to see for yourself?</p>
-            <Link href="/im-new" className="btn btn-primary">
-              Plan Your Visit
-            </Link>
+            <div className="cta-buttons">
+              <Link href="/im-new" className="btn btn-primary">
+                Plan Your Visit
+              </Link>
+              {story.links?.map((link) => (
+                <Link key={link.href} href={link.href} className="btn btn-outline">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </article>

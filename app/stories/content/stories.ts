@@ -331,6 +331,84 @@ I would also mention that you find out about needs that people have. Is somebody
 
 I like it here at Thrive because the message is very succinct, very clear, and it really motivates me to be a better person when I'm not here, when I'm not in church, when I'm in the neighborhood. That's important to me, and I guess that's one of the big reasons for coming.`,
   },
+  {
+    slug: "thrive-turns-10",
+    name: "Founding Members",
+    title: "Thrive Turns 10: Reflecting on Our First Chapter",
+    summary:
+      "Founding members reflect on Thrive's first ten years — from a 'church in a box' on the FGCU campus to a community where everyone finds a home.",
+    order: 12,
+    isActive: true,
+    publishedDate: "2024-08-25",
+    youtubeId: "CZ1sg1FEWss",
+    links: [{ href: "/ministries/college", label: "Learn About ThriveFGCU" }],
+    transcript: `My wife Laurel and I have been members of Thrive Community Church since the very start. I'd always been interested in being a part of a startup church, and this was my chance to do it. I had the wonderful opportunity to serve on the FGCU mission outreach, and it has been such a blessing to our lives — the joy we've experienced working with these young people, and seeing their need for this community of our mission and our people. It's been a wonderful experience, and we've enjoyed it tremendously. We are truly blessed.
+
+We had our first full service on August 24th, 2014, and for the next 15 months we were a mobile church. When the team planning the church hired Pastor John to start a new Lutheran mission church, he recommended that we meet with him and his family for coffee — a half-hour meeting at a neighborhood restaurant. The following Saturday, at the end of a meeting that lasted more than two hours, Pastor John invited us to join his team, and we accepted. When we first met him, he told us that if we wanted to come on board, it would be about a two-year commitment. Well, we've been here ten years now, and we've thoroughly enjoyed being a part of Thrive.
+
+Everything we needed for the church service was stored in plywood boxes, which were placed into an enclosed trailer — or, as we called it, "a church in a box." We'd bring in the trailer, unload it, set up in Edwards Hall on the FGCU campus, and when we were done, reload the trailer and do it all again the next week. Every morning we made sure everything was running right, with the supervision of Wyatt, who has been our tech guru from the beginning. It would take about an hour and a half to set up, and another hour and a half to tear down. Our tagline was "where relationships are everything" — and believe me, you built a relationship when you had to go through that every week.
+
+I was in the hospitality area, and we had many challenges. We didn't even have a place to really clean the things we were using; we finally found ways to make do in the bathroom so we could keep everything clean. We started out just meeting in people's homes with the planning committee — people like us who were very interested in starting a new mission in this area. It all started when John came to our house. He said, "You can start with two weeks; if you don't like it, you can leave." Well, it's now ten years that we've been members of Thrive.
+
+One of the highlights I remember is having our first Christmas at our house. There were multiple people there — Phil and Kyrie and others. We had a nice candlelight service. Jamie and his wife opened their home, and we had 25 people at our first service. I still remember how close we were, and how meaningful that Christmas Eve was. We knew that people around here had to be more excited about their Christianity. We welcomed everyone with open arms, and everybody got a hug whether they wanted it or not — of course, if they really didn't want it, we shook hands. I'll never forget one couple who came in and said, "We're looking for a home." I looked at them and said, "You're at home."
+
+We provided dinners for the students over on the FGCU campus, and that was so much fun. The first year, we served over a hundred students — coming from high school, not knowing anybody in Fort Myers, and having to not only make friends but connect with fellow believers. I wanted a religious home, a Biblical church that would become my new place to grow spiritually, and I guess you could say the rest is history.
+
+When we moved in here, we scrubbed floors and scrubbed walls. The cross behind me was designed by a very special member, and we still use it today — we love it. I'm looking forward to the next phase of our church: the one we hope will be a permanent building. I'm glad I can be here, and I hope to be here to help when, ideally, we build our new campus on the property across from FGCU. Whether we share it with Florida Gulf Coast University or have it on our own, it's in God's hands, and we praise him for it.
+
+I'm just glad that we've been a place where people feel comfortable, where they can worship together with others. It's been a tremendous journey being part of Thrive, with many blessings we've all received as we've worked together. I can't imagine being anywhere else. God has certainly blessed Thrive for the past ten years, and I trust he will continue to bless Thrive for many more. We have so much to praise God for, and we look to the future to keep praising him. I can't imagine what the next ten years will look like.`,
+  },
+  {
+    slug: "thrive-2016",
+    name: "Voices of Thrive",
+    title: "A Family Away From Home",
+    summary:
+      "In Thrive's 2016 promo, members reflect on diverse community, being discipled, hands-on service, and a church built only through Christ.",
+    order: 13,
+    isActive: true,
+    publishedDate: "2016-01-26",
+    vimeoId: "153180190",
+    imageUrl:
+      "https://i.vimeocdn.com/video/553390407-be231d621a9362c833827438b81475aa47094b5b026d6050ca1953c09ec379a2-d_640?region=us",
+    transcript: `Thrive Community Church is a family away from home. It's a community where I have learned to love people and have grown in my faith. I feel that I can share almost anything with my family.
+
+We learn all about Jesus and how he has done everything for us. We mostly play games that go with the theme, and our theme for this month is self-control. It's fun to play those, because they show how you can be more self-controlled than you are today.
+
+When I first came, I really appreciated the diverse community it had to offer. Most ministries I've been to have not had such a diverse group of people. I was really able to be poured into through discipleship — someone really poured into me — and I was able to learn how to lead my own discipleship group. That's what I'm doing now, and it's really cool, because I get to see myself grow through that, and others as well.
+
+We not only give 25% of our plate offerings to help organizations in the community and around the world, but we also do physical service. We help areas around town — our mother church, the Amigos Center in Immokalee, Habitat for Humanity. It's hands-on service, not just giving money to things.
+
+What I like most about Thrive is that we concentrate primarily not on ourselves, but on the people out in the community who need Jesus and who have not yet found him — and on trying to reach them.
+
+There is no room to think that what you did was through your own strength or what you're capable of. In church planting, it's obvious every second that it is in Christ that the things in your ministry happen. It's Christ who makes it happen. Thrive has given us an opportunity as a community to really press into that — to know that it's only through Jesus that any of this is happening, that it's because of him that we are here in Estero and here at Thrive, and that he is using Thrive to build his kingdom here. It's a blessing to know that he thinks I am capable of being part of something so amazing and so big — bigger than myself.`,
+  },
+  {
+    slug: "lisa",
+    name: "Lisa Silva",
+    title: "Turning Grief Into Purpose",
+    summary:
+      "Lisa Silva lost her dad to cancer as a child. Through Thrive's campus ministry, she found a way to turn that grief into a calling to help others.",
+    order: 14,
+    isActive: true,
+    publishedDate: "2016-10-05",
+    vimeoId: "185673298",
+    imageUrl:
+      "https://i.vimeocdn.com/video/595496520-c1799aaf1984e6ea76720ed7dba6d4bc75f609902c2304f240be398a4e96e3d9-d_640?region=us",
+    links: [{ href: "/ministries/college", label: "Learn About ThriveFGCU" }],
+    transcript: `Hi, my name is Lisa Silva, and I'm a junior here at FGCU, majoring in social work. I've been really involved with the Thrive campus ministry — I'm the vice president right now — and I just love the role I've been able to have down here.
+
+I was originally born in Colorado to a very normal, loving family — mom, dad, and an older sister. But when I was two years old, my dad was diagnosed with cancer. It was completely shocking. You look back at that time and think, how do you come back from that? How does that even happen?
+
+It was really hard growing up with that. Being a kid going through grief completely changes your perspective of the world, and it was hard to fit in and make friends when you have such a different perspective on what life is. It was really isolating, and I always struggled to make friends.
+
+When I was about seven, my mom remarried. My stepdad was in the military, and we moved to Florida. That was even harder, because all of my dad's extended family was back in Colorado — that was my last connection to my dad. So it was hard to move here and be away from that. I felt so isolated and lonely.
+
+Around the time I was eight, my mom reached out to our church back in Tampa and said, "Help, we need help." I was so sad, so closed off. One lady named Cheryl said, "I'll help Lisa. I'll counsel her," and she gave me one-on-one counseling. After hearing my story and seeing what my life looked like, God placed it on her heart that an organization needed to exist for kids like me.
+
+When I was about 14, I was able to start volunteering there. It was such an incredible experience to use my pain, my grief, and my story to help other children. I look at how many lives have been changed because of my story — because a woman saw me, little eight-year-old Lisa who was just in pain, thousands of children's lives have been changed. As much as I miss my dad, I would not take him back for the world. I know that God has a plan through this, and he has given me the gift of using my experience to help other people.
+
+Now that I'm studying social work here, I'm gearing myself to get into the hospice setting — to help families going through the time before death, to counsel and support them, and to let them know that they're going to make it through. It's so inspiring and liberating to know that I've been able to use my pain and my circumstances to help so many other people. I'm just so thankful for my story.`,
+  },
 ];
 
 export function getActiveStories(): Story[] {

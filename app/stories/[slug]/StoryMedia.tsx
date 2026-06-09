@@ -4,16 +4,18 @@
 interface StoryMediaProps {
   name: string;
   youtubeId?: string;
+  vimeoId?: string;
   audioUrl?: string;
 }
 
 /**
  * Renders the best available media for a story:
  *  - youtubeId present  -> responsive YouTube embed
+ *  - else vimeoId       -> responsive Vimeo embed
  *  - else audioUrl      -> native audio player
  *  - else               -> nothing (transcript stands alone)
  */
-export default function StoryMedia({ name, youtubeId, audioUrl }: StoryMediaProps) {
+export default function StoryMedia({ name, youtubeId, vimeoId, audioUrl }: StoryMediaProps) {
   if (youtubeId) {
     return (
       <div className="story-media story-media--video">
@@ -21,6 +23,20 @@ export default function StoryMedia({ name, youtubeId, audioUrl }: StoryMediaProp
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
           title={`${name} — Why Thrive?`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+
+  if (vimeoId) {
+    return (
+      <div className="story-media story-media--video">
+        <iframe
+          src={`https://player.vimeo.com/video/${vimeoId}`}
+          title={`${name} — Why Thrive?`}
+          allow="autoplay; fullscreen; picture-in-picture"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
