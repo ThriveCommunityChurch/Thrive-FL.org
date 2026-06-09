@@ -18,13 +18,44 @@ export const metadata: Metadata = {
 export default function StoriesPage() {
   const stories = getActiveStories();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Stories | Thrive Community Church",
+    description:
+      "Why Thrive? Real stories of life change, family, and belonging from people in our church family.",
+    url: "https://thrive-fl.org/stories",
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Thrive Community Church",
+      url: "https://thrive-fl.org",
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: stories.map((story, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `https://thrive-fl.org/stories/${story.slug}`,
+        name: `${story.name}: ${story.title}`,
+      })),
+    },
+  };
+
   return (
     <div className="page-wrapper">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <section className="page-hero page-hero-stories">
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
+          <p className="page-hero-eyebrow">Why Thrive?</p>
           <h1 className="page-hero-title">Stories</h1>
-          <p className="page-hero-subtitle">Why Thrive?</p>
+          <p className="page-hero-subtitle">
+            Hear from the people who found family, faith, and a place to belong here.
+          </p>
         </div>
       </section>
 

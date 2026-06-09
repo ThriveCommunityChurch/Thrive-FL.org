@@ -37,6 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `https://thrive-fl.org/stories/${slug}`,
       type: "article",
+      publishedTime: story.publishedDate,
       images: [{ url: ogImage }],
     },
   };
@@ -75,6 +76,8 @@ export default async function StoryDetailPage({ params }: PageProps) {
                   ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
                   : "https://static.thrive-fl.org/og-image.jpg",
                 "url": `https://thrive-fl.org/stories/${story.slug}`,
+                "datePublished": story.publishedDate,
+                "dateModified": story.publishedDate,
                 "mainEntityOfPage": {
                   "@type": "WebPage",
                   "@id": `https://thrive-fl.org/stories/${story.slug}`,

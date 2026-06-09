@@ -8,6 +8,7 @@ export interface Story {
   summary: string;
   order: number;
   isActive: boolean;
+  publishedDate: string; // ISO date (YYYY-MM-DD) — original video publish date
   youtubeId?: string;
   audioUrl?: string;
   photoUrl?: string;

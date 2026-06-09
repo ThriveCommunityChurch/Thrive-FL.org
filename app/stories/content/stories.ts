@@ -9,6 +9,7 @@ const stories: Story[] = [
       "After losing family, battling depression, and walking away from God, Merna Steger-Graziano found value, healing, and a love story with Jesus.",
     order: 1,
     isActive: true,
+    publishedDate: "2016-11-26",
     youtubeId: "XET4Bl-COXs",
     transcript: `Hi everybody, my name is Merna Steger-Graziano, and I want to tell you a love story today.
 
@@ -40,6 +41,7 @@ And that's my love story. I fell in love with Jesus.`,
       "Daysha shares how a Thrive volunteer helped her move into college, welcomed her in, and walked alongside her to baptism and serving in Thrive Kids.",
     order: 2,
     isActive: true,
+    publishedDate: "2018-02-25",
     youtubeId: "LPnRsykdC2M",
     transcript: `Before April of last year, I never knew what FGCU was. I applied to about 10 different schools, but I didn't know what FGCU was. I didn't get accepted until April, and I graduated in May. I got denied first, and then I got a scholarship, and I was just like, okay, I'm going here.
 
@@ -69,6 +71,7 @@ I never could imagine myself being at a church, being active, getting baptized, 
       "Dan shares how, after five years at a church without real relationships, he and Jen found genuine care and family at Thrive.",
     order: 3,
     isActive: true,
+    publishedDate: "2018-02-25",
     youtubeId: "3wTa3XGPWSc",
     transcript: `I'm going to echo some of the same things Dacia talked about, and it's great to just see how this is a universal thing. It's part of who we are: building relationships. Jen and I started here about 16 to 18 months ago.
 
@@ -100,6 +103,7 @@ In a nutshell, it's a very kingdom-minded church. I love where things are headed
       "Kevin Wilder shares how a random Wednesday flyer led him to Thrive, where he found family, made his faith his own, and learned to let God lead.",
     order: 4,
     isActive: true,
+    publishedDate: "2022-03-04",
     youtubeId: "mnvstqzAEsI",
     transcript: `My name is Kevin Wilder. I am from Maryland, and I actually got connected to Thrive by chance. I had gotten involved with a different campus ministry named RUF, and I just happened to go to one of their events because it was food and ministry right after a sporting event on campus. They said, "Okay, right afterwards we're going right over here, we're doing our thing." So I went, and even though it was fun and I enjoyed being with them, I actually worked on their worship team for a couple of weeks because they needed an interim guitarist.
 
@@ -131,6 +135,7 @@ The fellowship at Thrive is just different. I can kind of describe it, but I can
       "John and Haley share how Thrive's authentic messages, Christ-centered focus, and welcoming community made it home for their young family.",
     order: 5,
     isActive: true,
+    publishedDate: "2022-03-01",
     youtubeId: "JDgI5SMyU40",
     transcript: `Hi, I'm Haley. This is my husband John. We have two kids and we've been coming to Thrive for the past three years. We initially came just because it was close by. We live across the street and we were looking for a church. We went to a lot of different ones trying to find one that just kind of fit, that felt like home. We tried a lot, a few weeks here and there, and we came here once. We really liked it. There was something about it, so we came back.
 
@@ -156,6 +161,7 @@ I really love that when we walk into Thrive, we are greeted. There have honestly
       "A worship leader recounts how a stranger's recommendation led him to Thrive, where a small congregation became the family he'd lost.",
     order: 6,
     isActive: true,
+    publishedDate: "2022-03-02",
     youtubeId: "vwfnN2fqrrE",
     transcript: `I've had the distinct privilege of leading worship at our church for the last four years, which has truly been one of the most fulfilling experiences of my life. To take a step back, I want to tell you a little bit about how I ended up here, how my family ended up here, and what this church means to us.
 
@@ -195,6 +201,7 @@ It's not just me that feels this way. It's my wife, it's Yuko, it's Ashley, it's
       "Hugo and Ashley reluctantly tried Thrive once, came back for the worship, and never left after finding genuine community and Bible-centered teaching.",
     order: 7,
     isActive: true,
+    publishedDate: "2022-03-03",
     youtubeId: "cDwjNgnAvKk",
     transcript: `Initially we came to Thrive because we had just gotten married and we were trying to find a church that we liked together. We'd been to a few in the area that were nice, but they just didn't quite click. I used to work nights, and I had forgotten that it was Saturday night and we needed to figure out where we were going to church on Sunday. So I texted Hugo and said, "Hey, just find a church, any church. I don't care what church. Normally I'm really picky, but for now I just want to go to church. We'll go to it, and we'll pay more attention next weekend."
 
@@ -226,6 +233,7 @@ I love knowing that I'll be able to come here every Sunday and that I'll get to 
       "Danielle Reese shares how a chance move-in day meeting led her to Thrive, where community drew her out of her shell and shaped her path.",
     order: 8,
     isActive: true,
+    publishedDate: "2022-02-28",
     youtubeId: "Mvcb3lU5yOo",
     transcript: `Hi, I'm Danielle Reese. I've been coming to Thrive for about four years now. I started my freshman year of college, and I actually got involved with Thrive because I met Brooke Kessler.
 
@@ -247,6 +255,7 @@ I plan on staying here for a few years. I'd like to stay with the state attorney
       "Jaden shares how a year and a half at Thrive grew his faith and opened doors to mission trips in Guatemala and Yellowstone.",
     order: 9,
     isActive: true,
+    publishedDate: "2024-03-25",
     youtubeId: "73GRlnXhOi4",
     transcript: `I'm Jaden, if you don't know me. Now you do.
 
@@ -264,6 +273,7 @@ There are a lot of opportunities that I don't think I ever would have had if I h
       "AJ shares how losing his wife, his career, and battling cancer led him to FGCU, where a New Testament class reshaped his faith and gave him community.",
     order: 10,
     isActive: true,
+    publishedDate: "2024-03-22",
     youtubeId: "_C22jptAHJk",
     transcript: `My mom and dad are from India, and I was born in Denver, Colorado. My name is AJ. My full name is Ajpal Kaliamisi. It means shepherd. My mom and dad were Christians in India. My great-grandparents on both sides were first converts, through the aid of the British missionaries during the British Empire. So I can trace that lineage of faith back to my great-grandparents on both sides, and I'm happy to know that my grandfather really raised my dad on the Bible. They would have daily morning Bible readings, and my dad raised me on that. That's how I really came to know the Bible, because of my dad. He had a really strong love of the Word.
 
@@ -305,6 +315,7 @@ So that's been my journey. I would like you to know that the Lord is working wit
       "Longtime Thrive members reflect on the spirit-filled preaching, genuine community, and the many ways the church invites everyone to serve and share their faith.",
     order: 11,
     isActive: true,
+    publishedDate: "2021-02-17",
     youtubeId: "PUzuL4hfqXY",
     transcript: `Why am I at Thrive? The first thing I would say is that before I knew what Thrive was, I had heard John Roth preach, and I was so impressed with his spirit-filled preaching and his wonderful ability to take theological concepts and make them so relevant to my personal life. John talks a lot about community and our relationship with God, and especially how that works in community. He talks about vertical relationships and horizontal relationships, which is a simple way of saying that we should be committed to loving and worshiping God, and we should be committed to loving our neighbors and serving them.
 

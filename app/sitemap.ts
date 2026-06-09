@@ -138,7 +138,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const storyEntries: MetadataRoute.Sitemap = getActiveStories().map((story) => ({
     url: `${baseUrl}/stories/${story.slug}`,
-    lastModified: now,
+    lastModified: new Date(story.publishedDate),
     changeFrequency: "yearly" as const,
     priority: 0.6,
   }));
