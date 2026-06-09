@@ -11088,6 +11088,7 @@ a:hover {
 .story-media { margin: 1.5rem 0 2rem; }
 .story-media--video {
   position: relative;
+  margin-top: 0;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
