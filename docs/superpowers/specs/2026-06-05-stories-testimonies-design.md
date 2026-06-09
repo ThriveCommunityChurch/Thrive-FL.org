@@ -130,11 +130,34 @@ Claude drafts cleaned versions of all 11 testimonies:
 Stories on hand: Myrna, Daysha, Dan, Kevin, John & Haley, James, Hugo & Ashley, Danielle,
 Jaden, AJ, and a multi-person "MISC" piece. Wyatt reviews drafts before publish.
 
-## Assets required from Wyatt (not build blockers)
+## Assets — provided
 
-1. YouTube video IDs for whichever stories have published video.
-2. mp3s uploaded to `static.thrive-fl.org/stories/` (or request a helper upload script).
-3. Optional: a headshot per person for cards (default image used otherwise).
+YouTube IDs (video stories) and audio-only fallbacks:
+
+All 11 stories have published YouTube video:
+
+| Story | slug | youtubeId |
+|-------|------|-----------|
+| Merna | merna | XET4Bl-COXs |
+| Daysha | daysha | LPnRsykdC2M |
+| Dan | dan | 3wTa3XGPWSc |
+| Kevin | kevin | mnvstqzAEsI |
+| John & Haley | john-and-haley | JDgI5SMyU40 |
+| James | james | vwfnN2fqrrE |
+| Hugo & Ashley | hugo-and-ashley | cDwjNgnAvKk |
+| Danielle | danielle | Mvcb3lU5yOo |
+| Jaden | jaden | 73GRlnXhOi4 |
+| AJ | aj | _C22jptAHJk |
+| MISC | misc | PUzuL4hfqXY |
+
+**Name correction:** the first story is **Merna** (not "Myrna" as the raw transcript spells it).
+
+**All stories now use video** — the audio-only fallback is no longer needed for any current
+story. The `StoryMedia` audio branch and `audioUrl` field stay in the design (zero cost, useful
+for future audio-only stories), but no mp3s need uploading for this release.
+
+Still outstanding:
+- Optional: a headshot per person for cards (default image used otherwise).
 
 ## Verification
 
