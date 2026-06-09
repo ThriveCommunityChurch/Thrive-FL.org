@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
@@ -8,6 +9,7 @@ import {
   faDiamondTurnRight,
   faRoad,
   faRoute,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
@@ -109,6 +111,10 @@ export default function VisitPage() {
               <FontAwesomeIcon icon={faDiamondTurnRight} />
               Get Directions
             </a>
+            <Link href="/stories" className="btn btn-outline">
+              <FontAwesomeIcon icon={faHeart} />
+              Hear Our Stories
+            </Link>
           </div>
         </div>
       </section>

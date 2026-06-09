@@ -4,6 +4,7 @@ import path from "path";
 import { getSitemapData } from "./services/sermonService";
 import { fetchTheocologyEpisodes } from "./services/theocologyService";
 import { getPublishedBlogPosts } from "./services/blogService";
+import { getActiveStories } from "./stories/content/stories";
 
 const baseUrl = "https://thrive-fl.org";
 
@@ -135,5 +136,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         })
       : (console.error("Failed to fetch sitemap data:", sermonResult.reason), []);
 
-  return [...staticEntries, ...theocologyEntries, ...blogEntries, ...sermonEntries];
+  const storyEntries: MetadataRoute.Sitemap = getActiveStories().map((story) => ({
+    url: `${baseUrl}/stories/${story.slug}`,
+    lastModified: now,
+    changeFrequency: "yearly" as const,
+    priority: 0.6,
+  }));
+
+  return [...staticEntries, ...theocologyEntries, ...blogEntries, ...sermonEntries, ...storyEntries];
 }
