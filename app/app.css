@@ -11084,6 +11084,14 @@ a:hover {
   color: #666;
   margin-top: 0.25rem;
 }
+.story-detail-date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 0.4rem;
+}
+.story-detail-date svg {
+  margin-right: 0.4rem;
+}
 
 .story-media { margin: 1.5rem 0 2rem; }
 .story-media--video {

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getActiveStories, getStoryBySlug } from "../content/stories";
 import StoryMedia from "./StoryMedia";
 import StoryTranscript from "./StoryTranscript";
@@ -50,6 +51,13 @@ export default async function StoryDetailPage({ params }: PageProps) {
   if (!story) {
     notFound();
   }
+
+  const publishedDisplay = new Date(story.publishedDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 
   return (
     <div className="page-wrapper">
@@ -103,6 +111,9 @@ export default async function StoryDetailPage({ params }: PageProps) {
           <header className="blog-detail-header">
             <h1 className="blog-detail-title">{story.title}</h1>
             <p className="story-detail-name">{story.name}</p>
+            <p className="story-detail-date">
+              <FontAwesomeIcon icon={faCalendar} /> {publishedDisplay}
+            </p>
           </header>
 
           <StoryMedia name={story.name} youtubeId={story.youtubeId} audioUrl={story.audioUrl} />
