@@ -11068,17 +11068,6 @@ a:hover {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 .story-card__content { padding: 1.5rem; }
-.story-card__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--color-primary, #2c4a5e);
-  margin-bottom: 0.75rem;
-}
 .story-card__title { font-size: 1.25rem; margin: 0 0 0.25rem; }
 .story-card__name { font-size: 0.9rem; color: #666; margin: 0 0 0.75rem; }
 .story-card__summary { color: #444; margin: 0 0 1rem; }

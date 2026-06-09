@@ -2,7 +2,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faPlay, faHeadphones } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getActiveStories } from "./content/stories";
 
 export const metadata: Metadata = {
@@ -39,10 +39,6 @@ export default function StoriesPage() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="story-card__content">
-                  <span className="story-card__badge">
-                    <FontAwesomeIcon icon={story.youtubeId ? faPlay : faHeadphones} />
-                    {story.youtubeId ? "Watch" : "Listen"}
-                  </span>
                   <h2 className="story-card__title">{story.title}</h2>
                   <p className="story-card__name">{story.name}</p>
                   <p className="story-card__summary">{story.summary}</p>
