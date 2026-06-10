@@ -77,6 +77,10 @@ export default function ImNewPage() {
                 <FontAwesomeIcon icon={faPlay} />
                 Watch a Message
               </Link>
+              <Link href="/stories" className="btn btn-outline">
+                <FontAwesomeIcon icon={faHeart} />
+                Hear Our Stories
+              </Link>
             </div>
           </div>
         </div>
