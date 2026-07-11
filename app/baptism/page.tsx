@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDroplet,
@@ -241,7 +242,7 @@ export default function BaptismPage() {
             <h2 className="section-title">Not Sure You&apos;re Ready for Baptism?</h2>
           </div>
           <div className="quicklinks-grid">
-            <a href="/im-new" className="quicklink-card">
+            <Link href="/im-new" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faCalendarCheck} />
               </div>
@@ -251,8 +252,8 @@ export default function BaptismPage() {
                 expect on a Sunday before you take a step like baptism.
               </p>
               <span className="quicklink-action">Start Here</span>
-            </a>
-            <a href="/sermons" className="quicklink-card">
+            </Link>
+            <Link href="/sermons" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faCirclePlay} />
               </div>
@@ -262,7 +263,7 @@ export default function BaptismPage() {
                 for Sundays at Thrive.
               </p>
               <span className="quicklink-action">Browse Messages</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -278,9 +279,9 @@ export default function BaptismPage() {
               walk with you.
             </p>
 	            <div className="cta-buttons">
-	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-primary btn-lg">
+	              <Link href="/contact?subject=pastoral#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested in Baptism
-              </a>
+              </Link>
             </div>
             <p className="cta-note">
               You can also mention baptism to any leader or volunteer on Sunday

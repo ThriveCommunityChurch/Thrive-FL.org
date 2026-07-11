@@ -47,8 +47,11 @@ export function AudioPlayerProvider({ children }: AudioPlayerProviderProps) {
   const [audioState, setAudioState] = useState<AudioState>(defaultState);
   const [mounted, setMounted] = useState(false);
 
-  // Subscribe to audio manager updates (client-side only)
+  // Subscribe to audio manager updates (client-side only).
+  // This effect syncs React state from an external store (the audio manager)
+  // on mount, which is the intended use of setState-in-effect.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const manager = getManager();
     if (manager) {

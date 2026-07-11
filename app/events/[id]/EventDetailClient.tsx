@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -41,7 +42,6 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
   const [event, setEvent] = useState<Event | null>(initialEvent || null);
   const [isLoading, setIsLoading] = useState(!initialEvent);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     // Skip fetch if we have initial data
@@ -180,7 +180,7 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
         <FontAwesomeIcon icon={faExclamationTriangle} />
         <h3>Unable to Load Event</h3>
         <p>{error}</p>
-        <a href="/events" className="btn btn-primary">Back to Events</a>
+        <Link href="/events" className="btn btn-primary">Back to Events</Link>
       </div>
     );
   }

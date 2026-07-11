@@ -6,7 +6,6 @@ import {
   faServer,
   faBroadcastTower,
   faBrain,
-  faRss,
   faGlobe,
   faArrowUpRightFromSquare,
   faUpload,
@@ -161,7 +160,7 @@ export default function DevelopersPage() {
             <span className="section-eyebrow">What Powers Thrive</span>
             <h2 className="section-title">Our Projects</h2>
             <p className="section-subtitle">
-              Here&apos;s a peek at what we're cooking up & what powers Thrive today.
+              Here&apos;s a peek at what we&apos;re cooking up &amp; what powers Thrive today.
             </p>
           </div>
 

@@ -2,7 +2,6 @@
 
 import {
   AllEventsResponse,
-  Event,
   EventResponse,
   EventSummary,
   RecurrencePattern,

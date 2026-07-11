@@ -35,7 +35,7 @@ export default function LivestreamPlayer({
   // Check live status and update state
   const checkStatus = useCallback(async () => {
     const newStatus = await checkLiveStatus(channelId);
-    setStatus(prev => ({
+    setStatus(() => ({
       ...newStatus,
       isLoading: false,
     }));
@@ -52,7 +52,8 @@ export default function LivestreamPlayer({
 
   // Set up polling with visibility awareness
   useEffect(() => {
-    // Initial check
+    // Initial check — reads live status from an external API, then syncs state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     checkStatus();
 
     // Set up polling function with dynamic interval based on time of week

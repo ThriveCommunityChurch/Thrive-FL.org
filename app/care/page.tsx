@@ -187,7 +187,7 @@ export default function CarePage() {
               <h3>Is this confidential?</h3>
               <p>
                 We treat your story with care and discretion. In rare cases
-                where someone may be in danger, we'll take appropriate steps
+                where someone may be in danger, we&apos;ll take appropriate steps
                 to get help, but otherwise we keep your information within our
                 care team.
               </p>
@@ -199,7 +199,7 @@ export default function CarePage() {
               </div>
               <h3>Are you a counseling center?</h3>
               <p>
-                We're a church, not a licensed counseling practice. Our
+                We&apos;re a church, not a licensed counseling practice. Our
                 pastors and leaders can listen, pray, and open Scripture with
                 you, and we can help connect you with professional counselors
                 when appropriate.
@@ -212,7 +212,7 @@ export default function CarePage() {
               </div>
               <h3>What if I have an immediate need?</h3>
               <p>
-                If you're facing an urgent practical need—such as furniture,
+                If you&apos;re facing an urgent practical need—such as furniture,
                 transportation, or other support—we partner with{" "}
                 <a
                   href="https://loveincflorida.org/"
@@ -224,7 +224,7 @@ export default function CarePage() {
                 , a ministry that helps churches help people in our community.
                 They specialize in connecting people with tangible resources and
                 long-term support. You can reach out to them directly or contact
-                us and we'll help you get connected.
+                us and we&apos;ll help you get connected.
               </p>
             </div>
           </div>

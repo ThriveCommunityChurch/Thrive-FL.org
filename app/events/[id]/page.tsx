@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getEventById } from "../../services/eventService";
@@ -137,10 +138,10 @@ export default async function EventDetailPage({ params }: PageProps) {
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
         <div className="container">
-          <a href="/events" className="breadcrumb-link">
+          <Link href="/events" className="breadcrumb-link">
             <FontAwesomeIcon icon={faArrowLeft} />
             All Events
-          </a>
+          </Link>
         </div>
       </nav>
 
