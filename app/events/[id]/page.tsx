@@ -100,13 +100,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function EventDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  // Fetch event data for JSON-LD structured data
-  let eventJsonLd = null;
+  // Fetch the event once on the server. The same data feeds the JSON-LD,
+  // is handed to the client component as initialEvent (so the title/body are
+  // present in the SSR HTML), and — thanks to fetch request memoization — is
+  // shared with generateMetadata rather than triggering a second request.
+  let event = null;
   try {
     const response = await getEventById(id);
-    const event = response.Event;
-    if (event) {
-      eventJsonLd = (
+    event = response?.Event ?? null;
+  } catch (error) {
+    console.error('Error fetching event:', error);
+  }
+
+  return (
+    <div className="page-wrapper--event-detail">
+      {/* JSON-LD Structured Data for SEO */}
+      {event && (
         <EventJsonLd
           name={event.Title}
           description={event.Summary || event.Description}
@@ -123,16 +132,7 @@ export default async function EventDetailPage({ params }: PageProps) {
           onlineUrl={event.OnlineLink}
           url={`https://thrive-fl.org/events/${id}`}
         />
-      );
-    }
-  } catch (error) {
-    console.error('Error fetching event for JSON-LD:', error);
-  }
-
-  return (
-    <div className="page-wrapper--event-detail">
-      {/* JSON-LD Structured Data for SEO */}
-      {eventJsonLd}
+      )}
 
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
@@ -147,7 +147,7 @@ export default async function EventDetailPage({ params }: PageProps) {
       {/* Event Detail Content */}
       <section className="section event-detail-section">
         <div className="container">
-          <EventDetailClient eventId={id} />
+          <EventDetailClient eventId={id} initialEvent={event} />
         </div>
       </section>
     </div>

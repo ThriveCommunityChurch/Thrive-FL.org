@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: "Why Thrive? Real stories of life change and belonging from our church family.",
     url: "https://thrive-fl.org/stories",
   },
+  alternates: {
+    canonical: "https://thrive-fl.org/stories",
+  },
 };
 
 export default function StoriesPage() {

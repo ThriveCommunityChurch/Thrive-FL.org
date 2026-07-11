@@ -41,6 +41,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `https://thrive-fl.org/sermons/${seriesId}/${messageId}/video`,
       images: [{ url: series.ArtUrl || series.Thumbnail }],
     },
+    alternates: {
+      canonical: `https://thrive-fl.org/sermons/${seriesId}/${messageId}/video`,
+    },
   };
 }
 

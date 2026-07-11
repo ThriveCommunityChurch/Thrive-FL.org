@@ -58,6 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         modifiedTime: post.LastUpdated,
         ...(ogImage && { images: [{ url: ogImage }] }),
       },
+      alternates: {
+        canonical: `https://thrive-fl.org/blog/${slug}`,
+      },
     };
   } catch {
     return {
