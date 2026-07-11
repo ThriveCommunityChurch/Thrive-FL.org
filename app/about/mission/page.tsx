@@ -3,10 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBullseye,
-  faCompass,
   faHeart,
-  faLightbulb,
   faHandHoldingHeart,
   faGraduationCap,
   faHouseChimney,

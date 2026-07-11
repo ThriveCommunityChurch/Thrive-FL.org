@@ -5,13 +5,8 @@ import {
   faArrowRight,
   faCalendar,
   faCheck,
-  faCircleQuestion,
   faDiamondTurnRight,
-  faDoorOpen,
   faEnvelope,
-  faHandHoldingHeart,
-  faHandsPraying,
-  faHeartCircleCheck,
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";

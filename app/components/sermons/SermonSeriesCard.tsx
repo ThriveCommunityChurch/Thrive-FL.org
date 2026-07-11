@@ -15,6 +15,10 @@ export default function SermonSeriesCard({ series, index = 0 }: SermonSeriesCard
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <div className="sermon-series-card__image-wrapper">
+        {/* Series art comes from arbitrary external hosts (not all in
+            next.config images.remotePatterns), so a raw <img> is used
+            deliberately to avoid the Image optimizer erroring on unknown hosts. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={series.ArtUrl}
           alt={series.Title}

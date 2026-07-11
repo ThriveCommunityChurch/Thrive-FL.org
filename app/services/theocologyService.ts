@@ -24,15 +24,19 @@ function createSlug(title: string): string {
     .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
 }
 
-// Helper to extract text content from HTML
-function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&apos;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/&amp;/g, "&")
-    .replace(/&nbsp;/g, " ")
-    .trim();
+// Shape of a single <item> from the parsed Buzzsprout RSS feed (xml2js output:
+// every element is an array; some carry an attributes object under `$`).
+interface RssItem {
+  guid?: Array<string | { _?: string }>;
+  title?: string[];
+  description?: string[];
+  "content:encoded"?: string[];
+  pubDate?: string[];
+  "itunes:duration"?: string[];
+  enclosure?: Array<{ $?: { url?: string } }>;
+  "itunes:image"?: Array<{ $?: { href?: string } }>;
+  "itunes:season"?: string[];
+  "itunes:episode"?: string[];
 }
 
 // Fetch and parse RSS feed
@@ -52,10 +56,11 @@ export async function fetchTheocologyEpisodes(): Promise<TheocologyEpisode[]> {
     const { parseStringPromise } = await import("xml2js");
     const result = await parseStringPromise(xmlText);
     
-    const items = result.rss.channel[0].item || [];
-    
-    const episodes: TheocologyEpisode[] = items.map((item: any) => {
-      const guid = item.guid?.[0]?._ || item.guid?.[0] || "";
+    const items: RssItem[] = result.rss.channel[0].item || [];
+
+    const episodes: TheocologyEpisode[] = items.map((item: RssItem) => {
+      const guidRaw = item.guid?.[0];
+      const guid = (typeof guidRaw === "string" ? guidRaw : guidRaw?._) || "";
       const title = item.title?.[0] || "";
       const description = item["content:encoded"]?.[0] || item.description?.[0] || "";
       const pubDate = item.pubDate?.[0] || "";

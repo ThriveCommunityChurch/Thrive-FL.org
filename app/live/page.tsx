@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -97,9 +98,9 @@ export default function LivePage() {
               <p className="live-card-detail">
                 We&apos;d love to meet you! Nothing beats worshiping together in person.
               </p>
-              <a href="/visit" className="live-card-link">
+              <Link href="/visit" className="live-card-link">
                 Plan Your Visit <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -111,10 +112,10 @@ export default function LivePage() {
           <h2>Can&apos;t Make It Live?</h2>
           <p>Browse our full sermon library and watch anytime.</p>
           <div className="cta-buttons">
-            <a href="/sermons" className="btn btn-primary">
+            <Link href="/sermons" className="btn btn-primary">
               <FontAwesomeIcon icon={faPlay} />
               Browse Sermons
-            </a>
+            </Link>
           </div>
         </div>
       </section>
