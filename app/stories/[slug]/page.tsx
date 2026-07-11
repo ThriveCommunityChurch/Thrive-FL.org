@@ -43,6 +43,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: story.publishedDate,
       images: [{ url: ogImage }],
     },
+    alternates: {
+      canonical: `https://thrive-fl.org/stories/${slug}`,
+    },
   };
 }
 

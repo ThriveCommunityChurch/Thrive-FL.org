@@ -48,6 +48,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           },
         ] : undefined,
       },
+      alternates: {
+        canonical: `https://thrive-fl.org/sermons/${seriesId}`,
+      },
     };
   } catch {
     return {

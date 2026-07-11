@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     description: "Articles and reflections on faith, community, and everyday life from Thrive Community Church in Estero, FL.",
     url: "https://thrive-fl.org/blog",
   },
+  alternates: {
+    canonical: "https://thrive-fl.org/blog",
+  },
 };
 
 export default async function BlogPage() {

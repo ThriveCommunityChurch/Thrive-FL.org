@@ -28,6 +28,9 @@ import {
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
   description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
+  alternates: {
+    canonical: "https://thrive-fl.org",
+  },
   openGraph: {
     title: "Thrive Community Church | Estero, FL",
     description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
