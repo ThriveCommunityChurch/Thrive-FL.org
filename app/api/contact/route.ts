@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import FormData from "form-data";
 import Mailgun from "mailgun.js";
+import { describeAssessment, evaluateSubmission } from "../../lib/spamFilter";
 
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 const MAILGUN_API_KEY = process.env.MAILGUN_API_KEY;
@@ -8,6 +9,9 @@ const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || "thrive-fl.org";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "info@thrive-fl.org";
 // Prayer requests should always route to this address unless overridden later
 const PRAYER_EMAIL = "prayers@thrive-fl.org";
+// Optional quarantine inbox. When set, submissions scored as spam are sent
+// here instead of being discarded, so nothing is lost to a false positive.
+const SPAM_QUARANTINE_EMAIL = process.env.SPAM_QUARANTINE_EMAIL;
 
 interface RecaptchaResponse {
   success: boolean;
@@ -414,11 +418,52 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Score the content itself. reCAPTCHA catches bots; this catches the
+    // agency rep who passes reCAPTCHA and pitches us web design services.
+    const assessment = evaluateSubmission({
+      name: submissionData.name,
+      email: submissionData.email,
+      phone: submissionData.phone,
+      message: submissionData.message,
+      honeypot: body.honeypot,
+      elapsedMs: body.elapsedMs,
+    });
+
     const { to, subject, text } = buildEmailFromSubmission(
       type,
       submissionData,
       score
     );
+
+    if (assessment.verdict === "spam") {
+      console.warn(
+        `Blocked spam submission (${type}): ${describeAssessment(assessment)}`
+      );
+
+      if (SPAM_QUARANTINE_EMAIL) {
+        await mg.messages.create(MAILGUN_DOMAIN, {
+          from: `Thrive Website <noreply@${MAILGUN_DOMAIN}>`,
+          to: [SPAM_QUARANTINE_EMAIL],
+          // No Reply-To here on purpose - nobody should reply to this by accident
+          subject: `[SPAM] ${subject}`,
+          text: `${text}\n\nBlocked by the spam filter: ${describeAssessment(assessment)}`,
+        });
+      }
+
+      // Respond exactly like a successful send so bots get no feedback loop
+      return NextResponse.json({
+        success: true,
+        message: "Your message has been sent successfully!",
+      });
+    }
+
+    // Borderline submissions still go to the team, just labelled so they can be
+    // triaged (or filtered on the subject line) at a glance.
+    const isSuspicious = assessment.verdict === "suspicious";
+    const finalSubject = isSuspicious ? `[POSSIBLE SPAM] ${subject}` : subject;
+    const finalText = isSuspicious
+      ? `${text}\n\nFlagged by the spam filter: ${describeAssessment(assessment)}`
+      : text;
 
     // Sanitize the Reply-To email to prevent header injection
     const replyToEmail = sanitizeEmail(submissionData.email);
@@ -428,8 +473,8 @@ export async function POST(request: NextRequest) {
       to: [to],
       // Keep Reply-To so the team can respond directly to the person (only if valid)
       ...(replyToEmail ? { "h:Reply-To": replyToEmail } : {}),
-      subject,
-      text,
+      subject: finalSubject,
+      text: finalText,
     });
 
     return NextResponse.json({

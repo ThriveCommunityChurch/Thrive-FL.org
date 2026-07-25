@@ -6,6 +6,7 @@ const nextConfig = {
     MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
     MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
     CONTACT_EMAIL: process.env.CONTACT_EMAIL,
+    SPAM_QUARANTINE_EMAIL: process.env.SPAM_QUARANTINE_EMAIL,
   },
 
   // Image optimization settings
@@ -112,8 +113,12 @@ const nextConfig = {
 
   // Compiler optimizations
   compiler: {
-    // Remove console logs in production
-    removeConsole: process.env.NODE_ENV === 'production',
+    // Remove console logs in production, but keep errors and warnings so
+    // server-side diagnostics (failed sends, blocked spam) stay visible
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? { exclude: ['error', 'warn'] }
+        : false,
   },
 };
 
