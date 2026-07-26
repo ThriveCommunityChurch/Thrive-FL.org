@@ -190,10 +190,15 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
     <form onSubmit={handleSubmit} className="contact-form">
       {/*
         Honeypot. Positioned off-screen rather than display:none so bots that
-        skip hidden fields still take the bait. Never shown to real users.
+        skip hidden fields still take the bait. Deliberately NOT aria-hidden -
+        hiding a focusable input from the accessibility tree is an anti-pattern,
+        and a screen reader user who filled this in would have their message
+        silently dropped. The label tells them to leave it alone instead.
       */}
-      <div className="contact-form-hp" aria-hidden="true">
-        <label htmlFor="website">Website</label>
+      <div className="contact-form-hp">
+        <label htmlFor="website">
+          Leave this field blank (it is here to catch automated submissions)
+        </label>
         <input
           type="text"
           id="website"
