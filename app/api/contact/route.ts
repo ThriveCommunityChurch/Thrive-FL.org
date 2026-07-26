@@ -9,9 +9,12 @@ const MAILGUN_DOMAIN = process.env.MAILGUN_DOMAIN || "thrive-fl.org";
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "info@thrive-fl.org";
 // Prayer requests should always route to this address unless overridden later
 const PRAYER_EMAIL = "prayers@thrive-fl.org";
-// Optional quarantine inbox. When set, submissions scored as spam are sent
-// here instead of being discarded, so nothing is lost to a false positive.
-const SPAM_QUARANTINE_EMAIL = process.env.SPAM_QUARANTINE_EMAIL;
+// Quarantine inbox for submissions scored as spam. Defaults to the normal
+// contact address so the filter works with no extra configuration - blocked
+// mail arrives subject-prefixed "[SPAM]" and can be filtered client-side.
+// Point this at a dedicated mailbox once one exists.
+const SPAM_QUARANTINE_EMAIL =
+  process.env.SPAM_QUARANTINE_EMAIL || CONTACT_EMAIL;
 
 interface RecaptchaResponse {
   success: boolean;
@@ -440,7 +443,10 @@ export async function POST(request: NextRequest) {
         `Blocked spam submission (${type}): ${describeAssessment(assessment)}`
       );
 
-      if (SPAM_QUARANTINE_EMAIL) {
+      // Quarantine rather than discard, so a false positive is recoverable.
+      // A failure here must not surface to the sender - the submission is
+      // already decided, and a bounced quarantine copy is not their problem.
+      try {
         await mg.messages.create(MAILGUN_DOMAIN, {
           from: `Thrive Website <noreply@${MAILGUN_DOMAIN}>`,
           to: [SPAM_QUARANTINE_EMAIL],
@@ -448,6 +454,8 @@ export async function POST(request: NextRequest) {
           subject: `[SPAM] ${subject}`,
           text: `${text}\n\nBlocked by the spam filter: ${describeAssessment(assessment)}`,
         });
+      } catch (quarantineError) {
+        console.error("Failed to quarantine spam submission:", quarantineError);
       }
 
       // Respond exactly like a successful send so bots get no feedback loop
