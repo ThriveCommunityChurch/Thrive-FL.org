@@ -5438,6 +5438,15 @@ a:hover {
   gap: var(--spacing-lg);
 }
 
+/* Honeypot field - hidden from people, visible to bots that ignore layout */
+.contact-form-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-form-group {
   margin-bottom: var(--spacing-lg);
 }

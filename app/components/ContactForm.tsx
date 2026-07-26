@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faSpinner, faCheck, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
@@ -41,6 +41,17 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Honeypot: hidden from real users, irresistible to bots. Anything typed
+  // here marks the submission as spam server-side.
+  const [honeypot, setHoneypot] = useState("");
+
+  // How long the form was on screen before submit. Bots fill and post
+  // instantly; people take several seconds.
+  const mountedAt = useRef<number>(0);
+  useEffect(() => {
+    mountedAt.current = Date.now();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -97,7 +108,13 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token, type, data: formData }),
+        body: JSON.stringify({
+          token,
+          type,
+          data: formData,
+          honeypot,
+          elapsedMs: mountedAt.current ? Date.now() - mountedAt.current : undefined,
+        }),
       });
 
       const result = await response.json();
@@ -108,6 +125,8 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
 
 	      setStatus("success");
 	      setFormData({ name: "", email: "", phone: "", subject: initialSubject, message: "" });
+	      setHoneypot("");
+	      mountedAt.current = Date.now();
     } catch (error) {
       console.error("Form submission error:", error);
       setStatus("error");
@@ -169,6 +188,28 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="contact-form">
+      {/*
+        Honeypot. Positioned off-screen rather than display:none so bots that
+        skip hidden fields still take the bait. Deliberately NOT aria-hidden -
+        hiding a focusable input from the accessibility tree is an anti-pattern,
+        and a screen reader user who filled this in would have their message
+        silently dropped. The label tells them to leave it alone instead.
+      */}
+      <div className="contact-form-hp">
+        <label htmlFor="website">
+          Leave this field blank (it is here to catch automated submissions)
+        </label>
+        <input
+          type="text"
+          id="website"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="contact-form-row">
         <div className="contact-form-group">
           <label htmlFor="name">Name <span className="required">*</span></label>
