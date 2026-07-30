@@ -4,6 +4,7 @@ import {
   faCircleQuestion,
   faMapLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
+import CTAButtons from "../components/CTAButtons";
 import { getAllEvents } from "../services/eventService";
 import { EventSummary } from "../types/events";
 import EventsClient from "./EventsClient";
@@ -77,14 +78,14 @@ export default async function EventsPage() {
             <p>
               We&apos;d love to see you. Sundays at 10 AM.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
               <a href="/im-new" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCircleQuestion} /> First Time?
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

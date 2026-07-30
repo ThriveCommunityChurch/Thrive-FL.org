@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "./components/CTAButtons";
 import {
   faClock,
   faCalendarCheck,
@@ -103,7 +104,7 @@ export default function HomePage() {
               Estero, FL
             </p>
           </div>
-          <div className="hero-cta">
+          <CTAButtons size="large" className="hero-cta-spacing">
             <Link href="/im-new" className="btn btn-primary">
               <FontAwesomeIcon icon={faCalendarCheck} />
               Join Us This Sunday
@@ -112,7 +113,7 @@ export default function HomePage() {
               <FontAwesomeIcon icon={faCirclePlay} />
               Watch a Message
             </Link>
-          </div>
+          </CTAButtons>
           {/* Scroll indicator */}
           <div className="scroll-indicator">
             <FontAwesomeIcon icon={faChevronDown} />

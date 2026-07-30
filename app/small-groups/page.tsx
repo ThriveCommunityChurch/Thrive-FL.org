@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faUtensils,
   faComments,
@@ -257,11 +258,11 @@ export default function SmallGroupsPage() {
               We&apos;d love to help you get connected. Drop us a line and we&apos;ll
               reach out to help you find the right fit for your life.
             </p>
-            <div className="cta-buttons">
-	              <a href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
+            <CTAButtons>
+              <a href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested
               </a>
-            </div>
+            </CTAButtons>
             <p className="cta-note">
               Or just ask about groups on Sunday—we&apos;ll point you in the right direction!
             </p>

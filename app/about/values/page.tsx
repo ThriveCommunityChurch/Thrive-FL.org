@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../../components/CTAButtons";
 import {
   faHeart,
   faPeopleGroup,
@@ -198,14 +199,14 @@ export default function ValuesPage() {
             <p>
               Come see what we&apos;re all about. Sundays at 10.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Join Us Sunday
               </a>
               <a href="/about/beliefs" className="btn btn-secondary">
                 <FontAwesomeIcon icon={faBookBible} /> Explore Our Beliefs
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

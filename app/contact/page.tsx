@@ -17,6 +17,7 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import ContactForm from "../components/ContactForm";
+import CTAButtons from "../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "Contact Us | Thrive Community Church",
@@ -200,7 +201,7 @@ export default function ContactPage({
               While we love hearing from you online, there&apos;s nothing quite like connecting
               in person. We&apos;d love to meet you.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </a>
@@ -210,7 +211,7 @@ export default function ContactPage({
                  className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faDiamondTurnRight} /> Get Directions
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

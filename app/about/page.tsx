@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faBookBible,
   faArrowRight,
@@ -249,14 +250,14 @@ export default function AboutPage() {
               We&apos;d love to meet you. Join us for worship and discover what it means
               to belong to a community that helps you thrive.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
               </a>
               <a href="/contact" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faComments} /> Get in Touch
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

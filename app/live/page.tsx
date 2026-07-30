@@ -9,6 +9,7 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 import LivestreamPlayer from "../components/live/LivestreamPlayer";
+import CTAButtons from "../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "Watch Live | Thrive Community Church",
@@ -111,12 +112,12 @@ export default function LivePage() {
         <div className="container container-narrow">
           <h2>Can&apos;t Make It Live?</h2>
           <p>Browse our full sermon library and watch anytime.</p>
-          <div className="cta-buttons">
+          <CTAButtons>
             <Link href="/sermons" className="btn btn-primary">
               <FontAwesomeIcon icon={faPlay} />
               Browse Sermons
             </Link>
-          </div>
+          </CTAButtons>
         </div>
       </section>
     </div>

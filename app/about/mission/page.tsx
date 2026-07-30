@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../../components/CTAButtons";
 import {
   faHeart,
   faHandHoldingHeart,
@@ -209,14 +210,14 @@ export default function MissionPage() {
               We&apos;d love to have you join us. Come see what Thrive is all about 
               and discover how you can be part of what God is doing in Estero.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Plan Your Visit
               </a>
               <Link href="/about/values" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faHeart} /> Explore Our Values
               </Link>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>
