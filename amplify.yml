@@ -3,15 +3,23 @@ frontend:
   phases:
     preBuild:
       commands:
+        # Amplify Hosting's runtime only supports Node 20/22/24 for SSR —
+        # Node 26 builds fine but is rejected post-build with
+        # "Unsupported NodeJS version". Node 24's Linux x64 build also
+        # dynamically links libatomic, which Amplify's build image doesn't
+        # ship by default, so install it first regardless.
+        - (sudo yum install -y libatomic || (sudo apt-get update && sudo apt-get install -y libatomic1))
         - nvm install 24
         - nvm use 24
+        - npm install --global --force corepack@0.35.0
         - corepack enable
-        - corepack prepare pnpm@11.1.2 --activate
+        - corepack install --global pnpm@10.34.0
+        - pnpm config set store-dir .pnpm-store
         - pnpm install --frozen-lockfile
     build:
       commands:
         - export NEXT_PUBLIC_BUILD_VERSION="v$(date +%Y.%m.%d)-$(echo $AWS_JOB_ID | sed 's/^0*//')"
-        - pnpm build
+        - pnpm run build
   artifacts:
     baseDirectory: .next
     files:
@@ -19,5 +27,5 @@ frontend:
   cache:
     paths:
       - .next/cache/**/*
+      - .pnpm-store/**/*
       - node_modules/**/*
-
