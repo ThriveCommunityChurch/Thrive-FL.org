@@ -871,11 +871,7 @@ a:hover {
   font-size: 1.1em;
 }
 
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-  justify-content: center;
+.hero-cta-spacing {
   margin-bottom: var(--spacing-3xl);
 }
 
@@ -939,15 +935,6 @@ a:hover {
     font-size: var(--font-size-base);
   }
 
-  .hero-cta {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-cta .btn {
-    width: 100%;
-    max-width: 280px;
-  }
 
   /* Show static image on mobile for performance */
   .hero-video {
@@ -1818,13 +1805,6 @@ a:hover {
   line-height: var(--line-height-relaxed);
 }
 
-.intro-cta {
-  display: flex;
-  gap: var(--spacing-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* ============================================
    FAQ SECTION - Question cards
    ============================================ */
@@ -2080,10 +2060,6 @@ a:hover {
 
 .visit-card-link:hover {
   gap: var(--spacing-sm);
-}
-
-.visit-cta-centered {
-  text-align: center;
 }
 
 /* Full Width Map Section */
@@ -2665,13 +2641,6 @@ a:hover {
 .cta-section.beliefs-cta .btn-primary:hover {
   background: var(--color-gray-100);
   transform: translateY(-3px);
-}
-
-.cta-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .btn-outline-white {
@@ -3787,19 +3756,6 @@ a:hover {
   opacity: 0.9;
 }
 
-.cta-section.mission-cta .cta-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-}
-
-.cta-section.mission-cta .cta-buttons .btn {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-base);
-}
-
 
 /* ============================================
    CTA SECTION (shared across about pages)
@@ -4436,11 +4392,6 @@ a:hover {
 
 .events-cta p {
   opacity: 0.95;
-}
-
-.events-cta .cta-buttons {
-  position: relative;
-  z-index: 1;
 }
 
 .events-cta .btn-primary {
@@ -10997,13 +10948,6 @@ a:hover {
   line-height: var(--line-height-relaxed);
   max-width: 600px;
   margin: 0 auto var(--spacing-2xl);
-}
-
-.developers-cta-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .developers-cta-section .btn {

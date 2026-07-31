@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import CTAButtons from "../../components/CTAButtons";
 import { getActiveStories, getStoryBySlug } from "../content/stories";
 import StoryMedia from "./StoryMedia";
 import StoryTranscript from "./StoryTranscript";
@@ -141,7 +142,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
 
           <div className="blog-detail-cta">
             <p>Want to see for yourself?</p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <Link href="/im-new" className="btn btn-primary">
                 Plan Your Visit
               </Link>
@@ -150,7 +151,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
                   {link.label}
                 </Link>
               ))}
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </article>

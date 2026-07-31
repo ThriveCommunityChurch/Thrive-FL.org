@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faPlus,
   faMinus,
@@ -110,14 +111,14 @@ export default function FAQPage() {
               We&apos;d love to hear from you. Reach out and someone from our team
               will get back to you soon.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <Link href="/contact" className="btn btn-primary">
                 Contact Us
               </Link>
               <Link href="/visit" className="btn btn-outline-white">
                 Plan Your Visit
               </Link>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../components/CTAButtons";
 import {
   faMobileAlt,
   faServer,
@@ -198,7 +199,7 @@ export default function DevelopersPage() {
               on GitHub. Whether you&apos;re curious about how something works, want to
               contribute, or are looking for ideas for your own church — feel free to explore.
             </p>
-            <div className="developers-cta-buttons">
+            <CTAButtons>
               <a
                 href="https://github.com/ThriveCommunityChurch"
                 target="_blank"
@@ -217,7 +218,7 @@ export default function DevelopersPage() {
                 <FontAwesomeIcon icon={faSitemap} /> Architecture Docs
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="btn-external-icon" />
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

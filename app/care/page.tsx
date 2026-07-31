@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faHandsPraying,
   faHeartCircleCheck,
@@ -73,14 +74,14 @@ export default function CarePage() {
               You don&apos;t have to have the right words. You don&apos;t have to have it
               all together. You just have to reach out.
             </p>
-	            <div className="cta-buttons" style={{ marginTop: "var(--spacing-xl)" }}>
-	              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
+            <CTAButtons>
+              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
               </a>
-	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
+              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>
@@ -274,14 +275,14 @@ export default function CarePage() {
               Whether you need prayer, a conversation, or help figuring out what
               to do next, we&apos;d be honored to walk with you.
             </p>
-	            <div className="cta-buttons">
-	              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
+            <CTAButtons>
+              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
               </a>
-	              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
+              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

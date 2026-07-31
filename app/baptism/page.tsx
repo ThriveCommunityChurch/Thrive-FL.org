@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faDroplet,
   faChildReaching,
@@ -278,11 +279,11 @@ export default function BaptismPage() {
               to explore what baptism means, we&apos;d love to hear your story and
               walk with you.
             </p>
-	            <div className="cta-buttons">
-	              <Link href="/contact?subject=pastoral#contact-form" className="btn btn-primary btn-lg">
+            <CTAButtons>
+              <Link href="/contact?subject=pastoral#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested in Baptism
               </Link>
-            </div>
+            </CTAButtons>
             <p className="cta-note">
               You can also mention baptism to any leader or volunteer on Sunday
               and we&apos;ll help you connect with the right person.

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faClock, faCalendar } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../../../components/CTAButtons";
 import { useAudioPlayer } from "../../../contexts/AudioPlayerContext";
 import { SermonMessage } from "../../../types/sermons";
 import type { TheocologyEpisode } from "../../../services/theocologyService";
@@ -301,7 +302,7 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
               ThriveFGCU? Connect with us on Instagram or come to one of our
               weekly gatherings!
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a
                 href="https://www.instagram.com/thrivefgcu/"
                 target="_blank"
@@ -313,7 +314,7 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
               <a href="/ministries/college" className="btn btn-outline-white">
                 Learn About ThriveFGCU
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faLocationDot,
   faPlay,
@@ -68,7 +69,7 @@ export default function ImNewPage() {
               time away, or simply looking for a community where you truly belong—we&apos;d
               be honored to have you join us.
             </p>
-            <div className="intro-cta">
+            <CTAButtons size="large">
               <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faLocationDot} />
                 Plan Your Visit
@@ -81,7 +82,7 @@ export default function ImNewPage() {
                 <FontAwesomeIcon icon={faHeart} />
                 Hear Our Stories
               </Link>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

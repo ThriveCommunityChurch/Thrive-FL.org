@@ -13,6 +13,7 @@ import {
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
@@ -295,19 +296,19 @@ export default function CollegeMinistryPage() {
               The easiest way to get involved is to show up! Check out our
               Instagram for the latest updates, or reach out if you have any questions.
             </p>
-	            <div className="cta-buttons">
-	              <a
-	                href="https://www.instagram.com/thrivefgcu/"
-	                target="_blank"
-	                rel="noopener noreferrer"
-	                className="btn btn-primary"
-	              >
-	                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
-	              </a>
-	              <a href="/contact?subject=general#contact-form" className="btn btn-outline-white">
+            <CTAButtons>
+              <a
+                href="https://www.instagram.com/thrivefgcu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
+              </a>
+              <a href="/contact?subject=general#contact-form" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

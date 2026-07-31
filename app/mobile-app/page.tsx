@@ -13,6 +13,7 @@ import {
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { faApple, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../components/CTAButtons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export const metadata: Metadata = {
@@ -265,7 +266,7 @@ export default function AppPage() {
               Download the Thrive Church Official App today and take your faith journey
               with you wherever you go.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a
                 href="https://apps.apple.com/us/app/thrive-church-official-app/id1138008288"
                 target="_blank"
@@ -282,7 +283,7 @@ export default function AppPage() {
               >
                 <FontAwesomeIcon icon={faGooglePlay} /> Google Play
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

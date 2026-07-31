@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faChurch,
   faComments,
@@ -204,11 +205,11 @@ export default function GetInvolvedPage() {
               figuring it out, we&apos;d love to chat. No pressure—just a conversation
               about how you might fit.
             </p>
-	            <div className="cta-buttons">
-	              <a href="/contact?subject=volunteer#contact-form" className="btn btn-secondary btn-lg">
+            <CTAButtons>
+              <a href="/contact?subject=volunteer#contact-form" className="btn btn-secondary btn-lg">
                 <FontAwesomeIcon icon={faHand} /> I Want to Serve
               </a>
-            </div>
+            </CTAButtons>
             <p className="cta-note">
               You can also talk to anyone on Sunday—just ask how to get involved!
             </p>

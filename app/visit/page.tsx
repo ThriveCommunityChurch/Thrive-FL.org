@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faClock,
   faLocationDot,
@@ -101,7 +102,7 @@ export default function VisitPage() {
             </div>
           </div>
 
-          <div className="visit-cta-centered">
+          <CTAButtons>
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
               target="_blank"
@@ -115,7 +116,7 @@ export default function VisitPage() {
               <FontAwesomeIcon icon={faHeart} />
               Hear Our Stories
             </Link>
-          </div>
+          </CTAButtons>
         </div>
       </section>
 

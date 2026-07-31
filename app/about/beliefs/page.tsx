@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../../components/CTAButtons";
 import {
   faHeart,
   faHandsPraying,
@@ -276,14 +277,14 @@ export default function BeliefsPage() {
               We&apos;d love to talk. Faith isn&apos;t about having all the answers—it&apos;s about
               walking together as we figure it out.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a href="/contact" className="btn btn-primary">
                 <FontAwesomeIcon icon={faComments} /> Start a Conversation
               </a>
               <a href="/visit" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>
