@@ -4,8 +4,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChurch,
-  faGamepad,
-  faUsers,
   faMapPin,
   faEnvelope,
   faClock,
@@ -17,7 +15,7 @@ import CTAButtons from "../../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
-  description: "ThriveFGCU is a college ministry for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for community, faith, and fun each week both on campus and at church.",
+  description: "ThriveFGCU is a college ministry for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for community, faith, and fun every Wednesday at church.",
   openGraph: {
     title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
     description: "A young adult community for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for faith, friendship, and Christ-centered community each week.",
@@ -67,7 +65,7 @@ export default function CollegeMinistryPage() {
             </p>
             <p>
               ThriveFGCU is a community of young adults navigating faith, friendship,
-              and life together. Based on the FGCU campus, we welcome all young adults
+              and life together. Based at Thrive Community Church in Estero, we welcome all young adults
               in Southwest Florida—whether you&apos;re a college student, working, or
               somewhere in between. If you grew up in church or you&apos;re just starting
               to explore faith, there&apos;s a place for you here.
@@ -81,51 +79,21 @@ export default function CollegeMinistryPage() {
         <div className="container">
           <div className="section-header-centered">
             <span className="section-eyebrow">Join Us</span>
-            <h2 className="section-title">Weekly Gatherings</h2>
+            <h2 className="section-title">Weekly Gathering</h2>
             <p className="section-subtitle">
-              Multiple opportunities to connect each week—on campus and at church
+              Join us every Wednesday at Thrive Church
             </p>
           </div>
 
-          <div className="college-schedule-grid">
-            <div className="college-schedule-card">
-              <div className="college-schedule-icon">
-                <FontAwesomeIcon icon={faGamepad} />
-              </div>
-              <div className="college-schedule-day">Monday</div>
-              <h3>Large Group Night</h3>
-              <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 6:00 PM</p>
-                <p><FontAwesomeIcon icon={faMapPin} /> AB9, Room 138</p>
-              </div>
-              <p className="college-schedule-desc">
-                Fun activities, games, and great community
-              </p>
-            </div>
-
+          <div className="college-schedule-grid" style={{ gridTemplateColumns: "1fr", maxWidth: "420px", margin: "2rem auto 0" }}>
             <div className="college-schedule-card college-schedule-card-highlight">
-              <div className="college-schedule-icon">
-                <FontAwesomeIcon icon={faUsers} />
-              </div>
-              <div className="college-schedule-day">Tuesday &amp; Thursday</div>
-              <h3>Lawn Games</h3>
-              <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 11:45 AM</p>
-                <p><FontAwesomeIcon icon={faMapPin} /> Library Lawn</p>
-              </div>
-              <p className="college-schedule-desc">
-                Casual hangout between classes—come play, meet people, no commitment
-              </p>
-            </div>
-
-            <div className="college-schedule-card">
               <div className="college-schedule-icon">
                 <FontAwesomeIcon icon={faChurch} />
               </div>
               <div className="college-schedule-day">Wednesday</div>
               <h3>Equipped Group</h3>
               <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 6:00 PM</p>
+                <p><FontAwesomeIcon icon={faClock} /> 5:30 PM</p>
                 <p><FontAwesomeIcon icon={faMapPin} /> Thrive Church</p>
               </div>
               <p className="college-schedule-desc">

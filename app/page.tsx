@@ -174,7 +174,7 @@ export default function HomePage() {
                 <FontAwesomeIcon icon={faGraduationCap} />
               </div>
               <h3>ThriveFGCU</h3>
-              <p className="service-time">Multiple Weekly Gatherings</p>
+              <p className="service-time">Wednesdays at 5:30 PM</p>
               <p className="service-description">
                 Faith, friends, and fun for FGCU students
               </p>
