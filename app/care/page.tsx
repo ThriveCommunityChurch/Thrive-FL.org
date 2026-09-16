@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CTAButtons from "../components/CTAButtons";
 import {
@@ -75,12 +76,12 @@ export default function CarePage() {
               all together. You just have to reach out.
             </p>
             <CTAButtons>
-              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
+              <Link href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
-              </a>
-              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
+              </Link>
+              <Link href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>
@@ -240,7 +241,7 @@ export default function CarePage() {
             <h2 className="section-title">Sometimes Your Next Step Is...</h2>
           </div>
           <div className="quicklinks-grid">
-            <a href="/small-groups" className="quicklink-card">
+            <Link href="/small-groups" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHouse} />
               </div>
@@ -250,8 +251,8 @@ export default function CarePage() {
                 let people know how you&apos;re really doing.
               </p>
               <span className="quicklink-action">Find a Group</span>
-            </a>
-            <a href="/get-involved" className="quicklink-card">
+            </Link>
+            <Link href="/get-involved" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHandshakeAngle} />
               </div>
@@ -261,7 +262,7 @@ export default function CarePage() {
                 your gifts to bless someone else.
               </p>
               <span className="quicklink-action">Get Involved</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -276,12 +277,12 @@ export default function CarePage() {
               to do next, we&apos;d be honored to walk with you.
             </p>
             <CTAButtons>
-              <a href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
+              <Link href="/contact?subject=prayer#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faHandsPraying} /> Request Prayer
-              </a>
-              <a href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
+              </Link>
+              <Link href="/contact?subject=pastoral#contact-form" className="btn btn-outline btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> Schedule a Conversation
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

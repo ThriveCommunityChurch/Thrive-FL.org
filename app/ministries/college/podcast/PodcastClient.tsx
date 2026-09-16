@@ -311,9 +311,9 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
               >
                 <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
               </a>
-              <a href="/ministries/college" className="btn btn-outline-white">
+              <Link href="/ministries/college" className="btn btn-outline-white">
                 Learn About ThriveFGCU
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

@@ -27,12 +27,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run ESLint
+      - name: Run oxlint
         run: pnpm lint
+
+      - name: Check formatting with oxfmt
+        run: pnpm format:check
 
       - name: Lint failed
         if: failure()
-        run: echo "Lint failed. Run 'pnpm lint' locally and fix the reported issues before merging."
+        run: echo "Lint failed. Run 'pnpm lint' and 'pnpm format' locally and fix the reported issues before merging."
 
   build:
     name: Build Next.js App

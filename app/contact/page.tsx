@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Script from "next/script";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -202,9 +203,9 @@ export default function ContactPage({
               in person. We&apos;d love to meet you.
             </p>
             <CTAButtons>
-              <a href="/visit" className="btn btn-primary">
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
-              </a>
+              </Link>
               <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
                  target="_blank"
                  rel="noopener noreferrer"

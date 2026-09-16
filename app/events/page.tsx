@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleQuestion,
@@ -82,9 +83,9 @@ export default async function EventsPage() {
               <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
-              <a href="/im-new" className="btn btn-outline-white">
+              <Link href="/im-new" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCircleQuestion} /> First Time?
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

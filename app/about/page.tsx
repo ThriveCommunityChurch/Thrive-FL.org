@@ -251,12 +251,12 @@ export default function AboutPage() {
               to belong to a community that helps you thrive.
             </p>
             <CTAButtons>
-              <a href="/visit" className="btn btn-primary">
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
-              </a>
-              <a href="/contact" className="btn btn-outline-white">
+              </Link>
+              <Link href="/contact" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faComments} /> Get in Touch
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

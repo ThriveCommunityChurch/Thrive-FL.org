@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CTAButtons from "../components/CTAButtons";
 import {
@@ -259,9 +260,9 @@ export default function SmallGroupsPage() {
               reach out to help you find the right fit for your life.
             </p>
             <CTAButtons>
-              <a href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
+              <Link href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
                 <FontAwesomeIcon icon={faEnvelope} /> I&apos;m Interested
-              </a>
+              </Link>
             </CTAButtons>
             <p className="cta-note">
               Or just ask about groups on Sunday—we&apos;ll point you in the right direction!

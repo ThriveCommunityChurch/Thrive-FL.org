@@ -96,9 +96,9 @@ export default function VisitPage() {
               <p className="visit-card-detail">
                 <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
               </p>
-              <a href="/contact" className="visit-card-link">
+              <Link href="/contact" className="visit-card-link">
                 Send us a message <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
           </div>
 

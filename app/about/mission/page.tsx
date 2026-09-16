@@ -211,9 +211,9 @@ export default function MissionPage() {
               and discover how you can be part of what God is doing in Estero.
             </p>
             <CTAButtons>
-              <a href="/visit" className="btn btn-primary">
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Plan Your Visit
-              </a>
+              </Link>
               <Link href="/about/values" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faHeart} /> Explore Our Values
               </Link>

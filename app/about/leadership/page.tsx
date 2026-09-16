@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHand } from "@fortawesome/free-solid-svg-icons";
 
@@ -124,9 +125,9 @@ export default function TeamPage() {
             We&apos;re always looking for people who want to serve. Whether it&apos;s greeting,
             kids ministry, tech, or something else—there&apos;s a place for you.
           </p>
-          <a href="/contact" className="btn btn-primary">
+          <Link href="/contact" className="btn btn-primary">
             <FontAwesomeIcon icon={faHand} /> Let&apos;s Connect
-          </a>
+          </Link>
         </div>
       </section>
     </div>

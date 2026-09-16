@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CTAButtons from "../../components/CTAButtons";
 import {
@@ -277,12 +278,12 @@ export default function BeliefsPage() {
               walking together as we figure it out.
             </p>
             <CTAButtons>
-              <a href="/contact" className="btn btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 <FontAwesomeIcon icon={faComments} /> Start a Conversation
-              </a>
-              <a href="/visit" className="btn btn-outline-white">
+              </Link>
+              <Link href="/visit" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

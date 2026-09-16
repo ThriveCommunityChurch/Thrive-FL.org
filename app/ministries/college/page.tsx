@@ -273,9 +273,9 @@ export default function CollegeMinistryPage() {
               >
                 <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
               </a>
-              <a href="/contact?subject=general#contact-form" className="btn btn-outline-white">
+              <Link href="/contact?subject=general#contact-form" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>

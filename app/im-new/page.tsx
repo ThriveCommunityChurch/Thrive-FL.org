@@ -188,10 +188,10 @@ export default function ImNewPage() {
               <p className="location-cta-lead">
                 Join us Sunday at 10 AM. Coffee is always ready.
               </p>
-              <a href="/visit" className="btn btn-primary">
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faLocationDot} />
                 Get Directions &amp; Details
-              </a>
+              </Link>
             </div>
           </div>
         </div>

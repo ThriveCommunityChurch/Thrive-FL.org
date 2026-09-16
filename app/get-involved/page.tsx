@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CTAButtons from "../components/CTAButtons";
 import {
@@ -206,9 +207,9 @@ export default function GetInvolvedPage() {
               about how you might fit.
             </p>
             <CTAButtons>
-              <a href="/contact?subject=volunteer#contact-form" className="btn btn-secondary btn-lg">
+              <Link href="/contact?subject=volunteer#contact-form" className="btn btn-secondary btn-lg">
                 <FontAwesomeIcon icon={faHand} /> I Want to Serve
-              </a>
+              </Link>
             </CTAButtons>
             <p className="cta-note">
               You can also talk to anyone on Sunday—just ask how to get involved!

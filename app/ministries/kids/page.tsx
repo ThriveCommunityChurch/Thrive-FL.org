@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CTAButtons from "../../components/CTAButtons";
 import {
@@ -206,12 +207,12 @@ export default function KidsMinistryPage() {
               Reach out anytime—or just show up Sunday and we&apos;ll take care of the rest!
             </p>
             <CTAButtons>
-              <a href="/contact?subject=general#contact-form" className="btn btn-primary">
+              <Link href="/contact?subject=general#contact-form" className="btn btn-primary">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
-              </a>
-              <a href="/visit" className="btn btn-outline-white">
+              </Link>
+              <Link href="/visit" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
-              </a>
+              </Link>
             </CTAButtons>
           </div>
         </div>
