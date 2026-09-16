@@ -14,10 +14,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
-  title: "First Time? | Thrive Community Church",
-  description: "New to Thrive? Here's what to expect. Relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones. No pressure—just people.",
+  title: "Plan Your Visit | Thrive Community Church in Estero, FL",
+  description: "New to Thrive Community Church in Estero, FL? Here's what to expect on a Sunday morning. Relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
   openGraph: {
-    title: "First Time? | Thrive Community Church",
+    title: "Plan Your Visit | Thrive Community Church in Estero, FL",
     description: "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
     url: "https://thrive-fl.org/im-new",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "First Time? | Thrive Community Church",
+    title: "Plan Your Visit | Thrive Community Church in Estero, FL",
     description: "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
