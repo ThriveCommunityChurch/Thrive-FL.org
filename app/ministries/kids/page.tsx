@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../../components/CTAButtons";
 import {
   faPuzzlePiece,
   faPeopleGroup,
@@ -11,10 +13,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Thrive Kids | Thrive Community Church",
-  description: "Thrive Kids offers a dedicated space where children can play and explore during Sunday worship. A relaxed, family-friendly environment for kids of all ages.",
+  description:
+    "Thrive Kids offers a dedicated space where children can play and explore during Sunday worship. A relaxed, family-friendly environment for kids of all ages.",
   openGraph: {
     title: "Thrive Kids | Thrive Community Church",
-    description: "A fun, safe space where kids can play, learn, and explore faith during Sunday worship. Family-friendly environment for all ages.",
+    description:
+      "A fun, safe space where kids can play, learn, and explore faith during Sunday worship. Family-friendly environment for all ages.",
     url: "https://thrive-fl.org/ministries/kids",
     images: [
       {
@@ -28,7 +32,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Thrive Kids | Thrive Community Church",
-    description: "A dedicated space where kids can play and explore during Sunday worship at Thrive.",
+    description:
+      "A dedicated space where kids can play and explore during Sunday worship at Thrive.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -37,16 +42,14 @@ export const metadata: Metadata = {
 };
 
 export default function KidsMinistryPage() {
-	  return (
+  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-kids">
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Thrive Kids</h1>
-          <p className="page-hero-subtitle">
-            Where faith takes root and friendships blossom
-          </p>
+          <p className="page-hero-subtitle">Where faith takes root and friendships blossom</p>
         </div>
       </section>
 
@@ -56,15 +59,14 @@ export default function KidsMinistryPage() {
           <div className="intro-content">
             <h2 className="section-title">A Space Just for Kids</h2>
             <p className="intro-lead">
-              At Thrive, we know that sitting through a full service isn&apos;t always
-              easy for little ones—and that&apos;s perfectly okay.
+              At Thrive, we know that sitting through a full service isn&apos;t always easy for
+              little ones—and that&apos;s perfectly okay.
             </p>
             <p>
-              We have a dedicated kids room where children can play, color, and
-              explore during worship. It&apos;s relaxed, it&apos;s flexible, and it&apos;s
-              there whenever your family needs it. No sign-ups, no formal programs—just
-              a welcoming space where kids can be kids while you connect with God
-              and community.
+              We have a dedicated kids room where children can play, color, and explore during
+              worship. It&apos;s relaxed, it&apos;s flexible, and it&apos;s there whenever your
+              family needs it. No sign-ups, no formal programs—just a welcoming space where kids can
+              be kids while you connect with God and community.
             </p>
           </div>
         </div>
@@ -95,9 +97,9 @@ export default function KidsMinistryPage() {
                 </div>
                 <h3>A Room to Play</h3>
                 <p>
-                  Our kids room is stocked with toys, games, coloring supplies, and
-                  activities to keep children entertained. Kids can come and go as
-                  they please—whatever works best for your family.
+                  Our kids room is stocked with toys, games, coloring supplies, and activities to
+                  keep children entertained. Kids can come and go as they please—whatever works best
+                  for your family.
                 </p>
               </div>
             </div>
@@ -118,9 +120,9 @@ export default function KidsMinistryPage() {
                 </div>
                 <h3>Flexible & Family-Friendly</h3>
                 <p>
-                  We value families worshiping together. Keep your kids with you
-                  in the service, let them hang out in the kids room, or do a mix
-                  of both—whatever helps your family thrive.
+                  We value families worshiping together. Keep your kids with you in the service, let
+                  them hang out in the kids room, or do a mix of both—whatever helps your family
+                  thrive.
                 </p>
               </div>
             </div>
@@ -141,9 +143,9 @@ export default function KidsMinistryPage() {
                 </div>
                 <h3>No Pressure</h3>
                 <p>
-                  There&apos;s no formal check-in process or structured program. Just
-                  a comfortable space for kids to hang out. Parents are welcome to
-                  stay with younger children or step in anytime.
+                  There&apos;s no formal check-in process or structured program. Just a comfortable
+                  space for kids to hang out. Parents are welcome to stay with younger children or
+                  step in anytime.
                 </p>
               </div>
             </div>
@@ -164,9 +166,7 @@ export default function KidsMinistryPage() {
               <div className="groups-step-number">1</div>
               <div className="groups-step-content">
                 <h3>Arrive on Sunday</h3>
-                <p>
-                  Come as you are! The kids room is open during our 10 AM service.
-                </p>
+                <p>Come as you are! The kids room is open during our 10 AM service.</p>
               </div>
             </div>
 
@@ -175,8 +175,8 @@ export default function KidsMinistryPage() {
               <div className="groups-step-content">
                 <h3>Use It When You Need It</h3>
                 <p>
-                  Drop off your kids at any point during service, or let them come
-                  and go as they need. It&apos;s totally flexible.
+                  Drop off your kids at any point during service, or let them come and go as they
+                  need. It&apos;s totally flexible.
                 </p>
               </div>
             </div>
@@ -186,8 +186,8 @@ export default function KidsMinistryPage() {
               <div className="groups-step-content">
                 <h3>Stay Connected</h3>
                 <p>
-                  The room is right nearby, so you&apos;re never far. Pop in and check
-                  on them whenever you&apos;d like.
+                  The room is right nearby, so you&apos;re never far. Pop in and check on them
+                  whenever you&apos;d like.
                 </p>
               </div>
             </div>
@@ -201,21 +201,20 @@ export default function KidsMinistryPage() {
           <div className="cta-content">
             <h2>Questions About Thrive Kids?</h2>
             <p>
-              We&apos;d love to tell you more about what we have for your family.
-              Reach out anytime—or just show up Sunday and we&apos;ll take care of the rest!
+              We&apos;d love to tell you more about what we have for your family. Reach out
+              anytime—or just show up Sunday and we&apos;ll take care of the rest!
             </p>
-	            <div className="cta-buttons">
-	              <a href="/contact?subject=general#contact-form" className="btn btn-primary">
+            <CTAButtons>
+              <Link href="/contact?subject=general#contact-form" className="btn btn-primary">
                 <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
-              </a>
-              <a href="/visit" className="btn btn-outline-white">
+              </Link>
+              <Link href="/visit" className="btn btn-outline-white">
                 <FontAwesomeIcon icon={faCalendar} /> Plan Your Visit
-              </a>
-            </div>
+              </Link>
+            </CTAButtons>
           </div>
         </div>
       </section>
     </div>
   );
 }
-

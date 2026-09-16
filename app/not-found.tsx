@@ -9,7 +9,7 @@ export default function NotFound() {
       {/* Background image of empty tomb */}
       <div className="not-found-background">
         <Image
-          src="https://images.unsplash.com/photo-1521106581851-da5b6457f674?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1521106581851-da5b6457f674?q=80&w=1920&auto=format&fit=crop"
           alt="Empty tomb at sunrise"
           fill
           style={{ objectFit: "cover" }}
@@ -21,9 +21,7 @@ export default function NotFound() {
       <div className="not-found-content">
         <h1 className="not-found-title">He Is Not Here</h1>
         <p className="not-found-code">404</p>
-        <p className="not-found-subtitle">
-          The page you&apos;re looking for has moved on.
-        </p>
+        <p className="not-found-subtitle">The page you&apos;re looking for has moved on.</p>
         <p className="not-found-verse">
           &ldquo;He is not here; he has risen!&rdquo;
           <span className="verse-ref">— Luke 24:6</span>

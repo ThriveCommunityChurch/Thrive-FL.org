@@ -18,10 +18,7 @@ import {
   faXmark,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  EventSummary,
-  Event,
-} from "../types/events";
+import { EventSummary, Event } from "../types/events";
 import {
   getEventById,
   getRecurrencePatternLabel,
@@ -45,8 +42,18 @@ function getFirstDayOfMonth(year: number, month: number): number {
 }
 
 const MONTH_NAMES = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -79,7 +86,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
         setSelectedEvent(response.Event);
       }
     } catch (err) {
-      console.error('Failed to fetch event details:', err);
+      console.error("Failed to fetch event details:", err);
     } finally {
       setLoadingEventDetails(false);
     }
@@ -94,10 +101,10 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
   // Build the event detail URL with optional occurrence date
   const getEventDetailUrl = () => {
     const eventId = selectedEvent?.Id || selectedEventSummary?.Id;
-    if (!eventId) return '/events';
+    if (!eventId) return "/events";
 
     if (selectedOccurrenceDate) {
-      const dateStr = selectedOccurrenceDate.toISOString().split('T')[0];
+      const dateStr = selectedOccurrenceDate.toISOString().split("T")[0];
       return `/events/${eventId}?date=${dateStr}`;
     }
     return `/events/${eventId}`;
@@ -171,13 +178,21 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
       {/* Calendar Controls */}
       <div className="calendar-controls">
         <div className="calendar-nav">
-          <button className="calendar-nav-btn" onClick={() => navigateMonth(-1)} aria-label="Previous month">
+          <button
+            className="calendar-nav-btn"
+            onClick={() => navigateMonth(-1)}
+            aria-label="Previous month"
+          >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <h2 className="calendar-title">
             {MONTH_NAMES[currentMonth]} {currentYear}
           </h2>
-          <button className="calendar-nav-btn" onClick={() => navigateMonth(1)} aria-label="Next month">
+          <button
+            className="calendar-nav-btn"
+            onClick={() => navigateMonth(1)}
+            aria-label="Next month"
+          >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
@@ -187,14 +202,14 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
           </button>
           <div className="view-toggle">
             <button
-              className={`view-toggle-btn ${viewMode === 'month' ? 'active' : ''}`}
-              onClick={() => setViewMode('month')}
+              className={`view-toggle-btn ${viewMode === "month" ? "active" : ""}`}
+              onClick={() => setViewMode("month")}
             >
               <FontAwesomeIcon icon={faCalendar} /> Month
             </button>
             <button
-              className={`view-toggle-btn ${viewMode === 'list' ? 'active' : ''}`}
-              onClick={() => setViewMode('list')}
+              className={`view-toggle-btn ${viewMode === "list" ? "active" : ""}`}
+              onClick={() => setViewMode("list")}
             >
               <FontAwesomeIcon icon={faList} /> List
             </button>
@@ -203,11 +218,13 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
       </div>
 
       {/* Month View */}
-      {viewMode === 'month' && (
+      {viewMode === "month" && (
         <div className="calendar-grid-wrapper">
           <div className="calendar-header">
             {DAY_NAMES.map((day) => (
-              <div key={day} className="calendar-header-cell">{day}</div>
+              <div key={day} className="calendar-header-cell">
+                {day}
+              </div>
             ))}
           </div>
           <div className="calendar-grid">
@@ -218,14 +235,17 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
               return (
                 <div
                   key={index}
-                  className={`calendar-day ${!isCurrentMonth ? 'other-month' : ''} ${isToday(date) ? 'today' : ''} ${hasEvents ? 'has-events' : ''}`}
+                  className={`calendar-day ${!isCurrentMonth ? "other-month" : ""} ${isToday(date) ? "today" : ""} ${hasEvents ? "has-events" : ""}`}
                   onClick={() => hasEvents && handleEventClick(dayEvents[0], date)}
                 >
                   <span className="day-number">{date.getDate()}</span>
                   {hasEvents && (
                     <div className="day-events">
                       {dayEvents.map((event) => (
-                        <div key={event.Id} className={`event-dot ${event.IsFeatured ? 'event-featured' : 'event-primary'}`}>
+                        <div
+                          key={event.Id}
+                          className={`event-dot ${event.IsFeatured ? "event-featured" : "event-primary"}`}
+                        >
                           <span className="event-preview">{event.Title}</span>
                         </div>
                       ))}
@@ -239,7 +259,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
       )}
 
       {/* List View */}
-      {viewMode === 'list' && (
+      {viewMode === "list" && (
         <div className="events-list">
           <h3 className="events-list-title">Upcoming Events</h3>
           {events.length === 0 ? (
@@ -255,7 +275,9 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
               >
                 <div className="event-list-date">
                   <span className="event-list-day">{date.getDate()}</span>
-                  <span className="event-list-month">{MONTH_NAMES[date.getMonth()].slice(0, 3)}</span>
+                  <span className="event-list-month">
+                    {MONTH_NAMES[date.getMonth()].slice(0, 3)}
+                  </span>
                 </div>
                 <div className="event-list-content">
                   {event.IsOnline ? (
@@ -269,7 +291,8 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                     <FontAwesomeIcon icon={faClock} /> {formatEventTime(event.StartTime)}
                     {event.IsRecurring && (
                       <span className="recurring-badge">
-                        <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.RecurrencePattern)}
+                        <FontAwesomeIcon icon={faRepeat} />{" "}
+                        {getRecurrencePatternLabel(event.RecurrencePattern)}
                       </span>
                     )}
                   </p>
@@ -313,7 +336,7 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                   </div>
                   <div className="event-modal-title-row">
                     <div className="event-modal-icon">
-                      {(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) ? (
+                      {selectedEvent?.IsOnline || selectedEventSummary?.IsOnline ? (
                         <FontAwesomeIcon icon={faVideo} />
                       ) : (
                         <FontAwesomeIcon icon={faChurch} />
@@ -330,22 +353,38 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                     <div className="event-modal-detail">
                       <FontAwesomeIcon icon={faClock} />
                       <div>
-                        <strong>{selectedOccurrenceDate ? 'Date & Time' : 'Time'}</strong>
+                        <strong>{selectedOccurrenceDate ? "Date & Time" : "Time"}</strong>
                         {selectedOccurrenceDate && (
-                          <p>{selectedOccurrenceDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                          <p>
+                            {selectedOccurrenceDate.toLocaleDateString("en-US", {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })}
+                          </p>
                         )}
-                        <p>{formatEventTime(selectedEvent?.StartTime || selectedEventSummary?.StartTime || '')}</p>
+                        <p>
+                          {formatEventTime(
+                            selectedEvent?.StartTime || selectedEventSummary?.StartTime || "",
+                          )}
+                        </p>
                       </div>
                     </div>
 
-                    {(selectedEvent?.IsOnline || selectedEventSummary?.IsOnline) ? (
+                    {selectedEvent?.IsOnline || selectedEventSummary?.IsOnline ? (
                       <div className="event-modal-detail">
                         <FontAwesomeIcon icon={faGlobe} />
                         <div>
                           <strong>Online Event</strong>
                           {selectedEvent?.OnlinePlatform && <p>{selectedEvent.OnlinePlatform}</p>}
                           {selectedEvent?.OnlineLink && (
-                            <a href={selectedEvent.OnlineLink} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline">
+                            <a
+                              href={selectedEvent.OnlineLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-sm btn-outline"
+                            >
                               Join Online
                             </a>
                           )}
@@ -356,16 +395,30 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <div>
                           <strong>Location</strong>
-                          {selectedEvent?.Location && (selectedEvent.Location.Name || selectedEvent.Location.Address) ? (
+                          {selectedEvent?.Location &&
+                          (selectedEvent.Location.Name || selectedEvent.Location.Address) ? (
                             <p>
-                              {selectedEvent.Location.Name && <>{selectedEvent.Location.Name}<br /></>}
-                              {selectedEvent.Location.Address && <>{selectedEvent.Location.Address}<br /></>}
+                              {selectedEvent.Location.Name && (
+                                <>
+                                  {selectedEvent.Location.Name}
+                                  <br />
+                                </>
+                              )}
+                              {selectedEvent.Location.Address && (
+                                <>
+                                  {selectedEvent.Location.Address}
+                                  <br />
+                                </>
+                              )}
                               {selectedEvent.Location.City && selectedEvent.Location.State && (
-                                <>{selectedEvent.Location.City}, {selectedEvent.Location.State} {selectedEvent.Location.ZipCode}</>
+                                <>
+                                  {selectedEvent.Location.City}, {selectedEvent.Location.State}{" "}
+                                  {selectedEvent.Location.ZipCode}
+                                </>
                               )}
                             </p>
                           ) : (
-                            <p>{selectedEventSummary?.LocationName || 'Thrive Community Church'}</p>
+                            <p>{selectedEventSummary?.LocationName || "Thrive Community Church"}</p>
                           )}
                         </div>
                       </div>
@@ -380,7 +433,12 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
 
                   {selectedEvent?.RegistrationUrl && (
                     <div className="event-modal-registration">
-                      <a href={selectedEvent.RegistrationUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-block">
+                      <a
+                        href={selectedEvent.RegistrationUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary btn-block"
+                      >
                         Register for Event
                       </a>
                     </div>
@@ -409,4 +467,3 @@ export default function EventsClient({ initialEvents }: EventsClientProps) {
     </>
   );
 }
-

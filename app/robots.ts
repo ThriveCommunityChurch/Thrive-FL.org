@@ -39,4 +39,3 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
     sitemap: "https://thrive-fl.org/sitemap.xml",
   };
 }
-

@@ -21,4 +21,5 @@ pnpm lint
 - CSS Modules for component styles; `app.css` for global resets only
 
 ## Docs
+
 - `Docs/Shared/Naming-Conventions.md` — TypeScript conventions

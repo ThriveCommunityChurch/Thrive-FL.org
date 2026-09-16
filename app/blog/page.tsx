@@ -1,11 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faExclamationTriangle, 
-  faClock,
-  faArrowRight 
-} from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle, faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { getPublishedBlogPosts, formatBlogDate, getReadingTime } from "../services/blogService";
 import { BlogPost, BlogPostType, getCategoryLabel } from "../types/blog";
@@ -16,11 +12,16 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Blog | Thrive Community Church",
-  description: "Explore articles and reflections from Thrive Community Church. Dive deeper into our sermon series with practical insights for everyday faith.",
+  description:
+    "Explore articles and reflections from Thrive Community Church. Dive deeper into our sermon series with practical insights for everyday faith.",
   openGraph: {
     title: "Blog | Thrive Community Church",
-    description: "Articles and reflections on faith, community, and everyday life from Thrive Community Church in Estero, FL.",
+    description:
+      "Articles and reflections on faith, community, and everyday life from Thrive Community Church in Estero, FL.",
     url: "https://thrive-fl.org/blog",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/blog",
   },
 };
 
@@ -31,8 +32,8 @@ export default async function BlogPage() {
   try {
     posts = await getPublishedBlogPosts();
   } catch (err) {
-    console.error('Failed to load blog posts:', err);
-    error = 'Failed to load blog posts. Please try again later.';
+    console.error("Failed to load blog posts:", err);
+    error = "Failed to load blog posts. Please try again later.";
   }
 
   return (
@@ -81,16 +82,17 @@ export default async function BlogPage() {
                           {getCategoryLabel(post.Category)}
                         </span>
                       )}
-                      {(post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && (
+                      {(post.Type === BlogPostType.SermonSeries ||
+                        post.Type === "SermonSeries") && (
                         <span className="blog-badge blog-badge--series">Sermon Series</span>
                       )}
-                      {(post.Type === BlogPostType.Email || post.Type === 'Email') && (
+                      {(post.Type === BlogPostType.Email || post.Type === "Email") && (
                         <span className="blog-badge blog-badge--newsletter">Newsletter</span>
                       )}
                     </div>
                     <h2 className="blog-card__title">{post.Title}</h2>
                     <p className="blog-card__summary">
-                      {post.Summary || 'Read more about this topic...'}
+                      {post.Summary || "Read more about this topic..."}
                     </p>
                     <div className="blog-card__meta">
                       <span className="blog-card__date">
@@ -120,7 +122,10 @@ export default async function BlogPage() {
           <div className="sermons-cta-content">
             <div className="sermons-cta-text">
               <h3>Want to Hear the Full Message?</h3>
-              <p>These articles are based on our sermon series. Watch or listen to get the complete teaching.</p>
+              <p>
+                These articles are based on our sermon series. Watch or listen to get the complete
+                teaching.
+              </p>
             </div>
             <Link href="/sermons" className="btn btn-primary">
               Browse Sermons
@@ -131,4 +136,3 @@ export default async function BlogPage() {
     </div>
   );
 }
-

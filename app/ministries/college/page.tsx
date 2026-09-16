@@ -4,8 +4,6 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChurch,
-  faGamepad,
-  faUsers,
   faMapPin,
   faEnvelope,
   faClock,
@@ -13,13 +11,16 @@ import {
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
-  description: "ThriveFGCU is a college ministry for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for community, faith, and fun each week both on campus and at church.",
+  description:
+    "ThriveFGCU is a college ministry for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for community, faith, and fun every Wednesday at church.",
   openGraph: {
     title: "ThriveFGCU | Campus Ministry at Florida Gulf Coast University",
-    description: "A young adult community for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for faith, friendship, and Christ-centered community each week.",
+    description:
+      "A young adult community for students at Florida Gulf Coast University from Thrive Community Church in Estero, FL. Join us for faith, friendship, and Christ-centered community each week.",
     url: "https://thrive-fl.org/ministries/college",
     images: [
       {
@@ -42,16 +43,14 @@ export const metadata: Metadata = {
 };
 
 export default function CollegeMinistryPage() {
-	  return (
+  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-college">
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">ThriveFGCU</h1>
-          <p className="page-hero-subtitle">
-            Faith, friends, and community for young adults
-          </p>
+          <p className="page-hero-subtitle">Faith, friends, and community for young adults</p>
         </div>
       </section>
 
@@ -61,15 +60,15 @@ export default function CollegeMinistryPage() {
           <div className="intro-content">
             <h2 className="section-title">Your Young Adult Community</h2>
             <p className="intro-lead">
-              This season of life is about more than school or work—it&apos;s about
-              finding your people and discovering who you&apos;re meant to be.
+              This season of life is about more than school or work—it&apos;s about finding your
+              people and discovering who you&apos;re meant to be.
             </p>
             <p>
-              ThriveFGCU is a community of young adults navigating faith, friendship,
-              and life together. Based on the FGCU campus, we welcome all young adults
-              in Southwest Florida—whether you&apos;re a college student, working, or
-              somewhere in between. If you grew up in church or you&apos;re just starting
-              to explore faith, there&apos;s a place for you here.
+              ThriveFGCU is a community of young adults navigating faith, friendship, and life
+              together. Based at Thrive Community Church in Estero, we welcome all young adults in
+              Southwest Florida—whether you&apos;re a college student, working, or somewhere in
+              between. If you grew up in church or you&apos;re just starting to explore faith,
+              there&apos;s a place for you here.
             </p>
           </div>
         </div>
@@ -80,52 +79,27 @@ export default function CollegeMinistryPage() {
         <div className="container">
           <div className="section-header-centered">
             <span className="section-eyebrow">Join Us</span>
-            <h2 className="section-title">Weekly Gatherings</h2>
-            <p className="section-subtitle">
-              Multiple opportunities to connect each week—on campus and at church
-            </p>
+            <h2 className="section-title">Weekly Gathering</h2>
+            <p className="section-subtitle">Join us every Wednesday at Thrive Church</p>
           </div>
 
-          <div className="college-schedule-grid">
-            <div className="college-schedule-card">
-              <div className="college-schedule-icon">
-                <FontAwesomeIcon icon={faGamepad} />
-              </div>
-              <div className="college-schedule-day">Monday</div>
-              <h3>Large Group Night</h3>
-              <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 6:00 PM</p>
-                <p><FontAwesomeIcon icon={faMapPin} /> AB9, Room 138</p>
-              </div>
-              <p className="college-schedule-desc">
-                Fun activities, games, and great community
-              </p>
-            </div>
-
+          <div
+            className="college-schedule-grid"
+            style={{ gridTemplateColumns: "1fr", maxWidth: "420px", margin: "2rem auto 0" }}
+          >
             <div className="college-schedule-card college-schedule-card-highlight">
-              <div className="college-schedule-icon">
-                <FontAwesomeIcon icon={faUsers} />
-              </div>
-              <div className="college-schedule-day">Tuesday &amp; Thursday</div>
-              <h3>Lawn Games</h3>
-              <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 11:45 AM</p>
-                <p><FontAwesomeIcon icon={faMapPin} /> Library Lawn</p>
-              </div>
-              <p className="college-schedule-desc">
-                Casual hangout between classes—come play, meet people, no commitment
-              </p>
-            </div>
-
-            <div className="college-schedule-card">
               <div className="college-schedule-icon">
                 <FontAwesomeIcon icon={faChurch} />
               </div>
               <div className="college-schedule-day">Wednesday</div>
               <h3>Equipped Group</h3>
               <div className="college-schedule-details">
-                <p><FontAwesomeIcon icon={faClock} /> 6:00 PM</p>
-                <p><FontAwesomeIcon icon={faMapPin} /> Thrive Church</p>
+                <p>
+                  <FontAwesomeIcon icon={faClock} /> 5:30 PM
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faMapPin} /> Thrive Church
+                </p>
               </div>
               <p className="college-schedule-desc">
                 Come for food, fellowship, and real conversations about faith and life
@@ -143,15 +117,14 @@ export default function CollegeMinistryPage() {
               <span className="section-eyebrow">Why ThriveFGCU</span>
               <h2 className="section-title-left">More Than a Meetup</h2>
               <p>
-                ThriveFGCU isn&apos;t about checking a box or adding another event
-                to your calendar. It&apos;s about finding genuine friendships, asking
-                real questions about faith, and having a community that supports you
-                through the ups and downs of young adult life.
+                ThriveFGCU isn&apos;t about checking a box or adding another event to your calendar.
+                It&apos;s about finding genuine friendships, asking real questions about faith, and
+                having a community that supports you through the ups and downs of young adult life.
               </p>
               <p>
-                No matter where you are on your faith journey—whether you&apos;ve been
-                following Jesus for years or you&apos;re not sure what you believe—you&apos;re
-                welcome here. Come as you are.
+                No matter where you are on your faith journey—whether you&apos;ve been following
+                Jesus for years or you&apos;re not sure what you believe—you&apos;re welcome here.
+                Come as you are.
               </p>
               <a
                 href="https://www.instagram.com/thrivefgcu/"
@@ -186,27 +159,26 @@ export default function CollegeMinistryPage() {
           <div className="welcome-content">
             <div className="welcome-image">
               <Image
-                  src="https://static.thrive-fl.org/Theocology.png"
-                  alt="Theocology Podcast"
-                  width={400}
-                  height={400}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  quality={75}
-                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
-                />
+                src="https://static.thrive-fl.org/Theocology.png"
+                alt="Theocology Podcast"
+                width={400}
+                height={400}
+                sizes="(max-width: 768px) 100vw, 400px"
+                quality={75}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
+              />
             </div>
             <div className="welcome-text">
               <span className="section-eyebrow">Listen &amp; Learn</span>
               <h2 className="section-title-left">Theocology Podcast</h2>
               <p>
-                Why does theology matter during your college years? Actually, always.
-                Join Dr. John Roth and FGCU students as they dive into the questions
-                that matter most—faith, identity, community, and navigating life&apos;s
-                big decisions.
+                Why does theology matter during your college years? Actually, always. Join Dr. John
+                Roth and FGCU students as they dive into the questions that matter most—faith,
+                identity, community, and navigating life&apos;s big decisions.
               </p>
               <p>
-                New episodes drop weekly during the academic year. Listen on Spotify
-                or Apple Podcasts.
+                New episodes drop weekly during the academic year. Listen on Spotify or Apple
+                Podcasts.
               </p>
               <Link href="/ministries/college/podcast" className="btn btn-outline">
                 <FontAwesomeIcon icon={faPodcast} />
@@ -233,9 +205,8 @@ export default function CollegeMinistryPage() {
               <div className="college-faq-content">
                 <h3>Do I have to be a student at FGCU?</h3>
                 <p>
-                  Not at all! ThriveFGCU is for all young adults in the Southwest
-                  Florida area—whether you&apos;re a college student, working, or
-                  somewhere in between.
+                  Not at all! ThriveFGCU is for all young adults in the Southwest Florida
+                  area—whether you&apos;re a college student, working, or somewhere in between.
                 </p>
               </div>
             </div>
@@ -247,10 +218,9 @@ export default function CollegeMinistryPage() {
               <div className="college-faq-content">
                 <h3>What is Theocology?</h3>
                 <p>
-                  Theocology is our podcast where we discuss why theology matters
-                  during college—hosted by students for students. New episodes
-                  release weekly during the academic year.{" "}
-                  <Link href="/ministries/college/podcast">Listen now →</Link>
+                  Theocology is our podcast where we discuss why theology matters during
+                  college—hosted by students for students. New episodes release weekly during the
+                  academic year. <Link href="/ministries/college/podcast">Listen now →</Link>
                 </p>
               </div>
             </div>
@@ -262,8 +232,8 @@ export default function CollegeMinistryPage() {
               <div className="college-faq-content">
                 <h3>Are there internship opportunities?</h3>
                 <p>
-                  Yes! We offer pastoral leadership internships and service internships
-                  in worship, tech, and church management for FGCU students.{" "}
+                  Yes! We offer pastoral leadership internships and service internships in worship,
+                  tech, and church management for FGCU students.{" "}
                   <Link href="/contact">Contact us to learn more →</Link>
                 </p>
               </div>
@@ -276,9 +246,8 @@ export default function CollegeMinistryPage() {
               <div className="college-faq-content">
                 <h3>I&apos;m not sure about my faith. Can I still come?</h3>
                 <p>
-                  Absolutely. ThriveFGCU welcomes students at every point in their
-                  faith journey—seekers, skeptics, and believers alike. Come with
-                  your questions.
+                  Absolutely. ThriveFGCU welcomes students at every point in their faith
+                  journey—seekers, skeptics, and believers alike. Come with your questions.
                 </p>
               </div>
             </div>
@@ -292,22 +261,22 @@ export default function CollegeMinistryPage() {
           <div className="cta-content">
             <h2>Ready to Connect?</h2>
             <p>
-              The easiest way to get involved is to show up! Check out our
-              Instagram for the latest updates, or reach out if you have any questions.
+              The easiest way to get involved is to show up! Check out our Instagram for the latest
+              updates, or reach out if you have any questions.
             </p>
-	            <div className="cta-buttons">
-	              <a
-	                href="https://www.instagram.com/thrivefgcu/"
-	                target="_blank"
-	                rel="noopener noreferrer"
-	                className="btn btn-primary"
-	              >
-	                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
-	              </a>
-	              <a href="/contact?subject=general#contact-form" className="btn btn-outline-white">
-                <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
+            <CTAButtons>
+              <a
+                href="https://www.instagram.com/thrivefgcu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                <FontAwesomeIcon icon={faInstagram} /> @thrivefgcu
               </a>
-            </div>
+              <Link href="/contact?subject=general#contact-form" className="btn btn-outline-white">
+                <FontAwesomeIcon icon={faEnvelope} /> Ask a Question
+              </Link>
+            </CTAButtons>
           </div>
         </div>
       </section>

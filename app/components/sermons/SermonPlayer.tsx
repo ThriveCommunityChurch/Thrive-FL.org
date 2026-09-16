@@ -1,17 +1,17 @@
 "use client";
 
-import { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
-import { SermonPlayerProps } from '../../types/sermons';
-import { formatDuration } from '../../services/sermonService';
+import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
+import { SermonPlayerProps } from "../../types/sermons";
+import { formatDuration } from "../../services/sermonService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function SermonPlayer({ 
-  message, 
+export default function SermonPlayer({
+  message,
   seriesArtUrl,
   onClose,
-  autoPlay = true 
+  autoPlay = true,
 }: SermonPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -28,22 +28,22 @@ export default function SermonPlayer({
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
 
-    audio.addEventListener('timeupdate', handleTimeUpdate);
-    audio.addEventListener('durationchange', handleDurationChange);
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('play', handlePlay);
-    audio.addEventListener('pause', handlePause);
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("durationchange", handleDurationChange);
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
 
     if (autoPlay) {
       audio.play().catch(() => setIsPlaying(false));
     }
 
     return () => {
-      audio.removeEventListener('timeupdate', handleTimeUpdate);
-      audio.removeEventListener('durationchange', handleDurationChange);
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('play', handlePlay);
-      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("durationchange", handleDurationChange);
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
     };
   }, [message?.AudioUrl, autoPlay]);
 
@@ -61,7 +61,7 @@ export default function SermonPlayer({
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audio = audioRef.current;
     if (!audio) return;
-    
+
     const newTime = parseFloat(e.target.value);
     audio.currentTime = newTime;
     setCurrentTime(newTime);
@@ -79,20 +79,20 @@ export default function SermonPlayer({
   if (!message) return null;
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
-  const thumbnail = seriesArtUrl || '/ThriveLogo.png';
+  const thumbnail = seriesArtUrl || "/ThriveLogo.png";
 
   return (
     <div className="sermon-player">
       <audio ref={audioRef} src={message.AudioUrl || undefined} preload="metadata" />
-      
+
       <div className="sermon-player__thumbnail">
         <Image
           src={thumbnail}
           alt={message.Title}
           width={60}
           height={60}
-          style={{ objectFit: 'cover' }}
-          unoptimized={thumbnail.startsWith('http')}
+          style={{ objectFit: "cover" }}
+          unoptimized={thumbnail.startsWith("http")}
         />
       </div>
 
@@ -105,7 +105,7 @@ export default function SermonPlayer({
         <button
           className="sermon-player__play-btn"
           onClick={togglePlayPause}
-          aria-label={isPlaying ? 'Pause' : 'Play'}
+          aria-label={isPlaying ? "Pause" : "Play"}
         >
           <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
         </button>
@@ -119,20 +119,15 @@ export default function SermonPlayer({
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            style={{ '--progress': `${progress}%` } as React.CSSProperties}
+            style={{ "--progress": `${progress}%` } as React.CSSProperties}
           />
           <span className="sermon-player__time">{formatDuration(duration)}</span>
         </div>
       </div>
 
-      <button
-        className="sermon-player__close"
-        onClick={handleClose}
-        aria-label="Close player"
-      >
+      <button className="sermon-player__close" onClick={handleClose} aria-label="Close player">
         <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );
 }
-

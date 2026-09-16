@@ -3,7 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTv, faPlay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-import { LivestreamOfflineProps } from '../../types/youtube';
+import { LivestreamOfflineProps } from "../../types/youtube";
 
 /**
  * Friendly offline message component shown when not live streaming
@@ -37,4 +37,3 @@ export default function LivestreamOffline({
     </div>
   );
 }
-

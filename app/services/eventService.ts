@@ -2,19 +2,18 @@
 
 import {
   AllEventsResponse,
-  Event,
   EventResponse,
   EventSummary,
   RecurrencePattern,
   parseRecurrencePattern,
-} from '../types/events';
+} from "../types/events";
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
 // API Base URL - uses environment variable with fallback to production
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.thrive-fl.org";
 
 // ============================================
 // ERROR HANDLING
@@ -24,10 +23,10 @@ export class EventApiError extends Error {
   constructor(
     message: string,
     public statusCode: number,
-    public endpoint: string
+    public endpoint: string,
   ) {
     super(message);
-    this.name = 'EventApiError';
+    this.name = "EventApiError";
   }
 }
 
@@ -41,7 +40,7 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
     throw new EventApiError(
       `API request failed: ${response.statusText}`,
       response.status,
-      endpoint
+      endpoint,
     );
   }
   return response.json();
@@ -58,7 +57,7 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
 export async function getAllEvents(includeInactive = false): Promise<AllEventsResponse> {
   const endpoint = `/api/Events?includeInactive=${includeInactive}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store', // Always fetch fresh data
+    cache: "no-store", // Always fetch fresh data
   });
 
   const result = await handleResponse<AllEventsResponse | null>(response, endpoint);
@@ -81,7 +80,7 @@ export async function getAllEvents(includeInactive = false): Promise<AllEventsRe
 export async function getEventById(eventId: string): Promise<EventResponse> {
   const endpoint = `/api/Events/${eventId}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<EventResponse>(response, endpoint);
 }
@@ -94,22 +93,22 @@ export async function getEventById(eventId: string): Promise<EventResponse> {
  * Get recurrence pattern label from string or enum
  */
 export function getRecurrencePatternLabel(pattern: string | RecurrencePattern): string {
-  if (typeof pattern === 'string') {
+  if (typeof pattern === "string") {
     return pattern; // API already returns "Weekly", "Daily", etc.
   }
   switch (pattern) {
     case RecurrencePattern.Daily:
-      return 'Daily';
+      return "Daily";
     case RecurrencePattern.Weekly:
-      return 'Weekly';
+      return "Weekly";
     case RecurrencePattern.BiWeekly:
-      return 'Bi-Weekly';
+      return "Bi-Weekly";
     case RecurrencePattern.Monthly:
-      return 'Monthly';
+      return "Monthly";
     case RecurrencePattern.Yearly:
-      return 'Yearly';
+      return "Yearly";
     default:
-      return '';
+      return "";
   }
 }
 
@@ -121,11 +120,11 @@ export function getRecurrencePatternLabel(pattern: string | RecurrencePattern): 
  */
 export function formatEventDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-    timeZone: 'UTC',
+  return date.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
   });
 }
 
@@ -137,11 +136,11 @@ export function formatEventDate(dateString: string): string {
  */
 export function formatEventTime(dateString: string): string {
   const date = new Date(dateString);
-  const time = date.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
+  const time = date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
     hour12: true,
-    timeZone: 'America/New_York',
+    timeZone: "America/New_York",
   });
   return `${time} Eastern`;
 }
@@ -214,7 +213,9 @@ export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
       if (date.getDay() !== (event.RecurrenceDayOfWeek ?? eventStart.getUTCDay())) {
         return false;
       }
-      const weeksDiff = Math.floor((date.getTime() - eventStart.getTime()) / (7 * 24 * 60 * 60 * 1000));
+      const weeksDiff = Math.floor(
+        (date.getTime() - eventStart.getTime()) / (7 * 24 * 60 * 60 * 1000),
+      );
       return weeksDiff >= 0 && weeksDiff % 2 === 0;
     case RecurrencePattern.Monthly:
       // Use getUTCDate() for eventStart since it's from API
@@ -230,4 +231,3 @@ export function eventOccursOnDate(event: EventSummary, date: Date): boolean {
       return false;
   }
 }
-

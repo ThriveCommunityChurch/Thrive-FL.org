@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "nextjs", "oxc", "promise", "react", "typescript", "unicorn"],
+  // NOTE: jsx-a11y intentionally left out for now. A trial run surfaced 12
+  // real findings (calendar keyboard support, audio captions, clickable divs)
+  // that deserve their own PR — not smuggled into the toolchain swap.
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {},
+  "ignorePatterns": [".next/**", "out/**", "build/**", "node_modules/**", "next-env.d.ts"],
+  "env": {
+    "builtin": true
+  }
+}

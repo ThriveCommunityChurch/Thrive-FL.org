@@ -3,10 +3,12 @@ import { faqData } from "./faqData";
 
 export const metadata: Metadata = {
   title: "FAQ | Thrive Community Church",
-  description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, giving, and more.",
+  description:
+    "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, giving, and more.",
   openGraph: {
     title: "FAQ | Thrive Community Church",
-    description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
+    description:
+      "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
     url: "https://thrive-fl.org/faq",
     images: [
       {
@@ -20,7 +22,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "FAQ | Thrive Community Church",
-    description: "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
+    description:
+      "Frequently asked questions about Thrive Community Church. Find answers about services, kids programs, getting involved, and more.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -33,29 +36,25 @@ export const metadata: Metadata = {
 // https://developers.google.com/search/docs/appearance/structured-data/faqpage
 function buildFaqJsonLd() {
   // Flatten all questions from all categories
-  const allQuestions = Object.values(faqData).flatMap(category =>
-    category.questions.map(q => ({
+  const allQuestions = Object.values(faqData).flatMap((category) =>
+    category.questions.map((q) => ({
       "@type": "Question",
-      "name": q.question,
-      "acceptedAnswer": {
+      name: q.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": q.answer + (q.link ? ` Learn more: ${q.link.href}` : ""),
+        text: q.answer + (q.link ? ` Learn more: ${q.link.href}` : ""),
       },
-    }))
+    })),
   );
 
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": allQuestions,
+    mainEntity: allQuestions,
   };
 }
 
-export default function FAQLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function FAQLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = buildFaqJsonLd();
 
   return (
@@ -68,4 +67,3 @@ export default function FAQLayout({
     </>
   );
 }
-

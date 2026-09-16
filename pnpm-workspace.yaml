@@ -1,2 +1,5 @@
 allowBuilds:
   sharp: true
+  # eslint's import resolver ships prebuilt binaries, so its build script is
+  # not needed; skip it to keep `pnpm install --frozen-lockfile` clean in CI.
+  unrs-resolver: false

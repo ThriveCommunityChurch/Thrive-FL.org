@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { LivestreamPlayerProps, LivestreamStatus } from '../../types/youtube';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { LivestreamPlayerProps, LivestreamStatus } from "../../types/youtube";
 import {
   checkLiveStatus,
   getEmbedUrl,
   getPollInterval,
-  THRIVE_CHANNEL_ID
-} from '../../services/youtubeService';
-import LivestreamSkeleton from './LivestreamSkeleton';
-import LivestreamOffline from './LivestreamOffline';
+  THRIVE_CHANNEL_ID,
+} from "../../services/youtubeService";
+import LivestreamSkeleton from "./LivestreamSkeleton";
+import LivestreamOffline from "./LivestreamOffline";
 
 /**
  * Main livestream player component
@@ -35,7 +35,7 @@ export default function LivestreamPlayer({
   // Check live status and update state
   const checkStatus = useCallback(async () => {
     const newStatus = await checkLiveStatus(channelId);
-    setStatus(prev => ({
+    setStatus(() => ({
       ...newStatus,
       isLoading: false,
     }));
@@ -52,7 +52,8 @@ export default function LivestreamPlayer({
 
   // Set up polling with visibility awareness
   useEffect(() => {
-    // Initial check
+    // Initial check — reads live status from an external API, then syncs state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     checkStatus();
 
     // Set up polling function with dynamic interval based on time of week
@@ -69,7 +70,7 @@ export default function LivestreamPlayer({
 
         intervalRef.current = setTimeout(() => {
           // Only poll when page is visible and not in cooloff
-          if (document.visibilityState === 'visible' && interval !== null) {
+          if (document.visibilityState === "visible" && interval !== null) {
             checkStatus();
           }
           // Schedule next poll (recalculates interval each time)
@@ -82,19 +83,19 @@ export default function LivestreamPlayer({
     // Handle visibility change - check immediately when page becomes visible
     // but only if not already live
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible' && !status.isLive) {
+      if (document.visibilityState === "visible" && !status.isLive) {
         checkStatus();
       }
     };
 
     startPolling();
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       if (intervalRef.current) {
         clearTimeout(intervalRef.current);
       }
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, [checkStatus, pollInterval, status.isLive]);
 
@@ -111,7 +112,7 @@ export default function LivestreamPlayer({
         <div className="livestream-video-container">
           <iframe
             src={getEmbedUrl(status.videoId)}
-            title={status.title || 'Thrive Church Live Stream'}
+            title={status.title || "Thrive Church Live Stream"}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className="livestream-iframe"
@@ -131,10 +132,9 @@ export default function LivestreamPlayer({
   // Offline state - show friendly message
   return (
     <div className="livestream-player">
-      <div className="livestream-video-container">
+      <div className="livestream-video-container livestream-video-container-offline">
         <LivestreamOffline />
       </div>
     </div>
   );
 }
-

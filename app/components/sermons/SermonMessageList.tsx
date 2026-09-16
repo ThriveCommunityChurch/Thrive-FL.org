@@ -1,9 +1,9 @@
 "use client";
 
-import { SermonMessage } from '../../types/sermons';
-import SermonMessageCard from './SermonMessageCard';
-import SermonSkeleton from './SermonSkeleton';
-import { useAudioPlayer } from '../../contexts/AudioPlayerContext';
+import { SermonMessage } from "../../types/sermons";
+import SermonMessageCard from "./SermonMessageCard";
+import SermonSkeleton from "./SermonSkeleton";
+import { useAudioPlayer } from "../../contexts/AudioPlayerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -20,7 +20,7 @@ export default function SermonMessageList({
   seriesId,
   seriesArtUrl,
   onPlayMessage,
-  isLoading = false
+  isLoading = false,
 }: SermonMessageListProps) {
   const { currentMessage } = useAudioPlayer();
   if (isLoading) {
@@ -59,4 +59,3 @@ export default function SermonMessageList({
     </div>
   );
 }
-

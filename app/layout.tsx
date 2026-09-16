@@ -3,9 +3,9 @@ import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./app.css";
 // Font Awesome SVG core CSS (required for proper rendering)
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 // Initialize Font Awesome library with all icons we use
-import './lib/fontawesome';
+import "./lib/fontawesome";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Providers";
@@ -26,8 +26,20 @@ const CLARITY_PROJECT_ID = "wsre1fzw0k";
 export const metadata: Metadata = {
   metadataBase: new URL("https://thrive-fl.org"),
   title: "Thrive Community Church | Estero, FL",
-  description: "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community. Service every Sunday at 10 AM.",
-  keywords: ["church", "Estero", "Fort Myers", "Florida", "worship", "community", "faith", "sermons", "Lutheran", "LCMS"],
+  description:
+    "Join us at Thrive Community Church in Estero, FL. Experience authentic worship, biblical teaching, and genuine community. Service every Sunday at 10 AM.",
+  keywords: [
+    "church",
+    "Estero",
+    "Fort Myers",
+    "Florida",
+    "worship",
+    "community",
+    "faith",
+    "sermons",
+    "Lutheran",
+    "LCMS",
+  ],
   authors: [{ name: "Thrive Community Church" }],
   creator: "Thrive Community Church",
   publisher: "Thrive Community Church",
@@ -37,7 +49,8 @@ export const metadata: Metadata = {
     url: "https://thrive-fl.org",
     siteName: "Thrive Community Church",
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
+    description:
+      "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
     images: [
       {
         url: "https://static.thrive-fl.org/og-image.jpg",
@@ -50,7 +63,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
+    description:
+      "Contemporary worship, biblical teaching, and genuine community. Join us Sundays at 10 AM in the heart of Southwest Florida.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
     creator: "@Thrive_FL",
   },
@@ -66,19 +80,16 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-	    // Search engine webmaster / ownership verification codes
-	    // These IDs are meant to be public meta tags and do not need to be secret.
-	    google: "SALXLSorV_uvi8FVA-yBbAnF0HxNYtKBEcb_CibHIXw",
-	    yahoo: "4175D31E5DF9EE5B2A0C6557B409D517",
-	    other: {
-	      // Bing Webmaster Tools
-	      "msvalidate.01": "4175D31E5DF9EE5B2A0C6557B409D517",
-	      // Alexa (legacy service, safe to keep for compatibility)
-	      alexaVerifyID: "Qcy1I-XCw9tdhIfyzCPvRMv4VV0",
-	    },
-  },
-  alternates: {
-    canonical: "https://thrive-fl.org/",
+    // Search engine webmaster / ownership verification codes
+    // These IDs are meant to be public meta tags and do not need to be secret.
+    google: "SALXLSorV_uvi8FVA-yBbAnF0HxNYtKBEcb_CibHIXw",
+    yahoo: "4175D31E5DF9EE5B2A0C6557B409D517",
+    other: {
+      // Bing Webmaster Tools
+      "msvalidate.01": "4175D31E5DF9EE5B2A0C6557B409D517",
+      // Alexa (legacy service, safe to keep for compatibility)
+      alexaVerifyID: "Qcy1I-XCw9tdhIfyzCPvRMv4VV0",
+    },
   },
   icons: {
     icon: [
@@ -92,11 +103,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
       <head>
@@ -107,8 +114,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://static.thrive-fl.org" crossOrigin="anonymous" />
 
         {/* Preload critical hero image for LCP optimization */}
-        <link rel="preload" href="https://static.thrive-fl.org/Still.jpg" as="image" fetchPriority="high" />
-
+        <link
+          rel="preload"
+          href="https://static.thrive-fl.org/Still.jpg"
+          as="image"
+          fetchPriority="high"
+        />
       </head>
       <body className={inter.className}>
         {/* Google Analytics */}
@@ -140,9 +151,7 @@ export default function RootLayout({
           {/* Persistent Shell */}
           <div className="app-shell">
             <Header />
-            <main id="main-content">
-              {children}
-            </main>
+            <main id="main-content">{children}</main>
             <Footer />
           </div>
         </Providers>

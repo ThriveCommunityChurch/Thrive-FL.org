@@ -1,17 +1,17 @@
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
-import { SermonSeriesSummary } from '../../types/sermons';
-import SermonSeriesGrid from './SermonSeriesGrid';
+import { SermonSeriesSummary } from "../../types/sermons";
+import SermonSeriesGrid from "./SermonSeriesGrid";
 
 interface SermonFiltersProps {
   series: SermonSeriesSummary[];
 }
 
 export default function SermonFilters({ series }: SermonFiltersProps) {
-  const [selectedYear, setSelectedYear] = useState<string>('all');
+  const [selectedYear, setSelectedYear] = useState<string>("all");
 
   // Helper to get UTC year from date string (avoids timezone conversion issues)
   const getUTCYear = (dateString: string): number => {
@@ -35,7 +35,7 @@ export default function SermonFilters({ series }: SermonFiltersProps) {
 
   // Filter series by selected year
   const filteredSeries = useMemo(() => {
-    if (selectedYear === 'all') {
+    if (selectedYear === "all") {
       return series;
     }
     const yearNum = parseInt(selectedYear, 10);
@@ -69,14 +69,11 @@ export default function SermonFilters({ series }: SermonFiltersProps) {
             ))}
           </select>
         </div>
-        {selectedYear !== 'all' && (
-          <span className="sermon-filters__count">
-            {filteredSeries.length} series found
-          </span>
+        {selectedYear !== "all" && (
+          <span className="sermon-filters__count">{filteredSeries.length} series found</span>
         )}
       </div>
       <SermonSeriesGrid series={filteredSeries} isLoading={false} />
     </div>
   );
 }
-

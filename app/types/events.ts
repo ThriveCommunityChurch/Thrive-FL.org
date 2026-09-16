@@ -18,14 +18,20 @@ export enum RecurrencePattern {
  * Map string recurrence pattern from API to enum
  */
 export function parseRecurrencePattern(pattern: string | number): RecurrencePattern {
-  if (typeof pattern === 'number') return pattern;
+  if (typeof pattern === "number") return pattern;
   switch (pattern) {
-    case 'Daily': return RecurrencePattern.Daily;
-    case 'Weekly': return RecurrencePattern.Weekly;
-    case 'BiWeekly': return RecurrencePattern.BiWeekly;
-    case 'Monthly': return RecurrencePattern.Monthly;
-    case 'Yearly': return RecurrencePattern.Yearly;
-    default: return RecurrencePattern.None;
+    case "Daily":
+      return RecurrencePattern.Daily;
+    case "Weekly":
+      return RecurrencePattern.Weekly;
+    case "BiWeekly":
+      return RecurrencePattern.BiWeekly;
+    case "Monthly":
+      return RecurrencePattern.Monthly;
+    case "Yearly":
+      return RecurrencePattern.Yearly;
+    default:
+      return RecurrencePattern.None;
   }
 }
 
@@ -48,9 +54,9 @@ export interface EventLocation {
 export interface EventRecurrence {
   Pattern: RecurrencePattern;
   Interval: number;
-  DayOfWeek?: number;      // 0 = Sunday, 6 = Saturday
-  DayOfMonth?: number;     // 1-31
-  EndDate?: string;        // ISO date string
+  DayOfWeek?: number; // 0 = Sunday, 6 = Saturday
+  DayOfMonth?: number; // 1-31
+  EndDate?: string; // ISO date string
 }
 
 /**
@@ -60,10 +66,10 @@ export interface EventSummary {
   Id: string;
   Title: string;
   Summary: string;
-  StartTime: string;           // ISO date string
+  StartTime: string; // ISO date string
   EndTime?: string;
   IsRecurring: boolean;
-  RecurrencePattern: string;   // API returns string like "Weekly"
+  RecurrencePattern: string; // API returns string like "Weekly"
   RecurrenceDayOfWeek?: number; // 0 = Sunday, 6 = Saturday
   IsOnline: boolean;
   LocationName?: string;
@@ -151,4 +157,3 @@ export interface CalendarDay {
   isCurrentMonth: boolean;
   Events: EventSummary[];
 }
-

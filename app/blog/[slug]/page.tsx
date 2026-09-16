@@ -34,7 +34,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       : `Read "${post.Title}" from Thrive Community Church.`;
 
     let ogImage: string | undefined;
-    if ((post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && post.SourceUrl) {
+    if (
+      (post.Type === BlogPostType.SermonSeries || post.Type === "SermonSeries") &&
+      post.SourceUrl
+    ) {
       const seriesIdMatch = post.SourceUrl.match(/\/sermons\/([^/]+)/);
       if (seriesIdMatch?.[1]) {
         try {
@@ -53,10 +56,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${post.Title} | Thrive Community Church`,
         description,
         url: `https://thrive-fl.org/blog/${slug}`,
-        type: 'article',
+        type: "article",
         publishedTime: post.PublishedDate || post.CreateDate,
         modifiedTime: post.LastUpdated,
         ...(ogImage && { images: [{ url: ogImage }] }),
+      },
+      alternates: {
+        canonical: `https://thrive-fl.org/blog/${slug}`,
       },
     };
   } catch {
@@ -79,7 +85,10 @@ export default async function BlogPostPage({ params }: PageProps) {
     post = await getBlogPostBySlug(slug);
 
     // If this is a sermon series blog post, fetch the series name and art
-    if ((post?.Type === BlogPostType.SermonSeries || post?.Type === 'SermonSeries') && post?.SourceUrl) {
+    if (
+      (post?.Type === BlogPostType.SermonSeries || post?.Type === "SermonSeries") &&
+      post?.SourceUrl
+    ) {
       // Extract seriesId from SourceUrl (format: /sermons/{seriesId})
       const seriesIdMatch = post.SourceUrl.match(/\/sermons\/([^/]+)/);
       if (seriesIdMatch?.[1]) {
@@ -93,8 +102,8 @@ export default async function BlogPostPage({ params }: PageProps) {
       }
     }
   } catch (err) {
-    console.error('Failed to load blog post:', err);
-    error = 'Failed to load blog post. Please try again later.';
+    console.error("Failed to load blog post:", err);
+    error = "Failed to load blog post. Please try again later.";
   }
 
   if (!post && !error) {
@@ -102,7 +111,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const readingTime = post ? getReadingTime(post.Content) : 0;
-  const showSeriesLink = (post?.Type === BlogPostType.SermonSeries || post?.Type === 'SermonSeries') && post?.SourceUrl;
+  const showSeriesLink =
+    (post?.Type === BlogPostType.SermonSeries || post?.Type === "SermonSeries") && post?.SourceUrl;
 
   return (
     <div className="page-wrapper">
@@ -124,7 +134,9 @@ export default async function BlogPostPage({ params }: PageProps) {
               <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Article</h3>
               <p>{error}</p>
-              <Link href="/blog" className="btn btn-primary">Back to Blog</Link>
+              <Link href="/blog" className="btn btn-primary">
+                Back to Blog
+              </Link>
             </div>
           ) : post ? (
             <>
@@ -135,31 +147,32 @@ export default async function BlogPostPage({ params }: PageProps) {
                   __html: JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "Article",
-                    "headline": post.Title,
-                    "description": post.Summary ?? `Read "${post.Title}" from Thrive Community Church.`,
-                    "image": seriesArtUrl ?? "https://static.thrive-fl.org/og-image.jpg",
-                    "datePublished": post.PublishedDate || post.CreateDate,
-                    "dateModified": post.LastUpdated,
-                    "url": `https://thrive-fl.org/blog/${post.Slug}`,
-                    "mainEntityOfPage": {
+                    headline: post.Title,
+                    description:
+                      post.Summary ?? `Read "${post.Title}" from Thrive Community Church.`,
+                    image: seriesArtUrl ?? "https://static.thrive-fl.org/og-image.jpg",
+                    datePublished: post.PublishedDate || post.CreateDate,
+                    dateModified: post.LastUpdated,
+                    url: `https://thrive-fl.org/blog/${post.Slug}`,
+                    mainEntityOfPage: {
                       "@type": "WebPage",
-                      "@id": `https://thrive-fl.org/blog/${post.Slug}`
+                      "@id": `https://thrive-fl.org/blog/${post.Slug}`,
                     },
-                    "author": {
+                    author: {
                       "@type": "Organization",
-                      "name": "Thrive Community Church",
-                      "url": "https://thrive-fl.org"
+                      name: "Thrive Community Church",
+                      url: "https://thrive-fl.org",
                     },
-                    "publisher": {
+                    publisher: {
                       "@type": "Organization",
-                      "name": "Thrive Community Church",
-                      "url": "https://thrive-fl.org",
-                      "logo": {
+                      name: "Thrive Community Church",
+                      url: "https://thrive-fl.org",
+                      logo: {
                         "@type": "ImageObject",
-                        "url": "https://static.thrive-fl.org/thrive-logo.png"
-                      }
-                    }
-                  })
+                        url: "https://static.thrive-fl.org/thrive-logo.png",
+                      },
+                    },
+                  }),
                 }}
               />
 
@@ -171,10 +184,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                       {getCategoryLabel(post.Category)}
                     </span>
                   )}
-                  {(post.Type === BlogPostType.SermonSeries || post.Type === 'SermonSeries') && (
+                  {(post.Type === BlogPostType.SermonSeries || post.Type === "SermonSeries") && (
                     <span className="blog-badge blog-badge--series">Sermon Series</span>
                   )}
-                  {(post.Type === BlogPostType.Email || post.Type === 'Email') && (
+                  {(post.Type === BlogPostType.Email || post.Type === "Email") && (
                     <span className="blog-badge blog-badge--newsletter">Newsletter</span>
                   )}
                 </div>
@@ -208,8 +221,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <p>
                   {seriesName && post.SourceUrl ? (
                     <>
-                      This post is based on the{' '}
-                      <Link href={post.SourceUrl}>{seriesName}</Link> series from{' '}
+                      This post is based on the <Link href={post.SourceUrl}>{seriesName}</Link>{" "}
+                      series from{" "}
                     </>
                   ) : (
                     <>Written by </>
@@ -234,4 +247,3 @@ export default async function BlogPostPage({ params }: PageProps) {
     </div>
   );
 }
-

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getEventById } from "../../services/eventService";
@@ -28,7 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     const title = `${event.Title} | Thrive Community Church`;
-    const description = event.Summary || event.Description?.substring(0, 160) ||
+    const description =
+      event.Summary ||
+      event.Description?.substring(0, 160) ||
       `Join us for ${event.Title} at Thrive Community Church in Estero, FL.`;
     const url = `https://thrive-fl.org/events/${id}`;
 
@@ -36,12 +39,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Using timeZone 'UTC' because dates from the API are already in the correct
     // local time and should be displayed as-is without timezone conversion.
     const eventDate = new Date(event.StartTime);
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC',
+    const formattedDate = eventDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
     });
 
     // Use event image if available, otherwise use default OG image
@@ -75,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch (error) {
-    console.error('Error generating metadata for event:', error);
+    console.error("Error generating metadata for event:", error);
     return {
       title: "Event Details | Thrive Community Church",
       description: "View event details at Thrive Community Church in Estero, FL.",
@@ -100,57 +103,60 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function EventDetailPage({ params }: PageProps) {
   const { id } = await params;
 
-  // Fetch event data for JSON-LD structured data
-  let eventJsonLd = null;
+  // Fetch the event once on the server. The same data feeds the JSON-LD,
+  // is handed to the client component as initialEvent (so the title/body are
+  // present in the SSR HTML), and — thanks to fetch request memoization — is
+  // shared with generateMetadata rather than triggering a second request.
+  let event = null;
   try {
     const response = await getEventById(id);
-    const event = response.Event;
-    if (event) {
-      eventJsonLd = (
-        <EventJsonLd
-          name={event.Title}
-          description={event.Summary || event.Description}
-          startDate={event.StartTime}
-          endDate={event.EndTime}
-          location={event.Location ? {
-            name: event.Location.Name,
-            address: event.Location.Address,
-            city: event.Location.City,
-            state: event.Location.State,
-            zipCode: event.Location.ZipCode,
-          } : undefined}
-          isOnline={event.IsOnline}
-          onlineUrl={event.OnlineLink}
-          url={`https://thrive-fl.org/events/${id}`}
-        />
-      );
-    }
+    event = response?.Event ?? null;
   } catch (error) {
-    console.error('Error fetching event for JSON-LD:', error);
+    console.error("Error fetching event:", error);
   }
 
   return (
     <div className="page-wrapper--event-detail">
       {/* JSON-LD Structured Data for SEO */}
-      {eventJsonLd}
+      {event && (
+        <EventJsonLd
+          name={event.Title}
+          description={event.Summary || event.Description}
+          startDate={event.StartTime}
+          endDate={event.EndTime}
+          location={
+            event.Location
+              ? {
+                  name: event.Location.Name,
+                  address: event.Location.Address,
+                  city: event.Location.City,
+                  state: event.Location.State,
+                  zipCode: event.Location.ZipCode,
+                }
+              : undefined
+          }
+          isOnline={event.IsOnline}
+          onlineUrl={event.OnlineLink}
+          url={`https://thrive-fl.org/events/${id}`}
+        />
+      )}
 
       {/* Breadcrumb */}
       <nav className="breadcrumb-nav">
         <div className="container">
-          <a href="/events" className="breadcrumb-link">
+          <Link href="/events" className="breadcrumb-link">
             <FontAwesomeIcon icon={faArrowLeft} />
             All Events
-          </a>
+          </Link>
         </div>
       </nav>
 
       {/* Event Detail Content */}
       <section className="section event-detail-section">
         <div className="container">
-          <EventDetailClient eventId={id} />
+          <EventDetailClient eventId={id} initialEvent={event} />
         </div>
       </section>
     </div>
   );
 }
-

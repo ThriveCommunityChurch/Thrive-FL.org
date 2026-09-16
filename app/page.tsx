@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "./components/CTAButtons";
 import {
   faClock,
   faCalendarCheck,
@@ -27,10 +29,15 @@ import {
 
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
-  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
+  description:
+    "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
+  alternates: {
+    canonical: "https://thrive-fl.org",
+  },
   openGraph: {
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
+    description:
+      "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
     url: "https://thrive-fl.org",
     images: [
       {
@@ -57,15 +64,6 @@ export default function HomePage() {
       <section className="hero-section">
         {/* Video Background */}
         <div className="hero-video-container">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://static.thrive-fl.org/Still.jpg"
-            alt=""
-            className="hero-poster-preload"
-            fetchPriority="high"
-            style={{ display: 'none' }}
-            aria-hidden="true"
-          />
           <video
             className="hero-video"
             autoPlay
@@ -99,16 +97,16 @@ export default function HomePage() {
               Estero, FL
             </p>
           </div>
-          <div className="hero-cta">
-            <a href="/im-new" className="btn btn-primary">
+          <CTAButtons size="large" className="hero-cta-spacing">
+            <Link href="/im-new" className="btn btn-primary">
               <FontAwesomeIcon icon={faCalendarCheck} />
               Join Us This Sunday
-            </a>
-            <a href="/sermons" className="btn btn-secondary">
+            </Link>
+            <Link href="/sermons" className="btn btn-secondary">
               <FontAwesomeIcon icon={faCirclePlay} />
               Watch a Message
-            </a>
-          </div>
+            </Link>
+          </CTAButtons>
           {/* Scroll indicator */}
           <div className="scroll-indicator">
             <FontAwesomeIcon icon={faChevronDown} />
@@ -140,9 +138,7 @@ export default function HomePage() {
       {/* Service Times Section */}
       <section className="section service-times-section">
         <div className="container">
-          <h2 className="section-title">
-            Service Times
-          </h2>
+          <h2 className="section-title">Service Times</h2>
           <div className="service-times-grid">
             <div className="service-card">
               <div className="service-icon">
@@ -164,16 +160,14 @@ export default function HomePage() {
                 Age-appropriate Bible teaching for children 6 months through 5th grade
               </p>
             </div>
-            <a href="/ministries/college" className="service-card service-card-link">
+            <Link href="/ministries/college" className="service-card service-card-link">
               <div className="service-icon">
                 <FontAwesomeIcon icon={faGraduationCap} />
               </div>
               <h3>ThriveFGCU</h3>
-              <p className="service-time">Multiple Weekly Gatherings</p>
-              <p className="service-description">
-                Faith, friends, and fun for FGCU students
-              </p>
-            </a>
+              <p className="service-time">Wednesdays at 5:30 PM</p>
+              <p className="service-description">Faith, friends, and fun for FGCU students</p>
+            </Link>
           </div>
         </div>
       </section>
@@ -185,20 +179,19 @@ export default function HomePage() {
             <div className="welcome-text">
               <h2 className="section-title">A Church For Southwest Florida</h2>
               <p className="welcome-lead">
-                Thrive is more than just a meeting to attend. It&apos;s a diverse,
-                spiritually growing family to be a part of, centered on the person
-                and mission of Jesus Christ.
+                Thrive is more than just a meeting to attend. It&apos;s a diverse, spiritually
+                growing family to be a part of, centered on the person and mission of Jesus Christ.
               </p>
               <p>
-                Located in Estero, we&apos;re actively working to build a great community
-                across Southwest Florida—renewed by the truth, grace, and changing power
-                of the gospel. Whether you&apos;re exploring faith for the first time or
-                looking for a church home, you&apos;ll find a warm welcome here.
+                Located in Estero, we&apos;re actively working to build a great community across
+                Southwest Florida—renewed by the truth, grace, and changing power of the gospel.
+                Whether you&apos;re exploring faith for the first time or looking for a church home,
+                you&apos;ll find a warm welcome here.
               </p>
-              <a href="/im-new" className="btn btn-outline">
+              <Link href="/im-new" className="btn btn-outline">
                 Learn More About Us
                 <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
             <div className="welcome-image">
               <div className="image-placeholder">
@@ -210,7 +203,7 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, 600px"
                   quality={75}
                   priority
-                  style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
                 />
               </div>
             </div>
@@ -223,70 +216,70 @@ export default function HomePage() {
         <div className="container">
           <h2 className="section-title">Get Connected</h2>
           <div className="quicklinks-grid">
-            <a href="/sermons" className="quicklink-card">
+            <Link href="/sermons" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faPlay} />
               </div>
               <h3>Listen to Sermons</h3>
               <p>Watch sermons in HD or re-watch a message if you missed something</p>
               <span className="quicklink-action">Browse Messages</span>
-            </a>
-            <a href="/small-groups" className="quicklink-card">
+            </Link>
+            <Link href="/small-groups" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHouse} />
               </div>
               <h3>Join a Small Group</h3>
               <p>Home Huddles for everyone with any schedule - join one today</p>
               <span className="quicklink-action">Find a Group</span>
-            </a>
-            <a href="/ministries/kids" className="quicklink-card">
+            </Link>
+            <Link href="/ministries/kids" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHeart} />
               </div>
               <h3>Thrive Kids</h3>
               <p>Available every Sunday for all your little ones</p>
               <span className="quicklink-action">Learn More</span>
-            </a>
-            <a href="/get-involved" className="quicklink-card">
+            </Link>
+            <Link href="/get-involved" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHandshakeAngle} />
               </div>
               <h3>Get Involved</h3>
               <p>Use your gifts to serve and make a difference at Thrive</p>
               <span className="quicklink-action">Serve With Us</span>
-            </a>
-            <a href="/baptism" className="quicklink-card">
+            </Link>
+            <Link href="/baptism" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faDroplet} />
               </div>
               <h3>Baptism</h3>
               <p>Ready for your next step in following Jesus?</p>
               <span className="quicklink-action">Learn About Baptism</span>
-            </a>
-            <a href="/care" className="quicklink-card">
+            </Link>
+            <Link href="/care" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faHandsPraying} />
               </div>
               <h3>Care &amp; Prayer</h3>
               <p>You&apos;re not a burden. Let us walk with you in prayer and care.</p>
               <span className="quicklink-action">Get Care &amp; Prayer</span>
-            </a>
-            <a href="/podcast" className="quicklink-card">
+            </Link>
+            <Link href="/podcast" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faPodcast} />
               </div>
               <h3>Listen to Our Podcast</h3>
               <p>Subscribe on Apple Podcasts, Spotify, and more</p>
               <span className="quicklink-action">Subscribe Now</span>
-            </a>
-            <a href="/blog" className="quicklink-card">
+            </Link>
+            <Link href="/blog" className="quicklink-card">
               <div className="quicklink-icon">
                 <FontAwesomeIcon icon={faNewspaper} />
               </div>
               <h3>Read Our Blog</h3>
               <p>Practical insights and reflections from our sermon series</p>
               <span className="quicklink-action">Read Articles</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -355,5 +348,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-

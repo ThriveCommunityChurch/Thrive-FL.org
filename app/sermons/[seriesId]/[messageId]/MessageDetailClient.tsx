@@ -36,7 +36,7 @@ export default function MessageDetailClient({
 
   const handlePlayClick = () => {
     if (message.AudioUrl) {
-      playMessage(message, series.Name, series.ArtUrl || series.Thumbnail || '');
+      playMessage(message, series.Name, series.ArtUrl || series.Thumbnail || "");
     }
   };
 
@@ -50,9 +50,9 @@ export default function MessageDetailClient({
   const handleDownloadTranscript = () => {
     if (!transcript?.FullText) return;
 
-    const blob = new Blob([transcript.FullText], { type: 'text/plain' });
+    const blob = new Blob([transcript.FullText], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
     link.download = `${message.Title} - Transcript.txt`;
     document.body.appendChild(link);
@@ -68,11 +68,11 @@ export default function MessageDetailClient({
         <div className="message-detail__actions">
           {message.AudioUrl && (
             <button
-              className={`btn btn-primary ${isCurrentlyPlaying ? 'message-detail__play-btn--playing' : ''}`}
+              className={`btn btn-primary ${isCurrentlyPlaying ? "message-detail__play-btn--playing" : ""}`}
               onClick={handlePlayClick}
             >
               <FontAwesomeIcon icon={isCurrentlyPlaying ? faPause : faPlay} />
-              {isCurrentlyPlaying ? 'Now Playing' : 'Play Audio'}
+              {isCurrentlyPlaying ? "Now Playing" : "Play Audio"}
             </button>
           )}
           {message.VideoUrl && (
@@ -108,7 +108,7 @@ export default function MessageDetailClient({
               <div className="sermon-notes">
                 {transcript.Notes.MainScripture && (
                   <p className="sermon-notes__scripture">
-                    <strong>Main Scripture:</strong>{' '}
+                    <strong>Main Scripture:</strong>{" "}
                     <a
                       href={getBibleGatewayUrl(transcript.Notes.MainScripture)}
                       target="_blank"
@@ -135,7 +135,7 @@ export default function MessageDetailClient({
                           <strong>{point.Point}</strong>
                           {point.Scripture && (
                             <span className="sermon-notes__point-scripture">
-                              {' — '}
+                              {" — "}
                               <a
                                 href={getBibleGatewayUrl(point.Scripture)}
                                 target="_blank"
@@ -166,16 +166,17 @@ export default function MessageDetailClient({
                   </div>
                 )}
 
-                {transcript.Notes.ApplicationPoints && transcript.Notes.ApplicationPoints.length > 0 && (
-                  <div className="sermon-notes__section">
-                    <h3>Application Points</h3>
-                    <ul className="sermon-notes__application">
-                      {transcript.Notes.ApplicationPoints.map((point, index) => (
-                        <li key={index}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                {transcript.Notes.ApplicationPoints &&
+                  transcript.Notes.ApplicationPoints.length > 0 && (
+                    <div className="sermon-notes__section">
+                      <h3>Application Points</h3>
+                      <ul className="sermon-notes__application">
+                        {transcript.Notes.ApplicationPoints.map((point, index) => (
+                          <li key={index}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
               </div>
             </div>
           )}
@@ -216,7 +217,7 @@ export default function MessageDetailClient({
           {showTranscript && (
             <div className="message-detail__collapsible-content">
               <div className="message-detail__transcript">
-                {transcript.FullText.split('\n\n').map((paragraph, index) => (
+                {transcript.FullText.split("\n\n").map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
                 ))}
               </div>
@@ -227,4 +228,3 @@ export default function MessageDetailClient({
     </div>
   );
 }
-

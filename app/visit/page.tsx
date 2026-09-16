@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../components/CTAButtons";
 import {
   faClock,
   faLocationDot,
@@ -14,10 +15,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Visit Us | Thrive Community Church",
-  description: "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM at 20041 S. Tamiami Trail. Get directions, parking info, and what to expect.",
+  description:
+    "Plan your visit to Thrive Community Church in Estero, FL. Sundays at 10 AM at 20041 S. Tamiami Trail. Get directions, parking info, and what to expect.",
   openGraph: {
     title: "Visit Us | Thrive Community Church",
-    description: "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
+    description:
+      "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
     url: "https://thrive-fl.org/visit",
     images: [
       {
@@ -31,7 +34,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Visit Us | Thrive Community Church",
-    description: "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
+    description:
+      "Directions and parking for Thrive Community Church in Estero, FL. Easy access off US-41 with plenty of free parking.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -47,9 +51,7 @@ export default function VisitPage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Come As You Are</h1>
-          <p className="page-hero-subtitle">
-            Sunday mornings at 10 AM. We&apos;d love to see you.
-          </p>
+          <p className="page-hero-subtitle">Sunday mornings at 10 AM. We&apos;d love to see you.</p>
         </div>
       </section>
 
@@ -76,12 +78,11 @@ export default function VisitPage() {
               <h3>Where to Find Us</h3>
               <p className="visit-card-highlight">Estero Ridge Plaza</p>
               <p className="visit-card-detail">
-                20041 S. Tamiami Trail #1<br />
+                20041 S. Tamiami Trail #1
+                <br />
                 Estero, FL 33928
               </p>
-              <p className="visit-card-note">
-                Corner of US-41 &amp; Estero Parkway
-              </p>
+              <p className="visit-card-note">Corner of US-41 &amp; Estero Parkway</p>
             </div>
 
             <div className="visit-card">
@@ -95,13 +96,13 @@ export default function VisitPage() {
               <p className="visit-card-detail">
                 <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
               </p>
-              <a href="/contact" className="visit-card-link">
+              <Link href="/contact" className="visit-card-link">
                 Send us a message <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
           </div>
 
-          <div className="visit-cta-centered">
+          <CTAButtons>
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
               target="_blank"
@@ -115,7 +116,7 @@ export default function VisitPage() {
               <FontAwesomeIcon icon={faHeart} />
               Hear Our Stories
             </Link>
-          </div>
+          </CTAButtons>
         </div>
       </section>
 
@@ -136,13 +137,11 @@ export default function VisitPage() {
       {/* Driving Directions Section */}
       <section className="section directions-section">
         <div className="container">
-          <h2 className="section-title">
-            Getting Here
-          </h2>
+          <h2 className="section-title">Getting Here</h2>
           <p className="directions-intro">
-            We&apos;re at the corner of US-41 and Estero Parkway, right between Alico and
-            Corkscrew Roads. Look for Estero Ridge Plaza—we&apos;re in the suites facing
-            Estero Parkway. There&apos;s plenty of free parking.
+            We&apos;re at the corner of US-41 and Estero Parkway, right between Alico and Corkscrew
+            Roads. Look for Estero Ridge Plaza—we&apos;re in the suites facing Estero Parkway.
+            There&apos;s plenty of free parking.
           </p>
 
           <div className="directions-grid">
@@ -154,13 +153,13 @@ export default function VisitPage() {
               <div className="directions-content">
                 <h4>Coming from Fort Myers or San Carlos Park?</h4>
                 <p>
-                  Head south on US-41. After you pass Sanibel Blvd., turn left at the next
-                  light onto Estero Parkway. We&apos;re immediately on your right in Estero Ridge Plaza.
+                  Head south on US-41. After you pass Sanibel Blvd., turn left at the next light
+                  onto Estero Parkway. We&apos;re immediately on your right in Estero Ridge Plaza.
                 </p>
                 <h4>Coming from Naples or Bonita Springs?</h4>
                 <p>
-                  Head north on US-41. Once you pass Broadway Ave., turn right into
-                  Estero Ridge Plaza.
+                  Head north on US-41. Once you pass Broadway Ave., turn right into Estero Ridge
+                  Plaza.
                 </p>
               </div>
             </div>
@@ -173,15 +172,15 @@ export default function VisitPage() {
               <div className="directions-content">
                 <h4>From the North (heading South on I-75)?</h4>
                 <p>
-                  Take Exit 128 and turn right onto Alico Road. Turn left onto Three Oaks
-                  Parkway, then right onto Estero Parkway. After the railroad tracks,
-                  we&apos;re on your left.
+                  Take Exit 128 and turn right onto Alico Road. Turn left onto Three Oaks Parkway,
+                  then right onto Estero Parkway. After the railroad tracks, we&apos;re on your
+                  left.
                 </p>
                 <h4>From the South (heading North on I-75)?</h4>
                 <p>
-                  Take Exit 123 and turn left onto Corkscrew Road. Turn right onto Three
-                  Oaks Parkway, then left onto Estero Parkway. After the railroad tracks,
-                  we&apos;re on your left.
+                  Take Exit 123 and turn left onto Corkscrew Road. Turn right onto Three Oaks
+                  Parkway, then left onto Estero Parkway. After the railroad tracks, we&apos;re on
+                  your left.
                 </p>
               </div>
             </div>
@@ -191,4 +190,3 @@ export default function VisitPage() {
     </div>
   );
 }
-

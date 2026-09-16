@@ -14,24 +14,24 @@ export default function VideoWatchClient({ messageId, messageTitle }: VideoWatch
 
   const handleDownloadTranscript = async () => {
     if (isDownloading) return;
-    
+
     setIsDownloading(true);
-    
+
     try {
       // Fetch transcript from API
       const response = await fetch(`/api/transcript/${messageId}`);
-      
+
       if (!response.ok) {
         throw new Error("Failed to fetch transcript");
       }
-      
+
       const data = await response.json();
-      
+
       if (!data.FullText) {
         alert("No transcript available for this message.");
         return;
       }
-      
+
       // Create and download the file
       const blob = new Blob([data.FullText], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
@@ -62,4 +62,3 @@ export default function VideoWatchClient({ messageId, messageTitle }: VideoWatch
     </button>
   );
 }
-

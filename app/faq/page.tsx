@@ -3,14 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faMinus,
-} from "@fortawesome/free-solid-svg-icons";
+import CTAButtons from "../components/CTAButtons";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faqData } from "./faqData";
 
 // Accordion Item Component
-function FAQItem({ question, answer, link, isOpen, onClick }: {
+function FAQItem({
+  question,
+  answer,
+  link,
+  isOpen,
+  onClick,
+}: {
   question: string;
   answer: string;
   link?: { text: string; href: string };
@@ -19,11 +23,7 @@ function FAQItem({ question, answer, link, isOpen, onClick }: {
 }) {
   return (
     <div className={`faq-accordion-item ${isOpen ? "faq-accordion-item--open" : ""}`}>
-      <button
-        className="faq-accordion-header"
-        onClick={onClick}
-        aria-expanded={isOpen}
-      >
+      <button className="faq-accordion-header" onClick={onClick} aria-expanded={isOpen}>
         <span className="faq-accordion-toggle">
           <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} />
         </span>
@@ -48,7 +48,7 @@ export default function FAQPage() {
 
   const toggleItem = (categoryKey: string, index: number) => {
     const key = `${categoryKey}-${index}`;
-    setOpenItems(prev => ({ ...prev, [key]: !prev[key] }));
+    setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const categories = Object.entries(faqData);
@@ -107,21 +107,20 @@ export default function FAQPage() {
           <div className="cta-content">
             <h2>Still Have Questions?</h2>
             <p>
-              We&apos;d love to hear from you. Reach out and someone from our team
-              will get back to you soon.
+              We&apos;d love to hear from you. Reach out and someone from our team will get back to
+              you soon.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <Link href="/contact" className="btn btn-primary">
                 Contact Us
               </Link>
               <Link href="/visit" className="btn btn-outline-white">
                 Plan Your Visit
               </Link>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>
     </div>
   );
 }
-

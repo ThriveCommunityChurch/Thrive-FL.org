@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
+import CTAButtons from "../../components/CTAButtons";
 import { getActiveStories, getStoryBySlug } from "../content/stories";
 import StoryMedia from "./StoryMedia";
 import StoryTranscript from "./StoryTranscript";
@@ -43,6 +44,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: story.publishedDate,
       images: [{ url: ogImage }],
     },
+    alternates: {
+      canonical: `https://thrive-fl.org/stories/${slug}`,
+    },
   };
 }
 
@@ -80,32 +84,32 @@ export default async function StoryDetailPage({ params }: PageProps) {
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "Article",
-                "headline": `${story.name}: ${story.title}`,
-                "description": story.summary,
-                "image":
+                headline: `${story.name}: ${story.title}`,
+                description: story.summary,
+                image:
                   story.imageUrl ??
                   (story.youtubeId
                     ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
                     : "https://static.thrive-fl.org/og-image.jpg"),
-                "url": `https://thrive-fl.org/stories/${story.slug}`,
-                "datePublished": story.publishedDate,
-                "dateModified": story.publishedDate,
-                "mainEntityOfPage": {
+                url: `https://thrive-fl.org/stories/${story.slug}`,
+                datePublished: story.publishedDate,
+                dateModified: story.publishedDate,
+                mainEntityOfPage: {
                   "@type": "WebPage",
                   "@id": `https://thrive-fl.org/stories/${story.slug}`,
                 },
-                "author": {
+                author: {
                   "@type": "Organization",
-                  "name": "Thrive Community Church",
-                  "url": "https://thrive-fl.org",
+                  name: "Thrive Community Church",
+                  url: "https://thrive-fl.org",
                 },
-                "publisher": {
+                publisher: {
                   "@type": "Organization",
-                  "name": "Thrive Community Church",
-                  "url": "https://thrive-fl.org",
-                  "logo": {
+                  name: "Thrive Community Church",
+                  url: "https://thrive-fl.org",
+                  logo: {
                     "@type": "ImageObject",
-                    "url": "https://static.thrive-fl.org/thrive-logo.png",
+                    url: "https://static.thrive-fl.org/thrive-logo.png",
                   },
                 },
               }),
@@ -132,13 +136,14 @@ export default async function StoryDetailPage({ params }: PageProps) {
           <footer className="blog-detail-footer">
             <hr />
             <p>
-              A story from <Link href="/">Thrive Community Church</Link> in Estero, Southwest Florida.
+              A story from <Link href="/">Thrive Community Church</Link> in Estero, Southwest
+              Florida.
             </p>
           </footer>
 
           <div className="blog-detail-cta">
             <p>Want to see for yourself?</p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <Link href="/im-new" className="btn btn-primary">
                 Plan Your Visit
               </Link>
@@ -147,7 +152,7 @@ export default async function StoryDetailPage({ params }: PageProps) {
                   {link.label}
                 </Link>
               ))}
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </article>

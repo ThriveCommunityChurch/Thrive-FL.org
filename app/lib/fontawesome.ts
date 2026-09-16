@@ -1,8 +1,8 @@
 // Font Awesome configuration - SVG icons instead of web fonts
 // This eliminates external CSS/font requests and only bundles icons we use
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { config } from '@fortawesome/fontawesome-svg-core';
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { config } from "@fortawesome/fontawesome-svg-core";
 
 // Prevent Font Awesome from adding CSS automatically (we handle it ourselves)
 config.autoAddCss = false;
@@ -74,7 +74,7 @@ import {
   faVideoSlash,
   faWheatAwn,
   faXmark,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
 // Brand icons
 import {
@@ -83,13 +83,13 @@ import {
   faXTwitter,
   faYelp,
   faYoutube,
-} from '@fortawesome/free-brands-svg-icons';
+} from "@fortawesome/free-brands-svg-icons";
 
 // Regular icons
 import {
   faCalendar as faCalendarRegular,
   faClock as faClockRegular,
-} from '@fortawesome/free-regular-svg-icons';
+} from "@fortawesome/free-regular-svg-icons";
 
 // Add all icons to the library
 library.add(
@@ -171,4 +171,3 @@ library.add(
 );
 
 export { library };
-

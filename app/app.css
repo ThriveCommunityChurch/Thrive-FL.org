@@ -16,13 +16,13 @@
    ============================================ */
 :root {
   /* Primary Colors - Thrive Teal */
-  --color-primary: #2EBED8;
+  --color-primary: #2ebed8;
   --color-primary-dark: #25a0b8;
   --color-primary-light: #4dcde6;
   --color-primary-rgb: 46, 190, 216;
 
   /* Secondary/Accent Colors - Thrive Green */
-  --color-secondary: #93A445;
+  --color-secondary: #93a445;
   --color-secondary-dark: #7a8a3a;
   --color-secondary-light: #a8b85a;
 
@@ -43,7 +43,8 @@
      Typography System - Elegant & Modern
      Using var(--font-inter) from Next.js font optimization
      ============================================ */
-  --font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family:
+    var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-family-display: var(--font-inter), system-ui, sans-serif;
   --font-size-base: 16px;
   --font-size-sm: 0.875rem;
@@ -66,15 +67,15 @@
   /* ============================================
      Enhanced Spacing System - Generous Whitespace
      ============================================ */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
-  --spacing-4xl: 6rem;     /* 96px - NEW: More breathing room */
-  --spacing-5xl: 8rem;     /* 128px - NEW: Premium spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+  --spacing-3xl: 4rem; /* 64px */
+  --spacing-4xl: 6rem; /* 96px - NEW: More breathing room */
+  --spacing-5xl: 8rem; /* 128px - NEW: Premium spacing */
 
   /* ============================================
      Modern Border Radius System
@@ -82,7 +83,7 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
-  --radius-xl: 20px;       /* Modern, softer corners */
+  --radius-xl: 20px; /* Modern, softer corners */
   --radius-2xl: 24px;
   --radius-3xl: 32px;
   --radius-full: 9999px;
@@ -91,25 +92,15 @@
      Sophisticated Shadow System
      Multi-layered with subtle teal accent
      ============================================ */
-  --shadow-sm:
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
 
-  --shadow-md:
-    0 4px 6px -1px rgba(0, 0, 0, 0.07),
-    0 2px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
 
-  --shadow-lg:
-    0 10px 25px -5px rgba(0, 0, 0, 0.08),
-    0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
 
-  --shadow-xl:
-    0 20px 40px -10px rgba(0, 0, 0, 0.1),
-    0 10px 20px -10px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 10px 20px -10px rgba(0, 0, 0, 0.04);
 
-  --shadow-2xl:
-    0 25px 50px -12px rgba(0, 0, 0, 0.15),
-    0 12px 24px -8px rgba(0, 0, 0, 0.06);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 12px 24px -8px rgba(0, 0, 0, 0.06);
 
   /* Colored shadow accents for primary elements */
   --shadow-primary:
@@ -121,13 +112,9 @@
     0 10px 20px -5px rgba(var(--color-primary-rgb), 0.2);
 
   /* Card-specific shadows */
-  --shadow-card:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 6px 16px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.06);
 
-  --shadow-card-hover:
-    0 4px 12px rgba(0, 0, 0, 0.06),
-    0 16px 32px rgba(0, 0, 0, 0.1);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.06), 0 16px 32px rgba(0, 0, 0, 0.1);
 
   /* ============================================
      Smooth Transitions & Animations
@@ -196,7 +183,8 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.2);
   }
   50% {
@@ -214,10 +202,18 @@
 }
 
 /* Staggered animation delays for cards */
-.stagger-1 { animation-delay: 0ms; }
-.stagger-2 { animation-delay: 100ms; }
-.stagger-3 { animation-delay: 200ms; }
-.stagger-4 { animation-delay: 300ms; }
+.stagger-1 {
+  animation-delay: 0ms;
+}
+.stagger-2 {
+  animation-delay: 100ms;
+}
+.stagger-3 {
+  animation-delay: 200ms;
+}
+.stagger-4 {
+  animation-delay: 300ms;
+}
 
 /* Respect user preferences for reduced motion */
 @media (prefers-reduced-motion: reduce) {
@@ -233,7 +229,9 @@
 /* ============================================
    Base Styles / Reset
    ============================================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -273,7 +271,8 @@ body {
   vertical-align: middle;
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
@@ -321,7 +320,6 @@ a:hover {
   color: var(--color-primary);
   opacity: 0.9;
 }
-
 
 /* ============================================
    Phase 2: Modern Button Styles
@@ -390,6 +388,17 @@ a:hover {
   border-color: var(--color-white);
   transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
+}
+
+/* Mobile GPUs tile backdrop-filter blurs, which can leave a visible
+   seam over video backgrounds (and it costs battery). Use a flat
+   translucent fill on small screens instead. */
+@media (max-width: 768px) {
+  .btn-secondary {
+    background: rgba(13, 25, 33, 0.6);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Outline Button - Subtle elegance */
@@ -617,7 +626,10 @@ a:hover {
     transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
-    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease,
+      visibility 0.3s ease;
     overflow-y: auto;
     z-index: 998;
     display: flex;
@@ -706,7 +718,7 @@ a:hover {
   }
 
   .dropdown-menu li::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -742,7 +754,6 @@ a:hover {
     display: none;
   }
 }
-
 
 /* ============================================
    Phase 3: Enhanced Hero Section
@@ -784,7 +795,7 @@ a:hover {
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
-  background-image: url('https://static.thrive-fl.org/Still.jpg');
+  background-image: url("https://static.thrive-fl.org/Still.jpg");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -871,11 +882,7 @@ a:hover {
   font-size: 1.1em;
 }
 
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-  justify-content: center;
+.hero-cta-spacing {
   margin-bottom: var(--spacing-3xl);
 }
 
@@ -903,7 +910,8 @@ a:hover {
 }
 
 @keyframes gentleBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
   50% {
@@ -939,22 +947,11 @@ a:hover {
     font-size: var(--font-size-base);
   }
 
-  .hero-cta {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-cta .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
   /* Show static image on mobile for performance */
   .hero-video {
     display: none;
   }
 }
-
 
 /* ============================================
    Plan Your Visit Section
@@ -988,8 +985,6 @@ a:hover {
   color: var(--color-primary);
   flex-shrink: 0;
 }
-
-
 
 .plan-visit-cta {
   background: var(--color-primary);
@@ -1060,9 +1055,15 @@ a:hover {
   opacity: 0;
 }
 
-.service-card:nth-child(1) { animation-delay: 0ms; }
-.service-card:nth-child(2) { animation-delay: 100ms; }
-.service-card:nth-child(3) { animation-delay: 200ms; }
+.service-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.service-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+.service-card:nth-child(3) {
+  animation-delay: 200ms;
+}
 
 .service-card:hover {
   transform: translateY(-8px);
@@ -1096,7 +1097,9 @@ a:hover {
   justify-content: center;
   margin: 0 auto var(--spacing-xl);
   box-shadow: var(--shadow-primary);
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .service-card:hover .service-icon {
@@ -1213,7 +1216,6 @@ a:hover {
   .welcome-text {
     text-align: center;
   }
-
 }
 
 /* ============================================
@@ -1221,7 +1223,12 @@ a:hover {
    Stunning frosted glass cards on teal gradient
    ============================================ */
 .quicklinks-section {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 50%, #1a7a8a 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 50%,
+    #1a7a8a 100%
+  );
   color: var(--color-white);
   position: relative;
   overflow: hidden;
@@ -1267,10 +1274,18 @@ a:hover {
   opacity: 0;
 }
 
-.quicklink-card:nth-child(1) { animation-delay: 0ms; }
-.quicklink-card:nth-child(2) { animation-delay: 100ms; }
-.quicklink-card:nth-child(3) { animation-delay: 200ms; }
-.quicklink-card:nth-child(4) { animation-delay: 300ms; }
+.quicklink-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.quicklink-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+.quicklink-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+.quicklink-card:nth-child(4) {
+  animation-delay: 300ms;
+}
 
 .quicklink-card:hover {
   background: rgba(255, 255, 255, 0.22);
@@ -1337,7 +1352,6 @@ a:hover {
 .quicklink-card:hover .quicklink-action svg {
   transform: translateX(6px);
 }
-
 
 /* ============================================
    Location Section - Modern & Clean
@@ -1739,11 +1753,7 @@ a:hover {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(46, 190, 216, 0.15) 0%,
-    rgba(45, 55, 72, 0.9) 100%
-  );
+  background: linear-gradient(135deg, rgba(46, 190, 216, 0.15) 0%, rgba(45, 55, 72, 0.9) 100%);
   z-index: 1;
 }
 
@@ -1818,13 +1828,6 @@ a:hover {
   line-height: var(--line-height-relaxed);
 }
 
-.intro-cta {
-  display: flex;
-  gap: var(--spacing-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* ============================================
    FAQ SECTION - Question cards
    ============================================ */
@@ -1855,10 +1858,18 @@ a:hover {
   opacity: 0;
 }
 
-.faq-card:nth-child(1) { animation-delay: 0ms; }
-.faq-card:nth-child(2) { animation-delay: 100ms; }
-.faq-card:nth-child(3) { animation-delay: 200ms; }
-.faq-card:nth-child(4) { animation-delay: 300ms; }
+.faq-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.faq-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+.faq-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+.faq-card:nth-child(4) {
+  animation-delay: 300ms;
+}
 
 .faq-card:hover {
   transform: translateY(-4px);
@@ -1999,9 +2010,15 @@ a:hover {
   opacity: 0;
 }
 
-.visit-card:nth-child(1) { animation-delay: 100ms; }
-.visit-card:nth-child(2) { animation-delay: 200ms; }
-.visit-card:nth-child(3) { animation-delay: 300ms; }
+.visit-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.visit-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+.visit-card:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .visit-card-icon {
   width: 60px;
@@ -2082,10 +2099,6 @@ a:hover {
   gap: var(--spacing-sm);
 }
 
-.visit-cta-centered {
-  text-align: center;
-}
-
 /* Full Width Map Section */
 .map-section-full {
   width: 100%;
@@ -2111,7 +2124,6 @@ a:hover {
     padding: var(--spacing-xl);
   }
 }
-
 
 /* ============================================
    DIRECTIONS SECTION - Driving directions
@@ -2143,8 +2155,12 @@ a:hover {
   opacity: 0;
 }
 
-.directions-card:nth-child(1) { animation-delay: 0ms; }
-.directions-card:nth-child(2) { animation-delay: 150ms; }
+.directions-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+.directions-card:nth-child(2) {
+  animation-delay: 150ms;
+}
 
 .directions-card h3 {
   display: flex;
@@ -2203,7 +2219,6 @@ a:hover {
   color: var(--color-primary);
 }
 
-
 /* ============================================
    TEAM PAGE STYLES
    ============================================ */
@@ -2233,10 +2248,18 @@ a:hover {
   opacity: 0;
 }
 
-.team-card:nth-child(1) { animation-delay: 100ms; }
-.team-card:nth-child(2) { animation-delay: 200ms; }
-.team-card:nth-child(3) { animation-delay: 300ms; }
-.team-card:nth-child(4) { animation-delay: 400ms; }
+.team-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.team-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+.team-card:nth-child(3) {
+  animation-delay: 300ms;
+}
+.team-card:nth-child(4) {
+  animation-delay: 400ms;
+}
 
 .team-card-image {
   width: 160px;
@@ -2311,7 +2334,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    BELIEFS PAGE STYLES
    ============================================ */
@@ -2348,9 +2370,15 @@ a:hover {
   opacity: 0;
 }
 
-.beliefs-pillar-card:nth-child(1) { animation-delay: 100ms; }
-.beliefs-pillar-card:nth-child(2) { animation-delay: 200ms; }
-.beliefs-pillar-card:nth-child(3) { animation-delay: 300ms; }
+.beliefs-pillar-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.beliefs-pillar-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+.beliefs-pillar-card:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .beliefs-pillar-card:hover {
   transform: translateY(-4px);
@@ -2667,13 +2695,6 @@ a:hover {
   transform: translateY(-3px);
 }
 
-.cta-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .btn-outline-white {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -2747,7 +2768,9 @@ a:hover {
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--animation-duration-fast), box-shadow var(--animation-duration-fast);
+  transition:
+    transform var(--animation-duration-fast),
+    box-shadow var(--animation-duration-fast);
 }
 
 .contemporary-feature:hover {
@@ -2779,7 +2802,6 @@ a:hover {
   margin: 0;
   line-height: var(--line-height-normal);
 }
-
 
 /* ============================================
    ABOUT PAGE STYLES
@@ -2855,7 +2877,7 @@ a:hover {
 
 /* Central line */
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -2924,12 +2946,24 @@ a:hover {
   opacity: 0;
 }
 
-.timeline-item:nth-child(1) .timeline-card { animation-delay: 100ms; }
-.timeline-item:nth-child(2) .timeline-card { animation-delay: 200ms; }
-.timeline-item:nth-child(3) .timeline-card { animation-delay: 300ms; }
-.timeline-item:nth-child(4) .timeline-card { animation-delay: 400ms; }
-.timeline-item:nth-child(5) .timeline-card { animation-delay: 500ms; }
-.timeline-item:nth-child(6) .timeline-card { animation-delay: 600ms; }
+.timeline-item:nth-child(1) .timeline-card {
+  animation-delay: 100ms;
+}
+.timeline-item:nth-child(2) .timeline-card {
+  animation-delay: 200ms;
+}
+.timeline-item:nth-child(3) .timeline-card {
+  animation-delay: 300ms;
+}
+.timeline-item:nth-child(4) .timeline-card {
+  animation-delay: 400ms;
+}
+.timeline-item:nth-child(5) .timeline-card {
+  animation-delay: 500ms;
+}
+.timeline-item:nth-child(6) .timeline-card {
+  animation-delay: 600ms;
+}
 
 .timeline-card:hover {
   transform: translateY(-4px);
@@ -3098,9 +3132,15 @@ a:hover {
   display: block;
 }
 
-.about-explore-card:nth-child(1) { animation-delay: 100ms; }
-.about-explore-card:nth-child(2) { animation-delay: 200ms; }
-.about-explore-card:nth-child(3) { animation-delay: 300ms; }
+.about-explore-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.about-explore-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+.about-explore-card:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .about-explore-card:hover {
   transform: translateY(-4px);
@@ -3181,7 +3221,6 @@ a:hover {
   background: var(--color-gray-100);
   transform: translateY(-3px);
 }
-
 
 /* ============================================
    LEADERSHIP PAGE - OUR STORY SECTION
@@ -3277,7 +3316,6 @@ a:hover {
   margin: 0;
   line-height: var(--line-height-normal);
 }
-
 
 /* ============================================
    VALUES PAGE STYLES
@@ -3394,9 +3432,15 @@ a:hover {
   border-color: var(--color-gray-100);
 }
 
-.value-card-modern:nth-child(1) { animation-delay: 100ms; }
-.value-card-modern:nth-child(2) { animation-delay: 200ms; }
-.value-card-modern:nth-child(3) { animation-delay: 300ms; }
+.value-card-modern:nth-child(1) {
+  animation-delay: 100ms;
+}
+.value-card-modern:nth-child(2) {
+  animation-delay: 200ms;
+}
+.value-card-modern:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .value-card-modern:hover {
   transform: translateY(-4px);
@@ -3510,7 +3554,7 @@ a:hover {
 }
 
 .mission-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -3575,7 +3619,6 @@ a:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-primary);
 }
-
 
 /* ============================================
    MISSION PAGE STYLES
@@ -3787,20 +3830,6 @@ a:hover {
   opacity: 0.9;
 }
 
-.cta-section.mission-cta .cta-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-}
-
-.cta-section.mission-cta .cta-buttons .btn {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-base);
-}
-
-
 /* ============================================
    CTA SECTION (shared across about pages)
    ============================================ */
@@ -3820,7 +3849,6 @@ a:hover {
   color: var(--color-gray-600);
   margin-bottom: var(--spacing-xl);
 }
-
 
 /* ============================================
    EVENTS PAGE STYLES
@@ -4044,7 +4072,7 @@ a:hover {
 }
 
 .event-dot::before {
-  content: '';
+  content: "";
   flex-shrink: 0;
   width: 8px;
   height: 8px;
@@ -4200,8 +4228,12 @@ a:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .event-modal {
@@ -4410,7 +4442,7 @@ a:hover {
 }
 
 .events-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -4436,11 +4468,6 @@ a:hover {
 
 .events-cta p {
   opacity: 0.95;
-}
-
-.events-cta .cta-buttons {
-  position: relative;
-  z-index: 1;
 }
 
 .events-cta .btn-primary {
@@ -5000,7 +5027,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    CONTACT PAGE STYLES
    ============================================ */
@@ -5063,12 +5089,24 @@ a:hover {
   opacity: 0;
 }
 
-.contact-option-card:nth-child(1) { animation-delay: 100ms; }
-.contact-option-card:nth-child(2) { animation-delay: 150ms; }
-.contact-option-card:nth-child(3) { animation-delay: 200ms; }
-.contact-option-card:nth-child(4) { animation-delay: 250ms; }
-.contact-option-card:nth-child(5) { animation-delay: 300ms; }
-.contact-option-card:nth-child(6) { animation-delay: 350ms; }
+.contact-option-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.contact-option-card:nth-child(2) {
+  animation-delay: 150ms;
+}
+.contact-option-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+.contact-option-card:nth-child(4) {
+  animation-delay: 250ms;
+}
+.contact-option-card:nth-child(5) {
+  animation-delay: 300ms;
+}
+.contact-option-card:nth-child(6) {
+  animation-delay: 350ms;
+}
 
 .contact-option-card:hover {
   transform: translateY(-4px);
@@ -5183,10 +5221,18 @@ a:hover {
   opacity: 0;
 }
 
-.contact-detail-card:nth-child(1) { animation-delay: 100ms; }
-.contact-detail-card:nth-child(2) { animation-delay: 150ms; }
-.contact-detail-card:nth-child(3) { animation-delay: 200ms; }
-.contact-detail-card:nth-child(4) { animation-delay: 250ms; }
+.contact-detail-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.contact-detail-card:nth-child(2) {
+  animation-delay: 150ms;
+}
+.contact-detail-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+.contact-detail-card:nth-child(4) {
+  animation-delay: 250ms;
+}
 
 .contact-detail-card:hover {
   transform: translateY(-4px);
@@ -5438,6 +5484,15 @@ a:hover {
   gap: var(--spacing-lg);
 }
 
+/* Honeypot field - hidden from people, visible to bots that ignore layout */
+.contact-form-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-form-group {
   margin-bottom: var(--spacing-lg);
 }
@@ -5532,6 +5587,78 @@ a:hover {
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626;
   border: 1px solid rgba(239, 68, 68, 0.3);
+  align-items: flex-start;
+}
+
+.contact-form-error > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-form-error-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.contact-form-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm) var(--spacing-md);
+}
+
+.contact-form-retry {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: #dc2626;
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-form-retry:hover {
+  background: #b91c1c;
+}
+
+.contact-form-error-actions a {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Per-field validation errors */
+.contact-form-group-error input,
+.contact-form-group-error select,
+.contact-form-group-error textarea {
+  border-color: #dc2626;
+  background: var(--color-white);
+}
+
+.contact-form-group-error input:focus,
+.contact-form-group-error select:focus,
+.contact-form-group-error textarea:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.contact-form-field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: #dc2626;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin: var(--spacing-xs) 0 0;
+}
+
+.contact-form-field-error svg {
+  flex-shrink: 0;
 }
 
 /* Form Footer */
@@ -5869,13 +5996,22 @@ a:hover {
 
 .skeleton-pulse {
   animation: skeletonPulse 1.5s ease-in-out infinite;
-  background: linear-gradient(90deg, var(--color-gray-100) 25%, var(--color-gray-200) 50%, var(--color-gray-100) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-200) 50%,
+    var(--color-gray-100) 75%
+  );
   background-size: 200% 100%;
 }
 
 @keyframes skeletonPulse {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .skeleton-image {
@@ -6589,7 +6725,11 @@ a:hover {
 }
 
 .message-detail__play-btn--playing {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary) 0%,
+    var(--color-secondary-dark) 100%
+  ) !important;
   box-shadow: 0 4px 14px rgba(147, 164, 69, 0.4) !important;
 }
 
@@ -6769,7 +6909,9 @@ a:hover {
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
 .sermon-notes__key-points li:hover {
@@ -6818,7 +6960,11 @@ a:hover {
 .sermon-notes__quote {
   margin: 0;
   padding: var(--spacing-lg) var(--spacing-xl);
-  background: linear-gradient(135deg, rgba(var(--color-primary-rgb), 0.05), rgba(var(--color-secondary-rgb), 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-primary-rgb), 0.05),
+    rgba(var(--color-secondary-rgb), 0.05)
+  );
   border-left: 4px solid var(--color-primary);
   border-radius: var(--radius-lg);
   border-bottom-left-radius: 0;
@@ -7159,7 +7305,7 @@ a:hover {
 .blog-detail-series-link svg {
   width: 16px;
   height: 16px;
-  margin-top: -0.20rem;
+  margin-top: -0.2rem;
 }
 
 /* Blog Content Typography */
@@ -7494,7 +7640,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    KIDS MINISTRY PAGE STYLES
    ============================================ */
@@ -7587,7 +7732,9 @@ a:hover {
   border-radius: var(--radius-xl);
   text-align: center;
   box-shadow: var(--shadow-sm);
-  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+  transition:
+    transform var(--animation-duration-normal) ease,
+    box-shadow var(--animation-duration-normal) ease;
 }
 
 .kids-age-card:hover {
@@ -7716,7 +7863,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    COLLEGE MINISTRY (THRIVEFGCU) PAGE STYLES
    ============================================ */
@@ -7745,7 +7891,9 @@ a:hover {
   padding: var(--spacing-xl);
   text-align: center;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .college-schedule-card:hover {
@@ -7919,7 +8067,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    WATCH LIVE PAGE STYLES
    ============================================ */
@@ -7952,7 +8099,9 @@ a:hover {
   text-align: center;
   text-decoration: none;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   border: 2px solid transparent;
 }
 
@@ -8090,7 +8239,6 @@ a:hover {
     text-align: center;
   }
 }
-
 
 /* ============================================
    SMALL GROUPS PAGE STYLES
@@ -8389,7 +8537,6 @@ a:hover {
   }
 }
 
-
 /* ============================================
    GET INVOLVED PAGE STYLES
    ============================================ */
@@ -8413,7 +8560,9 @@ a:hover {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+  transition:
+    transform var(--animation-duration-normal) ease,
+    box-shadow var(--animation-duration-normal) ease;
 }
 
 .involved-area-card:hover {
@@ -8730,7 +8879,7 @@ a:hover {
 }
 
 .podcast-platform-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -8958,19 +9107,27 @@ a:hover {
 .theocology-latest-card:hover {
   transform: translateY(-3px) !important;
   box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15) !important;
-  border-color: var(--color-primary, #2776D8) !important;
+  border-color: var(--color-primary, #2776d8) !important;
 }
 
 .theocology-latest-card-active {
-  border-color: var(--color-primary, #2776D8) !important;
-  background: linear-gradient(135deg, rgba(39, 118, 216, 0.03) 0%, rgba(108, 184, 209, 0.03) 100%) !important;
+  border-color: var(--color-primary, #2776d8) !important;
+  background: linear-gradient(
+    135deg,
+    rgba(39, 118, 216, 0.03) 0%,
+    rgba(108, 184, 209, 0.03) 100%
+  ) !important;
 }
 
 .theocology-latest-play {
   width: 52px !important;
   height: 52px !important;
   min-width: 52px !important;
-  background: linear-gradient(135deg, var(--color-primary, #2776D8) 0%, var(--color-secondary, #6CB8D1) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary, #2776d8) 0%,
+    var(--color-secondary, #6cb8d1) 100%
+  ) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
@@ -8990,7 +9147,8 @@ a:hover {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 4px 12px rgba(39, 118, 216, 0.3);
   }
   50% {
@@ -9011,7 +9169,7 @@ a:hover {
 }
 
 .theocology-latest-content:hover h3 {
-  color: var(--color-primary, #2776D8) !important;
+  color: var(--color-primary, #2776d8) !important;
 }
 
 .theocology-latest-content h3 {
@@ -9045,7 +9203,7 @@ a:hover {
 }
 
 .theocology-latest-meta svg {
-  color: var(--color-primary, #2776D8) !important;
+  color: var(--color-primary, #2776d8) !important;
   opacity: 0.8 !important;
 }
 
@@ -9196,7 +9354,7 @@ a:hover {
 .page-wrapper .episode-link-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(39, 118, 216, 0.15);
-  border-color: #2776D8;
+  border-color: #2776d8;
 }
 
 .page-wrapper .episode-link-card h3 {
@@ -9208,7 +9366,7 @@ a:hover {
 }
 
 .page-wrapper .episode-link-card:hover h3 {
-  color: #2776D8;
+  color: #2776d8;
 }
 
 .page-wrapper .episode-link-card p {
@@ -9940,13 +10098,23 @@ a:hover {
 }
 
 @keyframes livestream-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.85; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
 }
 
 @keyframes livestream-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 /* Video Container */
@@ -10124,9 +10292,15 @@ a:hover {
   opacity: 0;
 }
 
-.live-card:nth-child(1) { animation-delay: 100ms; }
-.live-card:nth-child(2) { animation-delay: 200ms; }
-.live-card:nth-child(3) { animation-delay: 300ms; }
+.live-card:nth-child(1) {
+  animation-delay: 100ms;
+}
+.live-card:nth-child(2) {
+  animation-delay: 200ms;
+}
+.live-card:nth-child(3) {
+  animation-delay: 300ms;
+}
 
 .live-card-icon {
   width: 60px;
@@ -10222,12 +10396,25 @@ a:hover {
 
 @media (max-width: 480px) {
   .livestream-offline-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: var(--spacing-3);
   }
 
-  .livestream-offline-cta {
-    padding: 10px 20px;
+  /* Let the offline card size to its content instead of squeezing
+     into the 16:9 video box (~200px tall on phones) */
+  .livestream-video-container-offline {
+    aspect-ratio: auto;
+  }
+
+  .livestream-video-container-offline .livestream-offline {
+    position: relative;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .livestream-offline .livestream-offline-cta {
+    padding: 12px 22px;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-3);
   }
 }
 
@@ -10286,7 +10473,9 @@ a:hover {
   border-radius: var(--radius-lg);
   text-decoration: none;
   font-weight: 600;
-  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+  transition:
+    transform var(--animation-duration-normal) ease,
+    box-shadow var(--animation-duration-normal) ease;
 }
 
 .app-store-btn:hover {
@@ -10340,7 +10529,9 @@ a:hover {
   border-radius: var(--radius-xl);
   padding: var(--spacing-xl);
   box-shadow: var(--shadow-md);
-  transition: transform var(--animation-duration-normal) ease, box-shadow var(--animation-duration-normal) ease;
+  transition:
+    transform var(--animation-duration-normal) ease,
+    box-shadow var(--animation-duration-normal) ease;
 }
 
 .app-feature-card:hover {
@@ -10653,7 +10844,7 @@ a:hover {
   height: 1rem;
   color: var(--color-primary-light);
   flex-shrink: 0;
-  margin-top: -.125rem;
+  margin-top: -0.125rem;
 }
 
 /* Download transcript button - below video */
@@ -10949,7 +11140,7 @@ a:hover {
 }
 
 .developers-cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -10988,13 +11179,6 @@ a:hover {
   line-height: var(--line-height-relaxed);
   max-width: 600px;
   margin: 0 auto var(--spacing-2xl);
-}
-
-.developers-cta-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .developers-cta-section .btn {
@@ -11061,16 +11245,30 @@ a:hover {
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .story-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
-.story-card__content { padding: 1.5rem; }
-.story-card__title { font-size: 1.25rem; margin: 0 0 0.25rem; }
-.story-card__name { font-size: 0.9rem; color: #666; margin: 0 0 0.75rem; }
-.story-card__summary { color: #444; margin: 0 0 1rem; }
+.story-card__content {
+  padding: 1.5rem;
+}
+.story-card__title {
+  font-size: 1.25rem;
+  margin: 0 0 0.25rem;
+}
+.story-card__name {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 0.75rem;
+}
+.story-card__summary {
+  color: #444;
+  margin: 0 0 1rem;
+}
 .story-card__action {
   display: inline-flex;
   align-items: center;
@@ -11093,7 +11291,9 @@ a:hover {
   margin-right: 0.4rem;
 }
 
-.story-media { margin: 1.5rem 0 2rem; }
+.story-media {
+  margin: 1.5rem 0 2rem;
+}
 .story-media--video {
   position: relative;
   margin-top: 0;
@@ -11109,5 +11309,6 @@ a:hover {
   height: 100%;
   border: 0;
 }
-.story-media--audio audio { width: 100%; }
-
+.story-media--audio audio {
+  width: 100%;
+}

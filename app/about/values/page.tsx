@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CTAButtons from "../../components/CTAButtons";
 import {
   faHeart,
   faPeopleGroup,
@@ -14,7 +16,8 @@ import {
 
 export const metadata: Metadata = {
   title: "Our Values | Thrive Community Church",
-  description: "Discover the six core values that shape everything we do at Thrive Community Church: compassion, relationships, community, growth, love for the lost, and global mission.",
+  description:
+    "Discover the six core values that shape everything we do at Thrive Community Church: compassion, relationships, community, growth, love for the lost, and global mission.",
   openGraph: {
     title: "Our Values | Thrive Community Church",
     description: "Six core values that shape everything we do at Thrive Community Church.",
@@ -61,13 +64,14 @@ export default function ValuesPage() {
               <span className="section-eyebrow">Our Foundation</span>
               <h2 className="section-title-left">Six Core Values</h2>
               <p className="values-intro-lead">
-                Values aren&apos;t just nice ideas—they&apos;re the <strong>compass that guides our decisions</strong>,
-                shapes our community, and keeps us moving in the right direction.
+                Values aren&apos;t just nice ideas—they&apos;re the{" "}
+                <strong>compass that guides our decisions</strong>, shapes our community, and keeps
+                us moving in the right direction.
               </p>
               <p>
-                Rooted in our Lutheran heritage—where grace is free, faith is a gift, and
-                every person matters to God—these six values define who we are and who
-                we&apos;re becoming. They&apos;re the heartbeat of Thrive Community Church.
+                Rooted in our Lutheran heritage—where grace is free, faith is a gift, and every
+                person matters to God—these six values define who we are and who we&apos;re
+                becoming. They&apos;re the heartbeat of Thrive Community Church.
               </p>
             </div>
             <div className="values-intro-image">
@@ -76,7 +80,7 @@ export default function ValuesPage() {
                 alt="Community gathering together"
                 width={800}
                 height={600}
-                style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
           </div>
@@ -93,8 +97,8 @@ export default function ValuesPage() {
               </div>
               <h3>Compassion for All People</h3>
               <p>
-                Everyone&apos;s broken. Everyone needs love. Just like Jesus had compassion
-                on the crowds, we want to meet people where they are—no judgment, no pretense.
+                Everyone&apos;s broken. Everyone needs love. Just like Jesus had compassion on the
+                crowds, we want to meet people where they are—no judgment, no pretense.
               </p>
               <span className="value-scripture">Mark 6:34 &bull; 2 Corinthians 1:3-7</span>
             </div>
@@ -105,8 +109,8 @@ export default function ValuesPage() {
               </div>
               <h3>Thriving Relationships</h3>
               <p>
-                Relationships are everything—with God and with each other. We&apos;re not just
-                about attendance; we&apos;re about real connection that actually matters.
+                Relationships are everything—with God and with each other. We&apos;re not just about
+                attendance; we&apos;re about real connection that actually matters.
               </p>
               <span className="value-scripture">Ephesians 4:1-16 &bull; Colossians 3:12-17</span>
             </div>
@@ -117,8 +121,8 @@ export default function ValuesPage() {
               </div>
               <h3>Thriving Community</h3>
               <p>
-                We want Estero, San Carlos, and FGCU to be better because we&apos;re here.
-                Our faith should make a tangible difference in our neighborhoods.
+                We want Estero, San Carlos, and FGCU to be better because we&apos;re here. Our faith
+                should make a tangible difference in our neighborhoods.
               </p>
               <span className="value-scripture">Jeremiah 29:7 &bull; 1 Timothy 2:1-3</span>
             </div>
@@ -135,11 +139,12 @@ export default function ValuesPage() {
             className="values-hero-image"
             width={1600}
             height={900}
-            style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+            style={{ objectFit: "cover", width: "100%", height: "auto" }}
           />
           <div className="values-image-overlay">
             <blockquote className="values-quote">
-              &ldquo;But seek first the kingdom of God and his righteousness, and all these things will be added to you.&rdquo;
+              &ldquo;But seek first the kingdom of God and his righteousness, and all these things
+              will be added to you.&rdquo;
               <cite>— Matthew 6:33</cite>
             </blockquote>
           </div>
@@ -156,9 +161,8 @@ export default function ValuesPage() {
               </div>
               <h3>Life-long Growth</h3>
               <p>
-                Following Jesus is a life-long journey. Thriving means continually
-                being formed to live more like Him—growing in character, knowledge,
-                and skills as we walk with Him.
+                Following Jesus is a life-long journey. Thriving means continually being formed to
+                live more like Him—growing in character, knowledge, and skills as we walk with Him.
               </p>
               <span className="value-scripture">Ephesians 4:1-16 &bull; Philippians 3:12-14</span>
             </div>
@@ -169,8 +173,8 @@ export default function ValuesPage() {
               </div>
               <h3>Love for Lost People</h3>
               <p>
-                We&apos;re biased toward people who aren&apos;t here yet. We want everyone
-                to know Jesus and experience what it means to live in authentic community.
+                We&apos;re biased toward people who aren&apos;t here yet. We want everyone to know
+                Jesus and experience what it means to live in authentic community.
               </p>
               <span className="value-scripture">Luke 15 &bull; Luke 5:27-31</span>
             </div>
@@ -195,17 +199,15 @@ export default function ValuesPage() {
         <div className="container container-narrow">
           <div className="cta-content">
             <h2>Ready to See These Values in Action?</h2>
-            <p>
-              Come see what we&apos;re all about. Sundays at 10.
-            </p>
-            <div className="cta-buttons">
-              <a href="/visit" className="btn btn-primary">
+            <p>Come see what we&apos;re all about. Sundays at 10.</p>
+            <CTAButtons>
+              <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faMapLocationDot} /> Join Us Sunday
-              </a>
-              <a href="/about/beliefs" className="btn btn-secondary">
+              </Link>
+              <Link href="/about/beliefs" className="btn btn-secondary">
                 <FontAwesomeIcon icon={faBookBible} /> Explore Our Beliefs
-              </a>
-            </div>
+              </Link>
+            </CTAButtons>
           </div>
         </div>
       </section>

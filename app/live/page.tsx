@@ -1,20 +1,19 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import {
-  faClock,
-  faLocationDot,
-  faArrowRight,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClock, faLocationDot, faArrowRight, faPlay } from "@fortawesome/free-solid-svg-icons";
 import LivestreamPlayer from "../components/live/LivestreamPlayer";
+import CTAButtons from "../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "Watch Live | Thrive Community Church",
-  description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from wherever you are.",
+  description:
+    "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from wherever you are.",
   openGraph: {
     title: "Watch Live | Thrive Community Church",
-    description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
+    description:
+      "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
     url: "https://thrive-fl.org/live",
     images: [
       {
@@ -28,7 +27,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Watch Live | Thrive Community Church",
-    description: "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
+    description:
+      "Watch our Sunday worship service live every week at 10:00 AM. Can't make it in person? Join us online from anywhere.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -44,9 +44,7 @@ export default function LivePage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Watch Live</h1>
-          <p className="page-hero-subtitle">
-            Join us for worship every Sunday at 10:00 AM
-          </p>
+          <p className="page-hero-subtitle">Join us for worship every Sunday at 10:00 AM</p>
         </div>
       </section>
 
@@ -67,7 +65,8 @@ export default function LivePage() {
               </div>
               <h3>Every Sunday</h3>
               <p className="live-card-detail">
-                Our stream goes live a few minutes before service starts. No account needed—just click play.
+                Our stream goes live a few minutes before service starts. No account needed—just
+                click play.
               </p>
             </div>
 
@@ -97,9 +96,9 @@ export default function LivePage() {
               <p className="live-card-detail">
                 We&apos;d love to meet you! Nothing beats worshiping together in person.
               </p>
-              <a href="/visit" className="live-card-link">
+              <Link href="/visit" className="live-card-link">
                 Plan Your Visit <FontAwesomeIcon icon={faArrowRight} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -110,15 +109,14 @@ export default function LivePage() {
         <div className="container container-narrow">
           <h2>Can&apos;t Make It Live?</h2>
           <p>Browse our full sermon library and watch anytime.</p>
-          <div className="cta-buttons">
-            <a href="/sermons" className="btn btn-primary">
+          <CTAButtons>
+            <Link href="/sermons" className="btn btn-primary">
               <FontAwesomeIcon icon={faPlay} />
               Browse Sermons
-            </a>
-          </div>
+            </Link>
+          </CTAButtons>
         </div>
       </section>
     </div>
   );
 }
-

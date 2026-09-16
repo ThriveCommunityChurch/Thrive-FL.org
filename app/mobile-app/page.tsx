@@ -13,14 +13,17 @@ import {
   faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import { faApple, faGooglePlay } from "@fortawesome/free-brands-svg-icons";
+import CTAButtons from "../components/CTAButtons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export const metadata: Metadata = {
   title: "Get the app | Thrive Community Church",
-  description: "Download the Thrive Church Official App for iOS and Android. Stream sermons, take notes, get AI-powered study guides, and stay connected with your church community.",
+  description:
+    "Download the Thrive Church Official App for iOS and Android. Stream sermons, take notes, get AI-powered study guides, and stay connected with your church community.",
   openGraph: {
     title: "Get the app | Thrive Community Church",
-    description: "Stream sermons, take notes, and stay connected. Download the Thrive Church Official App.",
+    description:
+      "Stream sermons, take notes, and stay connected. Download the Thrive Church Official App.",
     url: "https://thrive-fl.org/mobile-app",
     images: [
       {
@@ -34,7 +37,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Get the app | Thrive Community Church",
-    description: "Stream sermons, take notes, and stay connected. Download the Thrive Church Official App.",
+    description:
+      "Stream sermons, take notes, and stay connected. Download the Thrive Church Official App.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -54,37 +58,67 @@ const APP_FEATURES: AppFeature[] = [
     icon: faHeadphones,
     title: "Listen",
     description: "Catch up on sermons anytime, even when your screen is off.",
-    highlights: ["Download for offline listening", "Search by topic or series", "Adjust playback speed", "Pick up where you left off"],
+    highlights: [
+      "Download for offline listening",
+      "Search by topic or series",
+      "Adjust playback speed",
+      "Pick up where you left off",
+    ],
   },
   {
     icon: faNoteSticky,
     title: "Notes",
     description: "Jot down thoughts during the message and keep them all in one place.",
-    highlights: ["Notes linked to sermons", "Saves automatically", "Share with friends", "Easy formatting options"],
+    highlights: [
+      "Notes linked to sermons",
+      "Saves automatically",
+      "Share with friends",
+      "Easy formatting options",
+    ],
   },
   {
     icon: faRobot,
     title: "AI-Powered Content",
     description: "Get helpful AI-generated summaries and discussion questions for every sermon.",
-    highlights: ["Quick sermon recaps", "Great for small groups", "Key Scripture references", "Weekly challenges"],
+    highlights: [
+      "Quick sermon recaps",
+      "Great for small groups",
+      "Key Scripture references",
+      "Weekly challenges",
+    ],
   },
   {
     icon: faCalendarDays,
     title: "Events",
     description: "See what's happening and add events straight to your calendar.",
-    highlights: ["All the details you need", "One-tap calendar add", "Get directions", "Never miss a thing"],
+    highlights: [
+      "All the details you need",
+      "One-tap calendar add",
+      "Get directions",
+      "Never miss a thing",
+    ],
   },
   {
     icon: faUsers,
     title: "Connect",
     description: "Find ways to get involved and stay in the loop.",
-    highlights: ["Share prayer requests", "Join a small group", "Sign up to serve", "Stay up to date"],
+    highlights: [
+      "Share prayer requests",
+      "Join a small group",
+      "Sign up to serve",
+      "Stay up to date",
+    ],
   },
   {
     icon: faBookBible,
     title: "Bible",
     description: "Read and listen to Scripture right in the app.",
-    highlights: ["ESV Bible included", "Listen to passages", "Links to YouVersion", "Jump to any verse"],
+    highlights: [
+      "ESV Bible included",
+      "Listen to passages",
+      "Links to YouVersion",
+      "Jump to any verse",
+    ],
   },
 ];
 
@@ -93,36 +127,39 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "MobileApplication",
-      "name": "Thrive Church Official App",
-      "operatingSystem": "iOS",
-      "applicationCategory": "LifestyleApplication",
-      "description": "Stay connected with sermons, notes, events, and your church community—all in one place.",
-      "offers": {
+      name: "Thrive Church Official App",
+      operatingSystem: "iOS",
+      applicationCategory: "LifestyleApplication",
+      description:
+        "Stay connected with sermons, notes, events, and your church community—all in one place.",
+      offers: {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+        price: "0",
+        priceCurrency: "USD",
       },
-      "installUrl": "https://apps.apple.com/us/app/thrive-church-official-app/id1138008288",
-      "aggregateRating": {
+      installUrl: "https://apps.apple.com/us/app/thrive-church-official-app/id1138008288",
+      aggregateRating: {
         "@type": "AggregateRating",
-        "ratingValue": 5,
-        "ratingCount": 2
-      }
+        ratingValue: 5,
+        ratingCount: 2,
+      },
     },
     {
       "@type": "MobileApplication",
-      "name": "Thrive Church Official App",
-      "operatingSystem": "Android",
-      "applicationCategory": "LifestyleApplication",
-      "description": "Stay connected with sermons, notes, events, and your church community—all in one place.",
-      "offers": {
+      name: "Thrive Church Official App",
+      operatingSystem: "Android",
+      applicationCategory: "LifestyleApplication",
+      description:
+        "Stay connected with sermons, notes, events, and your church community—all in one place.",
+      offers: {
         "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
+        price: "0",
+        priceCurrency: "USD",
       },
-      "installUrl": "https://play.google.com/store/apps/details?id=com.thrivefl.ThriveCommunityChurch"
-    }
-  ]
+      installUrl:
+        "https://play.google.com/store/apps/details?id=com.thrivefl.ThriveCommunityChurch",
+    },
+  ],
 };
 
 export default function AppPage() {
@@ -151,9 +188,9 @@ export default function AppPage() {
               <span className="section-eyebrow">Download Now</span>
               <h2>Take us with you anywhere</h2>
               <p>
-                Whether you&apos;re catching up on a sermon during your commute, taking notes
-                during service, or checking upcoming events, the Thrive app keeps you
-                connected wherever you go.
+                Whether you&apos;re catching up on a sermon during your commute, taking notes during
+                service, or checking upcoming events, the Thrive app keeps you connected wherever
+                you go.
               </p>
               <div className="app-download-buttons">
                 <a
@@ -262,10 +299,10 @@ export default function AppPage() {
           <div className="cta-content">
             <h2>Ready to Get Started?</h2>
             <p>
-              Download the Thrive Church Official App today and take your faith journey
-              with you wherever you go.
+              Download the Thrive Church Official App today and take your faith journey with you
+              wherever you go.
             </p>
-            <div className="cta-buttons">
+            <CTAButtons>
               <a
                 href="https://apps.apple.com/us/app/thrive-church-official-app/id1138008288"
                 target="_blank"
@@ -282,7 +319,7 @@ export default function AppPage() {
               >
                 <FontAwesomeIcon icon={faGooglePlay} /> Google Play
               </a>
-            </div>
+            </CTAButtons>
           </div>
         </div>
       </section>

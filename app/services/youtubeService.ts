@@ -1,24 +1,24 @@
 // app/services/youtubeService.ts
 
-import { YouTubeSearchResponse, LivestreamStatus } from '../types/youtube';
+import { YouTubeSearchResponse, LivestreamStatus } from "../types/youtube";
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
 // Thrive Community Church YouTube Channel ID
-export const THRIVE_CHANNEL_ID = 'UC47Nme86YGrVy1lY15rF3ig';
+export const THRIVE_CHANNEL_ID = "UC47Nme86YGrVy1lY15rF3ig";
 
 // YouTube Data API v3 base URL
-const YOUTUBE_API_BASE_URL = 'https://www.googleapis.com/youtube/v3';
+const YOUTUBE_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
 
 // API Key from environment variable (public, domain-restricted)
-const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || '';
+const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || "";
 
 // Polling intervals (in milliseconds)
-const ACTIVE_POLL_INTERVAL = 5 * 60 * 1000;  // 5 minutes when near service time
+const ACTIVE_POLL_INTERVAL = 5 * 60 * 1000; // 5 minutes when near service time
 const NORMAL_POLL_INTERVAL = 60 * 60 * 1000; // 1 hour during potential service windows
-const COOLOFF_POLL_INTERVAL = null;          // null = don't poll at all
+const COOLOFF_POLL_INTERVAL = null; // null = don't poll at all
 
 // ============================================
 // SERVICE SCHEDULE CONFIGURATION
@@ -52,7 +52,7 @@ const SCHEDULE = {
  */
 function getEasternTime(): { dayOfWeek: number; hours: number } {
   const now = new Date();
-  const eastern = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+  const eastern = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
   return {
     dayOfWeek: eastern.getDay(),
     hours: eastern.getHours() + eastern.getMinutes() / 60,
@@ -119,17 +119,19 @@ export function getPollInterval(): number | null {
 
 /**
  * Check if a YouTube channel is currently live streaming
- * 
+ *
  * @param channelId - The YouTube channel ID to check
  * @returns LivestreamStatus object with current stream status
  */
-export async function checkLiveStatus(channelId: string = THRIVE_CHANNEL_ID): Promise<LivestreamStatus> {
+export async function checkLiveStatus(
+  channelId: string = THRIVE_CHANNEL_ID,
+): Promise<LivestreamStatus> {
   // Return error state if no API key is configured
   if (!YOUTUBE_API_KEY) {
     return {
       isLive: false,
       isLoading: false,
-      error: 'YouTube API key not configured',
+      error: "YouTube API key not configured",
       videoId: null,
       title: null,
       thumbnail: null,
@@ -138,17 +140,17 @@ export async function checkLiveStatus(channelId: string = THRIVE_CHANNEL_ID): Pr
 
   try {
     const url = new URL(`${YOUTUBE_API_BASE_URL}/search`);
-    url.searchParams.set('part', 'snippet');
-    url.searchParams.set('channelId', channelId);
-    url.searchParams.set('eventType', 'live');
-    url.searchParams.set('type', 'video');
-    url.searchParams.set('key', YOUTUBE_API_KEY);
+    url.searchParams.set("part", "snippet");
+    url.searchParams.set("channelId", channelId);
+    url.searchParams.set("eventType", "live");
+    url.searchParams.set("type", "video");
+    url.searchParams.set("key", YOUTUBE_API_KEY);
 
     const response = await fetch(url.toString());
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('YouTube API error:', response.status, errorText);
+      console.error("YouTube API error:", response.status, errorText);
       throw new Error(`YouTube API error: ${response.status}`);
     }
 
@@ -176,13 +178,12 @@ export async function checkLiveStatus(channelId: string = THRIVE_CHANNEL_ID): Pr
       title: null,
       thumbnail: null,
     };
-
   } catch (error) {
-    console.error('Error checking live status:', error);
+    console.error("Error checking live status:", error);
     return {
       isLive: false,
       isLoading: false,
-      error: error instanceof Error ? error.message : 'Unknown error occurred',
+      error: error instanceof Error ? error.message : "Unknown error occurred",
       videoId: null,
       title: null,
       thumbnail: null,
@@ -194,21 +195,20 @@ export async function checkLiveStatus(channelId: string = THRIVE_CHANNEL_ID): Pr
  * Get the YouTube channel URL for Thrive
  */
 export function getChannelUrl(): string {
-  return 'https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig/videos';
+  return "https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig/videos";
 }
 
 /**
  * Get the embed URL for a YouTube video
- * 
+ *
  * @param videoId - The YouTube video ID
  * @param autoplay - Whether to autoplay the video
  * @returns The embed URL string
  */
 export function getEmbedUrl(videoId: string, autoplay: boolean = true): string {
   const params = new URLSearchParams({
-    autoplay: autoplay ? '1' : '0',
-    rel: '0', // Don't show related videos from other channels
+    autoplay: autoplay ? "1" : "0",
+    rel: "0", // Don't show related videos from other channels
   });
   return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
 }
-

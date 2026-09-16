@@ -4,10 +4,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import MessageDetailClient from "./MessageDetailClient";
-import { getSeriesById, getMessageTranscript, formatSermonDate, formatDuration } from "../../../services/sermonService";
+import {
+  getSeriesById,
+  getMessageTranscript,
+  formatSermonDate,
+  formatDuration,
+} from "../../../services/sermonService";
 import { SermonMessageJsonLd } from "../../../components/JsonLd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faExclamationTriangle, faUser, faBook } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowLeft,
+  faExclamationTriangle,
+  faUser,
+  faBook,
+} from "@fortawesome/free-solid-svg-icons";
 import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons";
 
 interface PageProps {
@@ -22,7 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   try {
     const series = await getSeriesById(seriesId);
-    const message = series.Messages.find(m => m.MessageId === messageId);
+    const message = series.Messages.find((m) => m.MessageId === messageId);
 
     if (!message) {
       return {
@@ -42,14 +52,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${message.Title} | Thrive Community Church`,
         description,
         url: `https://thrive-fl.org/sermons/${seriesId}/${messageId}`,
-        images: series.ArtUrl ? [
-          {
-            url: series.ArtUrl,
-            width: 800,
-            height: 800,
-            alt: series.Name,
-          },
-        ] : undefined,
+        images: series.ArtUrl
+          ? [
+              {
+                url: series.ArtUrl,
+                width: 800,
+                height: 800,
+                alt: series.Name,
+              },
+            ]
+          : undefined,
+      },
+      alternates: {
+        canonical: `https://thrive-fl.org/sermons/${seriesId}/${messageId}`,
       },
     };
   } catch {
@@ -70,8 +85,8 @@ export default async function MessageDetailPage({ params }: PageProps) {
 
   try {
     series = await getSeriesById(seriesId);
-    message = series.Messages.find(m => m.MessageId === messageId);
-    
+    message = series.Messages.find((m) => m.MessageId === messageId);
+
     if (!message) {
       notFound();
     }
@@ -79,16 +94,16 @@ export default async function MessageDetailPage({ params }: PageProps) {
     // Fetch transcript (includes notes if available)
     transcript = await getMessageTranscript(messageId);
   } catch (err) {
-    console.error('Failed to load message:', err);
-    error = 'Failed to load message. Please try again later.';
+    console.error("Failed to load message:", err);
+    error = "Failed to load message. Please try again later.";
   }
 
   if (!series || !message) {
     if (!error) notFound();
   }
 
-  const formattedDate = message ? formatSermonDate(message.Date) : '';
-  const duration = message ? formatDuration(message.AudioDuration) : '';
+  const formattedDate = message ? formatSermonDate(message.Date) : "";
+  const duration = message ? formatDuration(message.AudioDuration) : "";
 
   // Generate Bible Gateway link for passage reference
   const getBibleGatewayUrl = (passage: string) => {
@@ -123,7 +138,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
           <div className="series-detail-breadcrumb">
             <Link href={`/sermons/${seriesId}`} className="series-detail-breadcrumb-link">
               <FontAwesomeIcon icon={faArrowLeft} />
-              Back to {series?.Name || 'Series'}
+              Back to {series?.Name || "Series"}
             </Link>
           </div>
           {error ? (
@@ -131,7 +146,9 @@ export default async function MessageDetailPage({ params }: PageProps) {
               <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Message</h3>
               <p>{error}</p>
-              <Link href="/sermons" className="btn btn-primary">Back to Sermons</Link>
+              <Link href="/sermons" className="btn btn-primary">
+                Back to Sermons
+              </Link>
             </div>
           ) : series && message ? (
             <>
@@ -143,7 +160,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
                     alt={series.Name}
                     width={400}
                     height={400}
-                    style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                    style={{ objectFit: "cover", width: "100%", height: "auto" }}
                     unoptimized
                   />
                 </div>
@@ -161,7 +178,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
                         {formattedDate}
                       </span>
                     )}
-                    {duration && duration !== '--:--' && (
+                    {duration && duration !== "--:--" && (
                       <span className="series-detail-count">
                         <FontAwesomeIcon icon={faClock} />
                         {duration}
@@ -179,9 +196,7 @@ export default async function MessageDetailPage({ params }: PageProps) {
                       {message.PassageRef}
                     </a>
                   )}
-                  {message.Summary && (
-                    <p className="series-detail-summary">{message.Summary}</p>
-                  )}
+                  {message.Summary && <p className="series-detail-summary">{message.Summary}</p>}
                 </div>
               </div>
 
@@ -199,4 +214,3 @@ export default async function MessageDetailPage({ params }: PageProps) {
     </div>
   );
 }
-

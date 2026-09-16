@@ -1,10 +1,10 @@
 // Singleton audio manager using Howler.js
 // Uses window global to truly persist across Next.js navigations
 
-import { Howl } from 'howler';
-import { SermonMessage } from '../types/sermons';
+import { Howl } from "howler";
+import { SermonMessage } from "../types/sermons";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.thrive-fl.org";
 
 async function markMessageAsPlayed(messageId: string): Promise<void> {
   try {
@@ -47,7 +47,7 @@ class AudioManager {
   };
 
   constructor() {
-    console.log('[AudioManager] Constructor called');
+    console.log("[AudioManager] Constructor called");
   }
 
   subscribe(listener: Listener): () => void {
@@ -58,7 +58,7 @@ class AudioManager {
   }
 
   private notify() {
-    this.listeners.forEach(listener => listener({ ...this.state }));
+    this.listeners.forEach((listener) => listener({ ...this.state }));
   }
 
   private startTimeUpdates() {
@@ -79,7 +79,7 @@ class AudioManager {
   }
 
   playMessage(message: SermonMessage, seriesTitle: string, seriesArtwork: string) {
-    console.log('[AudioManager] playMessage called', message.Title);
+    console.log("[AudioManager] playMessage called", message.Title);
     if (!message.AudioUrl) return;
 
     // If same message, toggle play/pause
@@ -98,27 +98,27 @@ class AudioManager {
       src: [message.AudioUrl],
       html5: true,
       onplay: () => {
-        console.log('[AudioManager] onplay');
+        console.log("[AudioManager] onplay");
         this.state.isPlaying = true;
         this.state.duration = this.howl?.duration() || 0;
         this.startTimeUpdates();
         this.notify();
       },
       onpause: () => {
-        console.log('[AudioManager] onpause');
+        console.log("[AudioManager] onpause");
         this.state.isPlaying = false;
         this.stopTimeUpdates();
         this.notify();
       },
       onend: () => {
-        console.log('[AudioManager] onend');
+        console.log("[AudioManager] onend");
         this.state.isPlaying = false;
         this.state.currentTime = 0;
         this.stopTimeUpdates();
         this.notify();
       },
       onload: () => {
-        console.log('[AudioManager] onload');
+        console.log("[AudioManager] onload");
         this.state.duration = this.howl?.duration() || 0;
         this.notify();
       },
@@ -157,7 +157,7 @@ class AudioManager {
   }
 
   close() {
-    console.log('[AudioManager] close');
+    console.log("[AudioManager] close");
     if (this.howl) {
       this.howl.unload();
       this.howl = null;
@@ -181,20 +181,19 @@ class AudioManager {
 
 // Get or create the singleton on the window object
 function getAudioManager(): AudioManager {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // Server-side: return a new instance (won't be used)
     return new AudioManager();
   }
 
   if (!window.__THRIVE_AUDIO_MANAGER__) {
-    console.log('[AudioManager] Creating new instance on window');
+    console.log("[AudioManager] Creating new instance on window");
     window.__THRIVE_AUDIO_MANAGER__ = new AudioManager();
   } else {
-    console.log('[AudioManager] Using existing instance from window');
+    console.log("[AudioManager] Using existing instance from window");
   }
 
   return window.__THRIVE_AUDIO_MANAGER__;
 }
 
 export const audioManager = getAudioManager();
-

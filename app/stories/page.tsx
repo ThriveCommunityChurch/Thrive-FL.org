@@ -7,11 +7,15 @@ import { getActiveStories } from "./content/stories";
 
 export const metadata: Metadata = {
   title: "Stories | Thrive Community Church",
-  description: "Why Thrive? Real stories from people who found family, faith, and belonging at Thrive Community Church in Estero, FL.",
+  description:
+    "Why Thrive? Real stories from people who found family, faith, and belonging at Thrive Community Church in Estero, FL.",
   openGraph: {
     title: "Stories | Thrive Community Church",
     description: "Why Thrive? Real stories of life change and belonging from our church family.",
     url: "https://thrive-fl.org/stories",
+  },
+  alternates: {
+    canonical: "https://thrive-fl.org/stories",
   },
 };
 

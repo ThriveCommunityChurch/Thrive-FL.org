@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v2
+        uses: dependabot/fetch-metadata@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           alert-lookup: true
@@ -110,7 +110,7 @@ jobs:
         if: steps.check-severity.outputs.is_security_update == 'true' && steps.check-severity.outputs.is_compatible == 'true'
         uses: fastify/github-action-merge-dependabot@v3
         with:
-          github-token: ${{ secrets.MYTOKEN }}  # classic PAT
-          target: minor                         # allow minor version security updates
-          approve-only: false                   # approve + merge
-          merge-method: squash                  # squash commits
+          github-token: ${{ secrets.MYTOKEN }} # classic PAT
+          target: minor # allow minor version security updates
+          approve-only: false # approve + merge
+          merge-method: squash # squash commits

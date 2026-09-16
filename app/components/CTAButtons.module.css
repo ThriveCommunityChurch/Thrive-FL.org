@@ -1,0 +1,22 @@
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+
+.large {
+  gap: var(--spacing-lg);
+}
+
+@media (max-width: 480px) {
+  .large {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .large :global(.btn) {
+    width: 100%;
+    max-width: 280px;
+  }
+}
