@@ -34,7 +34,7 @@ export interface YouTubeSearchItem {
       high: YouTubeThumbnail;
     };
     channelTitle: string;
-    liveBroadcastContent: 'live' | 'upcoming' | 'none';
+    liveBroadcastContent: "live" | "upcoming" | "none";
   };
 }
 
@@ -94,4 +94,3 @@ export interface LivestreamSkeletonProps {
   /** Whether to show the status info skeleton */
   showStatusInfo?: boolean;
 }
-

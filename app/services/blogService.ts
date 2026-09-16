@@ -1,13 +1,13 @@
 // app/services/blogService.ts
 
-import { BlogPost, BlogPostPagedResponse } from '../types/blog';
+import { BlogPost, BlogPostPagedResponse } from "../types/blog";
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
 // API Base URL - uses environment variable with fallback to production
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api2.thrive-fl.org';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api2.thrive-fl.org";
 
 // ============================================
 // ERROR HANDLING
@@ -17,20 +17,16 @@ export class BlogApiError extends Error {
   constructor(
     message: string,
     public statusCode: number,
-    public endpoint: string
+    public endpoint: string,
   ) {
     super(message);
-    this.name = 'BlogApiError';
+    this.name = "BlogApiError";
   }
 }
 
 async function handleResponse<T>(response: Response, endpoint: string): Promise<T> {
   if (!response.ok) {
-    throw new BlogApiError(
-      `API request failed: ${response.statusText}`,
-      response.status,
-      endpoint
-    );
+    throw new BlogApiError(`API request failed: ${response.statusText}`, response.status, endpoint);
   }
   return response.json();
 }
@@ -46,11 +42,11 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
  */
 export async function getPagedBlogPosts(
   pageNumber: number = 1,
-  pageSize: number = 10
+  pageSize: number = 10,
 ): Promise<BlogPostPagedResponse> {
   const endpoint = `/api/Blog?pageNumber=${pageNumber}&pageSize=${pageSize}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<BlogPostPagedResponse>(response, endpoint);
 }
@@ -61,9 +57,9 @@ export async function getPagedBlogPosts(
  * so we request a large page size and unwrap the Items array.
  */
 export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
-  const endpoint = '/api/Blog/published?pageNumber=1&pageSize=1000000';
+  const endpoint = "/api/Blog/published?pageNumber=1&pageSize=1000000";
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   const paged = await handleResponse<BlogPostPagedResponse>(response, endpoint);
   return paged.Items;
@@ -76,7 +72,7 @@ export async function getPublishedBlogPosts(): Promise<BlogPost[]> {
 export async function getBlogPostById(blogPostId: string): Promise<BlogPost> {
   const endpoint = `/api/Blog/${blogPostId}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<BlogPost>(response, endpoint);
 }
@@ -88,7 +84,7 @@ export async function getBlogPostById(blogPostId: string): Promise<BlogPost> {
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
   const endpoint = `/api/Blog/slug/${slug}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<BlogPost>(response, endpoint);
 }
@@ -100,7 +96,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost> {
 export async function searchBlogPosts(term: string): Promise<BlogPost[]> {
   const endpoint = `/api/Blog/search?term=${encodeURIComponent(term)}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<BlogPost[]>(response, endpoint);
 }
@@ -115,14 +111,14 @@ export async function searchBlogPosts(term: string): Promise<BlogPost[]> {
  * to prevent React hydration mismatches.
  */
 export function formatBlogDate(dateString: string | null): string {
-  if (!dateString) return '';
+  if (!dateString) return "";
 
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'America/New_York',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "America/New_York",
   });
 }
 
@@ -142,14 +138,13 @@ export function getReadingTime(content: string): number {
 export function getExcerpt(content: string, maxLength: number = 160): string {
   // Remove markdown headers, bold, italic, links
   const stripped = content
-    .replace(/#{1,6}\s+/g, '')       // Remove headers
-    .replace(/\*\*([^*]+)\*\*/g, '$1') // Remove bold
-    .replace(/\*([^*]+)\*/g, '$1')    // Remove italic
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Remove links
-    .replace(/\n+/g, ' ')             // Replace newlines with spaces
+    .replace(/#{1,6}\s+/g, "") // Remove headers
+    .replace(/\*\*([^*]+)\*\*/g, "$1") // Remove bold
+    .replace(/\*([^*]+)\*/g, "$1") // Remove italic
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // Remove links
+    .replace(/\n+/g, " ") // Replace newlines with spaces
     .trim();
 
   if (stripped.length <= maxLength) return stripped;
-  return stripped.slice(0, maxLength).trim() + '...';
+  return stripped.slice(0, maxLength).trim() + "...";
 }
-

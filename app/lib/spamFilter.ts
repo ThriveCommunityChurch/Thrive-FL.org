@@ -78,61 +78,71 @@ const CONTENT_RULES: ContentRule[] = [
   },
   {
     id: "rankings",
-    pattern: /\b(first page of google|page one of google|top (10|ten) (of |on )?google|google ranking|rank (higher|your (site|website))|search rankings?)\b/,
+    pattern:
+      /\b(first page of google|page one of google|top (10|ten) (of |on )?google|google ranking|rank (higher|your (site|website))|search rankings?)\b/,
     weight: 3,
     detail: "Search ranking promises",
   },
   {
     id: "dev-services",
-    pattern: /\b(web(site)? (design|development|redesign|revamp)|mobile app development|app development (company|services)|software development (company|services))\b/,
+    pattern:
+      /\b(web(site)? (design|development|redesign|revamp)|mobile app development|app development (company|services)|software development (company|services))\b/,
     weight: 2,
     detail: "Website / app development services",
   },
   {
     id: "marketing-services",
-    pattern: /\b(digital marketing|lead generation|social media marketing|email marketing (campaign|services)|ppc campaign|google ads management)\b/,
+    pattern:
+      /\b(digital marketing|lead generation|social media marketing|email marketing (campaign|services)|ppc campaign|google ads management)\b/,
     weight: 3,
     detail: "Marketing services pitch",
   },
   {
     id: "cold-open",
-    pattern: /\b(i (was |am )?(just )?(browsing|visit(ed|ing)|came across|stumbled (up)?on)|we (noticed|came across|found|reviewed) your (web ?site|site|page))\b/,
+    pattern:
+      /\b(i (was |am )?(just )?(browsing|visit(ed|ing)|came across|stumbled (up)?on)|we (noticed|came across|found|reviewed) your (web ?site|site|page))\b/,
     weight: 3,
     detail: "Classic cold-outreach opener",
   },
   {
     id: "growth-promise",
-    pattern: /\b(increase (your )?(traffic|sales|revenue|conversions|visibility)|drive more (traffic|leads|sales|customers)|grow your (business|audience|revenue))\b/,
+    pattern:
+      /\b(increase (your )?(traffic|sales|revenue|conversions|visibility)|drive more (traffic|leads|sales|customers)|grow your (business|audience|revenue))\b/,
     weight: 3,
     detail: "Traffic / revenue growth promises",
   },
   {
     id: "sales-offer",
-    pattern: /\b(free (quote|trial|consultation|audit|proposal|sample)|no obligation|special offer|limited time offer|money.back guarantee)\b/,
+    pattern:
+      /\b(free (quote|trial|consultation|audit|proposal|sample)|no obligation|special offer|limited time offer|money.back guarantee)\b/,
     weight: 2,
     detail: "Sales offer language",
   },
   {
     id: "outsourcing",
-    pattern: /\b(outsourc(e|ing)|offshore (team|development)|white.?label|dedicated (developers?|team|resources))\b/,
+    pattern:
+      /\b(outsourc(e|ing)|offshore (team|development)|white.?label|dedicated (developers?|team|resources))\b/,
     weight: 3,
     detail: "Outsourcing / staffing pitch",
   },
   {
     id: "form-letter",
-    pattern: /\b(dear (sir|madam|sir\/madam|owner)|to whom it may concern|dear (website )?(owner|admin|webmaster))\b/,
+    pattern:
+      /\b(dear (sir|madam|sir\/madam|owner)|to whom it may concern|dear (website )?(owner|admin|webmaster))\b/,
     weight: 2,
     detail: "Mass-mail salutation",
   },
   {
     id: "proposal",
-    pattern: /\b(business (proposal|opportunity)|investment opportunity|partnership proposal|collaboration opportunity)\b/,
+    pattern:
+      /\b(business (proposal|opportunity)|investment opportunity|partnership proposal|collaboration opportunity)\b/,
     weight: 3,
     detail: "Unsolicited business proposal",
   },
   {
     id: "crypto",
-    pattern: /\b(crypto(currency)?|bitcoin|forex|binary options|trading (bot|signals)|nft (drop|project))\b/,
+    pattern:
+      /\b(crypto(currency)?|bitcoin|forex|binary options|trading (bot|signals)|nft (drop|project))\b/,
     weight: 3,
     detail: "Crypto / trading pitch",
   },
@@ -152,19 +162,22 @@ const CONTENT_RULES: ContentRule[] = [
   },
   {
     id: "bulk-mail",
-    pattern: /\b(unsubscribe|opt.?out of (these|future) (emails|messages)|remove me from (your|this) (list|database)|if you (are )?not interested,? (just )?reply)\b/,
+    pattern:
+      /\b(unsubscribe|opt.?out of (these|future) (emails|messages)|remove me from (your|this) (list|database)|if you (are )?not interested,? (just )?reply)\b/,
     weight: 4,
     detail: "Bulk mailing boilerplate",
   },
   {
     id: "pricing",
-    pattern: /\b(price list|our (rates|packages|pricing)|hourly rate|send you (a |our )?(quotation|quote|portfolio|samples))\b/,
+    pattern:
+      /\b(price list|our (rates|packages|pricing)|hourly rate|send you (a |our )?(quotation|quote|portfolio|samples))\b/,
     weight: 2,
     detail: "Vendor pricing language",
   },
   {
     id: "meeting-push",
-    pattern: /\b(schedule a (call|demo|meeting)|book a (call|demo)|\d{2}.minute call|hop on a (quick )?call)\b/,
+    pattern:
+      /\b(schedule a (call|demo|meeting)|book a (call|demo)|\d{2}.minute call|hop on a (quick )?call)\b/,
     weight: 2,
     detail: "Sales meeting request",
   },
@@ -208,9 +221,7 @@ function asString(value: unknown): string {
  * separated by a space, dot, dash, or underscore.
  */
 function deobfuscate(text: string): string {
-  return text.replace(/\b(\w)(?:[\s._-]+(\w)\b)+/g, (match) =>
-    match.replace(/[\s._-]+/g, "")
-  );
+  return text.replace(/\b(\w)(?:[\s._-]+(\w)\b)+/g, (match) => match.replace(/[\s._-]+/g, ""));
 }
 
 function countMatches(text: string, pattern: RegExp): number {
@@ -254,11 +265,7 @@ export function evaluateSubmission(input: SpamCheckInput): SpamAssessment {
 
   if (typeof input.elapsedMs === "number" && Number.isFinite(input.elapsedMs)) {
     if (input.elapsedMs >= 0 && input.elapsedMs < MIN_FILL_TIME_MS) {
-      addSignal(
-        "too-fast",
-        5,
-        `Form submitted ${input.elapsedMs}ms after loading`
-      );
+      addSignal("too-fast", 5, `Form submitted ${input.elapsedMs}ms after loading`);
     }
   }
 
@@ -279,7 +286,7 @@ export function evaluateSubmission(input: SpamCheckInput): SpamAssessment {
     addSignal(
       "links",
       Math.min(linkCount * 2, 6),
-      `${linkCount} link${linkCount === 1 ? "" : "s"} in the message`
+      `${linkCount} link${linkCount === 1 ? "" : "s"} in the message`,
     );
   }
 

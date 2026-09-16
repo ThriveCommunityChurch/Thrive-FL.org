@@ -21,9 +21,7 @@ export default function NotFound() {
       <div className="not-found-content">
         <h1 className="not-found-title">He Is Not Here</h1>
         <p className="not-found-code">404</p>
-        <p className="not-found-subtitle">
-          The page you&apos;re looking for has moved on.
-        </p>
+        <p className="not-found-subtitle">The page you&apos;re looking for has moved on.</p>
         <p className="not-found-verse">
           &ldquo;He is not here; he has risen!&rdquo;
           <span className="verse-ref">— Luke 24:6</span>

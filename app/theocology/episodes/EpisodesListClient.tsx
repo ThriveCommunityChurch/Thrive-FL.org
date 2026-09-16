@@ -20,9 +20,7 @@ export default function EpisodesListClient({ episodes }: EpisodesListClientProps
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Theocology Episodes</h1>
-          <p className="page-hero-subtitle">
-            All episodes from the ThriveFGCU podcast
-          </p>
+          <p className="page-hero-subtitle">All episodes from the ThriveFGCU podcast</p>
         </div>
       </section>
 
@@ -102,9 +100,7 @@ export default function EpisodesListClient({ episodes }: EpisodesListClientProps
         <div className="container container-narrow">
           <div className="cta-content">
             <h2>Subscribe to Theocology</h2>
-            <p>
-              Never miss an episode. Subscribe on your favorite podcast platform.
-            </p>
+            <p>Never miss an episode. Subscribe on your favorite podcast platform.</p>
             <Link href="/ministries/college/podcast" className="btn btn-primary">
               Subscribe Now
             </Link>

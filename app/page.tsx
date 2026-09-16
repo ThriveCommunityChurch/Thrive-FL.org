@@ -29,13 +29,15 @@ import {
 
 export const metadata: Metadata = {
   title: "Thrive Community Church | Estero, FL - You Belong",
-  description: "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
+  description:
+    "Join us at Thrive Community Church in Estero, FL. Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM. Serving Southwest Florida including Fort Myers, Bonita Springs, and Estero. A Lutheran Church—Missouri Synod congregation.",
   alternates: {
     canonical: "https://thrive-fl.org",
   },
   openGraph: {
     title: "Thrive Community Church | Estero, FL",
-    description: "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
+    description:
+      "Contemporary worship, biblical teaching, and genuine community. Sundays at 10 AM in Estero, FL. Serving Southwest Florida.",
     url: "https://thrive-fl.org",
     images: [
       {
@@ -136,9 +138,7 @@ export default function HomePage() {
       {/* Service Times Section */}
       <section className="section service-times-section">
         <div className="container">
-          <h2 className="section-title">
-            Service Times
-          </h2>
+          <h2 className="section-title">Service Times</h2>
           <div className="service-times-grid">
             <div className="service-card">
               <div className="service-icon">
@@ -166,9 +166,7 @@ export default function HomePage() {
               </div>
               <h3>ThriveFGCU</h3>
               <p className="service-time">Wednesdays at 5:30 PM</p>
-              <p className="service-description">
-                Faith, friends, and fun for FGCU students
-              </p>
+              <p className="service-description">Faith, friends, and fun for FGCU students</p>
             </Link>
           </div>
         </div>
@@ -181,15 +179,14 @@ export default function HomePage() {
             <div className="welcome-text">
               <h2 className="section-title">A Church For Southwest Florida</h2>
               <p className="welcome-lead">
-                Thrive is more than just a meeting to attend. It&apos;s a diverse,
-                spiritually growing family to be a part of, centered on the person
-                and mission of Jesus Christ.
+                Thrive is more than just a meeting to attend. It&apos;s a diverse, spiritually
+                growing family to be a part of, centered on the person and mission of Jesus Christ.
               </p>
               <p>
-                Located in Estero, we&apos;re actively working to build a great community
-                across Southwest Florida—renewed by the truth, grace, and changing power
-                of the gospel. Whether you&apos;re exploring faith for the first time or
-                looking for a church home, you&apos;ll find a warm welcome here.
+                Located in Estero, we&apos;re actively working to build a great community across
+                Southwest Florida—renewed by the truth, grace, and changing power of the gospel.
+                Whether you&apos;re exploring faith for the first time or looking for a church home,
+                you&apos;ll find a warm welcome here.
               </p>
               <Link href="/im-new" className="btn btn-outline">
                 Learn More About Us
@@ -206,7 +203,7 @@ export default function HomePage() {
                   sizes="(max-width: 768px) 100vw, 600px"
                   quality={75}
                   priority
-                  style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
                 />
               </div>
             </div>
@@ -351,5 +348,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-

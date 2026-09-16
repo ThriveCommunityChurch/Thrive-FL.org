@@ -13,30 +13,35 @@ const nextConfig = {
   experimental: {
     cssChunking: true,
     optimizeCss: true,
-    optimizePackageImports: ['@fortawesome/react-fontawesome', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons', '@fortawesome/free-regular-svg-icons'],
+    optimizePackageImports: [
+      "@fortawesome/react-fontawesome",
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/free-brands-svg-icons",
+      "@fortawesome/free-regular-svg-icons",
+    ],
   },
   images: {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'static.thrive-fl.org',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "static.thrive-fl.org",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'storage.buzzsprout.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "storage.buzzsprout.com",
+        pathname: "/**",
       },
     ],
     // Enable modern image formats for better compression
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     // Cache optimized images for 1 year (31536000 seconds)
     minimumCacheTTL: 31536000,
     // Device sizes for responsive images
@@ -50,61 +55,61 @@ const nextConfig = {
     return [
       {
         // Cache JPG images
-        source: '/:path*.jpg',
+        source: "/:path*.jpg",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache JPEG images
-        source: '/:path*.jpeg',
+        source: "/:path*.jpeg",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache PNG images
-        source: '/:path*.png',
+        source: "/:path*.png",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache WebP images
-        source: '/:path*.webp',
+        source: "/:path*.webp",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache Next.js static assets
-        source: '/_next/static/:path*',
+        source: "/_next/static/:path*",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
       {
         // Cache optimized images from Next.js Image component
-        source: '/_next/image/:path*',
+        source: "/_next/image/:path*",
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
@@ -115,10 +120,7 @@ const nextConfig = {
   compiler: {
     // Remove console logs in production, but keep errors and warnings so
     // server-side diagnostics (failed sends, blocked spam) stay visible
-    removeConsole:
-      process.env.NODE_ENV === 'production'
-        ? { exclude: ['error', 'warn'] }
-        : false,
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
 };
 

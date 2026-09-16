@@ -19,8 +19,8 @@ export default async function SermonsPage() {
     const response = await getAllSermons();
     series = response.Summaries;
   } catch (err) {
-    console.error('Failed to load sermons:', err);
-    error = 'Failed to load sermons. Please try again later.';
+    console.error("Failed to load sermons:", err);
+    error = "Failed to load sermons. Please try again later.";
   }
 
   return (
@@ -30,9 +30,7 @@ export default async function SermonsPage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Sermon Series</h1>
-          <p className="page-hero-subtitle">
-            Explore our teaching series and grow in your faith
-          </p>
+          <p className="page-hero-subtitle">Explore our teaching series and grow in your faith</p>
         </div>
       </section>
 
@@ -76,12 +74,18 @@ export default async function SermonsPage() {
       </section>
 
       {/* Podcast CTA */}
-      <section className="section sermons-cta-section" style={{ background: 'var(--color-gray-50)' }}>
+      <section
+        className="section sermons-cta-section"
+        style={{ background: "var(--color-gray-50)" }}
+      >
         <div className="container">
           <div className="sermons-cta-content">
             <div className="sermons-cta-text">
               <h3>Listen On The Go</h3>
-              <p>Subscribe to our podcast and never miss a message. Available on Apple Podcasts, Spotify, and more.</p>
+              <p>
+                Subscribe to our podcast and never miss a message. Available on Apple Podcasts,
+                Spotify, and more.
+              </p>
             </div>
             <Link href="/podcast" className="btn btn-primary">
               <FontAwesomeIcon icon={faPodcast} />
@@ -93,4 +97,3 @@ export default async function SermonsPage() {
     </div>
   );
 }
-

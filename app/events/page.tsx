@@ -1,10 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleQuestion,
-  faMapLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleQuestion, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
 import CTAButtons from "../components/CTAButtons";
 import { getAllEvents } from "../services/eventService";
 import { EventSummary } from "../types/events";
@@ -16,7 +13,8 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Events & Gatherings | Thrive Community Church",
-  description: "Find upcoming events and gatherings at Thrive Community Church in Estero, FL. Join us for worship, community events, and special gatherings.",
+  description:
+    "Find upcoming events and gatherings at Thrive Community Church in Estero, FL. Join us for worship, community events, and special gatherings.",
   openGraph: {
     title: "Events & Gatherings | Thrive Community Church",
     description: "Find upcoming events and gatherings at Thrive Community Church.",
@@ -48,7 +46,7 @@ export default async function EventsPage() {
     const response = await getAllEvents(false);
     initialEvents = response.Events || [];
   } catch (error) {
-    console.error('Failed to fetch events on server:', error);
+    console.error("Failed to fetch events on server:", error);
   }
 
   return (
@@ -76,11 +74,12 @@ export default async function EventsPage() {
         <div className="container container-narrow">
           <div className="cta-content">
             <h2>Join Us This Sunday</h2>
-            <p>
-              We&apos;d love to see you. Sundays at 10 AM.
-            </p>
+            <p>We&apos;d love to see you. Sundays at 10 AM.</p>
             <CTAButtons>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928" className="btn btn-primary">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
+                className="btn btn-primary"
+              >
                 <FontAwesomeIcon icon={faMapLocationDot} /> Get Directions
               </a>
               <Link href="/im-new" className="btn btn-outline-white">
@@ -93,4 +92,3 @@ export default async function EventsPage() {
     </div>
   );
 }
-

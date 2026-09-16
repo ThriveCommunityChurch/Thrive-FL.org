@@ -1,10 +1,5 @@
 // Dynamic metadata is generated in page.tsx via generateMetadata
 
-export default function EventDetailLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function EventDetailLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
-

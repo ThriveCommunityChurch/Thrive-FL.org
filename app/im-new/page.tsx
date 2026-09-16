@@ -15,10 +15,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Plan Your Visit | Thrive Community Church in Estero, FL",
-  description: "New to Thrive Community Church in Estero, FL? Here's what to expect on a Sunday morning. Relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
+  description:
+    "New to Thrive Community Church in Estero, FL? Here's what to expect on a Sunday morning. Relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
   openGraph: {
     title: "Plan Your Visit | Thrive Community Church in Estero, FL",
-    description: "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
+    description:
+      "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
     url: "https://thrive-fl.org/im-new",
     images: [
       {
@@ -32,7 +34,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Plan Your Visit | Thrive Community Church in Estero, FL",
-    description: "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
+    description:
+      "New to Thrive? Here's what to expect—relaxed atmosphere, great coffee, practical teaching, and Thrive Kids for your little ones.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -60,14 +63,13 @@ export default function ImNewPage() {
           <div className="intro-content">
             <h2 className="section-title">You&apos;re Welcome Here</h2>
             <p className="intro-lead">
-              We believe church should be a place where you can be yourself.
-              At Thrive, you&apos;ll find people walking through real life together—growing in
-              faith, side by side.
+              We believe church should be a place where you can be yourself. At Thrive, you&apos;ll
+              find people walking through real life together—growing in faith, side by side.
             </p>
             <p>
-              Whether you&apos;re exploring faith for the first time, returning after
-              time away, or simply looking for a community where you truly belong—we&apos;d
-              be honored to have you join us.
+              Whether you&apos;re exploring faith for the first time, returning after time away, or
+              simply looking for a community where you truly belong—we&apos;d be honored to have you
+              join us.
             </p>
             <CTAButtons size="large">
               <Link href="/visit" className="btn btn-primary">
@@ -105,10 +107,10 @@ export default function ImNewPage() {
               </div>
               <h3>Contemporary Worship</h3>
               <p>
-                Our worship is contemporary and modern, featuring a full band with
-                current worship songs. While we may not offer a traditional Lutheran
-                worship service, our focus is on creating an authentic, engaging
-                worship experience that helps you connect with God.
+                Our worship is contemporary and modern, featuring a full band with current worship
+                songs. While we may not offer a traditional Lutheran worship service, our focus is
+                on creating an authentic, engaging worship experience that helps you connect with
+                God.
               </p>
             </div>
 
@@ -118,9 +120,9 @@ export default function ImNewPage() {
               </div>
               <h3>Thoughtful Sermons</h3>
               <p>
-                Our messages are contemplative and grounded in Scripture. Pastor John
-                offers teaching that speaks to everyday life—something to carry with
-                you throughout the week.
+                Our messages are contemplative and grounded in Scripture. Pastor John offers
+                teaching that speaks to everyday life—something to carry with you throughout the
+                week.
               </p>
             </div>
 
@@ -130,9 +132,9 @@ export default function ImNewPage() {
               </div>
               <h3>A Welcoming Community</h3>
               <p>
-                You&apos;ll be greeted warmly by people who are genuinely glad you&apos;re
-                here. Please stay after the service for coffee and conversation—we&apos;d
-                love to get to know you.
+                You&apos;ll be greeted warmly by people who are genuinely glad you&apos;re here.
+                Please stay after the service for coffee and conversation—we&apos;d love to get to
+                know you.
               </p>
             </div>
           </div>
@@ -149,7 +151,9 @@ export default function ImNewPage() {
               </div>
               <div className="im-new-link-content">
                 <h3>Have Questions?</h3>
-                <p>Check out our FAQ for answers to common questions about visiting, kids, and more.</p>
+                <p>
+                  Check out our FAQ for answers to common questions about visiting, kids, and more.
+                </p>
               </div>
               <span className="im-new-link-arrow">&rarr;</span>
             </Link>
@@ -185,9 +189,7 @@ export default function ImNewPage() {
           <div className="location-cta-content">
             <div className="location-cta-info">
               <h2>We&apos;d Love to See You</h2>
-              <p className="location-cta-lead">
-                Join us Sunday at 10 AM. Coffee is always ready.
-              </p>
+              <p className="location-cta-lead">Join us Sunday at 10 AM. Coffee is always ready.</p>
               <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faLocationDot} />
                 Get Directions &amp; Details
@@ -199,4 +201,3 @@ export default function ImNewPage() {
     </div>
   );
 }
-

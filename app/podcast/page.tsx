@@ -91,9 +91,7 @@ export default function PodcastPage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Thrive Podcast</h1>
-          <p className="page-hero-subtitle">
-            Listen to our weekly messages wherever you are
-          </p>
+          <p className="page-hero-subtitle">Listen to our weekly messages wherever you are</p>
         </div>
       </section>
 
@@ -102,7 +100,8 @@ export default function PodcastPage() {
           <div className="podcast-subscribe-intro">
             <h2 className="section-title">Listen On The Go</h2>
             <p className="section-subtitle">
-              Take our messages with you wherever you go. Listen via our mobile app or subscribe on any of these popular podcast platforms:
+              Take our messages with you wherever you go. Listen via our mobile app or subscribe on
+              any of these popular podcast platforms:
             </p>
           </div>
 
@@ -123,7 +122,11 @@ export default function PodcastPage() {
                     <FontAwesomeIcon icon={faDeezer} />
                   ) : platform.type === "image" && platform.imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={platform.imageUrl} alt={platform.name} className="podcast-platform-img" />
+                    <img
+                      src={platform.imageUrl}
+                      alt={platform.name}
+                      className="podcast-platform-img"
+                    />
                   ) : null}
                 </div>
                 <span className="podcast-platform-name">{platform.name}</span>

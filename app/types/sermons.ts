@@ -9,10 +9,10 @@
 export interface SermonSeriesSummary {
   Id: string;
   Title: string;
-  StartDate: string;           // ISO date string
-  LastUpdated: string;         // ISO date string
-  ArtUrl: string;              // Series artwork image URL
-  EndDate: string | null;      // null if series is ongoing
+  StartDate: string; // ISO date string
+  LastUpdated: string; // ISO date string
+  ArtUrl: string; // Series artwork image URL
+  EndDate: string | null; // null if series is ongoing
   MessageCount: number | null; // Number of messages in series
 }
 
@@ -24,15 +24,15 @@ export interface SermonMessage {
   SeriesId: string;
   Title: string;
   Speaker: string;
-  Date: string | null;         // ISO date string
-  PassageRef: string | null;   // Scripture reference (e.g., "Genesis 3: 1 - 15")
-  AudioUrl: string | null;     // MP3 URL (S3 hosted)
+  Date: string | null; // ISO date string
+  PassageRef: string | null; // Scripture reference (e.g., "Genesis 3: 1 - 15")
+  AudioUrl: string | null; // MP3 URL (S3 hosted)
   AudioDuration: number | null; // Duration in seconds
   AudioFileSize: number | null; // File size in MB
-  VideoUrl: string | null;     // YouTube or video URL
+  VideoUrl: string | null; // YouTube or video URL
   Summary: string | null;
   PlayCount: number;
-  Tags: string[];              // Topic tags
+  Tags: string[]; // Topic tags
   WaveformData: number[] | null; // Audio waveform (for visualizations)
 }
 
@@ -51,7 +51,7 @@ export interface SermonSeries {
   ArtUrl: string | undefined;
   LastUpdated: string;
   Messages: SermonMessage[];
-  Tags: string[];              // Topic tags
+  Tags: string[]; // Topic tags
   Summary: string | null;
 }
 
@@ -72,7 +72,7 @@ export interface AllSermonsSummaryResponse {
 
 export interface SermonSeriesCardProps {
   series: SermonSeriesSummary;
-  index?: number;              // For staggered animations
+  index?: number; // For staggered animations
 }
 
 export interface SermonSeriesGridProps {
@@ -82,8 +82,8 @@ export interface SermonSeriesGridProps {
 
 export interface SermonMessageCardProps {
   message: SermonMessage;
-  seriesId: string;            // Series ID for linking to message detail page
-  seriesArtUrl?: string;       // Fallback image
+  seriesId: string; // Series ID for linking to message detail page
+  seriesArtUrl?: string; // Fallback image
   onPlay?: (message: SermonMessage) => void;
   isPlaying?: boolean;
   index?: number;
@@ -92,7 +92,7 @@ export interface SermonMessageCardProps {
 export interface SermonMessageListProps {
   messages: SermonMessage[];
   seriesArtUrl?: string;
-  currentlyPlaying?: string;   // MessageId of currently playing
+  currentlyPlaying?: string; // MessageId of currently playing
   onPlayMessage?: (message: SermonMessage) => void;
 }
 
@@ -104,8 +104,8 @@ export interface SermonPlayerProps {
 }
 
 export interface SermonSkeletonProps {
-  variant: 'series-card' | 'series-grid' | 'message-card' | 'message-list';
-  count?: number;              // For grid/list variants
+  variant: "series-card" | "series-grid" | "message-card" | "message-list";
+  count?: number; // For grid/list variants
 }
 
 // ============================================

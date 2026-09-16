@@ -5,7 +5,8 @@
 export const churchData = {
   name: "Thrive Community Church",
   alternateName: ["Thrive Church Estero", "Thrive Estero", "Thrive Community Church Estero"],
-  description: "A Lutheran Church—Missouri Synod congregation in Estero, FL offering contemporary worship, biblical teaching, and genuine community.",
+  description:
+    "A Lutheran Church—Missouri Synod congregation in Estero, FL offering contemporary worship, biblical teaching, and genuine community.",
   url: "https://thrive-fl.org",
   logo: "https://static.thrive-fl.org/thrive-logo.png",
   image: "https://static.thrive-fl.org/og-image.jpg",
@@ -61,7 +62,7 @@ export function OrganizationJsonLd() {
       latitude: churchData.geo.latitude,
       longitude: churchData.geo.longitude,
     },
-    areaServed: churchData.areaServed.map(area => ({
+    areaServed: churchData.areaServed.map((area) => ({
       "@type": "City",
       name: area,
     })),
@@ -235,7 +236,7 @@ export function SermonSeriesJsonLd({
 
   // Create episode list from messages
   const episodes = messages
-    .filter(msg => msg.AudioUrl) // Only include messages with audio
+    .filter((msg) => msg.AudioUrl) // Only include messages with audio
     .map((msg, index) => ({
       "@type": "PodcastEpisode",
       name: msg.Title,
@@ -353,7 +354,8 @@ export function SermonMessageJsonLd({
   const pageUrl = `https://thrive-fl.org/sermons/${seriesId}/${messageId}`;
   const seriesUrl = `https://thrive-fl.org/sermons/${seriesId}`;
   const imageUrl = image || churchData.image;
-  const description = summary || `${title} - A sermon from the "${seriesName}" series at ${churchData.name}`;
+  const description =
+    summary || `${title} - A sermon from the "${seriesName}" series at ${churchData.name}`;
 
   // BreadcrumbList for navigation in search results
   const breadcrumbList = {
@@ -426,52 +428,46 @@ export function SermonMessageJsonLd({
       },
     }),
     ...(transcript && {
-      text: transcript.length > 1000
-        ? transcript.substring(0, 1000) + "..."
-        : transcript,
+      text: transcript.length > 1000 ? transcript.substring(0, 1000) + "..." : transcript,
     }),
     inLanguage: "en-US",
   };
 
   // Article for article rich results (headline, image, date in search)
   // Only included if transcript is present
-  const article = transcript ? {
-    "@type": "Article",
-    headline: title,
-    description,
-    image: imageUrl,
-    datePublished: date || undefined,
-    dateModified: date || undefined,
-    author: {
-      "@type": "Person",
-      name: speaker,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: churchData.name,
-      logo: {
-        "@type": "ImageObject",
-        url: churchData.logo,
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl,
-    },
-    articleBody: transcript.length > 5000
-      ? transcript.substring(0, 5000) + "..."
-      : transcript,
-  } : null;
+  const article = transcript
+    ? {
+        "@type": "Article",
+        headline: title,
+        description,
+        image: imageUrl,
+        datePublished: date || undefined,
+        dateModified: date || undefined,
+        author: {
+          "@type": "Person",
+          name: speaker,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: churchData.name,
+          logo: {
+            "@type": "ImageObject",
+            url: churchData.logo,
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": pageUrl,
+        },
+        articleBody: transcript.length > 5000 ? transcript.substring(0, 5000) + "..." : transcript,
+      }
+    : null;
 
   // Combine all schemas using @graph
   // Note: VideoObject is on the dedicated video watch page, not here
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      breadcrumbList,
-      podcastEpisode,
-      ...(article ? [article] : []),
-    ],
+    "@graph": [breadcrumbList, podcastEpisode, ...(article ? [article] : [])],
   };
 
   return (
@@ -609,10 +605,7 @@ export function TheocologyEpisodeJsonLd({
   // Combine all schemas using @graph
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      breadcrumbList,
-      podcastEpisode,
-    ],
+    "@graph": [breadcrumbList, podcastEpisode],
   };
 
   return (
@@ -671,7 +664,9 @@ export function VideoWatchPageJsonLd({
   const messagePageUrl = `https://thrive-fl.org/sermons/${seriesId}/${messageId}`;
   const seriesUrl = `https://thrive-fl.org/sermons/${seriesId}`;
   const imageUrl = image || churchData.image;
-  const description = summary || `Watch "${title}" - A sermon from the "${seriesName}" series by ${speaker} at ${churchData.name}`;
+  const description =
+    summary ||
+    `Watch "${title}" - A sermon from the "${seriesName}" series by ${speaker} at ${churchData.name}`;
 
   // Convert YouTube URL to embed format
   const getEmbedUrl = (url: string): string => {
@@ -772,11 +767,7 @@ export function VideoWatchPageJsonLd({
   // Combine schemas with VideoObject as main entity
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      breadcrumbList,
-      videoObject,
-      webPage,
-    ],
+    "@graph": [breadcrumbList, videoObject, webPage],
   };
 
   return (
@@ -797,7 +788,8 @@ export function MobileAppJsonLd() {
         name: "Thrive Church Official App",
         operatingSystem: "iOS",
         applicationCategory: "LifestyleApplication",
-        description: "Stay connected with sermons, notes, events, and your church community—all in one place.",
+        description:
+          "Stay connected with sermons, notes, events, and your church community—all in one place.",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -815,13 +807,15 @@ export function MobileAppJsonLd() {
         name: "Thrive Church Official App",
         operatingSystem: "Android",
         applicationCategory: "LifestyleApplication",
-        description: "Stay connected with sermons, notes, events, and your church community—all in one place.",
+        description:
+          "Stay connected with sermons, notes, events, and your church community—all in one place.",
         offers: {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
         },
-        installUrl: "https://play.google.com/store/apps/details?id=com.thrivefl.ThriveCommunityChurch",
+        installUrl:
+          "https://play.google.com/store/apps/details?id=com.thrivefl.ThriveCommunityChurch",
       },
     ],
   };

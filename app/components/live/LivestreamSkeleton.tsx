@@ -1,6 +1,6 @@
 "use client";
 
-import { LivestreamSkeletonProps } from '../../types/youtube';
+import { LivestreamSkeletonProps } from "../../types/youtube";
 
 /**
  * Skeleton loading component for the livestream player
@@ -31,4 +31,3 @@ export default function LivestreamSkeleton({ showStatusInfo = false }: Livestrea
     </div>
   );
 }
-

@@ -16,10 +16,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Small Groups | Thrive Community Church",
-  description: "Join a Home Huddle at Thrive Community Church. Small groups where real community happens—share life, grow in faith, and build lasting friendships.",
+  description:
+    "Join a Home Huddle at Thrive Community Church. Small groups where real community happens—share life, grow in faith, and build lasting friendships.",
   openGraph: {
     title: "Small Groups | Thrive Community Church",
-    description: "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
+    description:
+      "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
     url: "https://thrive-fl.org/small-groups",
     images: [
       {
@@ -33,7 +35,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Small Groups | Thrive Community Church",
-    description: "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
+    description:
+      "Find your people. Join a Home Huddle where real community happens—share life, grow in faith, and build lasting friendships.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -42,16 +45,14 @@ export const metadata: Metadata = {
 };
 
 export default function SmallGroupsPage() {
-	  return (
+  return (
     <div className="page-wrapper">
       {/* Page Hero Section */}
       <section className="page-hero page-hero-groups">
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Small Groups</h1>
-          <p className="page-hero-subtitle">
-            Where acquaintances become family
-          </p>
+          <p className="page-hero-subtitle">Where acquaintances become family</p>
         </div>
       </section>
 
@@ -61,13 +62,13 @@ export default function SmallGroupsPage() {
           <div className="intro-content">
             <h2 className="section-title">Find Your People</h2>
             <p className="intro-lead">
-              Sunday mornings are great, but real community happens when we do
-              life together throughout the week. That&apos;s what Home Huddles are all about.
+              Sunday mornings are great, but real community happens when we do life together
+              throughout the week. That&apos;s what Home Huddles are all about.
             </p>
             <p>
-              Home Huddles are small groups of people who meet regularly to share meals,
-              discuss faith, support one another through life&apos;s ups and downs, and
-              actually become friends—the kind who show up when things get hard.
+              Home Huddles are small groups of people who meet regularly to share meals, discuss
+              faith, support one another through life&apos;s ups and downs, and actually become
+              friends—the kind who show up when things get hard.
             </p>
           </div>
         </div>
@@ -93,9 +94,8 @@ export default function SmallGroupsPage() {
                 </div>
                 <h3>Share a Meal</h3>
                 <p>
-                  There&apos;s something about gathering around a table that breaks down
-                  walls. Most huddles share a meal together—food has a way of turning
-                  strangers into friends.
+                  There&apos;s something about gathering around a table that breaks down walls. Most
+                  huddles share a meal together—food has a way of turning strangers into friends.
                 </p>
               </div>
             </div>
@@ -116,8 +116,8 @@ export default function SmallGroupsPage() {
                 </div>
                 <h3>Real Conversations</h3>
                 <p>
-                  No judgment, no pretense—just honest conversations about faith, doubt,
-                  life, and everything in between. Questions are welcome here.
+                  No judgment, no pretense—just honest conversations about faith, doubt, life, and
+                  everything in between. Questions are welcome here.
                 </p>
               </div>
             </div>
@@ -138,8 +138,8 @@ export default function SmallGroupsPage() {
                 </div>
                 <h3>Support Each Other</h3>
                 <p>
-                  Life is better together. Huddles are where people celebrate wins,
-                  carry burdens, and remind each other we&apos;re not alone.
+                  Life is better together. Huddles are where people celebrate wins, carry burdens,
+                  and remind each other we&apos;re not alone.
                 </p>
               </div>
             </div>
@@ -161,8 +161,8 @@ export default function SmallGroupsPage() {
               <div className="groups-step-content">
                 <h3>Reach Out</h3>
                 <p>
-                  Let us know you&apos;re interested! Tell us a bit about yourself,
-                  your schedule, and what you&apos;re looking for.
+                  Let us know you&apos;re interested! Tell us a bit about yourself, your schedule,
+                  and what you&apos;re looking for.
                 </p>
               </div>
             </div>
@@ -172,8 +172,8 @@ export default function SmallGroupsPage() {
               <div className="groups-step-content">
                 <h3>Get Matched</h3>
                 <p>
-                  We&apos;ll connect you with a group that fits your life stage,
-                  interests, and availability.
+                  We&apos;ll connect you with a group that fits your life stage, interests, and
+                  availability.
                 </p>
               </div>
             </div>
@@ -183,8 +183,7 @@ export default function SmallGroupsPage() {
               <div className="groups-step-content">
                 <h3>Show Up</h3>
                 <p>
-                  Just come as you are. No prep required—just a willingness to
-                  be present and open.
+                  Just come as you are. No prep required—just a willingness to be present and open.
                 </p>
               </div>
             </div>
@@ -209,8 +208,8 @@ export default function SmallGroupsPage() {
               <span className="section-eyebrow">Weekly Gathering</span>
               <h2>Hangouts at the Pastor&apos;s House</h2>
               <p>
-                Looking for an easy way to get connected? <strong>Every Sunday at 5 PM</strong>, we gather
-                at the pastor&apos;s house for a relaxed evening of food, fun, and
+                Looking for an easy way to get connected? <strong>Every Sunday at 5 PM</strong>, we
+                gather at the pastor&apos;s house for a relaxed evening of food, fun, and
                 friendship.
               </p>
               <ul className="groups-hangout-list">
@@ -228,9 +227,9 @@ export default function SmallGroupsPage() {
                 </li>
               </ul>
               <p>
-                It&apos;s a wonderful way to build friendships and be part of the community.
-                If you&apos;re new and looking for a comfortable place to meet people,
-                this is a great first step.
+                It&apos;s a wonderful way to build friendships and be part of the community. If
+                you&apos;re new and looking for a comfortable place to meet people, this is a great
+                first step.
               </p>
             </div>
           </div>
@@ -242,9 +241,9 @@ export default function SmallGroupsPage() {
         <div className="container container-narrow">
           <blockquote className="groups-quote">
             <p>
-              &ldquo;I came to Thrive looking for a church. I found a family.
-              My Home Huddle has been there through job changes, health scares,
-              and everything in between. These are my people.&rdquo;
+              &ldquo;I came to Thrive looking for a church. I found a family. My Home Huddle has
+              been there through job changes, health scares, and everything in between. These are my
+              people.&rdquo;
             </p>
           </blockquote>
         </div>
@@ -256,8 +255,8 @@ export default function SmallGroupsPage() {
           <div className="cta-content">
             <h2>Ready to Find Your Huddle?</h2>
             <p>
-              We&apos;d love to help you get connected. Drop us a line and we&apos;ll
-              reach out to help you find the right fit for your life.
+              We&apos;d love to help you get connected. Drop us a line and we&apos;ll reach out to
+              help you find the right fit for your life.
             </p>
             <CTAButtons>
               <Link href="/contact?subject=general#contact-form" className="btn btn-primary btn-lg">
@@ -280,7 +279,9 @@ export default function SmallGroupsPage() {
                 <FontAwesomeIcon icon={faPhone} />
               </div>
               <h3>Call Us</h3>
-              <p><a href="tel:+12396873430">(239) 687-3430</a></p>
+              <p>
+                <a href="tel:+12396873430">(239) 687-3430</a>
+              </p>
             </div>
 
             <div className="groups-contact-card">
@@ -288,7 +289,9 @@ export default function SmallGroupsPage() {
                 <FontAwesomeIcon icon={faEnvelope} />
               </div>
               <h3>Email Us</h3>
-              <p><a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a></p>
+              <p>
+                <a href="mailto:info@thrive-fl.org">info@thrive-fl.org</a>
+              </p>
             </div>
 
             <div className="groups-contact-card">
@@ -304,4 +307,3 @@ export default function SmallGroupsPage() {
     </div>
   );
 }
-

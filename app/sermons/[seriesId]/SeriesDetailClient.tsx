@@ -12,7 +12,7 @@ export default function SeriesDetailClient({ series }: SeriesDetailClientProps) 
   const { playMessage } = useAudioPlayer();
 
   const handlePlayMessage = (message: SermonMessage) => {
-    playMessage(message, series.Name, series.ArtUrl || series.Thumbnail || '');
+    playMessage(message, series.Name, series.ArtUrl || series.Thumbnail || "");
   };
 
   return (
@@ -27,4 +27,3 @@ export default function SeriesDetailClient({ series }: SeriesDetailClientProps) 
     </div>
   );
 }
-

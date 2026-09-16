@@ -43,27 +43,27 @@ export enum BlogPostCategory {
  * Human-readable labels for blog post categories
  */
 export const BlogCategoryLabels: Record<BlogPostCategory, string> = {
-  [BlogPostCategory.FaithFoundations]: 'Faith Foundations',
-  [BlogPostCategory.PrayerAndSpiritualGrowth]: 'Prayer & Spiritual Growth',
-  [BlogPostCategory.ScriptureAndTeaching]: 'Scripture & Teaching',
-  [BlogPostCategory.IdentityAndPurpose]: 'Identity & Purpose',
-  [BlogPostCategory.Relationships]: 'Relationships',
-  [BlogPostCategory.MentalAndEmotionalHealth]: 'Mental & Emotional Health',
-  [BlogPostCategory.CommunityAndBelonging]: 'Community & Belonging',
-  [BlogPostCategory.FaithAndCulture]: 'Faith & Culture',
-  [BlogPostCategory.LeadershipAndCalling]: 'Leadership & Calling',
-  [BlogPostCategory.SeasonalAndSpecial]: 'Seasonal & Special',
-  [BlogPostCategory.Christmas]: 'Christmas',
-  [BlogPostCategory.Easter]: 'Easter',
-  [BlogPostCategory.Anxiety]: 'Anxiety',
-  [BlogPostCategory.Fear]: 'Fear',
-  [BlogPostCategory.Grief]: 'Grief',
-  [BlogPostCategory.Hope]: 'Hope',
-  [BlogPostCategory.Purpose]: 'Purpose',
-  [BlogPostCategory.Forgiveness]: 'Forgiveness',
-  [BlogPostCategory.Marriage]: 'Marriage',
-  [BlogPostCategory.Family]: 'Family',
-  [BlogPostCategory.Announcements]: 'Announcements',
+  [BlogPostCategory.FaithFoundations]: "Faith Foundations",
+  [BlogPostCategory.PrayerAndSpiritualGrowth]: "Prayer & Spiritual Growth",
+  [BlogPostCategory.ScriptureAndTeaching]: "Scripture & Teaching",
+  [BlogPostCategory.IdentityAndPurpose]: "Identity & Purpose",
+  [BlogPostCategory.Relationships]: "Relationships",
+  [BlogPostCategory.MentalAndEmotionalHealth]: "Mental & Emotional Health",
+  [BlogPostCategory.CommunityAndBelonging]: "Community & Belonging",
+  [BlogPostCategory.FaithAndCulture]: "Faith & Culture",
+  [BlogPostCategory.LeadershipAndCalling]: "Leadership & Calling",
+  [BlogPostCategory.SeasonalAndSpecial]: "Seasonal & Special",
+  [BlogPostCategory.Christmas]: "Christmas",
+  [BlogPostCategory.Easter]: "Easter",
+  [BlogPostCategory.Anxiety]: "Anxiety",
+  [BlogPostCategory.Fear]: "Fear",
+  [BlogPostCategory.Grief]: "Grief",
+  [BlogPostCategory.Hope]: "Hope",
+  [BlogPostCategory.Purpose]: "Purpose",
+  [BlogPostCategory.Forgiveness]: "Forgiveness",
+  [BlogPostCategory.Marriage]: "Marriage",
+  [BlogPostCategory.Family]: "Family",
+  [BlogPostCategory.Announcements]: "Announcements",
 };
 
 /**
@@ -71,11 +71,13 @@ export const BlogCategoryLabels: Record<BlogPostCategory, string> = {
  * The API serializes enums as strings (JsonStringEnumConverter), so Category arrives
  * as e.g. "FaithFoundations" rather than 0.
  */
-export function getCategoryLabel(category: BlogPostCategory | string | null | undefined): string | null {
+export function getCategoryLabel(
+  category: BlogPostCategory | string | null | undefined,
+): string | null {
   if (category === null || category === undefined) return null;
 
   // Numeric enum value — direct lookup
-  if (typeof category === 'number') {
+  if (typeof category === "number") {
     return BlogCategoryLabels[category as BlogPostCategory] ?? null;
   }
 
@@ -95,17 +97,17 @@ export function getCategoryLabel(category: BlogPostCategory | string | null | un
 export interface BlogPost {
   Id: string;
   Title: string;
-  Content: string;                        // Markdown formatted content
-  Type: BlogPostType | string;            // Can be numeric enum or string from API
-  Category: BlogPostCategory | string | null;  // Can be numeric enum or string from API
-  SourceUrl: string | null;       // e.g., /sermons/{seriesId}
-  SourceId: string | null;        // ObjectId reference
-  CreateDate: string;             // ISO date string
-  LastUpdated: string;            // ISO date string
+  Content: string; // Markdown formatted content
+  Type: BlogPostType | string; // Can be numeric enum or string from API
+  Category: BlogPostCategory | string | null; // Can be numeric enum or string from API
+  SourceUrl: string | null; // e.g., /sermons/{seriesId}
+  SourceId: string | null; // ObjectId reference
+  CreateDate: string; // ISO date string
+  LastUpdated: string; // ISO date string
   IsPublished: boolean;
-  PublishedDate: string | null;   // ISO date string
-  Summary: string | null;         // Brief excerpt for previews/SEO
-  Slug: string;                   // URL-friendly slug
+  PublishedDate: string | null; // ISO date string
+  Summary: string | null; // Brief excerpt for previews/SEO
+  Slug: string; // URL-friendly slug
 }
 
 /**
@@ -117,8 +119,8 @@ export interface BlogPostSummary {
   Summary: string | null;
   Slug: string;
   PublishedDate: string | null;
-  Type: BlogPostType | string;            // Can be numeric enum or string from API
-  Category: BlogPostCategory | string | null;  // Can be numeric enum or string from API
+  Type: BlogPostType | string; // Can be numeric enum or string from API
+  Category: BlogPostCategory | string | null; // Can be numeric enum or string from API
 }
 
 // ============================================
@@ -144,11 +146,10 @@ export interface BlogPostPagedResponse {
 
 export interface BlogPostCardProps {
   post: BlogPost;
-  index?: number;                 // For staggered animations
+  index?: number; // For staggered animations
 }
 
 export interface BlogPostGridProps {
   posts: BlogPost[];
   isLoading?: boolean;
 }
-

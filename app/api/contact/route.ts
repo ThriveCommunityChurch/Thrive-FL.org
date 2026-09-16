@@ -13,8 +13,7 @@ const PRAYER_EMAIL = "prayers@thrive-fl.org";
 // contact address so the filter works with no extra configuration - blocked
 // mail arrives subject-prefixed "[SPAM]" and can be filtered client-side.
 // Point this at a dedicated mailbox once one exists.
-const SPAM_QUARANTINE_EMAIL =
-  process.env.SPAM_QUARANTINE_EMAIL || CONTACT_EMAIL;
+const SPAM_QUARANTINE_EMAIL = process.env.SPAM_QUARANTINE_EMAIL || CONTACT_EMAIL;
 
 interface RecaptchaResponse {
   success: boolean;
@@ -67,7 +66,7 @@ interface EmailTemplateResult {
 function sanitizeInput(
   value: unknown,
   maxLength: number = 1000,
-  allowNewlines: boolean = false
+  allowNewlines: boolean = false,
 ): string {
   if (typeof value !== "string") {
     return "";
@@ -166,7 +165,7 @@ function normalizeContactType(subjectValue: string | undefined): ContactType {
 function buildEmailFromSubmission(
   type: ContactType,
   data: BaseSubmissionData,
-  recaptchaScore?: number
+  recaptchaScore?: number,
 ): EmailTemplateResult {
   // Sanitize all user inputs to prevent injection attacks
   const rawName = sanitizeInput(data.name, 200, false);
@@ -333,34 +332,28 @@ export async function POST(request: NextRequest) {
     const { token } = body;
 
     if (!token) {
-      return NextResponse.json(
-        { error: "reCAPTCHA token is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "reCAPTCHA token is required" }, { status: 400 });
     }
 
     if (!RECAPTCHA_SECRET_KEY) {
       console.error("RECAPTCHA_SECRET_KEY is not set in environment variables");
       return NextResponse.json(
         { error: "Server configuration error: RECAPTCHA_SECRET_KEY missing" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
     // Verify the reCAPTCHA token with Google
-    const recaptchaResponse = await fetch(
-      "https://www.google.com/recaptcha/api/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          secret: RECAPTCHA_SECRET_KEY,
-          response: token,
-        }),
-      }
-    );
+    const recaptchaResponse = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        secret: RECAPTCHA_SECRET_KEY,
+        response: token,
+      }),
+    });
 
     const recaptchaData: RecaptchaResponse = await recaptchaResponse.json();
 
@@ -371,7 +364,7 @@ export async function POST(request: NextRequest) {
           details: recaptchaData["error-codes"],
           score: recaptchaData.score,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -383,17 +376,14 @@ export async function POST(request: NextRequest) {
           error: "Verification failed - please try again",
           score,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Send email via Mailgun
     if (!MAILGUN_API_KEY) {
       console.error("MAILGUN_API_KEY is not set");
-      return NextResponse.json(
-        { error: "Server configuration error" },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
     }
 
     const mailgun = new Mailgun(FormData);
@@ -418,7 +408,7 @@ export async function POST(request: NextRequest) {
     } else {
       return NextResponse.json(
         { error: "Invalid payload: expected { token, type, data } or { token, formData }" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -433,16 +423,10 @@ export async function POST(request: NextRequest) {
       elapsedMs: body.elapsedMs,
     });
 
-    const { to, subject, text } = buildEmailFromSubmission(
-      type,
-      submissionData,
-      score
-    );
+    const { to, subject, text } = buildEmailFromSubmission(type, submissionData, score);
 
     if (assessment.verdict === "spam") {
-      console.warn(
-        `Blocked spam submission (${type}): ${describeAssessment(assessment)}`
-      );
+      console.warn(`Blocked spam submission (${type}): ${describeAssessment(assessment)}`);
 
       // Quarantine rather than discard, so a false positive is recoverable.
       // A failure here must not surface to the sender - the submission is
@@ -492,10 +476,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Contact form error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
-

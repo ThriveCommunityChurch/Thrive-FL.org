@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { seriesId, messageId } = await params;
 
   const series = await getSeriesById(seriesId);
-  const message = series.Messages.find(m => m.MessageId === messageId);
+  const message = series.Messages.find((m) => m.MessageId === messageId);
 
   // If no message or no video, the page component will handle redirect/404
   if (!message || !message.VideoUrl) {
@@ -66,7 +66,7 @@ export default async function VideoWatchPage({ params }: PageProps) {
 
   try {
     series = await getSeriesById(seriesId);
-    message = series.Messages.find(m => m.MessageId === messageId);
+    message = series.Messages.find((m) => m.MessageId === messageId);
 
     if (!message) {
       notFound();
@@ -111,7 +111,10 @@ export default async function VideoWatchPage({ params }: PageProps) {
               <span className="video-watch-breadcrumb-text-short">Series</span>
             </Link>
             <span className="video-watch-breadcrumb-divider">|</span>
-            <Link href={`/sermons/${seriesId}/${messageId}`} className="video-watch-breadcrumb-link">
+            <Link
+              href={`/sermons/${seriesId}/${messageId}`}
+              className="video-watch-breadcrumb-link"
+            >
               <FontAwesomeIcon icon={faMicrophone} />
               <span className="video-watch-breadcrumb-text-full">View Message</span>
               <span className="video-watch-breadcrumb-text-short">Message</span>
@@ -154,14 +157,10 @@ export default async function VideoWatchPage({ params }: PageProps) {
             </div>
 
             {/* Download transcript button - fetches client-side, no text in HTML */}
-            <VideoWatchClient
-              messageId={messageId}
-              messageTitle={message.Title}
-            />
+            <VideoWatchClient messageId={messageId} messageTitle={message.Title} />
           </div>
         </div>
       </section>
     </div>
   );
 }
-

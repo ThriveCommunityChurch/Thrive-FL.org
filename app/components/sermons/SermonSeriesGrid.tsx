@@ -1,8 +1,8 @@
 "use client";
 
-import { SermonSeriesGridProps } from '../../types/sermons';
-import SermonSeriesCard from './SermonSeriesCard';
-import SermonSkeleton from './SermonSkeleton';
+import { SermonSeriesGridProps } from "../../types/sermons";
+import SermonSeriesCard from "./SermonSeriesCard";
+import SermonSkeleton from "./SermonSkeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faVideoSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -29,4 +29,3 @@ export default function SermonSeriesGrid({ series, isLoading = false }: SermonSe
     </div>
   );
 }
-

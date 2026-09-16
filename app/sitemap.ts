@@ -10,13 +10,19 @@ const baseUrl = "https://thrive-fl.org";
 
 // Force dynamic rendering - sitemap regenerates on every request
 // API endpoint has 2-hour cache, so this is still performant
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 // Folders to exclude from sitemap
 const excludedFolders = ["api", "components", "contexts", "lib", "services", "types"];
 
 // Custom priorities and change frequencies for specific routes
-const routeConfig: Record<string, { priority: number; changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" }> = {
+const routeConfig: Record<
+  string,
+  {
+    priority: number;
+    changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  }
+> = {
   "/": { priority: 1.0, changeFrequency: "weekly" },
   "/im-new": { priority: 0.9, changeFrequency: "monthly" },
   "/visit": { priority: 0.9, changeFrequency: "monthly" },
@@ -88,7 +94,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           changeFrequency: "monthly" as const,
           priority: 0.6,
         }))
-      : (console.error("Failed to fetch Theocology episodes for sitemap:", theocologyResult.reason), []);
+      : (console.error("Failed to fetch Theocology episodes for sitemap:", theocologyResult.reason),
+        []);
 
   const blogEntries: MetadataRoute.Sitemap =
     blogResult.status === "fulfilled"
@@ -143,5 +150,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...theocologyEntries, ...blogEntries, ...sermonEntries, ...storyEntries];
+  return [
+    ...staticEntries,
+    ...theocologyEntries,
+    ...blogEntries,
+    ...sermonEntries,
+    ...storyEntries,
+  ];
 }

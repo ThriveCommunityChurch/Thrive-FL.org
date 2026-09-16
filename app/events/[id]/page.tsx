@@ -29,7 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     const title = `${event.Title} | Thrive Community Church`;
-    const description = event.Summary || event.Description?.substring(0, 160) ||
+    const description =
+      event.Summary ||
+      event.Description?.substring(0, 160) ||
       `Join us for ${event.Title} at Thrive Community Church in Estero, FL.`;
     const url = `https://thrive-fl.org/events/${id}`;
 
@@ -37,12 +39,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // Using timeZone 'UTC' because dates from the API are already in the correct
     // local time and should be displayed as-is without timezone conversion.
     const eventDate = new Date(event.StartTime);
-    const formattedDate = eventDate.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC',
+    const formattedDate = eventDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
     });
 
     // Use event image if available, otherwise use default OG image
@@ -76,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     };
   } catch (error) {
-    console.error('Error generating metadata for event:', error);
+    console.error("Error generating metadata for event:", error);
     return {
       title: "Event Details | Thrive Community Church",
       description: "View event details at Thrive Community Church in Estero, FL.",
@@ -110,7 +112,7 @@ export default async function EventDetailPage({ params }: PageProps) {
     const response = await getEventById(id);
     event = response?.Event ?? null;
   } catch (error) {
-    console.error('Error fetching event:', error);
+    console.error("Error fetching event:", error);
   }
 
   return (
@@ -122,13 +124,17 @@ export default async function EventDetailPage({ params }: PageProps) {
           description={event.Summary || event.Description}
           startDate={event.StartTime}
           endDate={event.EndTime}
-          location={event.Location ? {
-            name: event.Location.Name,
-            address: event.Location.Address,
-            city: event.Location.City,
-            state: event.Location.State,
-            zipCode: event.Location.ZipCode,
-          } : undefined}
+          location={
+            event.Location
+              ? {
+                  name: event.Location.Name,
+                  address: event.Location.Address,
+                  city: event.Location.City,
+                  state: event.Location.State,
+                  zipCode: event.Location.ZipCode,
+                }
+              : undefined
+          }
           isOnline={event.IsOnline}
           onlineUrl={event.OnlineLink}
           url={`https://thrive-fl.org/events/${id}`}
@@ -154,4 +160,3 @@ export default async function EventDetailPage({ params }: PageProps) {
     </div>
   );
 }
-

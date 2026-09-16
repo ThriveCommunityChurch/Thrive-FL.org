@@ -39,14 +39,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         title: `${series.Name} | Thrive Community Church`,
         description,
         url: `https://thrive-fl.org/sermons/${seriesId}`,
-        images: series.ArtUrl ? [
-          {
-            url: series.ArtUrl,
-            width: 800,
-            height: 800,
-            alt: series.Name,
-          },
-        ] : undefined,
+        images: series.ArtUrl
+          ? [
+              {
+                url: series.ArtUrl,
+                width: 800,
+                height: 800,
+                alt: series.Name,
+              },
+            ]
+          : undefined,
       },
       alternates: {
         canonical: `https://thrive-fl.org/sermons/${seriesId}`,
@@ -69,15 +71,15 @@ export default async function SeriesDetailPage({ params }: PageProps) {
   try {
     series = await getSeriesById(seriesId);
   } catch (err) {
-    console.error('Failed to load series:', err);
-    error = 'Failed to load series. Please try again later.';
+    console.error("Failed to load series:", err);
+    error = "Failed to load series. Please try again later.";
   }
 
   if (!series && !error) {
     notFound();
   }
 
-  const dateRange = series ? formatSeriesDateRange(series.StartDate, series.EndDate) : '';
+  const dateRange = series ? formatSeriesDateRange(series.StartDate, series.EndDate) : "";
   const isOngoing = series && !series.EndDate;
 
   return (
@@ -110,7 +112,9 @@ export default async function SeriesDetailPage({ params }: PageProps) {
               <FontAwesomeIcon icon={faExclamationTriangle} />
               <h3>Unable to Load Series</h3>
               <p>{error}</p>
-              <Link href="/sermons" className="btn btn-primary">Back to Sermons</Link>
+              <Link href="/sermons" className="btn btn-primary">
+                Back to Sermons
+              </Link>
             </div>
           ) : series ? (
             <>
@@ -122,7 +126,7 @@ export default async function SeriesDetailPage({ params }: PageProps) {
                     alt={series.Name}
                     width={400}
                     height={400}
-                    style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                    style={{ objectFit: "cover", width: "100%", height: "auto" }}
                     unoptimized
                   />
                   {isOngoing && (
@@ -138,12 +142,11 @@ export default async function SeriesDetailPage({ params }: PageProps) {
                     </span>
                     <span className="series-detail-count">
                       <FontAwesomeIcon icon={faMicrophone} />
-                      {series.Messages.length} {series.Messages.length === 1 ? 'Message' : 'Messages'}
+                      {series.Messages.length}{" "}
+                      {series.Messages.length === 1 ? "Message" : "Messages"}
                     </span>
                   </p>
-                  {series.Summary && (
-                    <p className="series-detail-summary">{series.Summary}</p>
-                  )}
+                  {series.Summary && <p className="series-detail-summary">{series.Summary}</p>}
                 </div>
               </div>
               {/* Messages List - Client Component for interactivity */}
@@ -155,4 +158,3 @@ export default async function SeriesDetailPage({ params }: PageProps) {
     </div>
   );
 }
-

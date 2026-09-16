@@ -15,7 +15,8 @@ import {
 
 export const metadata: Metadata = {
   title: "Our Story | Thrive Community Church",
-  description: "Learn about Thrive Community Church's journey from a campus ministry at FGCU to a thriving community in Estero, FL. A place of renewal, safety, and belonging since 2014.",
+  description:
+    "Learn about Thrive Community Church's journey from a campus ministry at FGCU to a thriving community in Estero, FL. A place of renewal, safety, and belonging since 2014.",
   openGraph: {
     title: "Our Story | Thrive Community Church",
     description: "From campus ministry to thriving community. Discover our journey since 2014.",
@@ -48,7 +49,8 @@ const timelineEvents = [
     description:
       "Before Thrive Community Church was a church, it was a plan. In 2013, a strategic planning group began praying and dreaming about what a church on campus could look like.",
     image: "490660251.jpg",
-    attachment: 'https://lsfm.global/uploads/files/MA-May-2014-Thrive-Community-Church-A-Mission-of-the-LCMS-by-John-D-Roth.pdf'
+    attachment:
+      "https://lsfm.global/uploads/files/MA-May-2014-Thrive-Community-Church-A-Mission-of-the-LCMS-by-John-D-Roth.pdf",
   },
   {
     year: "2014",
@@ -102,8 +104,7 @@ const timelineEvents = [
   {
     year: "Future",
     title: "Our New Home",
-    description:
-      "We're in the planning phases for our new home. Stay tuned for more details!",
+    description: "We're in the planning phases for our new home. Stay tuned for more details!",
     image: "DJI_0027.jpg",
   },
 ];
@@ -116,9 +117,7 @@ export default function AboutPage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Our Story</h1>
-          <p className="page-hero-subtitle">
-            A place of renewal, safety, and belonging
-          </p>
+          <p className="page-hero-subtitle">A place of renewal, safety, and belonging</p>
         </div>
       </section>
 
@@ -128,16 +127,16 @@ export default function AboutPage() {
           <div className="about-mission-content">
             <h2 className="section-title">From Campus to Community</h2>
             <p>
-              Thrive began in <strong>August 2014</strong> as a church mission plant, gathering
-              for worship in a small room on the campus of Florida Gulf Coast University. Our
-              vision was simple: reach college students and young professionals with the
-              life-changing message of Jesus.
+              Thrive began in <strong>August 2014</strong> as a church mission plant, gathering for
+              worship in a small room on the campus of Florida Gulf Coast University. Our vision was
+              simple: reach college students and young professionals with the life-changing message
+              of Jesus.
             </p>
             <p>
-              From the start, we were blessed with support from some of the founding members
-              of FGCU itself—people who believed in the importance of a gospel presence on
-              campus. What started as a handful of people has grown into a diverse community
-              of all ages and backgrounds.
+              From the start, we were blessed with support from some of the founding members of FGCU
+              itself—people who believed in the importance of a gospel presence on campus. What
+              started as a handful of people has grown into a diverse community of all ages and
+              backgrounds.
             </p>
             <p>
               In 2016, we moved into our current home at Estero Ridge Plaza. Today, we&apos;re
@@ -156,12 +155,12 @@ export default function AboutPage() {
       <section className="section about-timeline-section">
         <div className="container">
           <h2 className="section-title">How We Got Here</h2>
-          
+
           <div className="timeline">
             {timelineEvents.map((event, index) => (
-              <div 
-                key={index} 
-                className={`timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}`}
+              <div
+                key={index}
+                className={`timeline-item ${index % 2 === 0 ? "timeline-left" : "timeline-right"}`}
               >
                 <div className="timeline-marker">
                   <span className="timeline-year">{event.year}</span>
@@ -174,7 +173,7 @@ export default function AboutPage() {
                         alt={event.title}
                         width={400}
                         height={300}
-                        style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                        style={{ objectFit: "cover", width: "100%", height: "auto" }}
                       />
                     </div>
                     <div className="timeline-text">
@@ -247,8 +246,8 @@ export default function AboutPage() {
           <div className="cta-content">
             <h2>Come Experience Thrive</h2>
             <p>
-              We&apos;d love to meet you. Join us for worship and discover what it means
-              to belong to a community that helps you thrive.
+              We&apos;d love to meet you. Join us for worship and discover what it means to belong
+              to a community that helps you thrive.
             </p>
             <CTAButtons>
               <Link href="/visit" className="btn btn-primary">
@@ -264,4 +263,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

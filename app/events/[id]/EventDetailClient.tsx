@@ -35,10 +35,10 @@ interface EventDetailClientProps {
 
 export default function EventDetailClient({ eventId, initialEvent }: EventDetailClientProps) {
   const searchParams = useSearchParams();
-  const occurrenceDateParam = searchParams.get('date');
+  const occurrenceDateParam = searchParams.get("date");
 
   // Parse the occurrence date from URL if provided (format: YYYY-MM-DD)
-  const occurrenceDate = occurrenceDateParam ? new Date(occurrenceDateParam + 'T00:00:00') : null;
+  const occurrenceDate = occurrenceDateParam ? new Date(occurrenceDateParam + "T00:00:00") : null;
   const [event, setEvent] = useState<Event | null>(initialEvent || null);
   const [isLoading, setIsLoading] = useState(!initialEvent);
   const [error, setError] = useState<string | null>(null);
@@ -53,13 +53,13 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
         setError(null);
         const response = await getEventById(eventId);
         if (!response.Event) {
-          setError('Event not found');
+          setError("Event not found");
         } else {
           setEvent(response.Event);
         }
       } catch (err) {
-        console.error('Failed to load event:', err);
-        setError('Failed to load event. Please try again later.');
+        console.error("Failed to load event:", err);
+        setError("Failed to load event. Please try again later.");
       } finally {
         setIsLoading(false);
       }
@@ -69,24 +69,24 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
 
   // Format event time (without date) for recurring events
   const getTimeOnlyDisplay = () => {
-    if (!event) return '';
-    if (event.IsAllDay) return 'All Day';
+    if (!event) return "";
+    if (event.IsAllDay) return "All Day";
 
     const startDate = new Date(event.StartTime);
-    const startTime = startDate.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
+    const startTime = startDate.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
       hour12: true,
-      timeZone: 'America/New_York',
+      timeZone: "America/New_York",
     });
 
     if (event.EndTime) {
       const endDate = new Date(event.EndTime);
-      const endTime = endDate.toLocaleTimeString('en-US', {
-        hour: 'numeric',
-        minute: '2-digit',
+      const endTime = endDate.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
         hour12: true,
-        timeZone: 'America/New_York',
+        timeZone: "America/New_York",
       });
       return `${startTime} - ${endTime}`;
     }
@@ -96,12 +96,20 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
 
   // Get the day of week for recurring events (e.g., "Sundays", "Tuesdays")
   const getRecurringDayDisplay = () => {
-    if (!event?.Recurrence) return '';
+    if (!event?.Recurrence) return "";
     const dayOfWeek = event.Recurrence.DayOfWeek;
-    if (dayOfWeek === undefined) return '';
+    if (dayOfWeek === undefined) return "";
 
-    const days = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
-    return days[dayOfWeek] || '';
+    const days = [
+      "Sundays",
+      "Mondays",
+      "Tuesdays",
+      "Wednesdays",
+      "Thursdays",
+      "Fridays",
+      "Saturdays",
+    ];
+    return days[dayOfWeek] || "";
   };
 
   // Format recurrence schedule for display (e.g., "Every Sunday at 10:00 AM")
@@ -113,20 +121,22 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
     const dayStr = getRecurringDayDisplay();
 
     // Normalize pattern to string for comparison (API returns string like "Weekly")
-    const patternStr = typeof pattern === 'string' ? pattern : getRecurrencePatternLabel(pattern);
+    const patternStr = typeof pattern === "string" ? pattern : getRecurrencePatternLabel(pattern);
 
     // Build the schedule string based on recurrence pattern
     switch (patternStr) {
-      case 'Daily':
+      case "Daily":
         return `Every day at ${timeStr}`;
-      case 'Weekly':
+      case "Weekly":
         return dayStr ? `Every ${dayStr.slice(0, -1)} at ${timeStr}` : `Every week at ${timeStr}`;
-      case 'Bi-Weekly':
-      case 'BiWeekly':
-        return dayStr ? `Every other ${dayStr.slice(0, -1)} at ${timeStr}` : `Every other week at ${timeStr}`;
-      case 'Monthly':
+      case "Bi-Weekly":
+      case "BiWeekly":
+        return dayStr
+          ? `Every other ${dayStr.slice(0, -1)} at ${timeStr}`
+          : `Every other week at ${timeStr}`;
+      case "Monthly":
         return `Monthly at ${timeStr}`;
-      case 'Yearly':
+      case "Yearly":
         return `Yearly at ${timeStr}`;
       default:
         // Fallback: just show the time
@@ -138,34 +148,34 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
   // Using timeZone 'UTC' because dates from the API are already in the correct
   // local time and should be displayed as-is without timezone conversion.
   const getEventDateDisplay = () => {
-    if (!event) return '';
+    if (!event) return "";
     const startDate = new Date(event.StartTime);
     const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      timeZone: 'UTC',
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
     };
-    return startDate.toLocaleDateString('en-US', options);
+    return startDate.toLocaleDateString("en-US", options);
   };
 
   const getEventTimeDisplay = () => {
-    if (!event) return '';
-    if (event.IsAllDay) return 'All Day Event';
+    if (!event) return "";
+    if (event.IsAllDay) return "All Day Event";
     return formatEventDateRange(event.StartTime, event.EndTime);
   };
 
   // Format the specific occurrence date (when user clicked a specific date)
   const getOccurrenceDateDisplay = () => {
-    if (!occurrenceDate) return '';
+    if (!occurrenceDate) return "";
     const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     };
-    return occurrenceDate.toLocaleDateString('en-US', options);
+    return occurrenceDate.toLocaleDateString("en-US", options);
   };
 
   // Format recurrence end date description
@@ -180,7 +190,9 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
         <FontAwesomeIcon icon={faExclamationTriangle} />
         <h3>Unable to Load Event</h3>
         <p>{error}</p>
-        <Link href="/events" className="btn btn-primary">Back to Events</Link>
+        <Link href="/events" className="btn btn-primary">
+          Back to Events
+        </Link>
       </div>
     );
   }
@@ -223,7 +235,8 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
             )}
             {event.IsRecurring && (
               <span className="event-badge recurring">
-                <FontAwesomeIcon icon={faRepeat} /> {getRecurrencePatternLabel(event.Recurrence?.Pattern || RecurrencePattern.None)}
+                <FontAwesomeIcon icon={faRepeat} />{" "}
+                {getRecurrencePatternLabel(event.Recurrence?.Pattern || RecurrencePattern.None)}
               </span>
             )}
             {event.IsOnline && (
@@ -233,9 +246,7 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
             )}
           </div>
           <h1 className="event-detail-title">{event.Title}</h1>
-          {event.Summary && (
-            <p className="event-detail-summary">{event.Summary}</p>
-          )}
+          {event.Summary && <p className="event-detail-summary">{event.Summary}</p>}
         </div>
       </div>
 
@@ -244,7 +255,9 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
         <div className="event-detail-main">
           {/* Date & Time */}
           <div className="event-detail-block">
-            <h2><FontAwesomeIcon icon={faCalendar} /> When</h2>
+            <h2>
+              <FontAwesomeIcon icon={faCalendar} /> When
+            </h2>
             {event.IsRecurring ? (
               occurrenceDate ? (
                 // User clicked on a specific occurrence - show that date only
@@ -275,7 +288,7 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
             <div className="event-detail-block">
               <h2>About This Event</h2>
               <div className="event-description">
-                {event.Description.split('\n').map((paragraph, idx) => (
+                {event.Description.split("\n").map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
                 ))}
               </div>
@@ -285,10 +298,14 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
           {/* Tags */}
           {event.Tags && event.Tags.length > 0 && (
             <div className="event-detail-block">
-              <h2><FontAwesomeIcon icon={faTag} /> Tags</h2>
+              <h2>
+                <FontAwesomeIcon icon={faTag} /> Tags
+              </h2>
               <div className="event-tags">
                 {event.Tags.map((tag, idx) => (
-                  <span key={idx} className="event-tag">{tag}</span>
+                  <span key={idx} className="event-tag">
+                    {tag}
+                  </span>
                 ))}
               </div>
             </div>
@@ -301,10 +318,10 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
           <div className="event-sidebar-card location-card">
             {event.IsOnline ? (
               <>
-                <h3><FontAwesomeIcon icon={faGlobe} /> Online Event</h3>
-                {event.OnlinePlatform && (
-                  <p className="event-platform">{event.OnlinePlatform}</p>
-                )}
+                <h3>
+                  <FontAwesomeIcon icon={faGlobe} /> Online Event
+                </h3>
+                {event.OnlinePlatform && <p className="event-platform">{event.OnlinePlatform}</p>}
                 {event.OnlineLink && (
                   <a
                     href={event.OnlineLink}
@@ -318,7 +335,9 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
               </>
             ) : (
               <>
-                <h3><FontAwesomeIcon icon={faLocationDot} /> Location</h3>
+                <h3>
+                  <FontAwesomeIcon icon={faLocationDot} /> Location
+                </h3>
                 <div className="event-location">
                   {event.Location?.Name ? (
                     <p className="location-name">{event.Location.Name}</p>
@@ -331,7 +350,9 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
                     <p>20041 South Tamiami Trail #1</p>
                   )}
                   {event.Location?.City && event.Location?.State ? (
-                    <p>{event.Location.City}, {event.Location.State} {event.Location.ZipCode}</p>
+                    <p>
+                      {event.Location.City}, {event.Location.State} {event.Location.ZipCode}
+                    </p>
                   ) : (
                     <p>Estero, FL 33928</p>
                   )}
@@ -366,7 +387,9 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
           {/* Registration */}
           {event.RegistrationUrl && (
             <div className="event-sidebar-card">
-              <h3><FontAwesomeIcon icon={faCalendarCheck} /> Registration</h3>
+              <h3>
+                <FontAwesomeIcon icon={faCalendarCheck} /> Registration
+              </h3>
               <a
                 href={event.RegistrationUrl}
                 target="_blank"
@@ -399,4 +422,3 @@ export default function EventDetailClient({ eventId, initialEvent }: EventDetail
     </>
   );
 }
-

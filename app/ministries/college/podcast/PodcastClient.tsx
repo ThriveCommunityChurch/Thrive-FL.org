@@ -146,14 +146,13 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
           <div className="intro-content">
             <h2 className="section-title">Faith &amp; Life Conversations</h2>
             <p className="intro-lead">
-              Theocology is the podcast from ThriveFGCU that explores the
-              questions that matter most during your college years and beyond.
+              Theocology is the podcast from ThriveFGCU that explores the questions that matter most
+              during your college years and beyond.
             </p>
             <p>
-              Whether you&apos;re wrestling with questions, seeking connection,
-              or simply want to think more deeply about what you believe—this
-              podcast is for you. Episodes are around 40 minutes, perfect for
-              a commute or study break.
+              Whether you&apos;re wrestling with questions, seeking connection, or simply want to
+              think more deeply about what you believe—this podcast is for you. Episodes are around
+              40 minutes, perfect for a commute or study break.
             </p>
           </div>
         </div>
@@ -165,9 +164,7 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
           <div className="section-header-centered">
             <span className="section-eyebrow">Latest Episodes</span>
             <h2 className="section-title">Listen Now</h2>
-            <p className="section-subtitle">
-              Catch up on our most recent conversations
-            </p>
+            <p className="section-subtitle">Catch up on our most recent conversations</p>
           </div>
 
           {episodes.length === 0 ? (
@@ -196,7 +193,10 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
                       >
                         <FontAwesomeIcon icon={isEpisodePlaying ? faPause : faPlay} />
                       </button>
-                      <Link href={`/theocology/episodes/${episode.slug}`} className="theocology-latest-content">
+                      <Link
+                        href={`/theocology/episodes/${episode.slug}`}
+                        className="theocology-latest-content"
+                      >
                         <h3>{episode.title}</h3>
                         <p>{cleanDescription(episode.description)}</p>
                         <div className="theocology-latest-meta">
@@ -260,33 +260,33 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
               <span className="section-eyebrow">Your Hosts</span>
               <h2 className="section-title-left">The Theocology Team</h2>
               <p>
-                <strong>Kellen Hicks</strong> is the current host of Theocology and
-                a pastoral intern at Thrive Community Church. With a heart for college
-                students and a passion for honest conversations about faith, Kellen
-                brings fresh perspectives to each episode.
+                <strong>Kellen Hicks</strong> is the current host of Theocology and a pastoral
+                intern at Thrive Community Church. With a heart for college students and a passion
+                for honest conversations about faith, Kellen brings fresh perspectives to each
+                episode.
               </p>
               <p>
-                <strong>Pastor John Roth</strong>, who founded Theocology, serves as
-                both pastor of Thrive Community Church and professor at Florida Gulf
-                Coast University. John continues to join conversations and guide the
-                podcast&apos;s vision for helping students connect faith to everyday life.
+                <strong>Pastor John Roth</strong>, who founded Theocology, serves as both pastor of
+                Thrive Community Church and professor at Florida Gulf Coast University. John
+                continues to join conversations and guide the podcast&apos;s vision for helping
+                students connect faith to everyday life.
               </p>
               <p>
-                Each week during the academic year, the team gathers with FGCU students
-                to explore topics that matter—from navigating peer pressure to discovering
-                your identity in Christ.
+                Each week during the academic year, the team gathers with FGCU students to explore
+                topics that matter—from navigating peer pressure to discovering your identity in
+                Christ.
               </p>
             </div>
             <div className="welcome-image">
               <Image
-                  src="https://static.thrive-fl.org/Theocology.png"
-                  alt="Theocology Podcast Cover"
-                  width={400}
-                  height={400}
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  quality={75}
-                  style={{ objectFit: "cover", width: "100%", height: "auto" }}
-                />
+                src="https://static.thrive-fl.org/Theocology.png"
+                alt="Theocology Podcast Cover"
+                width={400}
+                height={400}
+                sizes="(max-width: 768px) 100vw, 400px"
+                quality={75}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
+              />
             </div>
           </div>
         </div>
@@ -298,9 +298,8 @@ export default function PodcastClient({ episodes }: PodcastClientProps) {
           <div className="cta-content">
             <h2>Join the Conversation</h2>
             <p>
-              Have a topic you&apos;d like us to cover? Want to get involved with
-              ThriveFGCU? Connect with us on Instagram or come to one of our
-              weekly gatherings!
+              Have a topic you&apos;d like us to cover? Want to get involved with ThriveFGCU?
+              Connect with us on Instagram or come to one of our weekly gatherings!
             </p>
             <CTAButtons>
               <a

@@ -84,32 +84,32 @@ export default async function StoryDetailPage({ params }: PageProps) {
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "Article",
-                "headline": `${story.name}: ${story.title}`,
-                "description": story.summary,
-                "image":
+                headline: `${story.name}: ${story.title}`,
+                description: story.summary,
+                image:
                   story.imageUrl ??
                   (story.youtubeId
                     ? `https://i.ytimg.com/vi/${story.youtubeId}/hqdefault.jpg`
                     : "https://static.thrive-fl.org/og-image.jpg"),
-                "url": `https://thrive-fl.org/stories/${story.slug}`,
-                "datePublished": story.publishedDate,
-                "dateModified": story.publishedDate,
-                "mainEntityOfPage": {
+                url: `https://thrive-fl.org/stories/${story.slug}`,
+                datePublished: story.publishedDate,
+                dateModified: story.publishedDate,
+                mainEntityOfPage: {
                   "@type": "WebPage",
                   "@id": `https://thrive-fl.org/stories/${story.slug}`,
                 },
-                "author": {
+                author: {
                   "@type": "Organization",
-                  "name": "Thrive Community Church",
-                  "url": "https://thrive-fl.org",
+                  name: "Thrive Community Church",
+                  url: "https://thrive-fl.org",
                 },
-                "publisher": {
+                publisher: {
                   "@type": "Organization",
-                  "name": "Thrive Community Church",
-                  "url": "https://thrive-fl.org",
-                  "logo": {
+                  name: "Thrive Community Church",
+                  url: "https://thrive-fl.org",
+                  logo: {
                     "@type": "ImageObject",
-                    "url": "https://static.thrive-fl.org/thrive-logo.png",
+                    url: "https://static.thrive-fl.org/thrive-logo.png",
                   },
                 },
               }),
@@ -136,7 +136,8 @@ export default async function StoryDetailPage({ params }: PageProps) {
           <footer className="blog-detail-footer">
             <hr />
             <p>
-              A story from <Link href="/">Thrive Community Church</Link> in Estero, Southwest Florida.
+              A story from <Link href="/">Thrive Community Church</Link> in Estero, Southwest
+              Florida.
             </p>
           </footer>
 

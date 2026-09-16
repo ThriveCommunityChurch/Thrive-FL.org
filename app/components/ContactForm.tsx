@@ -2,7 +2,12 @@
 
 import { useState, useRef, useEffect, FormEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane, faSpinner, faCheck, faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPaperPlane,
+  faSpinner,
+  faCheck,
+  faExclamationTriangle,
+} from "@fortawesome/free-solid-svg-icons";
 
 declare global {
   interface Window {
@@ -53,7 +58,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
     mountedAt.current = Date.now();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -69,7 +76,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
         if (typeof window !== "undefined" && window.grecaptcha?.enterprise) {
           window.grecaptcha.enterprise.ready(async () => {
             try {
-              const token = await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
+              const token = await window.grecaptcha.enterprise.execute(RECAPTCHA_SITE_KEY, {
+                action: "submit",
+              });
               resolve(token);
             } catch (err) {
               reject(err);
@@ -80,25 +89,25 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
         }
       });
 
-	      // Build a semantic contact type from the selected subject so the API
-	      // can choose the right email template and recipient.
-	      const mapSubjectToType = (subject: string): string => {
-	        switch (subject) {
-	          case "visit":
-	            return "contact.visit";
-	          case "prayer":
-	            return "contact.prayer";
-	          case "volunteer":
-	            return "contact.volunteer";
-	          case "pastoral":
-	            return "contact.pastoral";
-	          case "other":
-	            return "contact.other";
-	          case "general":
-	          default:
-	            return "contact.general";
-	        }
-	      };
+      // Build a semantic contact type from the selected subject so the API
+      // can choose the right email template and recipient.
+      const mapSubjectToType = (subject: string): string => {
+        switch (subject) {
+          case "visit":
+            return "contact.visit";
+          case "prayer":
+            return "contact.prayer";
+          case "volunteer":
+            return "contact.volunteer";
+          case "pastoral":
+            return "contact.pastoral";
+          case "other":
+            return "contact.other";
+          case "general":
+          default:
+            return "contact.general";
+        }
+      };
 
       const type = mapSubjectToType(formData.subject || "general");
 
@@ -119,14 +128,14 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
 
       const result = await response.json();
 
-	      if (!response.ok) {
-	        throw new Error(result.error || "Submission failed");
-	      }
+      if (!response.ok) {
+        throw new Error(result.error || "Submission failed");
+      }
 
-	      setStatus("success");
-	      setFormData({ name: "", email: "", phone: "", subject: initialSubject, message: "" });
-	      setHoneypot("");
-	      mountedAt.current = Date.now();
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", subject: initialSubject, message: "" });
+      setHoneypot("");
+      mountedAt.current = Date.now();
     } catch (error) {
       console.error("Form submission error:", error);
       setStatus("error");
@@ -184,7 +193,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
     }
   };
 
-  const { label: messageLabel, placeholder: messagePlaceholder } = getMessageConfig(formData.subject);
+  const { label: messageLabel, placeholder: messagePlaceholder } = getMessageConfig(
+    formData.subject,
+  );
 
   return (
     <form onSubmit={handleSubmit} className="contact-form">
@@ -212,7 +223,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
 
       <div className="contact-form-row">
         <div className="contact-form-group">
-          <label htmlFor="name">Name <span className="required">*</span></label>
+          <label htmlFor="name">
+            Name <span className="required">*</span>
+          </label>
           <input
             type="text"
             id="name"
@@ -225,7 +238,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
           />
         </div>
         <div className="contact-form-group">
-          <label htmlFor="email">Email <span className="required">*</span></label>
+          <label htmlFor="email">
+            Email <span className="required">*</span>
+          </label>
           <input
             type="email"
             id="email"
@@ -241,7 +256,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
 
       <div className="contact-form-row">
         <div className="contact-form-group">
-          <label htmlFor="phone">Phone <span className="optional">(optional)</span></label>
+          <label htmlFor="phone">
+            Phone <span className="optional">(optional)</span>
+          </label>
           <input
             type="tel"
             id="phone"
@@ -253,7 +270,9 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
           />
         </div>
         <div className="contact-form-group">
-          <label htmlFor="subject">Subject <span className="required">*</span></label>
+          <label htmlFor="subject">
+            Subject <span className="required">*</span>
+          </label>
           <select
             id="subject"
             name="subject"
@@ -271,19 +290,21 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
         </div>
       </div>
 
-	      <div className="contact-form-group">
-	        <label htmlFor="message">{messageLabel} <span className="required">*</span></label>
-	        <textarea
-	          id="message"
-	          name="message"
-	          value={formData.message}
-	          onChange={handleChange}
-	          required
-	          placeholder={messagePlaceholder}
-	          rows={5}
-	          disabled={status === "submitting"}
-	        />
-	      </div>
+      <div className="contact-form-group">
+        <label htmlFor="message">
+          {messageLabel} <span className="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          placeholder={messagePlaceholder}
+          rows={5}
+          disabled={status === "submitting"}
+        />
+      </div>
 
       {status === "success" && (
         <div className="contact-form-message contact-form-success">
@@ -302,9 +323,13 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
       <div className="contact-form-footer">
         <p className="contact-form-privacy">
           This site is protected by reCAPTCHA and the Google{" "}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>{" "}
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+            Privacy Policy
+          </a>{" "}
           and{" "}
-          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>{" "}
+          <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
+            Terms of Service
+          </a>{" "}
           apply.
         </p>
 
@@ -329,4 +354,3 @@ export default function ContactForm({ initialSubject = "" }: ContactFormProps) {
     </form>
   );
 }
-

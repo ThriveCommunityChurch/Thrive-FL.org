@@ -14,41 +14,47 @@ This repository contains the source code for Thrive Community Church's public we
 
 ## Tech Stack
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| [Next.js](https://nextjs.org/) | 16.x | React framework with App Router |
-| [React](https://react.dev/) | 18.x | UI component library |
-| [TypeScript](https://www.typescriptlang.org/) | 5.6.x | Type-safe JavaScript |
-| [Howler.js](https://howlerjs.com/) | 2.2.x | Audio playback for sermons |
-| [AWS Amplify Hosting](https://aws.amazon.com/amplify/) | — | Deployment & hosting platform |
+| Technology                                             | Version | Purpose                         |
+| ------------------------------------------------------ | ------- | ------------------------------- |
+| [Next.js](https://nextjs.org/)                         | 16.x    | React framework with App Router |
+| [React](https://react.dev/)                            | 18.x    | UI component library            |
+| [TypeScript](https://www.typescriptlang.org/)          | 5.6.x   | Type-safe JavaScript            |
+| [Howler.js](https://howlerjs.com/)                     | 2.2.x   | Audio playback for sermons      |
+| [AWS Amplify Hosting](https://aws.amazon.com/amplify/) | —       | Deployment & hosting platform   |
 
 ---
 
 ## Features
 
 ### 🎧 Sermons
+
 - Browse sermon series and individual messages
 - Stream audio directly in the browser with a persistent global audio player
 - View sermon details including speaker, date, and series information
 
 ### 📅 Events
+
 - View upcoming church events
 - Event details with dates, times, and locations
 
 ### 📍 Visit Information
+
 - Service times and location details
 - Directions and what to expect for first-time visitors
 
 ### 👥 About
+
 - Church leadership and staff information
 - Core beliefs and values
 - Church history and mission
 
 ### 📬 Contact
+
 - Contact form for inquiries
 - Direct contact information
 
 ### 🤝 Get Involved
+
 - Small groups information
 - Ministry opportunities
 - Ways to serve and connect
@@ -99,12 +105,14 @@ Thrive-FL/
 ### Getting Started
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/ThriveCommunityChurch/Thrive-FL.org.git
    cd Thrive-FL.org/Thrive-FL
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -117,12 +125,12 @@ Thrive-FL/
 
 ### Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Create optimized production build |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint for code quality checks |
+| Command         | Description                              |
+| --------------- | ---------------------------------------- |
+| `npm run dev`   | Start development server with hot reload |
+| `npm run build` | Create optimized production build        |
+| `npm start`     | Start production server                  |
+| `npm run lint`  | Run ESLint for code quality checks       |
 
 ---
 
@@ -133,6 +141,7 @@ The site is automatically deployed via **AWS Amplify** when changes are pushed t
 ### Build Configuration
 
 The `amplify.yml` file configures the build process:
+
 - Installs dependencies with `npm ci`
 - Builds the Next.js application
 - Outputs to `.next` directory for SSR hosting

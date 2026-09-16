@@ -1,8 +1,8 @@
 "use client";
 
-import Image from 'next/image';
-import { useAudioPlayer } from '../../contexts/AudioPlayerContext';
-import { formatDuration } from '../../services/sermonService';
+import Image from "next/image";
+import { useAudioPlayer } from "../../contexts/AudioPlayerContext";
+import { formatDuration } from "../../services/sermonService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,7 +17,7 @@ export default function GlobalAudioPlayer() {
     duration,
     togglePlayPause,
     seek,
-    closePlayer
+    closePlayer,
   } = useAudioPlayer();
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ export default function GlobalAudioPlayer() {
   if (!isPlayerVisible || !currentMessage) return null;
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
-  const thumbnail = seriesArtwork || '/ThriveLogo.png';
+  const thumbnail = seriesArtwork || "/ThriveLogo.png";
 
   return (
     <div className="sermon-player">
@@ -38,8 +38,8 @@ export default function GlobalAudioPlayer() {
           alt={currentMessage.Title}
           width={60}
           height={60}
-          style={{ objectFit: 'cover' }}
-          unoptimized={thumbnail.startsWith('http')}
+          style={{ objectFit: "cover" }}
+          unoptimized={thumbnail.startsWith("http")}
         />
       </div>
 
@@ -52,7 +52,7 @@ export default function GlobalAudioPlayer() {
         <button
           className="sermon-player__play-btn"
           onClick={togglePlayPause}
-          aria-label={isPlaying ? 'Pause' : 'Play'}
+          aria-label={isPlaying ? "Pause" : "Play"}
         >
           <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
         </button>
@@ -66,20 +66,15 @@ export default function GlobalAudioPlayer() {
             max={duration || 0}
             value={currentTime}
             onChange={handleSeek}
-            style={{ '--progress': `${progress}%` } as React.CSSProperties}
+            style={{ "--progress": `${progress}%` } as React.CSSProperties}
           />
           <span className="sermon-player__time">{formatDuration(duration)}</span>
         </div>
       </div>
 
-      <button
-        className="sermon-player__close"
-        onClick={closePlayer}
-        aria-label="Close player"
-      >
+      <button className="sermon-player__close" onClick={closePlayer} aria-label="Close player">
         <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );
 }
-

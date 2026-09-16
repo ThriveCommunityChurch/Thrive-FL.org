@@ -6,14 +6,14 @@ import {
   TranscriptResponse,
   SermonNotesResponse,
   SitemapDataResponse,
-} from '../types/sermons';
+} from "../types/sermons";
 
 // ============================================
 // CONFIGURATION
 // ============================================
 
 // API Base URL - uses environment variable with fallback to production
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.thrive-fl.org';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.thrive-fl.org";
 
 // ============================================
 // ERROR HANDLING
@@ -23,10 +23,10 @@ export class SermonApiError extends Error {
   constructor(
     message: string,
     public statusCode: number,
-    public endpoint: string
+    public endpoint: string,
   ) {
     super(message);
-    this.name = 'SermonApiError';
+    this.name = "SermonApiError";
   }
 }
 
@@ -35,7 +35,7 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
     throw new SermonApiError(
       `API request failed: ${response.statusText}`,
       response.status,
-      endpoint
+      endpoint,
     );
   }
   return response.json();
@@ -55,7 +55,7 @@ async function handleResponse<T>(response: Response, endpoint: string): Promise<
 export async function getAllSermons(highResImg = true): Promise<AllSermonsSummaryResponse> {
   const endpoint = `/api/Sermons?highResImg=${highResImg}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<AllSermonsSummaryResponse>(response, endpoint);
 }
@@ -70,7 +70,7 @@ export async function getAllSermons(highResImg = true): Promise<AllSermonsSummar
 export async function getSeriesById(seriesId: string): Promise<SermonSeries> {
   const endpoint = `/api/Sermons/series/${seriesId}`;
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
   return handleResponse<SermonSeries>(response, endpoint);
 }
@@ -83,23 +83,23 @@ export async function getSeriesById(seriesId: string): Promise<SermonSeries> {
  * Format audio duration from seconds to "MM:SS" or "HH:MM:SS"
  */
 export function formatDuration(seconds: number | null): string {
-  if (!seconds) return '--:--';
+  if (!seconds) return "--:--";
 
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   const secs = Math.floor(seconds % 60);
 
   if (hours > 0) {
-    return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   }
-  return `${minutes}:${secs.toString().padStart(2, '0')}`;
+  return `${minutes}:${secs.toString().padStart(2, "0")}`;
 }
 
 /**
  * Format file size from MB to human-readable string
  */
 export function formatFileSize(mb: number | null): string {
-  if (!mb) return '';
+  if (!mb) return "";
   return `${mb.toFixed(1)} MB`;
 }
 
@@ -110,14 +110,14 @@ export function formatFileSize(mb: number | null): string {
  * This also ensures consistent rendering between server and client.
  */
 export function formatSermonDate(dateString: string | null): string {
-  if (!dateString) return '';
+  if (!dateString) return "";
 
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
   });
 }
 
@@ -128,13 +128,13 @@ export function formatSermonDate(dateString: string | null): string {
  * This also ensures consistent rendering between server and client.
  */
 export function formatSeriesDateRange(startDate: string | null, endDate: string | null): string {
-  if (!startDate) return '';
+  if (!startDate) return "";
 
   const start = new Date(startDate);
-  const startStr = start.toLocaleDateString('en-US', {
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
+  const startStr = start.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
   });
 
   if (!endDate) {
@@ -142,10 +142,10 @@ export function formatSeriesDateRange(startDate: string | null, endDate: string 
   }
 
   const end = new Date(endDate);
-  const endStr = end.toLocaleDateString('en-US', {
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
+  const endStr = end.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
   });
 
   // If same month and year, just show one date
@@ -185,7 +185,7 @@ export async function getMessageTranscript(messageId: string): Promise<Transcrip
   const endpoint = `/api/Sermons/series/message/${messageId}/transcript`;
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (response.status === 404) {
       return null;
@@ -205,7 +205,7 @@ export async function getSermonNotes(messageId: string): Promise<SermonNotesResp
   const endpoint = `/api/Sermons/series/message/${messageId}/notes`;
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      cache: 'no-store',
+      cache: "no-store",
     });
     if (response.status === 404) {
       return null;
@@ -222,9 +222,9 @@ export async function getSermonNotes(messageId: string): Promise<SermonNotesResp
  * No fetch cache - API has 2-hour cache so this is still performant
  */
 export async function getSitemapData(): Promise<SitemapDataResponse> {
-  const endpoint = '/api/Sermons/sitemap';
+  const endpoint = "/api/Sermons/sitemap";
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    cache: 'no-store', // Always fetch fresh data from API
+    cache: "no-store", // Always fetch fresh data from API
   });
   return handleResponse<SitemapDataResponse>(response, endpoint);
 }

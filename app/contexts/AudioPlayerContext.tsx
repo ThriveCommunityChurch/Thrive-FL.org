@@ -1,8 +1,15 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
-import { SermonMessage } from '../types/sermons';
-import { AudioState } from '../lib/audioManager';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  ReactNode,
+} from "react";
+import { SermonMessage } from "../types/sermons";
+import { AudioState } from "../lib/audioManager";
 
 interface AudioPlayerContextType {
   currentMessage: SermonMessage | null;
@@ -35,9 +42,9 @@ interface AudioPlayerProviderProps {
 
 // Dynamically import to avoid SSR issues
 const getManager = () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { audioManager } = require('../lib/audioManager');
+    const { audioManager } = require("../lib/audioManager");
     return audioManager;
   }
   return null;
@@ -63,12 +70,15 @@ export function AudioPlayerProvider({ children }: AudioPlayerProviderProps) {
     }
   }, []);
 
-  const playMessage = useCallback((message: SermonMessage, seriesTitle: string, seriesArtwork: string) => {
-    const manager = getManager();
-    if (manager) {
-      manager.playMessage(message, seriesTitle, seriesArtwork);
-    }
-  }, []);
+  const playMessage = useCallback(
+    (message: SermonMessage, seriesTitle: string, seriesArtwork: string) => {
+      const manager = getManager();
+      if (manager) {
+        manager.playMessage(message, seriesTitle, seriesArtwork);
+      }
+    },
+    [],
+  );
 
   const togglePlayPause = useCallback(() => {
     const manager = getManager();
@@ -117,8 +127,7 @@ export function AudioPlayerProvider({ children }: AudioPlayerProviderProps) {
 export function useAudioPlayer() {
   const context = useContext(AudioPlayerContext);
   if (context === undefined) {
-    throw new Error('useAudioPlayer must be used within an AudioPlayerProvider');
+    throw new Error("useAudioPlayer must be used within an AudioPlayerProvider");
   }
   return context;
 }
-

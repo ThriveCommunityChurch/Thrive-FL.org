@@ -1,8 +1,8 @@
 "use client";
 
-import Link from 'next/link';
-import { SermonMessageCardProps } from '../../types/sermons';
-import { formatDuration, formatSermonDate } from '../../services/sermonService';
+import Link from "next/link";
+import { SermonMessageCardProps } from "../../types/sermons";
+import { formatDuration, formatSermonDate } from "../../services/sermonService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -21,7 +21,7 @@ export default function SermonMessageCard({
   seriesId,
   onPlay,
   isPlaying = false,
-  index = 0
+  index = 0,
 }: SermonMessageCardProps) {
   const duration = formatDuration(message.AudioDuration);
   const date = formatSermonDate(message.Date);
@@ -39,7 +39,7 @@ export default function SermonMessageCard({
 
   return (
     <div
-      className={`sermon-message-card ${isPlaying ? 'sermon-message-card--playing' : ''} ${!hasContent ? 'sermon-message-card--no-content' : ''}`}
+      className={`sermon-message-card ${isPlaying ? "sermon-message-card--playing" : ""} ${!hasContent ? "sermon-message-card--no-content" : ""}`}
       style={{ animationDelay: `${index * 50}ms` }}
     >
       <button
@@ -74,7 +74,10 @@ export default function SermonMessageCard({
             >
               <FontAwesomeIcon icon={faBookBible} />
               {message.PassageRef}
-              <FontAwesomeIcon icon={faExternalLinkAlt} className="sermon-message-card__passage-link-icon" />
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                className="sermon-message-card__passage-link-icon"
+              />
             </a>
           )}
         </div>
@@ -118,12 +121,9 @@ export default function SermonMessageCard({
             </div>
           </>
         ) : (
-          <span className="sermon-message-card__no-recording">
-            No recording available
-          </span>
+          <span className="sermon-message-card__no-recording">No recording available</span>
         )}
       </div>
     </div>
   );
 }
-

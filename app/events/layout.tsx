@@ -2,10 +2,12 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Events & Gatherings | Thrive Community Church",
-  description: "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero, FL.",
+  description:
+    "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero, FL.",
   openGraph: {
     title: "Events & Gatherings | Thrive Community Church",
-    description: "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero.",
+    description:
+      "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero.",
     url: "https://thrive-fl.org/events",
     images: [
       {
@@ -19,7 +21,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Events & Gatherings | Thrive Community Church",
-    description: "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero.",
+    description:
+      "Find out what's happening at Thrive Community Church. Sunday worship, special events, and community gatherings in Estero.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -27,11 +30,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EventsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function EventsLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
-

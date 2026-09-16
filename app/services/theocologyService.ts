@@ -51,11 +51,11 @@ export async function fetchTheocologyEpisodes(): Promise<TheocologyEpisode[]> {
     }
 
     const xmlText = await response.text();
-    
+
     // Parse XML using DOMParser (server-side compatible)
     const { parseStringPromise } = await import("xml2js");
     const result = await parseStringPromise(xmlText);
-    
+
     const items: RssItem[] = result.rss.channel[0].item || [];
 
     const episodes: TheocologyEpisode[] = items.map((item: RssItem) => {
@@ -112,10 +112,9 @@ export function formatDuration(seconds: number): string {
 // Format date to readable string
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", { 
-    month: "long", 
-    day: "numeric", 
-    year: "numeric" 
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
   });
 }
-

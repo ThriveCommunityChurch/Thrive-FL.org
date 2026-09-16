@@ -22,10 +22,12 @@ import CTAButtons from "../components/CTAButtons";
 
 export const metadata: Metadata = {
   title: "Contact Us | Thrive Community Church",
-  description: "Get in touch with Thrive Community Church. Questions, prayer requests, or just want to say hi? Call (239) 687-3430 or email info@thrive-fl.org.",
+  description:
+    "Get in touch with Thrive Community Church. Questions, prayer requests, or just want to say hi? Call (239) 687-3430 or email info@thrive-fl.org.",
   openGraph: {
     title: "Contact Us | Thrive Community Church",
-    description: "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
+    description:
+      "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
     url: "https://thrive-fl.org/contact",
     images: [
       {
@@ -39,7 +41,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact Us | Thrive Community Church",
-    description: "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
+    description:
+      "Questions, prayer requests, or just want to connect? Reach out anytime—we'd love to hear from you and help however we can.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -54,17 +57,9 @@ export default function ContactPage({
 }) {
   const rawSubject = searchParams?.subject;
   const subjectParam = Array.isArray(rawSubject) ? rawSubject[0] : rawSubject;
-  const allowedSubjects = new Set([
-    "general",
-    "visit",
-    "prayer",
-    "volunteer",
-    "pastoral",
-    "other",
-  ]);
+  const allowedSubjects = new Set(["general", "visit", "prayer", "volunteer", "pastoral", "other"]);
 
-  const initialSubject =
-    subjectParam && allowedSubjects.has(subjectParam) ? subjectParam : "";
+  const initialSubject = subjectParam && allowedSubjects.has(subjectParam) ? subjectParam : "";
 
   return (
     <div className="page-wrapper">
@@ -87,14 +82,14 @@ export default function ContactPage({
 
       {/* Contact Form Section */}
       <section className="section contact-form-section">
-	        <div className="container">
-	          <div className="contact-form-wrapper" id="contact-form">
+        <div className="container">
+          <div className="contact-form-wrapper" id="contact-form">
             <div className="contact-form-info">
               <span className="section-eyebrow">Send a Message</span>
               <h2>Get in Touch Directly</h2>
               <p>
-                Fill out the form and we&apos;ll get back to you as soon as possible.
-                We typically respond within 24 hours.
+                Fill out the form and we&apos;ll get back to you as soon as possible. We typically
+                respond within 24 hours.
               </p>
               <ul className="contact-form-benefits">
                 <li>
@@ -110,8 +105,8 @@ export default function ContactPage({
                   <span>Connect with the right person for your needs</span>
                 </li>
               </ul>
-	            </div>
-	            <ContactForm initialSubject={initialSubject} />
+            </div>
+            <ContactForm initialSubject={initialSubject} />
           </div>
         </div>
       </section>
@@ -156,7 +151,9 @@ export default function ContactPage({
               </div>
               <h3>Visit Us</h3>
               <p className="contact-detail-address">
-                20041 S. Tamiami Trail #1<br />Estero, FL 33928
+                20041 S. Tamiami Trail #1
+                <br />
+                Estero, FL 33928
               </p>
               <a
                 href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
@@ -172,19 +169,39 @@ export default function ContactPage({
           <div className="contact-social-centered">
             <h4>Connect With Us Online</h4>
             <div className="contact-social-links-large">
-              <a href="https://www.facebook.com/thriveFL" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <a
+                href="https://www.facebook.com/thriveFL"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
                 <FontAwesomeIcon icon={faFacebookF} />
                 <span>Facebook</span>
               </a>
-              <a href="https://www.instagram.com/thrive_fl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/thrive_fl"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <FontAwesomeIcon icon={faInstagram} />
                 <span>Instagram</span>
               </a>
-              <a href="https://x.com/Thrive_FL" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">
+              <a
+                href="https://x.com/Thrive_FL"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter/X"
+              >
                 <FontAwesomeIcon icon={faXTwitter} />
                 <span>X / Twitter</span>
               </a>
-              <a href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <a
+                href="https://www.youtube.com/channel/UC47Nme86YGrVy1lY15rF3ig"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
                 <FontAwesomeIcon icon={faYoutube} />
                 <span>YouTube</span>
               </a>
@@ -199,17 +216,19 @@ export default function ContactPage({
           <div className="cta-content">
             <h2>Nothing Beats Meeting Face to Face</h2>
             <p>
-              While we love hearing from you online, there&apos;s nothing quite like connecting
-              in person. We&apos;d love to meet you.
+              While we love hearing from you online, there&apos;s nothing quite like connecting in
+              person. We&apos;d love to meet you.
             </p>
             <CTAButtons>
               <Link href="/visit" className="btn btn-primary">
                 <FontAwesomeIcon icon={faCalendar} /> Visit Us
               </Link>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="btn btn-outline-white">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=20041+S+Tamiami+Trail+%231+Estero+FL+33928"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-white"
+              >
                 <FontAwesomeIcon icon={faDiamondTurnRight} /> Get Directions
               </a>
             </CTAButtons>

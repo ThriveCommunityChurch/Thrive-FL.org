@@ -19,10 +19,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Our Beliefs | Thrive Community Church",
-  description: "Grace alone. Faith alone. Scripture alone. Explore the foundational beliefs of Thrive Community Church, a congregation of the Lutheran Church—Missouri Synod.",
+  description:
+    "Grace alone. Faith alone. Scripture alone. Explore the foundational beliefs of Thrive Community Church, a congregation of the Lutheran Church—Missouri Synod.",
   openGraph: {
     title: "Our Beliefs | Thrive Community Church",
-    description: "Grace alone. Faith alone. Scripture alone. Discover our Lutheran heritage and what we believe.",
+    description:
+      "Grace alone. Faith alone. Scripture alone. Discover our Lutheran heritage and what we believe.",
     url: "https://thrive-fl.org/about/beliefs",
     images: [
       {
@@ -36,7 +38,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Our Beliefs | Thrive Community Church",
-    description: "Grace alone. Faith alone. Scripture alone. Discover our Lutheran heritage and what we believe.",
+    description:
+      "Grace alone. Faith alone. Scripture alone. Discover our Lutheran heritage and what we believe.",
     images: ["https://static.thrive-fl.org/og-image.jpg"],
   },
   alternates: {
@@ -52,9 +55,7 @@ export default function BeliefsPage() {
         <div className="page-hero-overlay"></div>
         <div className="page-hero-content">
           <h1 className="page-hero-title">Our Beliefs</h1>
-          <p className="page-hero-subtitle">
-            Grace. Faith. Scripture. That&apos;s it.
-          </p>
+          <p className="page-hero-subtitle">Grace. Faith. Scripture. That&apos;s it.</p>
         </div>
       </section>
 
@@ -68,8 +69,8 @@ export default function BeliefsPage() {
               </div>
               <h3>Grace Alone</h3>
               <p>
-                Rescued from sin purely by the <strong>undeserved mercy of God</strong>.
-                Period. No earning it. No deserving it. Just receiving it.
+                Rescued from sin purely by the <strong>undeserved mercy of God</strong>. Period. No
+                earning it. No deserving it. Just receiving it.
               </p>
             </div>
             <div className="beliefs-pillar-card">
@@ -78,8 +79,8 @@ export default function BeliefsPage() {
               </div>
               <h3>Faith Alone</h3>
               <p>
-                Through faith—a relationship of dependence on Jesus that <strong>God Himself gives us</strong>—forgiveness
-                and new life become ours.
+                Through faith—a relationship of dependence on Jesus that{" "}
+                <strong>God Himself gives us</strong>—forgiveness and new life become ours.
               </p>
             </div>
             <div className="beliefs-pillar-card">
@@ -88,8 +89,8 @@ export default function BeliefsPage() {
               </div>
               <h3>Scripture Alone</h3>
               <p>
-                God&apos;s Word stands over us as ultimate—making us aware of sin,
-                filling us with faith, and <strong>guiding us in faith-filled living</strong>.
+                God&apos;s Word stands over us as ultimate—making us aware of sin, filling us with
+                faith, and <strong>guiding us in faith-filled living</strong>.
               </p>
             </div>
           </div>
@@ -108,7 +109,8 @@ export default function BeliefsPage() {
           />
           <div className="beliefs-image-overlay">
             <blockquote className="beliefs-quote">
-              &ldquo;For by grace you have been saved through faith. And this is not your own doing; it is the gift of God.&rdquo;
+              &ldquo;For by grace you have been saved through faith. And this is not your own doing;
+              it is the gift of God.&rdquo;
               <cite>— Ephesians 2:8</cite>
             </blockquote>
           </div>
@@ -125,29 +127,31 @@ export default function BeliefsPage() {
                 alt="Cross silhouette at sunrise"
                 width={800}
                 height={600}
-                style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
             <div className="beliefs-creed-content">
               <span className="section-eyebrow">What We Confess</span>
               <h2 className="section-title-left">The Apostles&apos; Creed</h2>
               <p className="beliefs-creed-intro">
-                For nearly 2,000 years, Christians have confessed these foundational truths together.
+                For nearly 2,000 years, Christians have confessed these foundational truths
+                together.
               </p>
               <div className="creed-card">
                 <p className="creed-text">
                   <strong>I believe in God</strong>, the Father Almighty, Maker of heaven and earth,
                 </p>
                 <p className="creed-text">
-                  and in <strong>Jesus Christ</strong>, His only Son, our Lord: Who was conceived by the Holy Spirit,
-                  born of the Virgin Mary, suffered under Pontius Pilate, was crucified, died, and was buried.
-                  He descended into hell. On the third day He rose again from the dead. He ascended into heaven
-                  and sits at the right hand of God the Father Almighty, from there He shall come to judge
-                  the living and the dead.
+                  and in <strong>Jesus Christ</strong>, His only Son, our Lord: Who was conceived by
+                  the Holy Spirit, born of the Virgin Mary, suffered under Pontius Pilate, was
+                  crucified, died, and was buried. He descended into hell. On the third day He rose
+                  again from the dead. He ascended into heaven and sits at the right hand of God the
+                  Father Almighty, from there He shall come to judge the living and the dead.
                 </p>
                 <p className="creed-text">
-                  I believe in <strong>the Holy Spirit</strong>, the Holy Christian Church, the communion of saints,
-                  the forgiveness of sins, the resurrection of the body, and the life everlasting.
+                  I believe in <strong>the Holy Spirit</strong>, the Holy Christian Church, the
+                  communion of saints, the forgiveness of sins, the resurrection of the body, and
+                  the life everlasting.
                 </p>
                 <p className="creed-amen">Amen.</p>
               </div>
@@ -169,11 +173,13 @@ export default function BeliefsPage() {
               </p>
               <p>
                 Being Lutheran simply means we hold to the scriptural truths that sparked the
-                Reformation in the 16th century—a renewed focus on the Gospel that changed everything.
+                Reformation in the 16th century—a renewed focus on the Gospel that changed
+                everything.
               </p>
               <p>
-                We believe in an <strong>extravagant and mysterious view of God&apos;s love</strong>:
-                that people are saved purely by God&apos;s grace through faith alone, apart from works.
+                We believe in an <strong>extravagant and mysterious view of God&apos;s love</strong>
+                : that people are saved purely by God&apos;s grace through faith alone, apart from
+                works.
               </p>
               <div className="heritage-features">
                 <div className="heritage-feature">
@@ -189,7 +195,12 @@ export default function BeliefsPage() {
                   <span>God&apos;s Word</span>
                 </div>
               </div>
-              <a href="https://www.lcms.org/about/beliefs" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+              <a
+                href="https://www.lcms.org/about/beliefs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+              >
                 Learn More About the LCMS <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </a>
             </div>
@@ -199,7 +210,7 @@ export default function BeliefsPage() {
                 alt="Open Bible on wooden table"
                 width={800}
                 height={600}
-                style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+                style={{ objectFit: "cover", width: "100%", height: "auto" }}
               />
             </div>
           </div>
@@ -214,19 +225,20 @@ export default function BeliefsPage() {
               <span className="section-eyebrow">How We Worship</span>
               <h2 className="section-title-left">Ancient Truth, Contemporary Expression</h2>
               <p className="contemporary-lead">
-                <strong>Same gospel. Different style.</strong> We hold to the historic Christian faith passed down
-                through generations of Lutherans—but we express it in ways that connect with people today.
+                <strong>Same gospel. Different style.</strong> We hold to the historic Christian
+                faith passed down through generations of Lutherans—but we express it in ways that
+                connect with people today.
               </p>
               <p>
-                You&apos;ll hear contemporary music, see people in jeans and t-shirts, and experience
-                a relaxed atmosphere. But don&apos;t let the style fool you: the substance is
-                deeply rooted in Scripture and the Lutheran confessions.
+                You&apos;ll hear contemporary music, see people in jeans and t-shirts, and
+                experience a relaxed atmosphere. But don&apos;t let the style fool you: the
+                substance is deeply rooted in Scripture and the Lutheran confessions.
               </p>
               <p>
-                Lutheran theology has always distinguished between what&apos;s essential and what&apos;s
-                not. Doctrine matters—worship style is a matter of freedom. This principle,
-                called <em>adiaphora</em>, means churches can adapt how they gather without
-                compromising what they believe.
+                Lutheran theology has always distinguished between what&apos;s essential and
+                what&apos;s not. Doctrine matters—worship style is a matter of freedom. This
+                principle, called <em>adiaphora</em>, means churches can adapt how they gather
+                without compromising what they believe.
               </p>
               <p>
                 At Thrive, we leverage that freedom intentionally. We want to remove every
