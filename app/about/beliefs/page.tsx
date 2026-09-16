@@ -104,7 +104,6 @@ export default function BeliefsPage() {
             className="beliefs-hero-image"
             width={1600}
             height={900}
-            style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
           />
           <div className="beliefs-image-overlay">
             <blockquote className="beliefs-quote">
