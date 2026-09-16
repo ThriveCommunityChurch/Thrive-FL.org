@@ -5587,6 +5587,78 @@ a:hover {
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626;
   border: 1px solid rgba(239, 68, 68, 0.3);
+  align-items: flex-start;
+}
+
+.contact-form-error > svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-form-error-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.contact-form-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm) var(--spacing-md);
+}
+
+.contact-form-retry {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  background: #dc2626;
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-md);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-form-retry:hover {
+  background: #b91c1c;
+}
+
+.contact-form-error-actions a {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Per-field validation errors */
+.contact-form-group-error input,
+.contact-form-group-error select,
+.contact-form-group-error textarea {
+  border-color: #dc2626;
+  background: var(--color-white);
+}
+
+.contact-form-group-error input:focus,
+.contact-form-group-error select:focus,
+.contact-form-group-error textarea:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.contact-form-field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: #dc2626;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  margin: var(--spacing-xs) 0 0;
+}
+
+.contact-form-field-error svg {
+  flex-shrink: 0;
 }
 
 /* Form Footer */
