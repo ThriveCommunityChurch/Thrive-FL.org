@@ -62,15 +62,6 @@ export default function HomePage() {
       <section className="hero-section">
         {/* Video Background */}
         <div className="hero-video-container">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://static.thrive-fl.org/Still.jpg"
-            alt=""
-            className="hero-poster-preload"
-            fetchPriority="high"
-            style={{ display: 'none' }}
-            aria-hidden="true"
-          />
           <video
             className="hero-video"
             autoPlay

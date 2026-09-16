@@ -9,7 +9,7 @@ export default function NotFound() {
       {/* Background image of empty tomb */}
       <div className="not-found-background">
         <Image
-          src="https://images.unsplash.com/photo-1521106581851-da5b6457f674?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1521106581851-da5b6457f674?q=80&w=1920&auto=format&fit=crop"
           alt="Empty tomb at sunrise"
           fill
           style={{ objectFit: "cover" }}
