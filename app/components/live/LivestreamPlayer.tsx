@@ -132,7 +132,7 @@ export default function LivestreamPlayer({
   // Offline state - show friendly message
   return (
     <div className="livestream-player">
-      <div className="livestream-video-container">
+      <div className="livestream-video-container livestream-video-container-offline">
         <LivestreamOffline />
       </div>
     </div>

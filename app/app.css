@@ -392,6 +392,17 @@ a:hover {
   box-shadow: var(--shadow-lg);
 }
 
+/* Mobile GPUs tile backdrop-filter blurs, which can leave a visible
+   seam over video backgrounds (and it costs battery). Use a flat
+   translucent fill on small screens instead. */
+@media (max-width: 768px) {
+  .btn-secondary {
+    background: rgba(13, 25, 33, 0.6);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
 /* Outline Button - Subtle elegance */
 .btn-outline {
   background: transparent;
@@ -10182,12 +10193,25 @@ a:hover {
 
 @media (max-width: 480px) {
   .livestream-offline-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: var(--spacing-3);
   }
 
-  .livestream-offline-cta {
-    padding: 10px 20px;
+  /* Let the offline card size to its content instead of squeezing
+     into the 16:9 video box (~200px tall on phones) */
+  .livestream-video-container-offline {
+    aspect-ratio: auto;
+  }
+
+  .livestream-video-container-offline .livestream-offline {
+    position: relative;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .livestream-offline .livestream-offline-cta {
+    padding: 12px 22px;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-3);
   }
 }
 
