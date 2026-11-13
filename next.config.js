@@ -6,7 +6,6 @@ const nextConfig = {
     MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
     MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
     CONTACT_EMAIL: process.env.CONTACT_EMAIL,
-    SPAM_QUARANTINE_EMAIL: process.env.SPAM_QUARANTINE_EMAIL,
     TYPESAFE_API_KEY: process.env.TYPESAFE_API_KEY,
     JEV_SPAM_ACTION: process.env.JEV_SPAM_ACTION,
   },

@@ -5,7 +5,7 @@
  * real person at a marketing agency typing a sales pitch into the prayer
  * request box, which is the bulk of what actually reaches the inbox. This
  * module scores the submission content itself and lets the API route decide
- * whether to deliver, flag, or quarantine it.
+ * whether to deliver, flag, or drop it.
  *
  * Intentionally dependency-free: the published spam packages are either
  * trained on email corpora (naive Bayes with no solicitation training data) or
