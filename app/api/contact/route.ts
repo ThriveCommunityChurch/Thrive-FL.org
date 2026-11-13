@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import FormData from "form-data";
 import Mailgun from "mailgun.js";
+import { checkWithJev, describeJevAssessment } from "../../lib/jevSpamCheck";
 import { describeAssessment, evaluateSubmission } from "../../lib/spamFilter";
 
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
@@ -14,6 +15,8 @@ const PRAYER_EMAIL = "prayers@thrive-fl.org";
 // mail arrives subject-prefixed "[SPAM]" and can be filtered client-side.
 // Point this at a dedicated mailbox once one exists.
 const SPAM_QUARANTINE_EMAIL = process.env.SPAM_QUARANTINE_EMAIL || CONTACT_EMAIL;
+// Jev-confident spam is quarantined unless JEV_SPAM_ACTION=tag, which only marks it [POSSIBLE SPAM].
+const JEV_BLOCKS_SPAM = process.env.JEV_SPAM_ACTION !== "tag";
 
 interface RecaptchaResponse {
   success: boolean;
@@ -423,10 +426,34 @@ export async function POST(request: NextRequest) {
       elapsedMs: body.elapsedMs,
     });
 
-    const { to, subject, text } = buildEmailFromSubmission(type, submissionData, score);
+    // Heuristic spam is already decided; skip the API call.
+    const jev =
+      assessment.verdict === "spam"
+        ? null
+        : await checkWithJev({
+            formType: type,
+            name: submissionData.name,
+            email: submissionData.email,
+            message: submissionData.message,
+          });
+    const jevSummary = assessment.verdict === "spam" ? "" : describeJevAssessment(jev);
 
-    if (assessment.verdict === "spam") {
-      console.warn(`Blocked spam submission (${type}): ${describeAssessment(assessment)}`);
+    const isSpam = assessment.verdict === "spam" || (JEV_BLOCKS_SPAM && jev?.verdict === "spam");
+    const spamDetails = [describeAssessment(assessment), jevSummary].filter(Boolean).join("; ");
+    // Jev's numbers are already in the footer, so only name it here.
+    const filterReason = [
+      assessment.verdict !== "clean" ? describeAssessment(assessment) : "",
+      jev && jev.verdict !== "clean" ? "Jev (see above)" : "",
+    ]
+      .filter(Boolean)
+      .join("; ");
+
+    const built = buildEmailFromSubmission(type, submissionData, score);
+    const { to, subject } = built;
+    const text = jevSummary ? `${built.text}\n${jevSummary}` : built.text;
+
+    if (isSpam) {
+      console.warn(`Blocked spam submission (${type}): ${spamDetails}`);
 
       // Quarantine rather than discard, so a false positive is recoverable.
       // A failure here must not surface to the sender - the submission is
@@ -437,7 +464,7 @@ export async function POST(request: NextRequest) {
           to: [SPAM_QUARANTINE_EMAIL],
           // No Reply-To here on purpose - nobody should reply to this by accident
           subject: `[SPAM] ${subject}`,
-          text: `${text}\n\nBlocked by the spam filter: ${describeAssessment(assessment)}`,
+          text: `${text}\n\nBlocked by the spam filter: ${filterReason}`,
         });
       } catch (quarantineError) {
         console.error("Failed to quarantine spam submission:", quarantineError);
@@ -452,10 +479,11 @@ export async function POST(request: NextRequest) {
 
     // Borderline submissions still go to the team, just labelled so they can be
     // triaged (or filtered on the subject line) at a glance.
-    const isSuspicious = assessment.verdict === "suspicious";
+    const isSuspicious =
+      assessment.verdict === "suspicious" || (jev !== null && jev.verdict !== "clean");
     const finalSubject = isSuspicious ? `[POSSIBLE SPAM] ${subject}` : subject;
     const finalText = isSuspicious
-      ? `${text}\n\nFlagged by the spam filter: ${describeAssessment(assessment)}`
+      ? `${text}\n\nFlagged by the spam filter: ${filterReason}`
       : text;
 
     // Sanitize the Reply-To email to prevent header injection
