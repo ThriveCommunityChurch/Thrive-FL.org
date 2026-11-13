@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import FormData from "form-data";
 import Mailgun from "mailgun.js";
-import { checkWithJev, describeJevAssessment } from "../../lib/jevSpamCheck";
+import { checkWithJev, describeJevAssessment, formatJevScores } from "../../lib/jevSpamCheck";
 import { describeAssessment, evaluateSubmission } from "../../lib/spamFilter";
 
 const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
@@ -434,10 +434,12 @@ export async function POST(request: NextRequest) {
     const jevSummary = assessment.verdict === "spam" ? "" : describeJevAssessment(jev);
 
     const isSpam = assessment.verdict === "spam" || (JEV_BLOCKS_SPAM && jev?.verdict === "spam");
-    // Logs only; Jev details stay out of the emails.
     const spamDetails = [describeAssessment(assessment), jevSummary].filter(Boolean).join("; ");
 
-    const { to, subject, text } = buildEmailFromSubmission(type, submissionData, score);
+    const built = buildEmailFromSubmission(type, submissionData, score);
+    const { to, subject } = built;
+    const jevScores = formatJevScores(jev);
+    const text = jevScores ? `${built.text}\n${jevScores}` : built.text;
 
     if (isSpam) {
       // Dropped: no email is sent. The log line is the only record.
