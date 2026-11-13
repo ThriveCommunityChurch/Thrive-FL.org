@@ -434,18 +434,10 @@ export async function POST(request: NextRequest) {
     const jevSummary = assessment.verdict === "spam" ? "" : describeJevAssessment(jev);
 
     const isSpam = assessment.verdict === "spam" || (JEV_BLOCKS_SPAM && jev?.verdict === "spam");
+    // Logs only; Jev details stay out of the emails.
     const spamDetails = [describeAssessment(assessment), jevSummary].filter(Boolean).join("; ");
-    // Jev's numbers are already in the footer, so only name it here.
-    const filterReason = [
-      assessment.verdict !== "clean" ? describeAssessment(assessment) : "",
-      jev && jev.verdict !== "clean" ? "Jev (see above)" : "",
-    ]
-      .filter(Boolean)
-      .join("; ");
 
-    const built = buildEmailFromSubmission(type, submissionData, score);
-    const { to, subject } = built;
-    const text = jevSummary ? `${built.text}\n${jevSummary}` : built.text;
+    const { to, subject, text } = buildEmailFromSubmission(type, submissionData, score);
 
     if (isSpam) {
       // Dropped: no email is sent. The log line is the only record.
@@ -465,9 +457,13 @@ export async function POST(request: NextRequest) {
     const isSuspicious =
       assessment.verdict === "suspicious" || (jev !== null && jev.verdict !== "clean");
     const finalSubject = isSuspicious ? `[POSSIBLE SPAM] ${subject}` : subject;
-    const finalText = isSuspicious
-      ? `${text}\n\nFlagged by the spam filter: ${filterReason}`
-      : text;
+    const finalText =
+      assessment.verdict === "suspicious"
+        ? `${text}\n\nFlagged by the spam filter: ${describeAssessment(assessment)}`
+        : text;
+    if (isSuspicious) {
+      console.warn(`Flagged possible spam "${subject}": ${spamDetails}`);
+    }
 
     // Sanitize the Reply-To email to prevent header injection
     const replyToEmail = sanitizeEmail(submissionData.email);
