@@ -152,12 +152,25 @@ export async function checkWithJev(input: JevSpamInput): Promise<JevSpamAssessme
   }
 }
 
-/** One-line summary for email footers and logs */
+const pct = (value: number) => `${Math.round(value * 100)}%`;
+
+/** Score lines for email footers; empty when Jev was unavailable */
+export function formatJevScores(assessment: JevSpamAssessment | null): string {
+  if (!assessment) {
+    return "";
+  }
+  return [
+    `Sales Pitch: ${pct(assessment.solicitation)}`,
+    `Mass Template: ${pct(assessment.massOutreach)}`,
+    `Genuine Inquiry: ${pct(assessment.genuine)}`,
+  ].join("\n");
+}
+
+/** One-line summary for logs */
 export function describeJevAssessment(assessment: JevSpamAssessment | null): string {
   if (!assessment) {
     return "Jev spam check: unavailable";
   }
-  const pct = (value: number) => `${Math.round(value * 100)}%`;
   return (
     `Jev spam check: ${assessment.verdict} ` +
     `(sales pitch ${pct(assessment.solicitation)}, ` +
